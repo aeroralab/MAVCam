@@ -9,3 +9,12 @@ install_manifest.txt
 compile_commands.json
 CTestTestfile.cmake
 _deps
+
+#clang-foramt cache file
+.cache/
+
+# mac special file
+.DS_Store
+
+# default build path
+build
