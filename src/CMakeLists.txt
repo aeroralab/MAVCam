@@ -7,4 +7,5 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 include(cmake/compiler_flags.cmake)
 
+add_subdirectory(base)
 add_subdirectory(mid_client)
