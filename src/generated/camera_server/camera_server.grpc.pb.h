@@ -105,14 +105,14 @@ class CameraServerService final {
       return std::unique_ptr< ::grpc::ClientAsyncReaderInterface< ::mavsdk::rpc::camera_server::StopVideoStreamingResponse>>(PrepareAsyncSubscribeStopVideoStreamingRaw(context, request, cq));
     }
     // Subscribe to set camera mode requests. Each request received should response to using SetCameraModeResponse
-    std::unique_ptr< ::grpc::ClientReaderInterface< ::mavsdk::rpc::camera_server::SetCameraModeResponse>> SubscribeSetCameraMode(::grpc::ClientContext* context, const ::mavsdk::rpc::camera_server::SubscribeSetCameraModeRequest& request) {
-      return std::unique_ptr< ::grpc::ClientReaderInterface< ::mavsdk::rpc::camera_server::SetCameraModeResponse>>(SubscribeSetCameraModeRaw(context, request));
+    std::unique_ptr< ::grpc::ClientReaderInterface< ::mavsdk::rpc::camera_server::SetModeResponse>> SubscribeSetMode(::grpc::ClientContext* context, const ::mavsdk::rpc::camera_server::SubscribeSetModeRequest& request) {
+      return std::unique_ptr< ::grpc::ClientReaderInterface< ::mavsdk::rpc::camera_server::SetModeResponse>>(SubscribeSetModeRaw(context, request));
     }
-    std::unique_ptr< ::grpc::ClientAsyncReaderInterface< ::mavsdk::rpc::camera_server::SetCameraModeResponse>> AsyncSubscribeSetCameraMode(::grpc::ClientContext* context, const ::mavsdk::rpc::camera_server::SubscribeSetCameraModeRequest& request, ::grpc::CompletionQueue* cq, void* tag) {
-      return std::unique_ptr< ::grpc::ClientAsyncReaderInterface< ::mavsdk::rpc::camera_server::SetCameraModeResponse>>(AsyncSubscribeSetCameraModeRaw(context, request, cq, tag));
+    std::unique_ptr< ::grpc::ClientAsyncReaderInterface< ::mavsdk::rpc::camera_server::SetModeResponse>> AsyncSubscribeSetMode(::grpc::ClientContext* context, const ::mavsdk::rpc::camera_server::SubscribeSetModeRequest& request, ::grpc::CompletionQueue* cq, void* tag) {
+      return std::unique_ptr< ::grpc::ClientAsyncReaderInterface< ::mavsdk::rpc::camera_server::SetModeResponse>>(AsyncSubscribeSetModeRaw(context, request, cq, tag));
     }
-    std::unique_ptr< ::grpc::ClientAsyncReaderInterface< ::mavsdk::rpc::camera_server::SetCameraModeResponse>> PrepareAsyncSubscribeSetCameraMode(::grpc::ClientContext* context, const ::mavsdk::rpc::camera_server::SubscribeSetCameraModeRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncReaderInterface< ::mavsdk::rpc::camera_server::SetCameraModeResponse>>(PrepareAsyncSubscribeSetCameraModeRaw(context, request, cq));
+    std::unique_ptr< ::grpc::ClientAsyncReaderInterface< ::mavsdk::rpc::camera_server::SetModeResponse>> PrepareAsyncSubscribeSetMode(::grpc::ClientContext* context, const ::mavsdk::rpc::camera_server::SubscribeSetModeRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncReaderInterface< ::mavsdk::rpc::camera_server::SetModeResponse>>(PrepareAsyncSubscribeSetModeRaw(context, request, cq));
     }
     // Subscribe to camera storage information requests. Each request received should response to using StorageInformationResponse
     std::unique_ptr< ::grpc::ClientReaderInterface< ::mavsdk::rpc::camera_server::StorageInformationResponse>> SubscribeStorageInformation(::grpc::ClientContext* context, const ::mavsdk::rpc::camera_server::SubscribeStorageInformationRequest& request) {
@@ -190,7 +190,7 @@ class CameraServerService final {
       // Subscribe to stop video streaming requests. Each request received should response to using StopVideoStreamingResponse
       virtual void SubscribeStopVideoStreaming(::grpc::ClientContext* context, const ::mavsdk::rpc::camera_server::SubscribeStopVideoStreamingRequest* request, ::grpc::ClientReadReactor< ::mavsdk::rpc::camera_server::StopVideoStreamingResponse>* reactor) = 0;
       // Subscribe to set camera mode requests. Each request received should response to using SetCameraModeResponse
-      virtual void SubscribeSetCameraMode(::grpc::ClientContext* context, const ::mavsdk::rpc::camera_server::SubscribeSetCameraModeRequest* request, ::grpc::ClientReadReactor< ::mavsdk::rpc::camera_server::SetCameraModeResponse>* reactor) = 0;
+      virtual void SubscribeSetMode(::grpc::ClientContext* context, const ::mavsdk::rpc::camera_server::SubscribeSetModeRequest* request, ::grpc::ClientReadReactor< ::mavsdk::rpc::camera_server::SetModeResponse>* reactor) = 0;
       // Subscribe to camera storage information requests. Each request received should response to using StorageInformationResponse
       virtual void SubscribeStorageInformation(::grpc::ClientContext* context, const ::mavsdk::rpc::camera_server::SubscribeStorageInformationRequest* request, ::grpc::ClientReadReactor< ::mavsdk::rpc::camera_server::StorageInformationResponse>* reactor) = 0;
       // Respond to camera storage information from SubscribeStorageInformation.
@@ -229,9 +229,9 @@ class CameraServerService final {
     virtual ::grpc::ClientReaderInterface< ::mavsdk::rpc::camera_server::StopVideoStreamingResponse>* SubscribeStopVideoStreamingRaw(::grpc::ClientContext* context, const ::mavsdk::rpc::camera_server::SubscribeStopVideoStreamingRequest& request) = 0;
     virtual ::grpc::ClientAsyncReaderInterface< ::mavsdk::rpc::camera_server::StopVideoStreamingResponse>* AsyncSubscribeStopVideoStreamingRaw(::grpc::ClientContext* context, const ::mavsdk::rpc::camera_server::SubscribeStopVideoStreamingRequest& request, ::grpc::CompletionQueue* cq, void* tag) = 0;
     virtual ::grpc::ClientAsyncReaderInterface< ::mavsdk::rpc::camera_server::StopVideoStreamingResponse>* PrepareAsyncSubscribeStopVideoStreamingRaw(::grpc::ClientContext* context, const ::mavsdk::rpc::camera_server::SubscribeStopVideoStreamingRequest& request, ::grpc::CompletionQueue* cq) = 0;
-    virtual ::grpc::ClientReaderInterface< ::mavsdk::rpc::camera_server::SetCameraModeResponse>* SubscribeSetCameraModeRaw(::grpc::ClientContext* context, const ::mavsdk::rpc::camera_server::SubscribeSetCameraModeRequest& request) = 0;
-    virtual ::grpc::ClientAsyncReaderInterface< ::mavsdk::rpc::camera_server::SetCameraModeResponse>* AsyncSubscribeSetCameraModeRaw(::grpc::ClientContext* context, const ::mavsdk::rpc::camera_server::SubscribeSetCameraModeRequest& request, ::grpc::CompletionQueue* cq, void* tag) = 0;
-    virtual ::grpc::ClientAsyncReaderInterface< ::mavsdk::rpc::camera_server::SetCameraModeResponse>* PrepareAsyncSubscribeSetCameraModeRaw(::grpc::ClientContext* context, const ::mavsdk::rpc::camera_server::SubscribeSetCameraModeRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientReaderInterface< ::mavsdk::rpc::camera_server::SetModeResponse>* SubscribeSetModeRaw(::grpc::ClientContext* context, const ::mavsdk::rpc::camera_server::SubscribeSetModeRequest& request) = 0;
+    virtual ::grpc::ClientAsyncReaderInterface< ::mavsdk::rpc::camera_server::SetModeResponse>* AsyncSubscribeSetModeRaw(::grpc::ClientContext* context, const ::mavsdk::rpc::camera_server::SubscribeSetModeRequest& request, ::grpc::CompletionQueue* cq, void* tag) = 0;
+    virtual ::grpc::ClientAsyncReaderInterface< ::mavsdk::rpc::camera_server::SetModeResponse>* PrepareAsyncSubscribeSetModeRaw(::grpc::ClientContext* context, const ::mavsdk::rpc::camera_server::SubscribeSetModeRequest& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientReaderInterface< ::mavsdk::rpc::camera_server::StorageInformationResponse>* SubscribeStorageInformationRaw(::grpc::ClientContext* context, const ::mavsdk::rpc::camera_server::SubscribeStorageInformationRequest& request) = 0;
     virtual ::grpc::ClientAsyncReaderInterface< ::mavsdk::rpc::camera_server::StorageInformationResponse>* AsyncSubscribeStorageInformationRaw(::grpc::ClientContext* context, const ::mavsdk::rpc::camera_server::SubscribeStorageInformationRequest& request, ::grpc::CompletionQueue* cq, void* tag) = 0;
     virtual ::grpc::ClientAsyncReaderInterface< ::mavsdk::rpc::camera_server::StorageInformationResponse>* PrepareAsyncSubscribeStorageInformationRaw(::grpc::ClientContext* context, const ::mavsdk::rpc::camera_server::SubscribeStorageInformationRequest& request, ::grpc::CompletionQueue* cq) = 0;
@@ -311,14 +311,14 @@ class CameraServerService final {
     std::unique_ptr< ::grpc::ClientAsyncReader< ::mavsdk::rpc::camera_server::StopVideoStreamingResponse>> PrepareAsyncSubscribeStopVideoStreaming(::grpc::ClientContext* context, const ::mavsdk::rpc::camera_server::SubscribeStopVideoStreamingRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncReader< ::mavsdk::rpc::camera_server::StopVideoStreamingResponse>>(PrepareAsyncSubscribeStopVideoStreamingRaw(context, request, cq));
     }
-    std::unique_ptr< ::grpc::ClientReader< ::mavsdk::rpc::camera_server::SetCameraModeResponse>> SubscribeSetCameraMode(::grpc::ClientContext* context, const ::mavsdk::rpc::camera_server::SubscribeSetCameraModeRequest& request) {
-      return std::unique_ptr< ::grpc::ClientReader< ::mavsdk::rpc::camera_server::SetCameraModeResponse>>(SubscribeSetCameraModeRaw(context, request));
+    std::unique_ptr< ::grpc::ClientReader< ::mavsdk::rpc::camera_server::SetModeResponse>> SubscribeSetMode(::grpc::ClientContext* context, const ::mavsdk::rpc::camera_server::SubscribeSetModeRequest& request) {
+      return std::unique_ptr< ::grpc::ClientReader< ::mavsdk::rpc::camera_server::SetModeResponse>>(SubscribeSetModeRaw(context, request));
     }
-    std::unique_ptr< ::grpc::ClientAsyncReader< ::mavsdk::rpc::camera_server::SetCameraModeResponse>> AsyncSubscribeSetCameraMode(::grpc::ClientContext* context, const ::mavsdk::rpc::camera_server::SubscribeSetCameraModeRequest& request, ::grpc::CompletionQueue* cq, void* tag) {
-      return std::unique_ptr< ::grpc::ClientAsyncReader< ::mavsdk::rpc::camera_server::SetCameraModeResponse>>(AsyncSubscribeSetCameraModeRaw(context, request, cq, tag));
+    std::unique_ptr< ::grpc::ClientAsyncReader< ::mavsdk::rpc::camera_server::SetModeResponse>> AsyncSubscribeSetMode(::grpc::ClientContext* context, const ::mavsdk::rpc::camera_server::SubscribeSetModeRequest& request, ::grpc::CompletionQueue* cq, void* tag) {
+      return std::unique_ptr< ::grpc::ClientAsyncReader< ::mavsdk::rpc::camera_server::SetModeResponse>>(AsyncSubscribeSetModeRaw(context, request, cq, tag));
     }
-    std::unique_ptr< ::grpc::ClientAsyncReader< ::mavsdk::rpc::camera_server::SetCameraModeResponse>> PrepareAsyncSubscribeSetCameraMode(::grpc::ClientContext* context, const ::mavsdk::rpc::camera_server::SubscribeSetCameraModeRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncReader< ::mavsdk::rpc::camera_server::SetCameraModeResponse>>(PrepareAsyncSubscribeSetCameraModeRaw(context, request, cq));
+    std::unique_ptr< ::grpc::ClientAsyncReader< ::mavsdk::rpc::camera_server::SetModeResponse>> PrepareAsyncSubscribeSetMode(::grpc::ClientContext* context, const ::mavsdk::rpc::camera_server::SubscribeSetModeRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncReader< ::mavsdk::rpc::camera_server::SetModeResponse>>(PrepareAsyncSubscribeSetModeRaw(context, request, cq));
     }
     std::unique_ptr< ::grpc::ClientReader< ::mavsdk::rpc::camera_server::StorageInformationResponse>> SubscribeStorageInformation(::grpc::ClientContext* context, const ::mavsdk::rpc::camera_server::SubscribeStorageInformationRequest& request) {
       return std::unique_ptr< ::grpc::ClientReader< ::mavsdk::rpc::camera_server::StorageInformationResponse>>(SubscribeStorageInformationRaw(context, request));
@@ -382,7 +382,7 @@ class CameraServerService final {
       void SubscribeStopVideo(::grpc::ClientContext* context, const ::mavsdk::rpc::camera_server::SubscribeStopVideoRequest* request, ::grpc::ClientReadReactor< ::mavsdk::rpc::camera_server::StopVideoResponse>* reactor) override;
       void SubscribeStartVideoStreaming(::grpc::ClientContext* context, const ::mavsdk::rpc::camera_server::SubscribeStartVideoStreamingRequest* request, ::grpc::ClientReadReactor< ::mavsdk::rpc::camera_server::StartVideoStreamingResponse>* reactor) override;
       void SubscribeStopVideoStreaming(::grpc::ClientContext* context, const ::mavsdk::rpc::camera_server::SubscribeStopVideoStreamingRequest* request, ::grpc::ClientReadReactor< ::mavsdk::rpc::camera_server::StopVideoStreamingResponse>* reactor) override;
-      void SubscribeSetCameraMode(::grpc::ClientContext* context, const ::mavsdk::rpc::camera_server::SubscribeSetCameraModeRequest* request, ::grpc::ClientReadReactor< ::mavsdk::rpc::camera_server::SetCameraModeResponse>* reactor) override;
+      void SubscribeSetMode(::grpc::ClientContext* context, const ::mavsdk::rpc::camera_server::SubscribeSetModeRequest* request, ::grpc::ClientReadReactor< ::mavsdk::rpc::camera_server::SetModeResponse>* reactor) override;
       void SubscribeStorageInformation(::grpc::ClientContext* context, const ::mavsdk::rpc::camera_server::SubscribeStorageInformationRequest* request, ::grpc::ClientReadReactor< ::mavsdk::rpc::camera_server::StorageInformationResponse>* reactor) override;
       void RespondStorageInformation(::grpc::ClientContext* context, const ::mavsdk::rpc::camera_server::RespondStorageInformationRequest* request, ::mavsdk::rpc::camera_server::RespondStorageInformationResponse* response, std::function<void(::grpc::Status)>) override;
       void RespondStorageInformation(::grpc::ClientContext* context, const ::mavsdk::rpc::camera_server::RespondStorageInformationRequest* request, ::mavsdk::rpc::camera_server::RespondStorageInformationResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
@@ -421,9 +421,9 @@ class CameraServerService final {
     ::grpc::ClientReader< ::mavsdk::rpc::camera_server::StopVideoStreamingResponse>* SubscribeStopVideoStreamingRaw(::grpc::ClientContext* context, const ::mavsdk::rpc::camera_server::SubscribeStopVideoStreamingRequest& request) override;
     ::grpc::ClientAsyncReader< ::mavsdk::rpc::camera_server::StopVideoStreamingResponse>* AsyncSubscribeStopVideoStreamingRaw(::grpc::ClientContext* context, const ::mavsdk::rpc::camera_server::SubscribeStopVideoStreamingRequest& request, ::grpc::CompletionQueue* cq, void* tag) override;
     ::grpc::ClientAsyncReader< ::mavsdk::rpc::camera_server::StopVideoStreamingResponse>* PrepareAsyncSubscribeStopVideoStreamingRaw(::grpc::ClientContext* context, const ::mavsdk::rpc::camera_server::SubscribeStopVideoStreamingRequest& request, ::grpc::CompletionQueue* cq) override;
-    ::grpc::ClientReader< ::mavsdk::rpc::camera_server::SetCameraModeResponse>* SubscribeSetCameraModeRaw(::grpc::ClientContext* context, const ::mavsdk::rpc::camera_server::SubscribeSetCameraModeRequest& request) override;
-    ::grpc::ClientAsyncReader< ::mavsdk::rpc::camera_server::SetCameraModeResponse>* AsyncSubscribeSetCameraModeRaw(::grpc::ClientContext* context, const ::mavsdk::rpc::camera_server::SubscribeSetCameraModeRequest& request, ::grpc::CompletionQueue* cq, void* tag) override;
-    ::grpc::ClientAsyncReader< ::mavsdk::rpc::camera_server::SetCameraModeResponse>* PrepareAsyncSubscribeSetCameraModeRaw(::grpc::ClientContext* context, const ::mavsdk::rpc::camera_server::SubscribeSetCameraModeRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientReader< ::mavsdk::rpc::camera_server::SetModeResponse>* SubscribeSetModeRaw(::grpc::ClientContext* context, const ::mavsdk::rpc::camera_server::SubscribeSetModeRequest& request) override;
+    ::grpc::ClientAsyncReader< ::mavsdk::rpc::camera_server::SetModeResponse>* AsyncSubscribeSetModeRaw(::grpc::ClientContext* context, const ::mavsdk::rpc::camera_server::SubscribeSetModeRequest& request, ::grpc::CompletionQueue* cq, void* tag) override;
+    ::grpc::ClientAsyncReader< ::mavsdk::rpc::camera_server::SetModeResponse>* PrepareAsyncSubscribeSetModeRaw(::grpc::ClientContext* context, const ::mavsdk::rpc::camera_server::SubscribeSetModeRequest& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientReader< ::mavsdk::rpc::camera_server::StorageInformationResponse>* SubscribeStorageInformationRaw(::grpc::ClientContext* context, const ::mavsdk::rpc::camera_server::SubscribeStorageInformationRequest& request) override;
     ::grpc::ClientAsyncReader< ::mavsdk::rpc::camera_server::StorageInformationResponse>* AsyncSubscribeStorageInformationRaw(::grpc::ClientContext* context, const ::mavsdk::rpc::camera_server::SubscribeStorageInformationRequest& request, ::grpc::CompletionQueue* cq, void* tag) override;
     ::grpc::ClientAsyncReader< ::mavsdk::rpc::camera_server::StorageInformationResponse>* PrepareAsyncSubscribeStorageInformationRaw(::grpc::ClientContext* context, const ::mavsdk::rpc::camera_server::SubscribeStorageInformationRequest& request, ::grpc::CompletionQueue* cq) override;
@@ -447,7 +447,7 @@ class CameraServerService final {
     const ::grpc::internal::RpcMethod rpcmethod_SubscribeStopVideo_;
     const ::grpc::internal::RpcMethod rpcmethod_SubscribeStartVideoStreaming_;
     const ::grpc::internal::RpcMethod rpcmethod_SubscribeStopVideoStreaming_;
-    const ::grpc::internal::RpcMethod rpcmethod_SubscribeSetCameraMode_;
+    const ::grpc::internal::RpcMethod rpcmethod_SubscribeSetMode_;
     const ::grpc::internal::RpcMethod rpcmethod_SubscribeStorageInformation_;
     const ::grpc::internal::RpcMethod rpcmethod_RespondStorageInformation_;
     const ::grpc::internal::RpcMethod rpcmethod_SubscribeCaptureStatus_;
@@ -476,7 +476,7 @@ class CameraServerService final {
     // Subscribe to stop video streaming requests. Each request received should response to using StopVideoStreamingResponse
     virtual ::grpc::Status SubscribeStopVideoStreaming(::grpc::ServerContext* context, const ::mavsdk::rpc::camera_server::SubscribeStopVideoStreamingRequest* request, ::grpc::ServerWriter< ::mavsdk::rpc::camera_server::StopVideoStreamingResponse>* writer);
     // Subscribe to set camera mode requests. Each request received should response to using SetCameraModeResponse
-    virtual ::grpc::Status SubscribeSetCameraMode(::grpc::ServerContext* context, const ::mavsdk::rpc::camera_server::SubscribeSetCameraModeRequest* request, ::grpc::ServerWriter< ::mavsdk::rpc::camera_server::SetCameraModeResponse>* writer);
+    virtual ::grpc::Status SubscribeSetMode(::grpc::ServerContext* context, const ::mavsdk::rpc::camera_server::SubscribeSetModeRequest* request, ::grpc::ServerWriter< ::mavsdk::rpc::camera_server::SetModeResponse>* writer);
     // Subscribe to camera storage information requests. Each request received should response to using StorageInformationResponse
     virtual ::grpc::Status SubscribeStorageInformation(::grpc::ServerContext* context, const ::mavsdk::rpc::camera_server::SubscribeStorageInformationRequest* request, ::grpc::ServerWriter< ::mavsdk::rpc::camera_server::StorageInformationResponse>* writer);
     // Respond to camera storage information from SubscribeStorageInformation.
@@ -631,22 +631,22 @@ class CameraServerService final {
     }
   };
   template <class BaseClass>
-  class WithAsyncMethod_SubscribeSetCameraMode : public BaseClass {
+  class WithAsyncMethod_SubscribeSetMode : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithAsyncMethod_SubscribeSetCameraMode() {
+    WithAsyncMethod_SubscribeSetMode() {
       ::grpc::Service::MarkMethodAsync(7);
     }
-    ~WithAsyncMethod_SubscribeSetCameraMode() override {
+    ~WithAsyncMethod_SubscribeSetMode() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status SubscribeSetCameraMode(::grpc::ServerContext* /*context*/, const ::mavsdk::rpc::camera_server::SubscribeSetCameraModeRequest* /*request*/, ::grpc::ServerWriter< ::mavsdk::rpc::camera_server::SetCameraModeResponse>* /*writer*/) override {
+    ::grpc::Status SubscribeSetMode(::grpc::ServerContext* /*context*/, const ::mavsdk::rpc::camera_server::SubscribeSetModeRequest* /*request*/, ::grpc::ServerWriter< ::mavsdk::rpc::camera_server::SetModeResponse>* /*writer*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
-    void RequestSubscribeSetCameraMode(::grpc::ServerContext* context, ::mavsdk::rpc::camera_server::SubscribeSetCameraModeRequest* request, ::grpc::ServerAsyncWriter< ::mavsdk::rpc::camera_server::SetCameraModeResponse>* writer, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+    void RequestSubscribeSetMode(::grpc::ServerContext* context, ::mavsdk::rpc::camera_server::SubscribeSetModeRequest* request, ::grpc::ServerAsyncWriter< ::mavsdk::rpc::camera_server::SetModeResponse>* writer, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
       ::grpc::Service::RequestAsyncServerStreaming(7, context, request, writer, new_call_cq, notification_cq, tag);
     }
   };
@@ -770,7 +770,7 @@ class CameraServerService final {
       ::grpc::Service::RequestAsyncServerStreaming(13, context, request, writer, new_call_cq, notification_cq, tag);
     }
   };
-  typedef WithAsyncMethod_SetInformation<WithAsyncMethod_SubscribeTakePhoto<WithAsyncMethod_RespondTakePhoto<WithAsyncMethod_SubscribeStartVideo<WithAsyncMethod_SubscribeStopVideo<WithAsyncMethod_SubscribeStartVideoStreaming<WithAsyncMethod_SubscribeStopVideoStreaming<WithAsyncMethod_SubscribeSetCameraMode<WithAsyncMethod_SubscribeStorageInformation<WithAsyncMethod_RespondStorageInformation<WithAsyncMethod_SubscribeCaptureStatus<WithAsyncMethod_RespondCaptureStatus<WithAsyncMethod_SubscribeFormatStorage<WithAsyncMethod_SubscribeResetSettings<Service > > > > > > > > > > > > > > AsyncService;
+  typedef WithAsyncMethod_SetInformation<WithAsyncMethod_SubscribeTakePhoto<WithAsyncMethod_RespondTakePhoto<WithAsyncMethod_SubscribeStartVideo<WithAsyncMethod_SubscribeStopVideo<WithAsyncMethod_SubscribeStartVideoStreaming<WithAsyncMethod_SubscribeStopVideoStreaming<WithAsyncMethod_SubscribeSetMode<WithAsyncMethod_SubscribeStorageInformation<WithAsyncMethod_RespondStorageInformation<WithAsyncMethod_SubscribeCaptureStatus<WithAsyncMethod_RespondCaptureStatus<WithAsyncMethod_SubscribeFormatStorage<WithAsyncMethod_SubscribeResetSettings<Service > > > > > > > > > > > > > > AsyncService;
   template <class BaseClass>
   class WithCallbackMethod_SetInformation : public BaseClass {
    private:
@@ -936,26 +936,26 @@ class CameraServerService final {
       ::grpc::CallbackServerContext* /*context*/, const ::mavsdk::rpc::camera_server::SubscribeStopVideoStreamingRequest* /*request*/)  { return nullptr; }
   };
   template <class BaseClass>
-  class WithCallbackMethod_SubscribeSetCameraMode : public BaseClass {
+  class WithCallbackMethod_SubscribeSetMode : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithCallbackMethod_SubscribeSetCameraMode() {
+    WithCallbackMethod_SubscribeSetMode() {
       ::grpc::Service::MarkMethodCallback(7,
-          new ::grpc::internal::CallbackServerStreamingHandler< ::mavsdk::rpc::camera_server::SubscribeSetCameraModeRequest, ::mavsdk::rpc::camera_server::SetCameraModeResponse>(
+          new ::grpc::internal::CallbackServerStreamingHandler< ::mavsdk::rpc::camera_server::SubscribeSetModeRequest, ::mavsdk::rpc::camera_server::SetModeResponse>(
             [this](
-                   ::grpc::CallbackServerContext* context, const ::mavsdk::rpc::camera_server::SubscribeSetCameraModeRequest* request) { return this->SubscribeSetCameraMode(context, request); }));
+                   ::grpc::CallbackServerContext* context, const ::mavsdk::rpc::camera_server::SubscribeSetModeRequest* request) { return this->SubscribeSetMode(context, request); }));
     }
-    ~WithCallbackMethod_SubscribeSetCameraMode() override {
+    ~WithCallbackMethod_SubscribeSetMode() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status SubscribeSetCameraMode(::grpc::ServerContext* /*context*/, const ::mavsdk::rpc::camera_server::SubscribeSetCameraModeRequest* /*request*/, ::grpc::ServerWriter< ::mavsdk::rpc::camera_server::SetCameraModeResponse>* /*writer*/) override {
+    ::grpc::Status SubscribeSetMode(::grpc::ServerContext* /*context*/, const ::mavsdk::rpc::camera_server::SubscribeSetModeRequest* /*request*/, ::grpc::ServerWriter< ::mavsdk::rpc::camera_server::SetModeResponse>* /*writer*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
-    virtual ::grpc::ServerWriteReactor< ::mavsdk::rpc::camera_server::SetCameraModeResponse>* SubscribeSetCameraMode(
-      ::grpc::CallbackServerContext* /*context*/, const ::mavsdk::rpc::camera_server::SubscribeSetCameraModeRequest* /*request*/)  { return nullptr; }
+    virtual ::grpc::ServerWriteReactor< ::mavsdk::rpc::camera_server::SetModeResponse>* SubscribeSetMode(
+      ::grpc::CallbackServerContext* /*context*/, const ::mavsdk::rpc::camera_server::SubscribeSetModeRequest* /*request*/)  { return nullptr; }
   };
   template <class BaseClass>
   class WithCallbackMethod_SubscribeStorageInformation : public BaseClass {
@@ -1099,7 +1099,7 @@ class CameraServerService final {
     virtual ::grpc::ServerWriteReactor< ::mavsdk::rpc::camera_server::ResetSettingsResponse>* SubscribeResetSettings(
       ::grpc::CallbackServerContext* /*context*/, const ::mavsdk::rpc::camera_server::SubscribeResetSettingsRequest* /*request*/)  { return nullptr; }
   };
-  typedef WithCallbackMethod_SetInformation<WithCallbackMethod_SubscribeTakePhoto<WithCallbackMethod_RespondTakePhoto<WithCallbackMethod_SubscribeStartVideo<WithCallbackMethod_SubscribeStopVideo<WithCallbackMethod_SubscribeStartVideoStreaming<WithCallbackMethod_SubscribeStopVideoStreaming<WithCallbackMethod_SubscribeSetCameraMode<WithCallbackMethod_SubscribeStorageInformation<WithCallbackMethod_RespondStorageInformation<WithCallbackMethod_SubscribeCaptureStatus<WithCallbackMethod_RespondCaptureStatus<WithCallbackMethod_SubscribeFormatStorage<WithCallbackMethod_SubscribeResetSettings<Service > > > > > > > > > > > > > > CallbackService;
+  typedef WithCallbackMethod_SetInformation<WithCallbackMethod_SubscribeTakePhoto<WithCallbackMethod_RespondTakePhoto<WithCallbackMethod_SubscribeStartVideo<WithCallbackMethod_SubscribeStopVideo<WithCallbackMethod_SubscribeStartVideoStreaming<WithCallbackMethod_SubscribeStopVideoStreaming<WithCallbackMethod_SubscribeSetMode<WithCallbackMethod_SubscribeStorageInformation<WithCallbackMethod_RespondStorageInformation<WithCallbackMethod_SubscribeCaptureStatus<WithCallbackMethod_RespondCaptureStatus<WithCallbackMethod_SubscribeFormatStorage<WithCallbackMethod_SubscribeResetSettings<Service > > > > > > > > > > > > > > CallbackService;
   typedef CallbackService ExperimentalCallbackService;
   template <class BaseClass>
   class WithGenericMethod_SetInformation : public BaseClass {
@@ -1221,18 +1221,18 @@ class CameraServerService final {
     }
   };
   template <class BaseClass>
-  class WithGenericMethod_SubscribeSetCameraMode : public BaseClass {
+  class WithGenericMethod_SubscribeSetMode : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithGenericMethod_SubscribeSetCameraMode() {
+    WithGenericMethod_SubscribeSetMode() {
       ::grpc::Service::MarkMethodGeneric(7);
     }
-    ~WithGenericMethod_SubscribeSetCameraMode() override {
+    ~WithGenericMethod_SubscribeSetMode() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status SubscribeSetCameraMode(::grpc::ServerContext* /*context*/, const ::mavsdk::rpc::camera_server::SubscribeSetCameraModeRequest* /*request*/, ::grpc::ServerWriter< ::mavsdk::rpc::camera_server::SetCameraModeResponse>* /*writer*/) override {
+    ::grpc::Status SubscribeSetMode(::grpc::ServerContext* /*context*/, const ::mavsdk::rpc::camera_server::SubscribeSetModeRequest* /*request*/, ::grpc::ServerWriter< ::mavsdk::rpc::camera_server::SetModeResponse>* /*writer*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
@@ -1480,22 +1480,22 @@ class CameraServerService final {
     }
   };
   template <class BaseClass>
-  class WithRawMethod_SubscribeSetCameraMode : public BaseClass {
+  class WithRawMethod_SubscribeSetMode : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithRawMethod_SubscribeSetCameraMode() {
+    WithRawMethod_SubscribeSetMode() {
       ::grpc::Service::MarkMethodRaw(7);
     }
-    ~WithRawMethod_SubscribeSetCameraMode() override {
+    ~WithRawMethod_SubscribeSetMode() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status SubscribeSetCameraMode(::grpc::ServerContext* /*context*/, const ::mavsdk::rpc::camera_server::SubscribeSetCameraModeRequest* /*request*/, ::grpc::ServerWriter< ::mavsdk::rpc::camera_server::SetCameraModeResponse>* /*writer*/) override {
+    ::grpc::Status SubscribeSetMode(::grpc::ServerContext* /*context*/, const ::mavsdk::rpc::camera_server::SubscribeSetModeRequest* /*request*/, ::grpc::ServerWriter< ::mavsdk::rpc::camera_server::SetModeResponse>* /*writer*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
-    void RequestSubscribeSetCameraMode(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncWriter< ::grpc::ByteBuffer>* writer, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+    void RequestSubscribeSetMode(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncWriter< ::grpc::ByteBuffer>* writer, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
       ::grpc::Service::RequestAsyncServerStreaming(7, context, request, writer, new_call_cq, notification_cq, tag);
     }
   };
@@ -1774,25 +1774,25 @@ class CameraServerService final {
       ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/)  { return nullptr; }
   };
   template <class BaseClass>
-  class WithRawCallbackMethod_SubscribeSetCameraMode : public BaseClass {
+  class WithRawCallbackMethod_SubscribeSetMode : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithRawCallbackMethod_SubscribeSetCameraMode() {
+    WithRawCallbackMethod_SubscribeSetMode() {
       ::grpc::Service::MarkMethodRawCallback(7,
           new ::grpc::internal::CallbackServerStreamingHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
-                   ::grpc::CallbackServerContext* context, const::grpc::ByteBuffer* request) { return this->SubscribeSetCameraMode(context, request); }));
+                   ::grpc::CallbackServerContext* context, const::grpc::ByteBuffer* request) { return this->SubscribeSetMode(context, request); }));
     }
-    ~WithRawCallbackMethod_SubscribeSetCameraMode() override {
+    ~WithRawCallbackMethod_SubscribeSetMode() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status SubscribeSetCameraMode(::grpc::ServerContext* /*context*/, const ::mavsdk::rpc::camera_server::SubscribeSetCameraModeRequest* /*request*/, ::grpc::ServerWriter< ::mavsdk::rpc::camera_server::SetCameraModeResponse>* /*writer*/) override {
+    ::grpc::Status SubscribeSetMode(::grpc::ServerContext* /*context*/, const ::mavsdk::rpc::camera_server::SubscribeSetModeRequest* /*request*/, ::grpc::ServerWriter< ::mavsdk::rpc::camera_server::SetModeResponse>* /*writer*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
-    virtual ::grpc::ServerWriteReactor< ::grpc::ByteBuffer>* SubscribeSetCameraMode(
+    virtual ::grpc::ServerWriteReactor< ::grpc::ByteBuffer>* SubscribeSetMode(
       ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/)  { return nullptr; }
   };
   template <class BaseClass>
@@ -2172,31 +2172,31 @@ class CameraServerService final {
     virtual ::grpc::Status StreamedSubscribeStopVideoStreaming(::grpc::ServerContext* context, ::grpc::ServerSplitStreamer< ::mavsdk::rpc::camera_server::SubscribeStopVideoStreamingRequest,::mavsdk::rpc::camera_server::StopVideoStreamingResponse>* server_split_streamer) = 0;
   };
   template <class BaseClass>
-  class WithSplitStreamingMethod_SubscribeSetCameraMode : public BaseClass {
+  class WithSplitStreamingMethod_SubscribeSetMode : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithSplitStreamingMethod_SubscribeSetCameraMode() {
+    WithSplitStreamingMethod_SubscribeSetMode() {
       ::grpc::Service::MarkMethodStreamed(7,
         new ::grpc::internal::SplitServerStreamingHandler<
-          ::mavsdk::rpc::camera_server::SubscribeSetCameraModeRequest, ::mavsdk::rpc::camera_server::SetCameraModeResponse>(
+          ::mavsdk::rpc::camera_server::SubscribeSetModeRequest, ::mavsdk::rpc::camera_server::SetModeResponse>(
             [this](::grpc::ServerContext* context,
                    ::grpc::ServerSplitStreamer<
-                     ::mavsdk::rpc::camera_server::SubscribeSetCameraModeRequest, ::mavsdk::rpc::camera_server::SetCameraModeResponse>* streamer) {
-                       return this->StreamedSubscribeSetCameraMode(context,
+                     ::mavsdk::rpc::camera_server::SubscribeSetModeRequest, ::mavsdk::rpc::camera_server::SetModeResponse>* streamer) {
+                       return this->StreamedSubscribeSetMode(context,
                          streamer);
                   }));
     }
-    ~WithSplitStreamingMethod_SubscribeSetCameraMode() override {
+    ~WithSplitStreamingMethod_SubscribeSetMode() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable regular version of this method
-    ::grpc::Status SubscribeSetCameraMode(::grpc::ServerContext* /*context*/, const ::mavsdk::rpc::camera_server::SubscribeSetCameraModeRequest* /*request*/, ::grpc::ServerWriter< ::mavsdk::rpc::camera_server::SetCameraModeResponse>* /*writer*/) override {
+    ::grpc::Status SubscribeSetMode(::grpc::ServerContext* /*context*/, const ::mavsdk::rpc::camera_server::SubscribeSetModeRequest* /*request*/, ::grpc::ServerWriter< ::mavsdk::rpc::camera_server::SetModeResponse>* /*writer*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     // replace default version of method with split streamed
-    virtual ::grpc::Status StreamedSubscribeSetCameraMode(::grpc::ServerContext* context, ::grpc::ServerSplitStreamer< ::mavsdk::rpc::camera_server::SubscribeSetCameraModeRequest,::mavsdk::rpc::camera_server::SetCameraModeResponse>* server_split_streamer) = 0;
+    virtual ::grpc::Status StreamedSubscribeSetMode(::grpc::ServerContext* context, ::grpc::ServerSplitStreamer< ::mavsdk::rpc::camera_server::SubscribeSetModeRequest,::mavsdk::rpc::camera_server::SetModeResponse>* server_split_streamer) = 0;
   };
   template <class BaseClass>
   class WithSplitStreamingMethod_SubscribeStorageInformation : public BaseClass {
@@ -2306,8 +2306,8 @@ class CameraServerService final {
     // replace default version of method with split streamed
     virtual ::grpc::Status StreamedSubscribeResetSettings(::grpc::ServerContext* context, ::grpc::ServerSplitStreamer< ::mavsdk::rpc::camera_server::SubscribeResetSettingsRequest,::mavsdk::rpc::camera_server::ResetSettingsResponse>* server_split_streamer) = 0;
   };
-  typedef WithSplitStreamingMethod_SubscribeTakePhoto<WithSplitStreamingMethod_SubscribeStartVideo<WithSplitStreamingMethod_SubscribeStopVideo<WithSplitStreamingMethod_SubscribeStartVideoStreaming<WithSplitStreamingMethod_SubscribeStopVideoStreaming<WithSplitStreamingMethod_SubscribeSetCameraMode<WithSplitStreamingMethod_SubscribeStorageInformation<WithSplitStreamingMethod_SubscribeCaptureStatus<WithSplitStreamingMethod_SubscribeFormatStorage<WithSplitStreamingMethod_SubscribeResetSettings<Service > > > > > > > > > > SplitStreamedService;
-  typedef WithStreamedUnaryMethod_SetInformation<WithSplitStreamingMethod_SubscribeTakePhoto<WithStreamedUnaryMethod_RespondTakePhoto<WithSplitStreamingMethod_SubscribeStartVideo<WithSplitStreamingMethod_SubscribeStopVideo<WithSplitStreamingMethod_SubscribeStartVideoStreaming<WithSplitStreamingMethod_SubscribeStopVideoStreaming<WithSplitStreamingMethod_SubscribeSetCameraMode<WithSplitStreamingMethod_SubscribeStorageInformation<WithStreamedUnaryMethod_RespondStorageInformation<WithSplitStreamingMethod_SubscribeCaptureStatus<WithStreamedUnaryMethod_RespondCaptureStatus<WithSplitStreamingMethod_SubscribeFormatStorage<WithSplitStreamingMethod_SubscribeResetSettings<Service > > > > > > > > > > > > > > StreamedService;
+  typedef WithSplitStreamingMethod_SubscribeTakePhoto<WithSplitStreamingMethod_SubscribeStartVideo<WithSplitStreamingMethod_SubscribeStopVideo<WithSplitStreamingMethod_SubscribeStartVideoStreaming<WithSplitStreamingMethod_SubscribeStopVideoStreaming<WithSplitStreamingMethod_SubscribeSetMode<WithSplitStreamingMethod_SubscribeStorageInformation<WithSplitStreamingMethod_SubscribeCaptureStatus<WithSplitStreamingMethod_SubscribeFormatStorage<WithSplitStreamingMethod_SubscribeResetSettings<Service > > > > > > > > > > SplitStreamedService;
+  typedef WithStreamedUnaryMethod_SetInformation<WithSplitStreamingMethod_SubscribeTakePhoto<WithStreamedUnaryMethod_RespondTakePhoto<WithSplitStreamingMethod_SubscribeStartVideo<WithSplitStreamingMethod_SubscribeStopVideo<WithSplitStreamingMethod_SubscribeStartVideoStreaming<WithSplitStreamingMethod_SubscribeStopVideoStreaming<WithSplitStreamingMethod_SubscribeSetMode<WithSplitStreamingMethod_SubscribeStorageInformation<WithStreamedUnaryMethod_RespondStorageInformation<WithSplitStreamingMethod_SubscribeCaptureStatus<WithStreamedUnaryMethod_RespondCaptureStatus<WithSplitStreamingMethod_SubscribeFormatStorage<WithSplitStreamingMethod_SubscribeResetSettings<Service > > > > > > > > > > > > > > StreamedService;
 };
 
 }  // namespace camera_server

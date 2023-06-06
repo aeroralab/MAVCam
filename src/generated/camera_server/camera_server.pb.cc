@@ -294,30 +294,30 @@ struct StopVideoStreamingResponseDefaultTypeInternal {
   };
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 StopVideoStreamingResponseDefaultTypeInternal _StopVideoStreamingResponse_default_instance_;
-PROTOBUF_CONSTEXPR SubscribeSetCameraModeRequest::SubscribeSetCameraModeRequest(
+PROTOBUF_CONSTEXPR SubscribeSetModeRequest::SubscribeSetModeRequest(
     ::_pbi::ConstantInitialized){}
-struct SubscribeSetCameraModeRequestDefaultTypeInternal {
-  PROTOBUF_CONSTEXPR SubscribeSetCameraModeRequestDefaultTypeInternal()
+struct SubscribeSetModeRequestDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR SubscribeSetModeRequestDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
-  ~SubscribeSetCameraModeRequestDefaultTypeInternal() {}
+  ~SubscribeSetModeRequestDefaultTypeInternal() {}
   union {
-    SubscribeSetCameraModeRequest _instance;
+    SubscribeSetModeRequest _instance;
   };
 };
-PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 SubscribeSetCameraModeRequestDefaultTypeInternal _SubscribeSetCameraModeRequest_default_instance_;
-PROTOBUF_CONSTEXPR SetCameraModeResponse::SetCameraModeResponse(
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 SubscribeSetModeRequestDefaultTypeInternal _SubscribeSetModeRequest_default_instance_;
+PROTOBUF_CONSTEXPR SetModeResponse::SetModeResponse(
     ::_pbi::ConstantInitialized)
-  : camera_mode_(0)
+  : mode_(0)
 {}
-struct SetCameraModeResponseDefaultTypeInternal {
-  PROTOBUF_CONSTEXPR SetCameraModeResponseDefaultTypeInternal()
+struct SetModeResponseDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR SetModeResponseDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
-  ~SetCameraModeResponseDefaultTypeInternal() {}
+  ~SetModeResponseDefaultTypeInternal() {}
   union {
-    SetCameraModeResponse _instance;
+    SetModeResponse _instance;
   };
 };
-PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 SetCameraModeResponseDefaultTypeInternal _SetCameraModeResponse_default_instance_;
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 SetModeResponseDefaultTypeInternal _SetModeResponse_default_instance_;
 PROTOBUF_CONSTEXPR SubscribeStorageInformationRequest::SubscribeStorageInformationRequest(
     ::_pbi::ConstantInitialized){}
 struct SubscribeStorageInformationRequestDefaultTypeInternal {
@@ -671,18 +671,18 @@ const uint32_t TableStruct_camera_5fserver_2fcamera_5fserver_2eproto::offsets[] 
   ~0u,  // no _inlined_string_donated_
   PROTOBUF_FIELD_OFFSET(::mavsdk::rpc::camera_server::StopVideoStreamingResponse, stream_id_),
   ~0u,  // no _has_bits_
-  PROTOBUF_FIELD_OFFSET(::mavsdk::rpc::camera_server::SubscribeSetCameraModeRequest, _internal_metadata_),
+  PROTOBUF_FIELD_OFFSET(::mavsdk::rpc::camera_server::SubscribeSetModeRequest, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
   ~0u,  // no _has_bits_
-  PROTOBUF_FIELD_OFFSET(::mavsdk::rpc::camera_server::SetCameraModeResponse, _internal_metadata_),
+  PROTOBUF_FIELD_OFFSET(::mavsdk::rpc::camera_server::SetModeResponse, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::mavsdk::rpc::camera_server::SetCameraModeResponse, camera_mode_),
+  PROTOBUF_FIELD_OFFSET(::mavsdk::rpc::camera_server::SetModeResponse, mode_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::mavsdk::rpc::camera_server::SubscribeStorageInformationRequest, _internal_metadata_),
   ~0u,  // no _extensions_
@@ -812,8 +812,8 @@ static const ::_pbi::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protode
   { 144, -1, -1, sizeof(::mavsdk::rpc::camera_server::RespondStartVideoStreamingResponse)},
   { 151, -1, -1, sizeof(::mavsdk::rpc::camera_server::SubscribeStopVideoStreamingRequest)},
   { 157, -1, -1, sizeof(::mavsdk::rpc::camera_server::StopVideoStreamingResponse)},
-  { 164, -1, -1, sizeof(::mavsdk::rpc::camera_server::SubscribeSetCameraModeRequest)},
-  { 170, -1, -1, sizeof(::mavsdk::rpc::camera_server::SetCameraModeResponse)},
+  { 164, -1, -1, sizeof(::mavsdk::rpc::camera_server::SubscribeSetModeRequest)},
+  { 170, -1, -1, sizeof(::mavsdk::rpc::camera_server::SetModeResponse)},
   { 177, -1, -1, sizeof(::mavsdk::rpc::camera_server::SubscribeStorageInformationRequest)},
   { 183, -1, -1, sizeof(::mavsdk::rpc::camera_server::StorageInformationResponse)},
   { 190, -1, -1, sizeof(::mavsdk::rpc::camera_server::StorageInformation)},
@@ -852,8 +852,8 @@ static const ::_pb::Message* const file_default_instances[] = {
   &::mavsdk::rpc::camera_server::_RespondStartVideoStreamingResponse_default_instance_._instance,
   &::mavsdk::rpc::camera_server::_SubscribeStopVideoStreamingRequest_default_instance_._instance,
   &::mavsdk::rpc::camera_server::_StopVideoStreamingResponse_default_instance_._instance,
-  &::mavsdk::rpc::camera_server::_SubscribeSetCameraModeRequest_default_instance_._instance,
-  &::mavsdk::rpc::camera_server::_SetCameraModeResponse_default_instance_._instance,
+  &::mavsdk::rpc::camera_server::_SubscribeSetModeRequest_default_instance_._instance,
+  &::mavsdk::rpc::camera_server::_SetModeResponse_default_instance_._instance,
   &::mavsdk::rpc::camera_server::_SubscribeStorageInformationRequest_default_instance_._instance,
   &::mavsdk::rpc::camera_server::_StorageInformationResponse_default_instance_._instance,
   &::mavsdk::rpc::camera_server::_StorageInformation_default_instance_._instance,
@@ -923,121 +923,119 @@ const char descriptor_table_protodef_camera_5fserver_2fcamera_5fserver_2eproto[]
   ".rpc.camera_server.CameraServerResult\"$\n"
   "\"SubscribeStopVideoStreamingRequest\"/\n\032S"
   "topVideoStreamingResponse\022\021\n\tstream_id\030\001"
-  " \001(\005\"\037\n\035SubscribeSetCameraModeRequest\"R\n"
-  "\025SetCameraModeResponse\0229\n\013camera_mode\030\001 "
-  "\001(\0162$.mavsdk.rpc.camera_server.CameraMod"
-  "e\"$\n\"SubscribeStorageInformationRequest\""
-  "0\n\032StorageInformationResponse\022\022\n\nstorage"
-  "_id\030\001 \001(\005\"\200\005\n\022StorageInformation\022\030\n\020used"
-  "_storage_mib\030\001 \001(\002\022\035\n\025available_storage_"
-  "mib\030\002 \001(\002\022\031\n\021total_storage_mib\030\003 \001(\002\022R\n\016"
-  "storage_status\030\004 \001(\0162:.mavsdk.rpc.camera"
-  "_server.StorageInformation.StorageStatus"
-  "\022\022\n\nstorage_id\030\005 \001(\r\022N\n\014storage_type\030\006 \001"
-  "(\01628.mavsdk.rpc.camera_server.StorageInf"
-  "ormation.StorageType\022\022\n\nread_speed\030\007 \001(\002"
-  "\022\023\n\013write_speed\030\010 \001(\002\"\221\001\n\rStorageStatus\022"
-  " \n\034STORAGE_STATUS_NOT_AVAILABLE\020\000\022\036\n\032STO"
-  "RAGE_STATUS_UNFORMATTED\020\001\022\034\n\030STORAGE_STA"
-  "TUS_FORMATTED\020\002\022 \n\034STORAGE_STATUS_NOT_SU"
-  "PPORTED\020\003\"\240\001\n\013StorageType\022\030\n\024STORAGE_TYP"
-  "E_UNKNOWN\020\000\022\032\n\026STORAGE_TYPE_USB_STICK\020\001\022"
-  "\023\n\017STORAGE_TYPE_SD\020\002\022\030\n\024STORAGE_TYPE_MIC"
-  "ROSD\020\003\022\023\n\017STORAGE_TYPE_HD\020\007\022\027\n\022STORAGE_T"
-  "YPE_OTHER\020\376\001\"m\n RespondStorageInformatio"
-  "nRequest\022I\n\023storage_information\030\001 \001(\0132,."
-  "mavsdk.rpc.camera_server.StorageInformat"
-  "ion\"o\n!RespondStorageInformationResponse"
-  "\022J\n\024camera_server_result\030\001 \001(\0132,.mavsdk."
-  "rpc.camera_server.CameraServerResult\"\037\n\035"
-  "SubscribeCaptureStatusRequest\"+\n\025Capture"
-  "StatusResponse\022\022\n\nstorage_id\030\001 \001(\005\"\350\003\n\rC"
-  "aptureStatus\022\026\n\016image_interval\030\001 \001(\002\022\030\n\020"
-  "recording_time_s\030\002 \001(\002\022\032\n\022available_capa"
-  "city\030\003 \001(\002\022I\n\014image_status\030\004 \001(\01623.mavsd"
-  "k.rpc.camera_server.CaptureStatus.ImageS"
-  "tatus\022I\n\014video_status\030\005 \001(\01623.mavsdk.rpc"
-  ".camera_server.CaptureStatus.VideoStatus"
-  "\022\023\n\013image_count\030\006 \001(\005\"\221\001\n\013ImageStatus\022\025\n"
-  "\021IMAGE_STATUS_IDLE\020\000\022$\n IMAGE_STATUS_CAP"
-  "TURE_IN_PROGRESS\020\001\022\036\n\032IMAGE_STATUS_INTER"
-  "VAL_IDLE\020\002\022%\n!IMAGE_STATUS_INTERVAL_IN_P"
-  "ROGRESS\020\003\"J\n\013VideoStatus\022\025\n\021VIDEO_STATUS"
-  "_IDLE\020\000\022$\n VIDEO_STATUS_CAPTURE_IN_PROGR"
-  "ESS\020\001\"^\n\033RespondCaptureStatusRequest\022\?\n\016"
-  "capture_status\030\001 \001(\0132\'.mavsdk.rpc.camera"
-  "_server.CaptureStatus\"j\n\034RespondCaptureS"
-  "tatusResponse\022J\n\024camera_server_result\030\001 "
-  "\001(\0132,.mavsdk.rpc.camera_server.CameraSer"
-  "verResult\"\037\n\035SubscribeFormatStorageReque"
-  "st\"+\n\025FormatStorageResponse\022\022\n\nstorage_i"
-  "d\030\001 \001(\005\"\037\n\035SubscribeResetSettingsRequest"
-  "\"*\n\025ResetSettingsResponse\022\021\n\tcamera_id\030\001"
-  " \001(\005*\216\001\n\021TakePhotoFeedback\022\037\n\033TAKE_PHOTO"
-  "_FEEDBACK_UNKNOWN\020\000\022\032\n\026TAKE_PHOTO_FEEDBA"
-  "CK_OK\020\001\022\034\n\030TAKE_PHOTO_FEEDBACK_BUSY\020\002\022\036\n"
-  "\032TAKE_PHOTO_FEEDBACK_FAILED\020\003*S\n\nCameraM"
-  "ode\022\027\n\023CAMERA_MODE_UNKNOWN\020\000\022\025\n\021CAMERA_M"
-  "ODE_PHOTO\020\001\022\025\n\021CAMERA_MODE_VIDEO\020\0022\313\017\n\023C"
-  "ameraServerService\022y\n\016SetInformation\022/.m"
-  "avsdk.rpc.camera_server.SetInformationRe"
-  "quest\0320.mavsdk.rpc.camera_server.SetInfo"
-  "rmationResponse\"\004\200\265\030\001\022~\n\022SubscribeTakePh"
-  "oto\0223.mavsdk.rpc.camera_server.Subscribe"
-  "TakePhotoRequest\032+.mavsdk.rpc.camera_ser"
-  "ver.TakePhotoResponse\"\004\200\265\030\0000\001\022\177\n\020Respond"
-  "TakePhoto\0221.mavsdk.rpc.camera_server.Res"
-  "pondTakePhotoRequest\0322.mavsdk.rpc.camera"
-  "_server.RespondTakePhotoResponse\"\004\200\265\030\001\022\201"
-  "\001\n\023SubscribeStartVideo\0224.mavsdk.rpc.came"
-  "ra_server.SubscribeStartVideoRequest\032,.m"
-  "avsdk.rpc.camera_server.StartVideoRespon"
-  "se\"\004\200\265\030\0000\001\022~\n\022SubscribeStopVideo\0223.mavsd"
-  "k.rpc.camera_server.SubscribeStopVideoRe"
-  "quest\032+.mavsdk.rpc.camera_server.StopVid"
-  "eoResponse\"\004\200\265\030\0000\001\022\234\001\n\034SubscribeStartVid"
-  "eoStreaming\022=.mavsdk.rpc.camera_server.S"
-  "ubscribeStartVideoStreamingRequest\0325.mav"
-  "sdk.rpc.camera_server.StartVideoStreamin"
-  "gResponse\"\004\200\265\030\0000\001\022\231\001\n\033SubscribeStopVideo"
-  "Streaming\022<.mavsdk.rpc.camera_server.Sub"
-  "scribeStopVideoStreamingRequest\0324.mavsdk"
-  ".rpc.camera_server.StopVideoStreamingRes"
-  "ponse\"\004\200\265\030\0000\001\022\212\001\n\026SubscribeSetCameraMode"
-  "\0227.mavsdk.rpc.camera_server.SubscribeSet"
-  "CameraModeRequest\032/.mavsdk.rpc.camera_se"
-  "rver.SetCameraModeResponse\"\004\200\265\030\0000\001\022\231\001\n\033S"
-  "ubscribeStorageInformation\022<.mavsdk.rpc."
-  "camera_server.SubscribeStorageInformatio"
-  "nRequest\0324.mavsdk.rpc.camera_server.Stor"
-  "ageInformationResponse\"\004\200\265\030\0000\001\022\232\001\n\031Respo"
-  "ndStorageInformation\022:.mavsdk.rpc.camera"
-  "_server.RespondStorageInformationRequest"
-  "\032;.mavsdk.rpc.camera_server.RespondStora"
-  "geInformationResponse\"\004\200\265\030\001\022\212\001\n\026Subscrib"
-  "eCaptureStatus\0227.mavsdk.rpc.camera_serve"
-  "r.SubscribeCaptureStatusRequest\032/.mavsdk"
-  ".rpc.camera_server.CaptureStatusResponse"
-  "\"\004\200\265\030\0000\001\022\213\001\n\024RespondCaptureStatus\0225.mavs"
-  "dk.rpc.camera_server.RespondCaptureStatu"
-  "sRequest\0326.mavsdk.rpc.camera_server.Resp"
-  "ondCaptureStatusResponse\"\004\200\265\030\001\022\212\001\n\026Subsc"
-  "ribeFormatStorage\0227.mavsdk.rpc.camera_se"
-  "rver.SubscribeFormatStorageRequest\032/.mav"
-  "sdk.rpc.camera_server.FormatStorageRespo"
-  "nse\"\004\200\265\030\0000\001\022\212\001\n\026SubscribeResetSettings\0227"
-  ".mavsdk.rpc.camera_server.SubscribeReset"
-  "SettingsRequest\032/.mavsdk.rpc.camera_serv"
-  "er.ResetSettingsResponse\"\004\200\265\030\0000\001B,\n\027io.m"
-  "avsdk.camera_serverB\021CameraServerProtob\006"
-  "proto3"
+  " \001(\005\"\031\n\027SubscribeSetModeRequest\"\?\n\017SetMo"
+  "deResponse\022,\n\004mode\030\001 \001(\0162\036.mavsdk.rpc.ca"
+  "mera_server.Mode\"$\n\"SubscribeStorageInfo"
+  "rmationRequest\"0\n\032StorageInformationResp"
+  "onse\022\022\n\nstorage_id\030\001 \001(\005\"\200\005\n\022StorageInfo"
+  "rmation\022\030\n\020used_storage_mib\030\001 \001(\002\022\035\n\025ava"
+  "ilable_storage_mib\030\002 \001(\002\022\031\n\021total_storag"
+  "e_mib\030\003 \001(\002\022R\n\016storage_status\030\004 \001(\0162:.ma"
+  "vsdk.rpc.camera_server.StorageInformatio"
+  "n.StorageStatus\022\022\n\nstorage_id\030\005 \001(\r\022N\n\014s"
+  "torage_type\030\006 \001(\01628.mavsdk.rpc.camera_se"
+  "rver.StorageInformation.StorageType\022\022\n\nr"
+  "ead_speed\030\007 \001(\002\022\023\n\013write_speed\030\010 \001(\002\"\221\001\n"
+  "\rStorageStatus\022 \n\034STORAGE_STATUS_NOT_AVA"
+  "ILABLE\020\000\022\036\n\032STORAGE_STATUS_UNFORMATTED\020\001"
+  "\022\034\n\030STORAGE_STATUS_FORMATTED\020\002\022 \n\034STORAG"
+  "E_STATUS_NOT_SUPPORTED\020\003\"\240\001\n\013StorageType"
+  "\022\030\n\024STORAGE_TYPE_UNKNOWN\020\000\022\032\n\026STORAGE_TY"
+  "PE_USB_STICK\020\001\022\023\n\017STORAGE_TYPE_SD\020\002\022\030\n\024S"
+  "TORAGE_TYPE_MICROSD\020\003\022\023\n\017STORAGE_TYPE_HD"
+  "\020\007\022\027\n\022STORAGE_TYPE_OTHER\020\376\001\"m\n RespondSt"
+  "orageInformationRequest\022I\n\023storage_infor"
+  "mation\030\001 \001(\0132,.mavsdk.rpc.camera_server."
+  "StorageInformation\"o\n!RespondStorageInfo"
+  "rmationResponse\022J\n\024camera_server_result\030"
+  "\001 \001(\0132,.mavsdk.rpc.camera_server.CameraS"
+  "erverResult\"\037\n\035SubscribeCaptureStatusReq"
+  "uest\"+\n\025CaptureStatusResponse\022\022\n\nstorage"
+  "_id\030\001 \001(\005\"\350\003\n\rCaptureStatus\022\026\n\016image_int"
+  "erval\030\001 \001(\002\022\030\n\020recording_time_s\030\002 \001(\002\022\032\n"
+  "\022available_capacity\030\003 \001(\002\022I\n\014image_statu"
+  "s\030\004 \001(\01623.mavsdk.rpc.camera_server.Captu"
+  "reStatus.ImageStatus\022I\n\014video_status\030\005 \001"
+  "(\01623.mavsdk.rpc.camera_server.CaptureSta"
+  "tus.VideoStatus\022\023\n\013image_count\030\006 \001(\005\"\221\001\n"
+  "\013ImageStatus\022\025\n\021IMAGE_STATUS_IDLE\020\000\022$\n I"
+  "MAGE_STATUS_CAPTURE_IN_PROGRESS\020\001\022\036\n\032IMA"
+  "GE_STATUS_INTERVAL_IDLE\020\002\022%\n!IMAGE_STATU"
+  "S_INTERVAL_IN_PROGRESS\020\003\"J\n\013VideoStatus\022"
+  "\025\n\021VIDEO_STATUS_IDLE\020\000\022$\n VIDEO_STATUS_C"
+  "APTURE_IN_PROGRESS\020\001\"^\n\033RespondCaptureSt"
+  "atusRequest\022\?\n\016capture_status\030\001 \001(\0132\'.ma"
+  "vsdk.rpc.camera_server.CaptureStatus\"j\n\034"
+  "RespondCaptureStatusResponse\022J\n\024camera_s"
+  "erver_result\030\001 \001(\0132,.mavsdk.rpc.camera_s"
+  "erver.CameraServerResult\"\037\n\035SubscribeFor"
+  "matStorageRequest\"+\n\025FormatStorageRespon"
+  "se\022\022\n\nstorage_id\030\001 \001(\005\"\037\n\035SubscribeReset"
+  "SettingsRequest\"*\n\025ResetSettingsResponse"
+  "\022\021\n\tcamera_id\030\001 \001(\005*\216\001\n\021TakePhotoFeedbac"
+  "k\022\037\n\033TAKE_PHOTO_FEEDBACK_UNKNOWN\020\000\022\032\n\026TA"
+  "KE_PHOTO_FEEDBACK_OK\020\001\022\034\n\030TAKE_PHOTO_FEE"
+  "DBACK_BUSY\020\002\022\036\n\032TAKE_PHOTO_FEEDBACK_FAIL"
+  "ED\020\003*8\n\004Mode\022\020\n\014MODE_UNKNOWN\020\000\022\016\n\nMODE_P"
+  "HOTO\020\001\022\016\n\nMODE_VIDEO\020\0022\270\017\n\023CameraServerS"
+  "ervice\022y\n\016SetInformation\022/.mavsdk.rpc.ca"
+  "mera_server.SetInformationRequest\0320.mavs"
+  "dk.rpc.camera_server.SetInformationRespo"
+  "nse\"\004\200\265\030\001\022~\n\022SubscribeTakePhoto\0223.mavsdk"
+  ".rpc.camera_server.SubscribeTakePhotoReq"
+  "uest\032+.mavsdk.rpc.camera_server.TakePhot"
+  "oResponse\"\004\200\265\030\0000\001\022\177\n\020RespondTakePhoto\0221."
+  "mavsdk.rpc.camera_server.RespondTakePhot"
+  "oRequest\0322.mavsdk.rpc.camera_server.Resp"
+  "ondTakePhotoResponse\"\004\200\265\030\001\022\201\001\n\023Subscribe"
+  "StartVideo\0224.mavsdk.rpc.camera_server.Su"
+  "bscribeStartVideoRequest\032,.mavsdk.rpc.ca"
+  "mera_server.StartVideoResponse\"\004\200\265\030\0000\001\022~"
+  "\n\022SubscribeStopVideo\0223.mavsdk.rpc.camera"
+  "_server.SubscribeStopVideoRequest\032+.mavs"
+  "dk.rpc.camera_server.StopVideoResponse\"\004"
+  "\200\265\030\0000\001\022\234\001\n\034SubscribeStartVideoStreaming\022"
+  "=.mavsdk.rpc.camera_server.SubscribeStar"
+  "tVideoStreamingRequest\0325.mavsdk.rpc.came"
+  "ra_server.StartVideoStreamingResponse\"\004\200"
+  "\265\030\0000\001\022\231\001\n\033SubscribeStopVideoStreaming\022<."
+  "mavsdk.rpc.camera_server.SubscribeStopVi"
+  "deoStreamingRequest\0324.mavsdk.rpc.camera_"
+  "server.StopVideoStreamingResponse\"\004\200\265\030\0000"
+  "\001\022x\n\020SubscribeSetMode\0221.mavsdk.rpc.camer"
+  "a_server.SubscribeSetModeRequest\032).mavsd"
+  "k.rpc.camera_server.SetModeResponse\"\004\200\265\030"
+  "\0000\001\022\231\001\n\033SubscribeStorageInformation\022<.ma"
+  "vsdk.rpc.camera_server.SubscribeStorageI"
+  "nformationRequest\0324.mavsdk.rpc.camera_se"
+  "rver.StorageInformationResponse\"\004\200\265\030\0000\001\022"
+  "\232\001\n\031RespondStorageInformation\022:.mavsdk.r"
+  "pc.camera_server.RespondStorageInformati"
+  "onRequest\032;.mavsdk.rpc.camera_server.Res"
+  "pondStorageInformationResponse\"\004\200\265\030\001\022\212\001\n"
+  "\026SubscribeCaptureStatus\0227.mavsdk.rpc.cam"
+  "era_server.SubscribeCaptureStatusRequest"
+  "\032/.mavsdk.rpc.camera_server.CaptureStatu"
+  "sResponse\"\004\200\265\030\0000\001\022\213\001\n\024RespondCaptureStat"
+  "us\0225.mavsdk.rpc.camera_server.RespondCap"
+  "tureStatusRequest\0326.mavsdk.rpc.camera_se"
+  "rver.RespondCaptureStatusResponse\"\004\200\265\030\001\022"
+  "\212\001\n\026SubscribeFormatStorage\0227.mavsdk.rpc."
+  "camera_server.SubscribeFormatStorageRequ"
+  "est\032/.mavsdk.rpc.camera_server.FormatSto"
+  "rageResponse\"\004\200\265\030\0000\001\022\212\001\n\026SubscribeResetS"
+  "ettings\0227.mavsdk.rpc.camera_server.Subsc"
+  "ribeResetSettingsRequest\032/.mavsdk.rpc.ca"
+  "mera_server.ResetSettingsResponse\"\004\200\265\030\0000"
+  "\001B,\n\027io.mavsdk.camera_serverB\021CameraServ"
+  "erProtob\006proto3"
   ;
 static const ::_pbi::DescriptorTable* const descriptor_table_camera_5fserver_2fcamera_5fserver_2eproto_deps[1] = {
   &::descriptor_table_mavsdk_5foptions_2eproto,
 };
 static ::_pbi::once_flag descriptor_table_camera_5fserver_2fcamera_5fserver_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_camera_5fserver_2fcamera_5fserver_2eproto = {
-    false, false, 6366, descriptor_table_protodef_camera_5fserver_2fcamera_5fserver_2eproto,
+    false, false, 6295, descriptor_table_protodef_camera_5fserver_2fcamera_5fserver_2eproto,
     "camera_server/camera_server.proto",
     &descriptor_table_camera_5fserver_2fcamera_5fserver_2eproto_once, descriptor_table_camera_5fserver_2fcamera_5fserver_2eproto_deps, 1, 37,
     schemas, file_default_instances, TableStruct_camera_5fserver_2fcamera_5fserver_2eproto::offsets,
@@ -1204,11 +1202,11 @@ bool TakePhotoFeedback_IsValid(int value) {
   }
 }
 
-const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor* CameraMode_descriptor() {
+const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor* Mode_descriptor() {
   ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&descriptor_table_camera_5fserver_2fcamera_5fserver_2eproto);
   return file_level_enum_descriptors_camera_5fserver_2fcamera_5fserver_2eproto[6];
 }
-bool CameraMode_IsValid(int value) {
+bool Mode_IsValid(int value) {
   switch (value) {
     case 0:
     case 1:
@@ -5001,30 +4999,30 @@ void StopVideoStreamingResponse::InternalSwap(StopVideoStreamingResponse* other)
 
 // ===================================================================
 
-class SubscribeSetCameraModeRequest::_Internal {
+class SubscribeSetModeRequest::_Internal {
  public:
 };
 
-SubscribeSetCameraModeRequest::SubscribeSetCameraModeRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+SubscribeSetModeRequest::SubscribeSetModeRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                          bool is_message_owned)
   : ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase(arena, is_message_owned) {
-  // @@protoc_insertion_point(arena_constructor:mavsdk.rpc.camera_server.SubscribeSetCameraModeRequest)
+  // @@protoc_insertion_point(arena_constructor:mavsdk.rpc.camera_server.SubscribeSetModeRequest)
 }
-SubscribeSetCameraModeRequest::SubscribeSetCameraModeRequest(const SubscribeSetCameraModeRequest& from)
+SubscribeSetModeRequest::SubscribeSetModeRequest(const SubscribeSetModeRequest& from)
   : ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase() {
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
-  // @@protoc_insertion_point(copy_constructor:mavsdk.rpc.camera_server.SubscribeSetCameraModeRequest)
+  // @@protoc_insertion_point(copy_constructor:mavsdk.rpc.camera_server.SubscribeSetModeRequest)
 }
 
 
 
 
 
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData SubscribeSetCameraModeRequest::_class_data_ = {
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData SubscribeSetModeRequest::_class_data_ = {
     ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::CopyImpl,
     ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::MergeImpl,
 };
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*SubscribeSetCameraModeRequest::GetClassData() const { return &_class_data_; }
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*SubscribeSetModeRequest::GetClassData() const { return &_class_data_; }
 
 
 
@@ -5032,7 +5030,7 @@ const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*SubscribeSetCameraModeRequest:
 
 
 
-::PROTOBUF_NAMESPACE_ID::Metadata SubscribeSetCameraModeRequest::GetMetadata() const {
+::PROTOBUF_NAMESPACE_ID::Metadata SubscribeSetModeRequest::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_camera_5fserver_2fcamera_5fserver_2eproto_getter, &descriptor_table_camera_5fserver_2fcamera_5fserver_2eproto_once,
       file_level_metadata_camera_5fserver_2fcamera_5fserver_2eproto[21]);
@@ -5040,29 +5038,29 @@ const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*SubscribeSetCameraModeRequest:
 
 // ===================================================================
 
-class SetCameraModeResponse::_Internal {
+class SetModeResponse::_Internal {
  public:
 };
 
-SetCameraModeResponse::SetCameraModeResponse(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+SetModeResponse::SetModeResponse(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                          bool is_message_owned)
   : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
   SharedCtor();
-  // @@protoc_insertion_point(arena_constructor:mavsdk.rpc.camera_server.SetCameraModeResponse)
+  // @@protoc_insertion_point(arena_constructor:mavsdk.rpc.camera_server.SetModeResponse)
 }
-SetCameraModeResponse::SetCameraModeResponse(const SetCameraModeResponse& from)
+SetModeResponse::SetModeResponse(const SetModeResponse& from)
   : ::PROTOBUF_NAMESPACE_ID::Message() {
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
-  camera_mode_ = from.camera_mode_;
-  // @@protoc_insertion_point(copy_constructor:mavsdk.rpc.camera_server.SetCameraModeResponse)
+  mode_ = from.mode_;
+  // @@protoc_insertion_point(copy_constructor:mavsdk.rpc.camera_server.SetModeResponse)
 }
 
-inline void SetCameraModeResponse::SharedCtor() {
-camera_mode_ = 0;
+inline void SetModeResponse::SharedCtor() {
+mode_ = 0;
 }
 
-SetCameraModeResponse::~SetCameraModeResponse() {
-  // @@protoc_insertion_point(destructor:mavsdk.rpc.camera_server.SetCameraModeResponse)
+SetModeResponse::~SetModeResponse() {
+  // @@protoc_insertion_point(destructor:mavsdk.rpc.camera_server.SetModeResponse)
   if (auto *arena = _internal_metadata_.DeleteReturnArena<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>()) {
   (void)arena;
     return;
@@ -5070,36 +5068,36 @@ SetCameraModeResponse::~SetCameraModeResponse() {
   SharedDtor();
 }
 
-inline void SetCameraModeResponse::SharedDtor() {
+inline void SetModeResponse::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
 }
 
-void SetCameraModeResponse::SetCachedSize(int size) const {
+void SetModeResponse::SetCachedSize(int size) const {
   _cached_size_.Set(size);
 }
 
-void SetCameraModeResponse::Clear() {
-// @@protoc_insertion_point(message_clear_start:mavsdk.rpc.camera_server.SetCameraModeResponse)
+void SetModeResponse::Clear() {
+// @@protoc_insertion_point(message_clear_start:mavsdk.rpc.camera_server.SetModeResponse)
   uint32_t cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  camera_mode_ = 0;
+  mode_ = 0;
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
-const char* SetCameraModeResponse::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
+const char* SetModeResponse::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
 #define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
   while (!ctx->Done(&ptr)) {
     uint32_t tag;
     ptr = ::_pbi::ReadTag(ptr, &tag);
     switch (tag >> 3) {
-      // .mavsdk.rpc.camera_server.CameraMode camera_mode = 1;
+      // .mavsdk.rpc.camera_server.Mode mode = 1;
       case 1:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 8)) {
           uint64_t val = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
           CHK_(ptr);
-          _internal_set_camera_mode(static_cast<::mavsdk::rpc::camera_server::CameraMode>(val));
+          _internal_set_mode(static_cast<::mavsdk::rpc::camera_server::Mode>(val));
         } else
           goto handle_unusual;
         continue;
@@ -5126,87 +5124,87 @@ failure:
 #undef CHK_
 }
 
-uint8_t* SetCameraModeResponse::_InternalSerialize(
+uint8_t* SetModeResponse::_InternalSerialize(
     uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
-  // @@protoc_insertion_point(serialize_to_array_start:mavsdk.rpc.camera_server.SetCameraModeResponse)
+  // @@protoc_insertion_point(serialize_to_array_start:mavsdk.rpc.camera_server.SetModeResponse)
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
-  // .mavsdk.rpc.camera_server.CameraMode camera_mode = 1;
-  if (this->_internal_camera_mode() != 0) {
+  // .mavsdk.rpc.camera_server.Mode mode = 1;
+  if (this->_internal_mode() != 0) {
     target = stream->EnsureSpace(target);
     target = ::_pbi::WireFormatLite::WriteEnumToArray(
-      1, this->_internal_camera_mode(), target);
+      1, this->_internal_mode(), target);
   }
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
     target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
         _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
   }
-  // @@protoc_insertion_point(serialize_to_array_end:mavsdk.rpc.camera_server.SetCameraModeResponse)
+  // @@protoc_insertion_point(serialize_to_array_end:mavsdk.rpc.camera_server.SetModeResponse)
   return target;
 }
 
-size_t SetCameraModeResponse::ByteSizeLong() const {
-// @@protoc_insertion_point(message_byte_size_start:mavsdk.rpc.camera_server.SetCameraModeResponse)
+size_t SetModeResponse::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:mavsdk.rpc.camera_server.SetModeResponse)
   size_t total_size = 0;
 
   uint32_t cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  // .mavsdk.rpc.camera_server.CameraMode camera_mode = 1;
-  if (this->_internal_camera_mode() != 0) {
+  // .mavsdk.rpc.camera_server.Mode mode = 1;
+  if (this->_internal_mode() != 0) {
     total_size += 1 +
-      ::_pbi::WireFormatLite::EnumSize(this->_internal_camera_mode());
+      ::_pbi::WireFormatLite::EnumSize(this->_internal_mode());
   }
 
   return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
 }
 
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData SetCameraModeResponse::_class_data_ = {
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData SetModeResponse::_class_data_ = {
     ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
-    SetCameraModeResponse::MergeImpl
+    SetModeResponse::MergeImpl
 };
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*SetCameraModeResponse::GetClassData() const { return &_class_data_; }
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*SetModeResponse::GetClassData() const { return &_class_data_; }
 
-void SetCameraModeResponse::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
+void SetModeResponse::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
                       const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-  static_cast<SetCameraModeResponse *>(to)->MergeFrom(
-      static_cast<const SetCameraModeResponse &>(from));
+  static_cast<SetModeResponse *>(to)->MergeFrom(
+      static_cast<const SetModeResponse &>(from));
 }
 
 
-void SetCameraModeResponse::MergeFrom(const SetCameraModeResponse& from) {
-// @@protoc_insertion_point(class_specific_merge_from_start:mavsdk.rpc.camera_server.SetCameraModeResponse)
+void SetModeResponse::MergeFrom(const SetModeResponse& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:mavsdk.rpc.camera_server.SetModeResponse)
   GOOGLE_DCHECK_NE(&from, this);
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
-  if (from._internal_camera_mode() != 0) {
-    _internal_set_camera_mode(from._internal_camera_mode());
+  if (from._internal_mode() != 0) {
+    _internal_set_mode(from._internal_mode());
   }
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
 
-void SetCameraModeResponse::CopyFrom(const SetCameraModeResponse& from) {
-// @@protoc_insertion_point(class_specific_copy_from_start:mavsdk.rpc.camera_server.SetCameraModeResponse)
+void SetModeResponse::CopyFrom(const SetModeResponse& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:mavsdk.rpc.camera_server.SetModeResponse)
   if (&from == this) return;
   Clear();
   MergeFrom(from);
 }
 
-bool SetCameraModeResponse::IsInitialized() const {
+bool SetModeResponse::IsInitialized() const {
   return true;
 }
 
-void SetCameraModeResponse::InternalSwap(SetCameraModeResponse* other) {
+void SetModeResponse::InternalSwap(SetModeResponse* other) {
   using std::swap;
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
-  swap(camera_mode_, other->camera_mode_);
+  swap(mode_, other->mode_);
 }
 
-::PROTOBUF_NAMESPACE_ID::Metadata SetCameraModeResponse::GetMetadata() const {
+::PROTOBUF_NAMESPACE_ID::Metadata SetModeResponse::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_camera_5fserver_2fcamera_5fserver_2eproto_getter, &descriptor_table_camera_5fserver_2fcamera_5fserver_2eproto_once,
       file_level_metadata_camera_5fserver_2fcamera_5fserver_2eproto[22]);
@@ -7627,13 +7625,13 @@ template<> PROTOBUF_NOINLINE ::mavsdk::rpc::camera_server::StopVideoStreamingRes
 Arena::CreateMaybeMessage< ::mavsdk::rpc::camera_server::StopVideoStreamingResponse >(Arena* arena) {
   return Arena::CreateMessageInternal< ::mavsdk::rpc::camera_server::StopVideoStreamingResponse >(arena);
 }
-template<> PROTOBUF_NOINLINE ::mavsdk::rpc::camera_server::SubscribeSetCameraModeRequest*
-Arena::CreateMaybeMessage< ::mavsdk::rpc::camera_server::SubscribeSetCameraModeRequest >(Arena* arena) {
-  return Arena::CreateMessageInternal< ::mavsdk::rpc::camera_server::SubscribeSetCameraModeRequest >(arena);
+template<> PROTOBUF_NOINLINE ::mavsdk::rpc::camera_server::SubscribeSetModeRequest*
+Arena::CreateMaybeMessage< ::mavsdk::rpc::camera_server::SubscribeSetModeRequest >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::mavsdk::rpc::camera_server::SubscribeSetModeRequest >(arena);
 }
-template<> PROTOBUF_NOINLINE ::mavsdk::rpc::camera_server::SetCameraModeResponse*
-Arena::CreateMaybeMessage< ::mavsdk::rpc::camera_server::SetCameraModeResponse >(Arena* arena) {
-  return Arena::CreateMessageInternal< ::mavsdk::rpc::camera_server::SetCameraModeResponse >(arena);
+template<> PROTOBUF_NOINLINE ::mavsdk::rpc::camera_server::SetModeResponse*
+Arena::CreateMaybeMessage< ::mavsdk::rpc::camera_server::SetModeResponse >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::mavsdk::rpc::camera_server::SetModeResponse >(arena);
 }
 template<> PROTOBUF_NOINLINE ::mavsdk::rpc::camera_server::SubscribeStorageInformationRequest*
 Arena::CreateMaybeMessage< ::mavsdk::rpc::camera_server::SubscribeStorageInformationRequest >(Arena* arena) {

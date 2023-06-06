@@ -101,15 +101,15 @@ extern RespondTakePhotoRequestDefaultTypeInternal _RespondTakePhotoRequest_defau
 class RespondTakePhotoResponse;
 struct RespondTakePhotoResponseDefaultTypeInternal;
 extern RespondTakePhotoResponseDefaultTypeInternal _RespondTakePhotoResponse_default_instance_;
-class SetCameraModeResponse;
-struct SetCameraModeResponseDefaultTypeInternal;
-extern SetCameraModeResponseDefaultTypeInternal _SetCameraModeResponse_default_instance_;
 class SetInformationRequest;
 struct SetInformationRequestDefaultTypeInternal;
 extern SetInformationRequestDefaultTypeInternal _SetInformationRequest_default_instance_;
 class SetInformationResponse;
 struct SetInformationResponseDefaultTypeInternal;
 extern SetInformationResponseDefaultTypeInternal _SetInformationResponse_default_instance_;
+class SetModeResponse;
+struct SetModeResponseDefaultTypeInternal;
+extern SetModeResponseDefaultTypeInternal _SetModeResponse_default_instance_;
 class StartVideoResponse;
 struct StartVideoResponseDefaultTypeInternal;
 extern StartVideoResponseDefaultTypeInternal _StartVideoResponse_default_instance_;
@@ -137,9 +137,9 @@ extern SubscribeFormatStorageRequestDefaultTypeInternal _SubscribeFormatStorageR
 class SubscribeResetSettingsRequest;
 struct SubscribeResetSettingsRequestDefaultTypeInternal;
 extern SubscribeResetSettingsRequestDefaultTypeInternal _SubscribeResetSettingsRequest_default_instance_;
-class SubscribeSetCameraModeRequest;
-struct SubscribeSetCameraModeRequestDefaultTypeInternal;
-extern SubscribeSetCameraModeRequestDefaultTypeInternal _SubscribeSetCameraModeRequest_default_instance_;
+class SubscribeSetModeRequest;
+struct SubscribeSetModeRequestDefaultTypeInternal;
+extern SubscribeSetModeRequestDefaultTypeInternal _SubscribeSetModeRequest_default_instance_;
 class SubscribeStartVideoRequest;
 struct SubscribeStartVideoRequestDefaultTypeInternal;
 extern SubscribeStartVideoRequestDefaultTypeInternal _SubscribeStartVideoRequest_default_instance_;
@@ -182,9 +182,9 @@ template<> ::mavsdk::rpc::camera_server::RespondStorageInformationRequest* Arena
 template<> ::mavsdk::rpc::camera_server::RespondStorageInformationResponse* Arena::CreateMaybeMessage<::mavsdk::rpc::camera_server::RespondStorageInformationResponse>(Arena*);
 template<> ::mavsdk::rpc::camera_server::RespondTakePhotoRequest* Arena::CreateMaybeMessage<::mavsdk::rpc::camera_server::RespondTakePhotoRequest>(Arena*);
 template<> ::mavsdk::rpc::camera_server::RespondTakePhotoResponse* Arena::CreateMaybeMessage<::mavsdk::rpc::camera_server::RespondTakePhotoResponse>(Arena*);
-template<> ::mavsdk::rpc::camera_server::SetCameraModeResponse* Arena::CreateMaybeMessage<::mavsdk::rpc::camera_server::SetCameraModeResponse>(Arena*);
 template<> ::mavsdk::rpc::camera_server::SetInformationRequest* Arena::CreateMaybeMessage<::mavsdk::rpc::camera_server::SetInformationRequest>(Arena*);
 template<> ::mavsdk::rpc::camera_server::SetInformationResponse* Arena::CreateMaybeMessage<::mavsdk::rpc::camera_server::SetInformationResponse>(Arena*);
+template<> ::mavsdk::rpc::camera_server::SetModeResponse* Arena::CreateMaybeMessage<::mavsdk::rpc::camera_server::SetModeResponse>(Arena*);
 template<> ::mavsdk::rpc::camera_server::StartVideoResponse* Arena::CreateMaybeMessage<::mavsdk::rpc::camera_server::StartVideoResponse>(Arena*);
 template<> ::mavsdk::rpc::camera_server::StartVideoStreamingResponse* Arena::CreateMaybeMessage<::mavsdk::rpc::camera_server::StartVideoStreamingResponse>(Arena*);
 template<> ::mavsdk::rpc::camera_server::StopVideoResponse* Arena::CreateMaybeMessage<::mavsdk::rpc::camera_server::StopVideoResponse>(Arena*);
@@ -194,7 +194,7 @@ template<> ::mavsdk::rpc::camera_server::StorageInformationResponse* Arena::Crea
 template<> ::mavsdk::rpc::camera_server::SubscribeCaptureStatusRequest* Arena::CreateMaybeMessage<::mavsdk::rpc::camera_server::SubscribeCaptureStatusRequest>(Arena*);
 template<> ::mavsdk::rpc::camera_server::SubscribeFormatStorageRequest* Arena::CreateMaybeMessage<::mavsdk::rpc::camera_server::SubscribeFormatStorageRequest>(Arena*);
 template<> ::mavsdk::rpc::camera_server::SubscribeResetSettingsRequest* Arena::CreateMaybeMessage<::mavsdk::rpc::camera_server::SubscribeResetSettingsRequest>(Arena*);
-template<> ::mavsdk::rpc::camera_server::SubscribeSetCameraModeRequest* Arena::CreateMaybeMessage<::mavsdk::rpc::camera_server::SubscribeSetCameraModeRequest>(Arena*);
+template<> ::mavsdk::rpc::camera_server::SubscribeSetModeRequest* Arena::CreateMaybeMessage<::mavsdk::rpc::camera_server::SubscribeSetModeRequest>(Arena*);
 template<> ::mavsdk::rpc::camera_server::SubscribeStartVideoRequest* Arena::CreateMaybeMessage<::mavsdk::rpc::camera_server::SubscribeStartVideoRequest>(Arena*);
 template<> ::mavsdk::rpc::camera_server::SubscribeStartVideoStreamingRequest* Arena::CreateMaybeMessage<::mavsdk::rpc::camera_server::SubscribeStartVideoStreamingRequest>(Arena*);
 template<> ::mavsdk::rpc::camera_server::SubscribeStopVideoRequest* Arena::CreateMaybeMessage<::mavsdk::rpc::camera_server::SubscribeStopVideoRequest>(Arena*);
@@ -374,31 +374,31 @@ inline bool TakePhotoFeedback_Parse(
   return ::PROTOBUF_NAMESPACE_ID::internal::ParseNamedEnum<TakePhotoFeedback>(
     TakePhotoFeedback_descriptor(), name, value);
 }
-enum CameraMode : int {
-  CAMERA_MODE_UNKNOWN = 0,
-  CAMERA_MODE_PHOTO = 1,
-  CAMERA_MODE_VIDEO = 2,
-  CameraMode_INT_MIN_SENTINEL_DO_NOT_USE_ = std::numeric_limits<int32_t>::min(),
-  CameraMode_INT_MAX_SENTINEL_DO_NOT_USE_ = std::numeric_limits<int32_t>::max()
+enum Mode : int {
+  MODE_UNKNOWN = 0,
+  MODE_PHOTO = 1,
+  MODE_VIDEO = 2,
+  Mode_INT_MIN_SENTINEL_DO_NOT_USE_ = std::numeric_limits<int32_t>::min(),
+  Mode_INT_MAX_SENTINEL_DO_NOT_USE_ = std::numeric_limits<int32_t>::max()
 };
-bool CameraMode_IsValid(int value);
-constexpr CameraMode CameraMode_MIN = CAMERA_MODE_UNKNOWN;
-constexpr CameraMode CameraMode_MAX = CAMERA_MODE_VIDEO;
-constexpr int CameraMode_ARRAYSIZE = CameraMode_MAX + 1;
+bool Mode_IsValid(int value);
+constexpr Mode Mode_MIN = MODE_UNKNOWN;
+constexpr Mode Mode_MAX = MODE_VIDEO;
+constexpr int Mode_ARRAYSIZE = Mode_MAX + 1;
 
-const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor* CameraMode_descriptor();
+const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor* Mode_descriptor();
 template<typename T>
-inline const std::string& CameraMode_Name(T enum_t_value) {
-  static_assert(::std::is_same<T, CameraMode>::value ||
+inline const std::string& Mode_Name(T enum_t_value) {
+  static_assert(::std::is_same<T, Mode>::value ||
     ::std::is_integral<T>::value,
-    "Incorrect type passed to function CameraMode_Name.");
+    "Incorrect type passed to function Mode_Name.");
   return ::PROTOBUF_NAMESPACE_ID::internal::NameOfEnum(
-    CameraMode_descriptor(), enum_t_value);
+    Mode_descriptor(), enum_t_value);
 }
-inline bool CameraMode_Parse(
-    ::PROTOBUF_NAMESPACE_ID::ConstStringParam name, CameraMode* value) {
-  return ::PROTOBUF_NAMESPACE_ID::internal::ParseNamedEnum<CameraMode>(
-    CameraMode_descriptor(), name, value);
+inline bool Mode_Parse(
+    ::PROTOBUF_NAMESPACE_ID::ConstStringParam name, Mode* value) {
+  return ::PROTOBUF_NAMESPACE_ID::internal::ParseNamedEnum<Mode>(
+    Mode_descriptor(), name, value);
 }
 // ===================================================================
 
@@ -3633,23 +3633,23 @@ class StopVideoStreamingResponse final :
 };
 // -------------------------------------------------------------------
 
-class SubscribeSetCameraModeRequest final :
-    public ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase /* @@protoc_insertion_point(class_definition:mavsdk.rpc.camera_server.SubscribeSetCameraModeRequest) */ {
+class SubscribeSetModeRequest final :
+    public ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase /* @@protoc_insertion_point(class_definition:mavsdk.rpc.camera_server.SubscribeSetModeRequest) */ {
  public:
-  inline SubscribeSetCameraModeRequest() : SubscribeSetCameraModeRequest(nullptr) {}
-  explicit PROTOBUF_CONSTEXPR SubscribeSetCameraModeRequest(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+  inline SubscribeSetModeRequest() : SubscribeSetModeRequest(nullptr) {}
+  explicit PROTOBUF_CONSTEXPR SubscribeSetModeRequest(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
 
-  SubscribeSetCameraModeRequest(const SubscribeSetCameraModeRequest& from);
-  SubscribeSetCameraModeRequest(SubscribeSetCameraModeRequest&& from) noexcept
-    : SubscribeSetCameraModeRequest() {
+  SubscribeSetModeRequest(const SubscribeSetModeRequest& from);
+  SubscribeSetModeRequest(SubscribeSetModeRequest&& from) noexcept
+    : SubscribeSetModeRequest() {
     *this = ::std::move(from);
   }
 
-  inline SubscribeSetCameraModeRequest& operator=(const SubscribeSetCameraModeRequest& from) {
+  inline SubscribeSetModeRequest& operator=(const SubscribeSetModeRequest& from) {
     CopyFrom(from);
     return *this;
   }
-  inline SubscribeSetCameraModeRequest& operator=(SubscribeSetCameraModeRequest&& from) noexcept {
+  inline SubscribeSetModeRequest& operator=(SubscribeSetModeRequest&& from) noexcept {
     if (this == &from) return *this;
     if (GetOwningArena() == from.GetOwningArena()
   #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
@@ -3672,20 +3672,20 @@ class SubscribeSetCameraModeRequest final :
   static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
     return default_instance().GetMetadata().reflection;
   }
-  static const SubscribeSetCameraModeRequest& default_instance() {
+  static const SubscribeSetModeRequest& default_instance() {
     return *internal_default_instance();
   }
-  static inline const SubscribeSetCameraModeRequest* internal_default_instance() {
-    return reinterpret_cast<const SubscribeSetCameraModeRequest*>(
-               &_SubscribeSetCameraModeRequest_default_instance_);
+  static inline const SubscribeSetModeRequest* internal_default_instance() {
+    return reinterpret_cast<const SubscribeSetModeRequest*>(
+               &_SubscribeSetModeRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
     21;
 
-  friend void swap(SubscribeSetCameraModeRequest& a, SubscribeSetCameraModeRequest& b) {
+  friend void swap(SubscribeSetModeRequest& a, SubscribeSetModeRequest& b) {
     a.Swap(&b);
   }
-  inline void Swap(SubscribeSetCameraModeRequest* other) {
+  inline void Swap(SubscribeSetModeRequest* other) {
     if (other == this) return;
   #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
     if (GetOwningArena() != nullptr &&
@@ -3698,7 +3698,7 @@ class SubscribeSetCameraModeRequest final :
       ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
     }
   }
-  void UnsafeArenaSwap(SubscribeSetCameraModeRequest* other) {
+  void UnsafeArenaSwap(SubscribeSetModeRequest* other) {
     if (other == this) return;
     GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
     InternalSwap(other);
@@ -3706,15 +3706,15 @@ class SubscribeSetCameraModeRequest final :
 
   // implements Message ----------------------------------------------
 
-  SubscribeSetCameraModeRequest* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
-    return CreateMaybeMessage<SubscribeSetCameraModeRequest>(arena);
+  SubscribeSetModeRequest* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<SubscribeSetModeRequest>(arena);
   }
   using ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::CopyFrom;
-  inline void CopyFrom(const SubscribeSetCameraModeRequest& from) {
+  inline void CopyFrom(const SubscribeSetModeRequest& from) {
     ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::CopyImpl(this, from);
   }
   using ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::MergeFrom;
-  void MergeFrom(const SubscribeSetCameraModeRequest& from) {
+  void MergeFrom(const SubscribeSetModeRequest& from) {
     ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::MergeImpl(this, from);
   }
   public:
@@ -3722,10 +3722,10 @@ class SubscribeSetCameraModeRequest final :
   private:
   friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
   static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
-    return "mavsdk.rpc.camera_server.SubscribeSetCameraModeRequest";
+    return "mavsdk.rpc.camera_server.SubscribeSetModeRequest";
   }
   protected:
-  explicit SubscribeSetCameraModeRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+  explicit SubscribeSetModeRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                        bool is_message_owned = false);
   public:
 
@@ -3738,7 +3738,7 @@ class SubscribeSetCameraModeRequest final :
 
   // accessors -------------------------------------------------------
 
-  // @@protoc_insertion_point(class_scope:mavsdk.rpc.camera_server.SubscribeSetCameraModeRequest)
+  // @@protoc_insertion_point(class_scope:mavsdk.rpc.camera_server.SubscribeSetModeRequest)
  private:
   class _Internal;
 
@@ -3749,24 +3749,24 @@ class SubscribeSetCameraModeRequest final :
 };
 // -------------------------------------------------------------------
 
-class SetCameraModeResponse final :
-    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:mavsdk.rpc.camera_server.SetCameraModeResponse) */ {
+class SetModeResponse final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:mavsdk.rpc.camera_server.SetModeResponse) */ {
  public:
-  inline SetCameraModeResponse() : SetCameraModeResponse(nullptr) {}
-  ~SetCameraModeResponse() override;
-  explicit PROTOBUF_CONSTEXPR SetCameraModeResponse(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+  inline SetModeResponse() : SetModeResponse(nullptr) {}
+  ~SetModeResponse() override;
+  explicit PROTOBUF_CONSTEXPR SetModeResponse(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
 
-  SetCameraModeResponse(const SetCameraModeResponse& from);
-  SetCameraModeResponse(SetCameraModeResponse&& from) noexcept
-    : SetCameraModeResponse() {
+  SetModeResponse(const SetModeResponse& from);
+  SetModeResponse(SetModeResponse&& from) noexcept
+    : SetModeResponse() {
     *this = ::std::move(from);
   }
 
-  inline SetCameraModeResponse& operator=(const SetCameraModeResponse& from) {
+  inline SetModeResponse& operator=(const SetModeResponse& from) {
     CopyFrom(from);
     return *this;
   }
-  inline SetCameraModeResponse& operator=(SetCameraModeResponse&& from) noexcept {
+  inline SetModeResponse& operator=(SetModeResponse&& from) noexcept {
     if (this == &from) return *this;
     if (GetOwningArena() == from.GetOwningArena()
   #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
@@ -3789,20 +3789,20 @@ class SetCameraModeResponse final :
   static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
     return default_instance().GetMetadata().reflection;
   }
-  static const SetCameraModeResponse& default_instance() {
+  static const SetModeResponse& default_instance() {
     return *internal_default_instance();
   }
-  static inline const SetCameraModeResponse* internal_default_instance() {
-    return reinterpret_cast<const SetCameraModeResponse*>(
-               &_SetCameraModeResponse_default_instance_);
+  static inline const SetModeResponse* internal_default_instance() {
+    return reinterpret_cast<const SetModeResponse*>(
+               &_SetModeResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
     22;
 
-  friend void swap(SetCameraModeResponse& a, SetCameraModeResponse& b) {
+  friend void swap(SetModeResponse& a, SetModeResponse& b) {
     a.Swap(&b);
   }
-  inline void Swap(SetCameraModeResponse* other) {
+  inline void Swap(SetModeResponse* other) {
     if (other == this) return;
   #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
     if (GetOwningArena() != nullptr &&
@@ -3815,7 +3815,7 @@ class SetCameraModeResponse final :
       ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
     }
   }
-  void UnsafeArenaSwap(SetCameraModeResponse* other) {
+  void UnsafeArenaSwap(SetModeResponse* other) {
     if (other == this) return;
     GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
     InternalSwap(other);
@@ -3823,13 +3823,13 @@ class SetCameraModeResponse final :
 
   // implements Message ----------------------------------------------
 
-  SetCameraModeResponse* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
-    return CreateMaybeMessage<SetCameraModeResponse>(arena);
+  SetModeResponse* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<SetModeResponse>(arena);
   }
   using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
-  void CopyFrom(const SetCameraModeResponse& from);
+  void CopyFrom(const SetModeResponse& from);
   using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
-  void MergeFrom(const SetCameraModeResponse& from);
+  void MergeFrom(const SetModeResponse& from);
   private:
   static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to, const ::PROTOBUF_NAMESPACE_ID::Message& from);
   public:
@@ -3846,15 +3846,15 @@ class SetCameraModeResponse final :
   void SharedCtor();
   void SharedDtor();
   void SetCachedSize(int size) const final;
-  void InternalSwap(SetCameraModeResponse* other);
+  void InternalSwap(SetModeResponse* other);
 
   private:
   friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
   static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
-    return "mavsdk.rpc.camera_server.SetCameraModeResponse";
+    return "mavsdk.rpc.camera_server.SetModeResponse";
   }
   protected:
-  explicit SetCameraModeResponse(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+  explicit SetModeResponse(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                        bool is_message_owned = false);
   public:
 
@@ -3868,25 +3868,25 @@ class SetCameraModeResponse final :
   // accessors -------------------------------------------------------
 
   enum : int {
-    kCameraModeFieldNumber = 1,
+    kModeFieldNumber = 1,
   };
-  // .mavsdk.rpc.camera_server.CameraMode camera_mode = 1;
-  void clear_camera_mode();
-  ::mavsdk::rpc::camera_server::CameraMode camera_mode() const;
-  void set_camera_mode(::mavsdk::rpc::camera_server::CameraMode value);
+  // .mavsdk.rpc.camera_server.Mode mode = 1;
+  void clear_mode();
+  ::mavsdk::rpc::camera_server::Mode mode() const;
+  void set_mode(::mavsdk::rpc::camera_server::Mode value);
   private:
-  ::mavsdk::rpc::camera_server::CameraMode _internal_camera_mode() const;
-  void _internal_set_camera_mode(::mavsdk::rpc::camera_server::CameraMode value);
+  ::mavsdk::rpc::camera_server::Mode _internal_mode() const;
+  void _internal_set_mode(::mavsdk::rpc::camera_server::Mode value);
   public:
 
-  // @@protoc_insertion_point(class_scope:mavsdk.rpc.camera_server.SetCameraModeResponse)
+  // @@protoc_insertion_point(class_scope:mavsdk.rpc.camera_server.SetModeResponse)
  private:
   class _Internal;
 
   template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
-  int camera_mode_;
+  int mode_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_camera_5fserver_2fcamera_5fserver_2eproto;
 };
@@ -7611,30 +7611,30 @@ inline void StopVideoStreamingResponse::set_stream_id(int32_t value) {
 
 // -------------------------------------------------------------------
 
-// SubscribeSetCameraModeRequest
+// SubscribeSetModeRequest
 
 // -------------------------------------------------------------------
 
-// SetCameraModeResponse
+// SetModeResponse
 
-// .mavsdk.rpc.camera_server.CameraMode camera_mode = 1;
-inline void SetCameraModeResponse::clear_camera_mode() {
-  camera_mode_ = 0;
+// .mavsdk.rpc.camera_server.Mode mode = 1;
+inline void SetModeResponse::clear_mode() {
+  mode_ = 0;
 }
-inline ::mavsdk::rpc::camera_server::CameraMode SetCameraModeResponse::_internal_camera_mode() const {
-  return static_cast< ::mavsdk::rpc::camera_server::CameraMode >(camera_mode_);
+inline ::mavsdk::rpc::camera_server::Mode SetModeResponse::_internal_mode() const {
+  return static_cast< ::mavsdk::rpc::camera_server::Mode >(mode_);
 }
-inline ::mavsdk::rpc::camera_server::CameraMode SetCameraModeResponse::camera_mode() const {
-  // @@protoc_insertion_point(field_get:mavsdk.rpc.camera_server.SetCameraModeResponse.camera_mode)
-  return _internal_camera_mode();
+inline ::mavsdk::rpc::camera_server::Mode SetModeResponse::mode() const {
+  // @@protoc_insertion_point(field_get:mavsdk.rpc.camera_server.SetModeResponse.mode)
+  return _internal_mode();
 }
-inline void SetCameraModeResponse::_internal_set_camera_mode(::mavsdk::rpc::camera_server::CameraMode value) {
+inline void SetModeResponse::_internal_set_mode(::mavsdk::rpc::camera_server::Mode value) {
   
-  camera_mode_ = value;
+  mode_ = value;
 }
-inline void SetCameraModeResponse::set_camera_mode(::mavsdk::rpc::camera_server::CameraMode value) {
-  _internal_set_camera_mode(value);
-  // @@protoc_insertion_point(field_set:mavsdk.rpc.camera_server.SetCameraModeResponse.camera_mode)
+inline void SetModeResponse::set_mode(::mavsdk::rpc::camera_server::Mode value) {
+  _internal_set_mode(value);
+  // @@protoc_insertion_point(field_set:mavsdk.rpc.camera_server.SetModeResponse.mode)
 }
 
 // -------------------------------------------------------------------
@@ -8527,10 +8527,10 @@ template <>
 inline const EnumDescriptor* GetEnumDescriptor< ::mavsdk::rpc::camera_server::TakePhotoFeedback>() {
   return ::mavsdk::rpc::camera_server::TakePhotoFeedback_descriptor();
 }
-template <> struct is_proto_enum< ::mavsdk::rpc::camera_server::CameraMode> : ::std::true_type {};
+template <> struct is_proto_enum< ::mavsdk::rpc::camera_server::Mode> : ::std::true_type {};
 template <>
-inline const EnumDescriptor* GetEnumDescriptor< ::mavsdk::rpc::camera_server::CameraMode>() {
-  return ::mavsdk::rpc::camera_server::CameraMode_descriptor();
+inline const EnumDescriptor* GetEnumDescriptor< ::mavsdk::rpc::camera_server::Mode>() {
+  return ::mavsdk::rpc::camera_server::Mode_descriptor();
 }
 
 PROTOBUF_NAMESPACE_CLOSE
