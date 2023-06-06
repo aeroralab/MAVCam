@@ -9,8 +9,11 @@ CameraClient *CreateLocalCameraClient() {
     return new CameraLocalClient();
 }
 
-CameraClient *CreateRpcCameraClient() {
-    return new CameraRpcClient();
+CameraClient *CreateRpcCameraClient(int rpc_port) {
+    CameraRpcClient *client = new CameraRpcClient();
+    client->Init(rpc_port);
+
+    return client;
 }
 
 }  // namespace mid

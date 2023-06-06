@@ -28,5 +28,5 @@ public:  //settings
 };
 
 CameraClient *CreateLocalCameraClient();
-CameraClient *CreateRpcCameraClient();
+CameraClient *CreateRpcCameraClient(int rpc_port);
 }  // namespace mid

@@ -2,7 +2,7 @@
 
 #include <atomic>
 #include <chrono>
-#include <thread>
+#include <mutex>
 
 #include "camera_client.h"
 

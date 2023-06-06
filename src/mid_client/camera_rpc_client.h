@@ -1,13 +1,22 @@
 #pragma once
 
+#include <grpc++/grpc++.h>
+
+#include <atomic>
+#include <chrono>
+#include <memory>
+#include <mutex>
+
+#include "camera/camera.grpc.pb.h"
+#include "camera/camera.pb.h"
 #include "camera_client.h"
 
 namespace mid {
 
 class CameraRpcClient : public CameraClient {
 public:
-    CameraRpcClient() {}
-    virtual ~CameraRpcClient() {}
+    CameraRpcClient();
+    virtual ~CameraRpcClient();
 public:
     virtual mavsdk::CameraServer::Result take_photo(int index);
     virtual mavsdk::CameraServer::Result start_video();
@@ -25,7 +34,16 @@ public:
     virtual mavsdk::CameraServer::Result fill_capture_status(
         mavsdk::CameraServer::CaptureStatus &capture_status);
 public:
-    bool Init(int rpc_port) const;
+    bool Init(int rpc_port);
+private:
+    std::atomic<bool> _is_capture_in_progress;
+    std::atomic<int> _image_count;
+    std::atomic<bool> _is_recording_video;
+    std::chrono::steady_clock::time_point _start_video_time;
+private:
+    std::shared_ptr<grpc::Channel> _channel;
+    std::unique_ptr<mavsdk::rpc::camera::CameraService::Stub> _stub;
+    std::mutex _mutex{};
 };
 
 }  // namespace mid
