@@ -8,6 +8,17 @@ CameraLocalClient::CameraLocalClient() {
     _is_capture_in_progress = false;
     _image_count = 0;
     _is_recording_video = false;
+
+    // TODO just demo for settings
+    _settings["CAM_MODE"] = "1";
+    _settings["CAM_WBMODE"] = "0";
+    _settings["CAM_EXPMODE"] = "0";
+    _settings["CAM_EV"] = "0";
+    _settings["CAM_ISO"] = "100";
+    _settings["CAM_SHUTTERSPD"] = "0.01";
+    _settings["CAM_VIDFMT"] = "1";
+    _settings["CAM_VIDRES"] = "0";
+    _settings["CAM_PHOTORATIO"] = "1";
 }
 
 CameraLocalClient::~CameraLocalClient() {}
@@ -117,6 +128,42 @@ mavsdk::CameraServer::Result CameraLocalClient::fill_capture_status(
         capture_status.recording_time_s = 0;
     }
     return mavsdk::CameraServer::Result::Success;
+}
+
+mavsdk::CameraServer::Result CameraLocalClient::retrieve_current_settings(
+    std::vector<mavsdk::Camera::Setting> &settings) {
+    for (auto &it : _settings) {
+        settings.emplace_back(build_setting(it.first, it.second));
+    }
+
+    return mavsdk::CameraServer::Result::Success;
+}
+
+mavsdk::CameraServer::Result CameraLocalClient::set_setting(mavsdk::Camera::Setting setting) {
+    LogDebug() << "change " << setting.setting_id << " to " << setting.option.option_id;
+    if (_settings.count(setting.setting_id) == 0) {
+        LogError() << "Unsupport setting " << setting.setting_id;
+        return mavsdk::CameraServer::Result::WrongArgument;
+    }
+    _settings[setting.setting_id] = setting.option.option_id;
+    return mavsdk::CameraServer::Result::Success;
+}
+
+std::pair<mavsdk::CameraServer::Result, mavsdk::Camera::Setting> CameraLocalClient::get_setting(
+    mavsdk::Camera::Setting setting) const {
+    if (_settings.count(setting.setting_id) == 0) {
+        return {mavsdk::CameraServer::Result::WrongArgument, setting};
+    }
+    mavsdk::Camera::Setting out_setting = setting;
+    out_setting.option.option_id = _settings[setting.setting_id];
+    return {mavsdk::CameraServer::Result::Success, out_setting};
+}
+
+mavsdk::Camera::Setting CameraLocalClient::build_setting(std::string name, std::string value) {
+    mavsdk::Camera::Setting setting;
+    setting.setting_id = name;
+    setting.option.option_id = value;
+    return setting;
 }
 
 }  // namespace mid

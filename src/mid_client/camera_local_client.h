@@ -3,6 +3,8 @@
 #include <atomic>
 #include <chrono>
 #include <mutex>
+#include <unordered_map>
+#include <vector>
 
 #include "camera_client.h"
 
@@ -28,11 +30,20 @@ public:  //subscribe
         mavsdk::CameraServer::StorageInformation &storage_information);
     virtual mavsdk::CameraServer::Result fill_capture_status(
         mavsdk::CameraServer::CaptureStatus &capture_status);
+public:  // settings
+    virtual mavsdk::CameraServer::Result retrieve_current_settings(
+        std::vector<mavsdk::Camera::Setting> &settings);
+    mavsdk::CameraServer::Result set_setting(mavsdk::Camera::Setting setting);
+    std::pair<mavsdk::CameraServer::Result, mavsdk::Camera::Setting> get_setting(
+        mavsdk::Camera::Setting setting) const;
+private:
+    mavsdk::Camera::Setting build_setting(std::string name, std::string value);
 private:
     std::atomic<bool> _is_capture_in_progress;
     std::atomic<int> _image_count;
     std::atomic<bool> _is_recording_video;
     std::chrono::steady_clock::time_point _start_video_time;
+    mutable std::unordered_map<std::string, std::string> _settings;
 private:
     std::mutex _mutex{};
 };

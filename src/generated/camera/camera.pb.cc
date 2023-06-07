@@ -737,30 +737,30 @@ struct ResetSettingsResponseDefaultTypeInternal {
   };
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 ResetSettingsResponseDefaultTypeInternal _ResetSettingsResponse_default_instance_;
-PROTOBUF_CONSTEXPR SetDefinitionFileDataRequest::SetDefinitionFileDataRequest(
+PROTOBUF_CONSTEXPR SetDefinitionDataRequest::SetDefinitionDataRequest(
     ::_pbi::ConstantInitialized)
-  : definition_file_data_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}){}
-struct SetDefinitionFileDataRequestDefaultTypeInternal {
-  PROTOBUF_CONSTEXPR SetDefinitionFileDataRequestDefaultTypeInternal()
+  : definition_data_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}){}
+struct SetDefinitionDataRequestDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR SetDefinitionDataRequestDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
-  ~SetDefinitionFileDataRequestDefaultTypeInternal() {}
+  ~SetDefinitionDataRequestDefaultTypeInternal() {}
   union {
-    SetDefinitionFileDataRequest _instance;
+    SetDefinitionDataRequest _instance;
   };
 };
-PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 SetDefinitionFileDataRequestDefaultTypeInternal _SetDefinitionFileDataRequest_default_instance_;
-PROTOBUF_CONSTEXPR SetDefinitionFileDataResponse::SetDefinitionFileDataResponse(
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 SetDefinitionDataRequestDefaultTypeInternal _SetDefinitionDataRequest_default_instance_;
+PROTOBUF_CONSTEXPR SetDefinitionDataResponse::SetDefinitionDataResponse(
     ::_pbi::ConstantInitialized)
   : camera_result_(nullptr){}
-struct SetDefinitionFileDataResponseDefaultTypeInternal {
-  PROTOBUF_CONSTEXPR SetDefinitionFileDataResponseDefaultTypeInternal()
+struct SetDefinitionDataResponseDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR SetDefinitionDataResponseDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
-  ~SetDefinitionFileDataResponseDefaultTypeInternal() {}
+  ~SetDefinitionDataResponseDefaultTypeInternal() {}
   union {
-    SetDefinitionFileDataResponse _instance;
+    SetDefinitionDataResponse _instance;
   };
 };
-PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 SetDefinitionFileDataResponseDefaultTypeInternal _SetDefinitionFileDataResponse_default_instance_;
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 SetDefinitionDataResponseDefaultTypeInternal _SetDefinitionDataResponse_default_instance_;
 }  // namespace camera
 }  // namespace rpc
 }  // namespace mavsdk
@@ -1196,19 +1196,19 @@ const uint32_t TableStruct_camera_2fcamera_2eproto::offsets[] PROTOBUF_SECTION_V
   ~0u,  // no _inlined_string_donated_
   PROTOBUF_FIELD_OFFSET(::mavsdk::rpc::camera::ResetSettingsResponse, camera_result_),
   ~0u,  // no _has_bits_
-  PROTOBUF_FIELD_OFFSET(::mavsdk::rpc::camera::SetDefinitionFileDataRequest, _internal_metadata_),
+  PROTOBUF_FIELD_OFFSET(::mavsdk::rpc::camera::SetDefinitionDataRequest, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::mavsdk::rpc::camera::SetDefinitionFileDataRequest, definition_file_data_),
+  PROTOBUF_FIELD_OFFSET(::mavsdk::rpc::camera::SetDefinitionDataRequest, definition_data_),
   ~0u,  // no _has_bits_
-  PROTOBUF_FIELD_OFFSET(::mavsdk::rpc::camera::SetDefinitionFileDataResponse, _internal_metadata_),
+  PROTOBUF_FIELD_OFFSET(::mavsdk::rpc::camera::SetDefinitionDataResponse, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::mavsdk::rpc::camera::SetDefinitionFileDataResponse, camera_result_),
+  PROTOBUF_FIELD_OFFSET(::mavsdk::rpc::camera::SetDefinitionDataResponse, camera_result_),
 };
 static const ::_pbi::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
   { 0, -1, -1, sizeof(::mavsdk::rpc::camera::PrepareRequest)},
@@ -1267,8 +1267,8 @@ static const ::_pbi::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protode
   { 400, -1, -1, sizeof(::mavsdk::rpc::camera::Information)},
   { 413, -1, -1, sizeof(::mavsdk::rpc::camera::ResetSettingsRequest)},
   { 419, -1, -1, sizeof(::mavsdk::rpc::camera::ResetSettingsResponse)},
-  { 426, -1, -1, sizeof(::mavsdk::rpc::camera::SetDefinitionFileDataRequest)},
-  { 433, -1, -1, sizeof(::mavsdk::rpc::camera::SetDefinitionFileDataResponse)},
+  { 426, -1, -1, sizeof(::mavsdk::rpc::camera::SetDefinitionDataRequest)},
+  { 433, -1, -1, sizeof(::mavsdk::rpc::camera::SetDefinitionDataResponse)},
 };
 
 static const ::_pb::Message* const file_default_instances[] = {
@@ -1328,8 +1328,8 @@ static const ::_pb::Message* const file_default_instances[] = {
   &::mavsdk::rpc::camera::_Information_default_instance_._instance,
   &::mavsdk::rpc::camera::_ResetSettingsRequest_default_instance_._instance,
   &::mavsdk::rpc::camera::_ResetSettingsResponse_default_instance_._instance,
-  &::mavsdk::rpc::camera::_SetDefinitionFileDataRequest_default_instance_._instance,
-  &::mavsdk::rpc::camera::_SetDefinitionFileDataResponse_default_instance_._instance,
+  &::mavsdk::rpc::camera::_SetDefinitionDataRequest_default_instance_._instance,
+  &::mavsdk::rpc::camera::_SetDefinitionDataResponse_default_instance_._instance,
 };
 
 const char descriptor_table_protodef_camera_2fcamera_2eproto[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) =
@@ -1468,84 +1468,83 @@ const char descriptor_table_protodef_camera_2fcamera_2eproto[] PROTOBUF_SECTION_
   "l_resolution_px\030\007 \001(\r\"\026\n\024ResetSettingsRe"
   "quest\"O\n\025ResetSettingsResponse\0226\n\rcamera"
   "_result\030\001 \001(\0132\037.mavsdk.rpc.camera.Camera"
-  "Result\"<\n\034SetDefinitionFileDataRequest\022\034"
-  "\n\024definition_file_data\030\001 \001(\t\"W\n\035SetDefin"
-  "itionFileDataResponse\0226\n\rcamera_result\030\001"
-  " \001(\0132\037.mavsdk.rpc.camera.CameraResult*8\n"
-  "\004Mode\022\020\n\014MODE_UNKNOWN\020\000\022\016\n\nMODE_PHOTO\020\001\022"
-  "\016\n\nMODE_VIDEO\020\002*F\n\013PhotosRange\022\024\n\020PHOTOS"
-  "_RANGE_ALL\020\000\022!\n\035PHOTOS_RANGE_SINCE_CONNE"
-  "CTION\020\0012\274\023\n\rCameraService\022R\n\007Prepare\022!.m"
-  "avsdk.rpc.camera.PrepareRequest\032\".mavsdk"
-  ".rpc.camera.PrepareResponse\"\000\022X\n\tTakePho"
-  "to\022#.mavsdk.rpc.camera.TakePhotoRequest\032"
-  "$.mavsdk.rpc.camera.TakePhotoResponse\"\000\022"
-  "s\n\022StartPhotoInterval\022,.mavsdk.rpc.camer"
-  "a.StartPhotoIntervalRequest\032-.mavsdk.rpc"
-  ".camera.StartPhotoIntervalResponse\"\000\022p\n\021"
-  "StopPhotoInterval\022+.mavsdk.rpc.camera.St"
-  "opPhotoIntervalRequest\032,.mavsdk.rpc.came"
-  "ra.StopPhotoIntervalResponse\"\000\022[\n\nStartV"
-  "ideo\022$.mavsdk.rpc.camera.StartVideoReque"
-  "st\032%.mavsdk.rpc.camera.StartVideoRespons"
-  "e\"\000\022X\n\tStopVideo\022#.mavsdk.rpc.camera.Sto"
-  "pVideoRequest\032$.mavsdk.rpc.camera.StopVi"
-  "deoResponse\"\000\022z\n\023StartVideoStreaming\022-.m"
-  "avsdk.rpc.camera.StartVideoStreamingRequ"
-  "est\032..mavsdk.rpc.camera.StartVideoStream"
-  "ingResponse\"\004\200\265\030\001\022w\n\022StopVideoStreaming\022"
-  ",.mavsdk.rpc.camera.StopVideoStreamingRe"
-  "quest\032-.mavsdk.rpc.camera.StopVideoStrea"
-  "mingResponse\"\004\200\265\030\001\022R\n\007SetMode\022!.mavsdk.r"
-  "pc.camera.SetModeRequest\032\".mavsdk.rpc.ca"
-  "mera.SetModeResponse\"\000\022[\n\nListPhotos\022$.m"
-  "avsdk.rpc.camera.ListPhotosRequest\032%.mav"
-  "sdk.rpc.camera.ListPhotosResponse\"\000\022]\n\rS"
-  "ubscribeMode\022\'.mavsdk.rpc.camera.Subscri"
-  "beModeRequest\032\037.mavsdk.rpc.camera.ModeRe"
-  "sponse\"\0000\001\022r\n\024SubscribeInformation\022..mav"
-  "sdk.rpc.camera.SubscribeInformationReque"
-  "st\032&.mavsdk.rpc.camera.InformationRespon"
-  "se\"\0000\001\022~\n\030SubscribeVideoStreamInfo\0222.mav"
-  "sdk.rpc.camera.SubscribeVideoStreamInfoR"
-  "equest\032*.mavsdk.rpc.camera.VideoStreamIn"
-  "foResponse\"\0000\001\022v\n\024SubscribeCaptureInfo\022."
-  ".mavsdk.rpc.camera.SubscribeCaptureInfoR"
-  "equest\032&.mavsdk.rpc.camera.CaptureInfoRe"
-  "sponse\"\004\200\265\030\0000\001\022c\n\017SubscribeStatus\022).mavs"
-  "dk.rpc.camera.SubscribeStatusRequest\032!.m"
-  "avsdk.rpc.camera.StatusResponse\"\0000\001\022\202\001\n\030"
-  "SubscribeCurrentSettings\0222.mavsdk.rpc.ca"
-  "mera.SubscribeCurrentSettingsRequest\032*.m"
-  "avsdk.rpc.camera.CurrentSettingsResponse"
-  "\"\004\200\265\030\0000\001\022\223\001\n\037SubscribePossibleSettingOpt"
-  "ions\0229.mavsdk.rpc.camera.SubscribePossib"
-  "leSettingOptionsRequest\0321.mavsdk.rpc.cam"
-  "era.PossibleSettingOptionsResponse\"\0000\001\022["
-  "\n\nSetSetting\022$.mavsdk.rpc.camera.SetSett"
-  "ingRequest\032%.mavsdk.rpc.camera.SetSettin"
-  "gResponse\"\000\022[\n\nGetSetting\022$.mavsdk.rpc.c"
-  "amera.GetSettingRequest\032%.mavsdk.rpc.cam"
-  "era.GetSettingResponse\"\000\022d\n\rFormatStorag"
-  "e\022\'.mavsdk.rpc.camera.FormatStorageReque"
-  "st\032(.mavsdk.rpc.camera.FormatStorageResp"
-  "onse\"\000\022e\n\014SelectCamera\022&.mavsdk.rpc.came"
-  "ra.SelectCameraRequest\032\'.mavsdk.rpc.came"
-  "ra.SelectCameraResponse\"\004\200\265\030\001\022d\n\rResetSe"
-  "ttings\022\'.mavsdk.rpc.camera.ResetSettings"
-  "Request\032(.mavsdk.rpc.camera.ResetSetting"
-  "sResponse\"\000\022\200\001\n\025SetDefinitionFileData\022/."
-  "mavsdk.rpc.camera.SetDefinitionFileDataR"
-  "equest\0320.mavsdk.rpc.camera.SetDefinition"
-  "FileDataResponse\"\004\200\265\030\001B\037\n\020io.mavsdk.came"
-  "raB\013CameraProtob\006proto3"
+  "Result\"3\n\030SetDefinitionDataRequest\022\027\n\017de"
+  "finition_data\030\001 \001(\t\"S\n\031SetDefinitionData"
+  "Response\0226\n\rcamera_result\030\001 \001(\0132\037.mavsdk"
+  ".rpc.camera.CameraResult*8\n\004Mode\022\020\n\014MODE"
+  "_UNKNOWN\020\000\022\016\n\nMODE_PHOTO\020\001\022\016\n\nMODE_VIDEO"
+  "\020\002*F\n\013PhotosRange\022\024\n\020PHOTOS_RANGE_ALL\020\000\022"
+  "!\n\035PHOTOS_RANGE_SINCE_CONNECTION\020\0012\257\023\n\rC"
+  "ameraService\022R\n\007Prepare\022!.mavsdk.rpc.cam"
+  "era.PrepareRequest\032\".mavsdk.rpc.camera.P"
+  "repareResponse\"\000\022X\n\tTakePhoto\022#.mavsdk.r"
+  "pc.camera.TakePhotoRequest\032$.mavsdk.rpc."
+  "camera.TakePhotoResponse\"\000\022s\n\022StartPhoto"
+  "Interval\022,.mavsdk.rpc.camera.StartPhotoI"
+  "ntervalRequest\032-.mavsdk.rpc.camera.Start"
+  "PhotoIntervalResponse\"\000\022p\n\021StopPhotoInte"
+  "rval\022+.mavsdk.rpc.camera.StopPhotoInterv"
+  "alRequest\032,.mavsdk.rpc.camera.StopPhotoI"
+  "ntervalResponse\"\000\022[\n\nStartVideo\022$.mavsdk"
+  ".rpc.camera.StartVideoRequest\032%.mavsdk.r"
+  "pc.camera.StartVideoResponse\"\000\022X\n\tStopVi"
+  "deo\022#.mavsdk.rpc.camera.StopVideoRequest"
+  "\032$.mavsdk.rpc.camera.StopVideoResponse\"\000"
+  "\022z\n\023StartVideoStreaming\022-.mavsdk.rpc.cam"
+  "era.StartVideoStreamingRequest\032..mavsdk."
+  "rpc.camera.StartVideoStreamingResponse\"\004"
+  "\200\265\030\001\022w\n\022StopVideoStreaming\022,.mavsdk.rpc."
+  "camera.StopVideoStreamingRequest\032-.mavsd"
+  "k.rpc.camera.StopVideoStreamingResponse\""
+  "\004\200\265\030\001\022R\n\007SetMode\022!.mavsdk.rpc.camera.Set"
+  "ModeRequest\032\".mavsdk.rpc.camera.SetModeR"
+  "esponse\"\000\022[\n\nListPhotos\022$.mavsdk.rpc.cam"
+  "era.ListPhotosRequest\032%.mavsdk.rpc.camer"
+  "a.ListPhotosResponse\"\000\022]\n\rSubscribeMode\022"
+  "\'.mavsdk.rpc.camera.SubscribeModeRequest"
+  "\032\037.mavsdk.rpc.camera.ModeResponse\"\0000\001\022r\n"
+  "\024SubscribeInformation\022..mavsdk.rpc.camer"
+  "a.SubscribeInformationRequest\032&.mavsdk.r"
+  "pc.camera.InformationResponse\"\0000\001\022~\n\030Sub"
+  "scribeVideoStreamInfo\0222.mavsdk.rpc.camer"
+  "a.SubscribeVideoStreamInfoRequest\032*.mavs"
+  "dk.rpc.camera.VideoStreamInfoResponse\"\0000"
+  "\001\022v\n\024SubscribeCaptureInfo\022..mavsdk.rpc.c"
+  "amera.SubscribeCaptureInfoRequest\032&.mavs"
+  "dk.rpc.camera.CaptureInfoResponse\"\004\200\265\030\0000"
+  "\001\022c\n\017SubscribeStatus\022).mavsdk.rpc.camera"
+  ".SubscribeStatusRequest\032!.mavsdk.rpc.cam"
+  "era.StatusResponse\"\0000\001\022\202\001\n\030SubscribeCurr"
+  "entSettings\0222.mavsdk.rpc.camera.Subscrib"
+  "eCurrentSettingsRequest\032*.mavsdk.rpc.cam"
+  "era.CurrentSettingsResponse\"\004\200\265\030\0000\001\022\223\001\n\037"
+  "SubscribePossibleSettingOptions\0229.mavsdk"
+  ".rpc.camera.SubscribePossibleSettingOpti"
+  "onsRequest\0321.mavsdk.rpc.camera.PossibleS"
+  "ettingOptionsResponse\"\0000\001\022[\n\nSetSetting\022"
+  "$.mavsdk.rpc.camera.SetSettingRequest\032%."
+  "mavsdk.rpc.camera.SetSettingResponse\"\000\022["
+  "\n\nGetSetting\022$.mavsdk.rpc.camera.GetSett"
+  "ingRequest\032%.mavsdk.rpc.camera.GetSettin"
+  "gResponse\"\000\022d\n\rFormatStorage\022\'.mavsdk.rp"
+  "c.camera.FormatStorageRequest\032(.mavsdk.r"
+  "pc.camera.FormatStorageResponse\"\000\022e\n\014Sel"
+  "ectCamera\022&.mavsdk.rpc.camera.SelectCame"
+  "raRequest\032\'.mavsdk.rpc.camera.SelectCame"
+  "raResponse\"\004\200\265\030\001\022d\n\rResetSettings\022\'.mavs"
+  "dk.rpc.camera.ResetSettingsRequest\032(.mav"
+  "sdk.rpc.camera.ResetSettingsResponse\"\000\022t"
+  "\n\021SetDefinitionData\022+.mavsdk.rpc.camera."
+  "SetDefinitionDataRequest\032,.mavsdk.rpc.ca"
+  "mera.SetDefinitionDataResponse\"\004\200\265\030\001B\037\n\020"
+  "io.mavsdk.cameraB\013CameraProtob\006proto3"
   ;
 static const ::_pbi::DescriptorTable* const descriptor_table_camera_2fcamera_2eproto_deps[1] = {
   &::descriptor_table_mavsdk_5foptions_2eproto,
 };
 static ::_pbi::once_flag descriptor_table_camera_2fcamera_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_camera_2fcamera_2eproto = {
-    false, false, 8223, descriptor_table_protodef_camera_2fcamera_2eproto,
+    false, false, 8197, descriptor_table_protodef_camera_2fcamera_2eproto,
     "camera/camera.proto",
     &descriptor_table_camera_2fcamera_2eproto_once, descriptor_table_camera_2fcamera_2eproto_deps, 1, 58,
     schemas, file_default_instances, TableStruct_camera_2fcamera_2eproto::offsets,
@@ -11814,39 +11813,39 @@ void ResetSettingsResponse::InternalSwap(ResetSettingsResponse* other) {
 
 // ===================================================================
 
-class SetDefinitionFileDataRequest::_Internal {
+class SetDefinitionDataRequest::_Internal {
  public:
 };
 
-SetDefinitionFileDataRequest::SetDefinitionFileDataRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+SetDefinitionDataRequest::SetDefinitionDataRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                          bool is_message_owned)
   : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
   SharedCtor();
-  // @@protoc_insertion_point(arena_constructor:mavsdk.rpc.camera.SetDefinitionFileDataRequest)
+  // @@protoc_insertion_point(arena_constructor:mavsdk.rpc.camera.SetDefinitionDataRequest)
 }
-SetDefinitionFileDataRequest::SetDefinitionFileDataRequest(const SetDefinitionFileDataRequest& from)
+SetDefinitionDataRequest::SetDefinitionDataRequest(const SetDefinitionDataRequest& from)
   : ::PROTOBUF_NAMESPACE_ID::Message() {
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
-  definition_file_data_.InitDefault();
+  definition_data_.InitDefault();
   #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    definition_file_data_.Set("", GetArenaForAllocation());
+    definition_data_.Set("", GetArenaForAllocation());
   #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  if (!from._internal_definition_file_data().empty()) {
-    definition_file_data_.Set(from._internal_definition_file_data(), 
+  if (!from._internal_definition_data().empty()) {
+    definition_data_.Set(from._internal_definition_data(), 
       GetArenaForAllocation());
   }
-  // @@protoc_insertion_point(copy_constructor:mavsdk.rpc.camera.SetDefinitionFileDataRequest)
+  // @@protoc_insertion_point(copy_constructor:mavsdk.rpc.camera.SetDefinitionDataRequest)
 }
 
-inline void SetDefinitionFileDataRequest::SharedCtor() {
-definition_file_data_.InitDefault();
+inline void SetDefinitionDataRequest::SharedCtor() {
+definition_data_.InitDefault();
 #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  definition_file_data_.Set("", GetArenaForAllocation());
+  definition_data_.Set("", GetArenaForAllocation());
 #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
 }
 
-SetDefinitionFileDataRequest::~SetDefinitionFileDataRequest() {
-  // @@protoc_insertion_point(destructor:mavsdk.rpc.camera.SetDefinitionFileDataRequest)
+SetDefinitionDataRequest::~SetDefinitionDataRequest() {
+  // @@protoc_insertion_point(destructor:mavsdk.rpc.camera.SetDefinitionDataRequest)
   if (auto *arena = _internal_metadata_.DeleteReturnArena<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>()) {
   (void)arena;
     return;
@@ -11854,38 +11853,38 @@ SetDefinitionFileDataRequest::~SetDefinitionFileDataRequest() {
   SharedDtor();
 }
 
-inline void SetDefinitionFileDataRequest::SharedDtor() {
+inline void SetDefinitionDataRequest::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
-  definition_file_data_.Destroy();
+  definition_data_.Destroy();
 }
 
-void SetDefinitionFileDataRequest::SetCachedSize(int size) const {
+void SetDefinitionDataRequest::SetCachedSize(int size) const {
   _cached_size_.Set(size);
 }
 
-void SetDefinitionFileDataRequest::Clear() {
-// @@protoc_insertion_point(message_clear_start:mavsdk.rpc.camera.SetDefinitionFileDataRequest)
+void SetDefinitionDataRequest::Clear() {
+// @@protoc_insertion_point(message_clear_start:mavsdk.rpc.camera.SetDefinitionDataRequest)
   uint32_t cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  definition_file_data_.ClearToEmpty();
+  definition_data_.ClearToEmpty();
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
-const char* SetDefinitionFileDataRequest::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
+const char* SetDefinitionDataRequest::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
 #define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
   while (!ctx->Done(&ptr)) {
     uint32_t tag;
     ptr = ::_pbi::ReadTag(ptr, &tag);
     switch (tag >> 3) {
-      // string definition_file_data = 1;
+      // string definition_data = 1;
       case 1:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 10)) {
-          auto str = _internal_mutable_definition_file_data();
+          auto str = _internal_mutable_definition_data();
           ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
           CHK_(ptr);
-          CHK_(::_pbi::VerifyUTF8(str, "mavsdk.rpc.camera.SetDefinitionFileDataRequest.definition_file_data"));
+          CHK_(::_pbi::VerifyUTF8(str, "mavsdk.rpc.camera.SetDefinitionDataRequest.definition_data"));
         } else
           goto handle_unusual;
         continue;
@@ -11912,96 +11911,96 @@ failure:
 #undef CHK_
 }
 
-uint8_t* SetDefinitionFileDataRequest::_InternalSerialize(
+uint8_t* SetDefinitionDataRequest::_InternalSerialize(
     uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
-  // @@protoc_insertion_point(serialize_to_array_start:mavsdk.rpc.camera.SetDefinitionFileDataRequest)
+  // @@protoc_insertion_point(serialize_to_array_start:mavsdk.rpc.camera.SetDefinitionDataRequest)
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
-  // string definition_file_data = 1;
-  if (!this->_internal_definition_file_data().empty()) {
+  // string definition_data = 1;
+  if (!this->_internal_definition_data().empty()) {
     ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
-      this->_internal_definition_file_data().data(), static_cast<int>(this->_internal_definition_file_data().length()),
+      this->_internal_definition_data().data(), static_cast<int>(this->_internal_definition_data().length()),
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
-      "mavsdk.rpc.camera.SetDefinitionFileDataRequest.definition_file_data");
+      "mavsdk.rpc.camera.SetDefinitionDataRequest.definition_data");
     target = stream->WriteStringMaybeAliased(
-        1, this->_internal_definition_file_data(), target);
+        1, this->_internal_definition_data(), target);
   }
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
     target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
         _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
   }
-  // @@protoc_insertion_point(serialize_to_array_end:mavsdk.rpc.camera.SetDefinitionFileDataRequest)
+  // @@protoc_insertion_point(serialize_to_array_end:mavsdk.rpc.camera.SetDefinitionDataRequest)
   return target;
 }
 
-size_t SetDefinitionFileDataRequest::ByteSizeLong() const {
-// @@protoc_insertion_point(message_byte_size_start:mavsdk.rpc.camera.SetDefinitionFileDataRequest)
+size_t SetDefinitionDataRequest::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:mavsdk.rpc.camera.SetDefinitionDataRequest)
   size_t total_size = 0;
 
   uint32_t cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  // string definition_file_data = 1;
-  if (!this->_internal_definition_file_data().empty()) {
+  // string definition_data = 1;
+  if (!this->_internal_definition_data().empty()) {
     total_size += 1 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
-        this->_internal_definition_file_data());
+        this->_internal_definition_data());
   }
 
   return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
 }
 
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData SetDefinitionFileDataRequest::_class_data_ = {
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData SetDefinitionDataRequest::_class_data_ = {
     ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
-    SetDefinitionFileDataRequest::MergeImpl
+    SetDefinitionDataRequest::MergeImpl
 };
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*SetDefinitionFileDataRequest::GetClassData() const { return &_class_data_; }
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*SetDefinitionDataRequest::GetClassData() const { return &_class_data_; }
 
-void SetDefinitionFileDataRequest::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
+void SetDefinitionDataRequest::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
                       const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-  static_cast<SetDefinitionFileDataRequest *>(to)->MergeFrom(
-      static_cast<const SetDefinitionFileDataRequest &>(from));
+  static_cast<SetDefinitionDataRequest *>(to)->MergeFrom(
+      static_cast<const SetDefinitionDataRequest &>(from));
 }
 
 
-void SetDefinitionFileDataRequest::MergeFrom(const SetDefinitionFileDataRequest& from) {
-// @@protoc_insertion_point(class_specific_merge_from_start:mavsdk.rpc.camera.SetDefinitionFileDataRequest)
+void SetDefinitionDataRequest::MergeFrom(const SetDefinitionDataRequest& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:mavsdk.rpc.camera.SetDefinitionDataRequest)
   GOOGLE_DCHECK_NE(&from, this);
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
-  if (!from._internal_definition_file_data().empty()) {
-    _internal_set_definition_file_data(from._internal_definition_file_data());
+  if (!from._internal_definition_data().empty()) {
+    _internal_set_definition_data(from._internal_definition_data());
   }
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
 
-void SetDefinitionFileDataRequest::CopyFrom(const SetDefinitionFileDataRequest& from) {
-// @@protoc_insertion_point(class_specific_copy_from_start:mavsdk.rpc.camera.SetDefinitionFileDataRequest)
+void SetDefinitionDataRequest::CopyFrom(const SetDefinitionDataRequest& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:mavsdk.rpc.camera.SetDefinitionDataRequest)
   if (&from == this) return;
   Clear();
   MergeFrom(from);
 }
 
-bool SetDefinitionFileDataRequest::IsInitialized() const {
+bool SetDefinitionDataRequest::IsInitialized() const {
   return true;
 }
 
-void SetDefinitionFileDataRequest::InternalSwap(SetDefinitionFileDataRequest* other) {
+void SetDefinitionDataRequest::InternalSwap(SetDefinitionDataRequest* other) {
   using std::swap;
   auto* lhs_arena = GetArenaForAllocation();
   auto* rhs_arena = other->GetArenaForAllocation();
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
-      &definition_file_data_, lhs_arena,
-      &other->definition_file_data_, rhs_arena
+      &definition_data_, lhs_arena,
+      &other->definition_data_, rhs_arena
   );
 }
 
-::PROTOBUF_NAMESPACE_ID::Metadata SetDefinitionFileDataRequest::GetMetadata() const {
+::PROTOBUF_NAMESPACE_ID::Metadata SetDefinitionDataRequest::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_camera_2fcamera_2eproto_getter, &descriptor_table_camera_2fcamera_2eproto_once,
       file_level_metadata_camera_2fcamera_2eproto[56]);
@@ -12009,22 +12008,22 @@ void SetDefinitionFileDataRequest::InternalSwap(SetDefinitionFileDataRequest* ot
 
 // ===================================================================
 
-class SetDefinitionFileDataResponse::_Internal {
+class SetDefinitionDataResponse::_Internal {
  public:
-  static const ::mavsdk::rpc::camera::CameraResult& camera_result(const SetDefinitionFileDataResponse* msg);
+  static const ::mavsdk::rpc::camera::CameraResult& camera_result(const SetDefinitionDataResponse* msg);
 };
 
 const ::mavsdk::rpc::camera::CameraResult&
-SetDefinitionFileDataResponse::_Internal::camera_result(const SetDefinitionFileDataResponse* msg) {
+SetDefinitionDataResponse::_Internal::camera_result(const SetDefinitionDataResponse* msg) {
   return *msg->camera_result_;
 }
-SetDefinitionFileDataResponse::SetDefinitionFileDataResponse(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+SetDefinitionDataResponse::SetDefinitionDataResponse(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                          bool is_message_owned)
   : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
   SharedCtor();
-  // @@protoc_insertion_point(arena_constructor:mavsdk.rpc.camera.SetDefinitionFileDataResponse)
+  // @@protoc_insertion_point(arena_constructor:mavsdk.rpc.camera.SetDefinitionDataResponse)
 }
-SetDefinitionFileDataResponse::SetDefinitionFileDataResponse(const SetDefinitionFileDataResponse& from)
+SetDefinitionDataResponse::SetDefinitionDataResponse(const SetDefinitionDataResponse& from)
   : ::PROTOBUF_NAMESPACE_ID::Message() {
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   if (from._internal_has_camera_result()) {
@@ -12032,15 +12031,15 @@ SetDefinitionFileDataResponse::SetDefinitionFileDataResponse(const SetDefinition
   } else {
     camera_result_ = nullptr;
   }
-  // @@protoc_insertion_point(copy_constructor:mavsdk.rpc.camera.SetDefinitionFileDataResponse)
+  // @@protoc_insertion_point(copy_constructor:mavsdk.rpc.camera.SetDefinitionDataResponse)
 }
 
-inline void SetDefinitionFileDataResponse::SharedCtor() {
+inline void SetDefinitionDataResponse::SharedCtor() {
 camera_result_ = nullptr;
 }
 
-SetDefinitionFileDataResponse::~SetDefinitionFileDataResponse() {
-  // @@protoc_insertion_point(destructor:mavsdk.rpc.camera.SetDefinitionFileDataResponse)
+SetDefinitionDataResponse::~SetDefinitionDataResponse() {
+  // @@protoc_insertion_point(destructor:mavsdk.rpc.camera.SetDefinitionDataResponse)
   if (auto *arena = _internal_metadata_.DeleteReturnArena<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>()) {
   (void)arena;
     return;
@@ -12048,17 +12047,17 @@ SetDefinitionFileDataResponse::~SetDefinitionFileDataResponse() {
   SharedDtor();
 }
 
-inline void SetDefinitionFileDataResponse::SharedDtor() {
+inline void SetDefinitionDataResponse::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
   if (this != internal_default_instance()) delete camera_result_;
 }
 
-void SetDefinitionFileDataResponse::SetCachedSize(int size) const {
+void SetDefinitionDataResponse::SetCachedSize(int size) const {
   _cached_size_.Set(size);
 }
 
-void SetDefinitionFileDataResponse::Clear() {
-// @@protoc_insertion_point(message_clear_start:mavsdk.rpc.camera.SetDefinitionFileDataResponse)
+void SetDefinitionDataResponse::Clear() {
+// @@protoc_insertion_point(message_clear_start:mavsdk.rpc.camera.SetDefinitionDataResponse)
   uint32_t cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
@@ -12070,7 +12069,7 @@ void SetDefinitionFileDataResponse::Clear() {
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
-const char* SetDefinitionFileDataResponse::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
+const char* SetDefinitionDataResponse::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
 #define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
   while (!ctx->Done(&ptr)) {
     uint32_t tag;
@@ -12107,9 +12106,9 @@ failure:
 #undef CHK_
 }
 
-uint8_t* SetDefinitionFileDataResponse::_InternalSerialize(
+uint8_t* SetDefinitionDataResponse::_InternalSerialize(
     uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
-  // @@protoc_insertion_point(serialize_to_array_start:mavsdk.rpc.camera.SetDefinitionFileDataResponse)
+  // @@protoc_insertion_point(serialize_to_array_start:mavsdk.rpc.camera.SetDefinitionDataResponse)
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
@@ -12124,12 +12123,12 @@ uint8_t* SetDefinitionFileDataResponse::_InternalSerialize(
     target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
         _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
   }
-  // @@protoc_insertion_point(serialize_to_array_end:mavsdk.rpc.camera.SetDefinitionFileDataResponse)
+  // @@protoc_insertion_point(serialize_to_array_end:mavsdk.rpc.camera.SetDefinitionDataResponse)
   return target;
 }
 
-size_t SetDefinitionFileDataResponse::ByteSizeLong() const {
-// @@protoc_insertion_point(message_byte_size_start:mavsdk.rpc.camera.SetDefinitionFileDataResponse)
+size_t SetDefinitionDataResponse::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:mavsdk.rpc.camera.SetDefinitionDataResponse)
   size_t total_size = 0;
 
   uint32_t cached_has_bits = 0;
@@ -12146,21 +12145,21 @@ size_t SetDefinitionFileDataResponse::ByteSizeLong() const {
   return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
 }
 
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData SetDefinitionFileDataResponse::_class_data_ = {
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData SetDefinitionDataResponse::_class_data_ = {
     ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
-    SetDefinitionFileDataResponse::MergeImpl
+    SetDefinitionDataResponse::MergeImpl
 };
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*SetDefinitionFileDataResponse::GetClassData() const { return &_class_data_; }
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*SetDefinitionDataResponse::GetClassData() const { return &_class_data_; }
 
-void SetDefinitionFileDataResponse::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
+void SetDefinitionDataResponse::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
                       const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-  static_cast<SetDefinitionFileDataResponse *>(to)->MergeFrom(
-      static_cast<const SetDefinitionFileDataResponse &>(from));
+  static_cast<SetDefinitionDataResponse *>(to)->MergeFrom(
+      static_cast<const SetDefinitionDataResponse &>(from));
 }
 
 
-void SetDefinitionFileDataResponse::MergeFrom(const SetDefinitionFileDataResponse& from) {
-// @@protoc_insertion_point(class_specific_merge_from_start:mavsdk.rpc.camera.SetDefinitionFileDataResponse)
+void SetDefinitionDataResponse::MergeFrom(const SetDefinitionDataResponse& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:mavsdk.rpc.camera.SetDefinitionDataResponse)
   GOOGLE_DCHECK_NE(&from, this);
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
@@ -12171,24 +12170,24 @@ void SetDefinitionFileDataResponse::MergeFrom(const SetDefinitionFileDataRespons
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
 
-void SetDefinitionFileDataResponse::CopyFrom(const SetDefinitionFileDataResponse& from) {
-// @@protoc_insertion_point(class_specific_copy_from_start:mavsdk.rpc.camera.SetDefinitionFileDataResponse)
+void SetDefinitionDataResponse::CopyFrom(const SetDefinitionDataResponse& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:mavsdk.rpc.camera.SetDefinitionDataResponse)
   if (&from == this) return;
   Clear();
   MergeFrom(from);
 }
 
-bool SetDefinitionFileDataResponse::IsInitialized() const {
+bool SetDefinitionDataResponse::IsInitialized() const {
   return true;
 }
 
-void SetDefinitionFileDataResponse::InternalSwap(SetDefinitionFileDataResponse* other) {
+void SetDefinitionDataResponse::InternalSwap(SetDefinitionDataResponse* other) {
   using std::swap;
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
   swap(camera_result_, other->camera_result_);
 }
 
-::PROTOBUF_NAMESPACE_ID::Metadata SetDefinitionFileDataResponse::GetMetadata() const {
+::PROTOBUF_NAMESPACE_ID::Metadata SetDefinitionDataResponse::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_camera_2fcamera_2eproto_getter, &descriptor_table_camera_2fcamera_2eproto_once,
       file_level_metadata_camera_2fcamera_2eproto[57]);
@@ -12423,13 +12422,13 @@ template<> PROTOBUF_NOINLINE ::mavsdk::rpc::camera::ResetSettingsResponse*
 Arena::CreateMaybeMessage< ::mavsdk::rpc::camera::ResetSettingsResponse >(Arena* arena) {
   return Arena::CreateMessageInternal< ::mavsdk::rpc::camera::ResetSettingsResponse >(arena);
 }
-template<> PROTOBUF_NOINLINE ::mavsdk::rpc::camera::SetDefinitionFileDataRequest*
-Arena::CreateMaybeMessage< ::mavsdk::rpc::camera::SetDefinitionFileDataRequest >(Arena* arena) {
-  return Arena::CreateMessageInternal< ::mavsdk::rpc::camera::SetDefinitionFileDataRequest >(arena);
+template<> PROTOBUF_NOINLINE ::mavsdk::rpc::camera::SetDefinitionDataRequest*
+Arena::CreateMaybeMessage< ::mavsdk::rpc::camera::SetDefinitionDataRequest >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::mavsdk::rpc::camera::SetDefinitionDataRequest >(arena);
 }
-template<> PROTOBUF_NOINLINE ::mavsdk::rpc::camera::SetDefinitionFileDataResponse*
-Arena::CreateMaybeMessage< ::mavsdk::rpc::camera::SetDefinitionFileDataResponse >(Arena* arena) {
-  return Arena::CreateMessageInternal< ::mavsdk::rpc::camera::SetDefinitionFileDataResponse >(arena);
+template<> PROTOBUF_NOINLINE ::mavsdk::rpc::camera::SetDefinitionDataResponse*
+Arena::CreateMaybeMessage< ::mavsdk::rpc::camera::SetDefinitionDataResponse >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::mavsdk::rpc::camera::SetDefinitionDataResponse >(arena);
 }
 PROTOBUF_NAMESPACE_CLOSE
 

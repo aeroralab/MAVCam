@@ -1,6 +1,10 @@
 #pragma once
 
+#include <mavsdk/plugins/camera/camera.h>
 #include <mavsdk/plugins/camera_server/camera_server.h>
+
+#include <vector>
+
 namespace mid {
 
 class CameraClient {
@@ -25,6 +29,11 @@ public:  //subscribe
     virtual mavsdk::CameraServer::Result fill_capture_status(
         mavsdk::CameraServer::CaptureStatus &capture_status) = 0;
 public:  //settings
+    virtual mavsdk::CameraServer::Result retrieve_current_settings(
+        std::vector<mavsdk::Camera::Setting> &settings) = 0;
+    virtual mavsdk::CameraServer::Result set_setting(mavsdk::Camera::Setting setting) = 0;
+    virtual std::pair<mavsdk::CameraServer::Result, mavsdk::Camera::Setting> get_setting(
+        mavsdk::Camera::Setting setting) const = 0;
 };
 
 CameraClient *CreateLocalCameraClient();

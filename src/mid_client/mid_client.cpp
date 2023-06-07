@@ -17,8 +17,8 @@ bool MidClient::init(std::string &connection_url, int rpc_port) {
     _connection_url = connection_url;
     _rpc_port = rpc_port;
 
-    //_camera_client = CreateLocalCameraClient();  // use local client
-    _camera_client = CreateRpcCameraClient(_rpc_port);  // use rpc client
+    _camera_client = CreateLocalCameraClient();  // use local client
+    //_camera_client = CreateRpcCameraClient(_rpc_port);  // use rpc client
     return true;
 }
 
@@ -114,107 +114,25 @@ void MidClient::subscribe_camera_operation(mavsdk::CameraServer &camera_server) 
 }
 
 void MidClient::subscribe_param_operation(mavsdk::ParamServer &param_server) {
-    return;
-    param_server.provide_param_custom("CAM_EV", "1.0", mavsdk::ParamServer::Type::Float);
-    param_server.subscribe_param_changed(
-        "CAM_EV", mavsdk::ParamServer::Type::Float,
-        [](std::string value) { std::cout << "change CAM_EV to " << value << std::endl; });
+    param_server.subscribe_custom_param_changed(
+        [this](mavsdk::ParamServer::CustomParam custom_param) {
+            mavsdk::Camera::Setting setting;
+            setting.setting_id = custom_param.name;
+            setting.option.option_id = custom_param.value;
+            _camera_client->set_setting(setting);
+        });
 
-    param_server.provide_param_custom("CAM_CUSTOMWB", "5500", mavsdk::ParamServer::Type::Uint16);
-    param_server.subscribe_param_changed(
-        "CAM_CUSTOMWB", mavsdk::ParamServer::Type::Uint16,
-        [](std::string value) { std::cout << "change CAM_CUSTOMWB to " << value << std::endl; });
+    std::vector<mavsdk::Camera::Setting> settings;
+    _camera_client->retrieve_current_settings(settings);
 
-    param_server.provide_param_custom("CAM_SPOTAREA", "0", mavsdk::ParamServer::Type::Uint16);
-    param_server.subscribe_param_changed(
-        "CAM_SPOTAREA", mavsdk::ParamServer::Type::Uint16,
-        [](std::string value) { std::cout << "change CAM_SPOTAREA to " << value << std::endl; });
-
-    param_server.provide_param_custom("CAM_ASPECTRATIO", "1.777777",
-                                      mavsdk::ParamServer::Type::Float);
-    param_server.subscribe_param_changed(
-        "CAM_ASPECTRATIO", mavsdk::ParamServer::Type::Float,
-        [](std::string value) { std::cout << "change CAM_ASPECTRATIO to " << value << std::endl; });
-
-    param_server.provide_param_custom("CAM_PHOTOQUAL", "1", mavsdk::ParamServer::Type::Uint32);
-    param_server.subscribe_param_changed(
-        "CAM_PHOTOQUAL", mavsdk::ParamServer::Type::Uint32,
-        [](std::string value) { std::cout << "change CAM_PHOTOQUAL to " << value << std::endl; });
-
-    param_server.provide_param_custom("CAM_FILENUMOPT", "0", mavsdk::ParamServer::Type::Uint8);
-    param_server.subscribe_param_changed(
-        "CAM_FILENUMOPT", mavsdk::ParamServer::Type::Uint8,
-        [](std::string value) { std::cout << "change CAM_FILENUMOPT to " << value << std::endl; });
-
-    param_server.provide_param_custom("CAM_PHOTOFMT", "0", mavsdk::ParamServer::Type::Uint32);
-    param_server.subscribe_param_changed(
-        "CAM_PHOTOFMT", mavsdk::ParamServer::Type::Uint32,
-        [](std::string value) { std::cout << "change CAM_PHOTOFMT to " << value << std::endl; });
-
-    param_server.provide_param_custom("CAM_MODE", "0", mavsdk::ParamServer::Type::Uint32);
-    param_server.subscribe_param_changed(
-        "CAM_MODE", mavsdk::ParamServer::Type::Uint32,
-        [](std::string value) { std::cout << "change CAM_MODE to " << value << std::endl; });
-
-    param_server.provide_param_custom("CAM_FLICKER", "0", mavsdk::ParamServer::Type::Uint32);
-    param_server.subscribe_param_changed(
-        "CAM_FLICKER", mavsdk::ParamServer::Type::Uint32,
-        [](std::string value) { std::cout << "change CAM_FLICKER to " << value << std::endl; });
-
-    param_server.provide_param_custom("CAM_SHUTTERSPD", "0.01", mavsdk::ParamServer::Type::Float);
-    param_server.subscribe_param_changed(
-        "CAM_SHUTTERSPD", mavsdk::ParamServer::Type::Float,
-        [](std::string value) { std::cout << "change CAM_SHUTTERSPD to " << value << std::endl; });
-
-    param_server.provide_param_custom("CAM_WBMODE", "0", mavsdk::ParamServer::Type::Uint32);
-    param_server.subscribe_param_changed(
-        "CAM_WBMODE", mavsdk::ParamServer::Type::Uint32,
-        [](std::string value) { std::cout << "change CAM_WBMODE to " << value << std::endl; });
-
-    param_server.provide_param_custom("CAM_COLORENCODE", "0", mavsdk::ParamServer::Type::Uint32);
-    param_server.subscribe_param_changed(
-        "CAM_COLORENCODE", mavsdk::ParamServer::Type::Uint32,
-        [](std::string value) { std::cout << "change CAM_COLORENCODE to " << value << std::endl; });
-
-    param_server.provide_param_custom("CAM_EXPMODE", "0", mavsdk::ParamServer::Type::Uint32);
-    param_server.subscribe_param_changed(
-        "CAM_EXPMODE", mavsdk::ParamServer::Type::Uint32,
-        [](std::string value) { std::cout << "change CAM_EXPMODE to " << value << std::endl; });
-
-    param_server.provide_param_custom("CAM_ISO", "100", mavsdk::ParamServer::Type::Uint32);
-    param_server.subscribe_param_changed(
-        "CAM_ISO", mavsdk::ParamServer::Type::Uint32,
-        [](std::string value) { std::cout << "change CAM_ISO to " << value << std::endl; });
-
-    param_server.provide_param_custom("CAM_VIDRES", "0", mavsdk::ParamServer::Type::Uint32);
-    param_server.subscribe_param_changed(
-        "CAM_VIDRES", mavsdk::ParamServer::Type::Uint32,
-        [](std::string value) { std::cout << "change CAM_VIDRES to " << value << std::endl; });
-
-    param_server.provide_param_custom("CAM_IMAGEDEWARP", "0", mavsdk::ParamServer::Type::Uint8);
-    param_server.subscribe_param_changed(
-        "CAM_IMAGEDEWARP", mavsdk::ParamServer::Type::Uint8,
-        [](std::string value) { std::cout << "change CAM_IMAGEDEWARP to " << value << std::endl; });
-
-    param_server.provide_param_custom("CAM_PHOTORATIO", "1", mavsdk::ParamServer::Type::Uint8);
-    param_server.subscribe_param_changed(
-        "CAM_PHOTORATIO", mavsdk::ParamServer::Type::Uint8,
-        [](std::string value) { std::cout << "change CAM_PHOTORATIO to " << value << std::endl; });
-
-    param_server.provide_param_custom("CAM_VIDFMT", "1", mavsdk::ParamServer::Type::Uint32);
-    param_server.subscribe_param_changed(
-        "CAM_VIDFMT", mavsdk::ParamServer::Type::Uint32,
-        [](std::string value) { std::cout << "change CAM_VIDFMT to " << value << std::endl; });
-
-    param_server.provide_param_custom("CAM_METERING", "0", mavsdk::ParamServer::Type::Uint32);
-    param_server.subscribe_param_changed(
-        "CAM_METERING", mavsdk::ParamServer::Type::Uint32,
-        [](std::string value) { std::cout << "change CAM_METERING to " << value << std::endl; });
-
-    param_server.provide_param_custom("CAM_COLORMODE", "1", mavsdk::ParamServer::Type::Uint32);
-    param_server.subscribe_param_changed(
-        "CAM_COLORMODE", mavsdk::ParamServer::Type::Uint32,
-        [](std::string value) { std::cout << "change CAM_COLORMODE to " << value << std::endl; });
+    for (auto &setting : settings) {
+        if (setting.setting_id == "CAM_SHUTTERSPD" || setting.setting_id == "CAM_EV") {
+            param_server.provide_param_float(setting.setting_id,
+                                             std::stof(setting.option.option_id));
+        } else {
+            param_server.provide_param_int(setting.setting_id, std::stoi(setting.option.option_id));
+        }
+    }
 }
 
 }  // namespace mid

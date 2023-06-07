@@ -46,7 +46,7 @@ static const char* CameraService_method_names[] = {
   "/mavsdk.rpc.camera.CameraService/FormatStorage",
   "/mavsdk.rpc.camera.CameraService/SelectCamera",
   "/mavsdk.rpc.camera.CameraService/ResetSettings",
-  "/mavsdk.rpc.camera.CameraService/SetDefinitionFileData",
+  "/mavsdk.rpc.camera.CameraService/SetDefinitionData",
 };
 
 std::unique_ptr< CameraService::Stub> CameraService::NewStub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options) {
@@ -78,7 +78,7 @@ CameraService::Stub::Stub(const std::shared_ptr< ::grpc::ChannelInterface>& chan
   , rpcmethod_FormatStorage_(CameraService_method_names[19], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   , rpcmethod_SelectCamera_(CameraService_method_names[20], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   , rpcmethod_ResetSettings_(CameraService_method_names[21], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_SetDefinitionFileData_(CameraService_method_names[22], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_SetDefinitionData_(CameraService_method_names[22], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   {}
 
 ::grpc::Status CameraService::Stub::Prepare(::grpc::ClientContext* context, const ::mavsdk::rpc::camera::PrepareRequest& request, ::mavsdk::rpc::camera::PrepareResponse* response) {
@@ -538,25 +538,25 @@ void CameraService::Stub::async::ResetSettings(::grpc::ClientContext* context, c
   return result;
 }
 
-::grpc::Status CameraService::Stub::SetDefinitionFileData(::grpc::ClientContext* context, const ::mavsdk::rpc::camera::SetDefinitionFileDataRequest& request, ::mavsdk::rpc::camera::SetDefinitionFileDataResponse* response) {
-  return ::grpc::internal::BlockingUnaryCall< ::mavsdk::rpc::camera::SetDefinitionFileDataRequest, ::mavsdk::rpc::camera::SetDefinitionFileDataResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_SetDefinitionFileData_, context, request, response);
+::grpc::Status CameraService::Stub::SetDefinitionData(::grpc::ClientContext* context, const ::mavsdk::rpc::camera::SetDefinitionDataRequest& request, ::mavsdk::rpc::camera::SetDefinitionDataResponse* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::mavsdk::rpc::camera::SetDefinitionDataRequest, ::mavsdk::rpc::camera::SetDefinitionDataResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_SetDefinitionData_, context, request, response);
 }
 
-void CameraService::Stub::async::SetDefinitionFileData(::grpc::ClientContext* context, const ::mavsdk::rpc::camera::SetDefinitionFileDataRequest* request, ::mavsdk::rpc::camera::SetDefinitionFileDataResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc::internal::CallbackUnaryCall< ::mavsdk::rpc::camera::SetDefinitionFileDataRequest, ::mavsdk::rpc::camera::SetDefinitionFileDataResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_SetDefinitionFileData_, context, request, response, std::move(f));
+void CameraService::Stub::async::SetDefinitionData(::grpc::ClientContext* context, const ::mavsdk::rpc::camera::SetDefinitionDataRequest* request, ::mavsdk::rpc::camera::SetDefinitionDataResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::mavsdk::rpc::camera::SetDefinitionDataRequest, ::mavsdk::rpc::camera::SetDefinitionDataResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_SetDefinitionData_, context, request, response, std::move(f));
 }
 
-void CameraService::Stub::async::SetDefinitionFileData(::grpc::ClientContext* context, const ::mavsdk::rpc::camera::SetDefinitionFileDataRequest* request, ::mavsdk::rpc::camera::SetDefinitionFileDataResponse* response, ::grpc::ClientUnaryReactor* reactor) {
-  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_SetDefinitionFileData_, context, request, response, reactor);
+void CameraService::Stub::async::SetDefinitionData(::grpc::ClientContext* context, const ::mavsdk::rpc::camera::SetDefinitionDataRequest* request, ::mavsdk::rpc::camera::SetDefinitionDataResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_SetDefinitionData_, context, request, response, reactor);
 }
 
-::grpc::ClientAsyncResponseReader< ::mavsdk::rpc::camera::SetDefinitionFileDataResponse>* CameraService::Stub::PrepareAsyncSetDefinitionFileDataRaw(::grpc::ClientContext* context, const ::mavsdk::rpc::camera::SetDefinitionFileDataRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::mavsdk::rpc::camera::SetDefinitionFileDataResponse, ::mavsdk::rpc::camera::SetDefinitionFileDataRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_SetDefinitionFileData_, context, request);
+::grpc::ClientAsyncResponseReader< ::mavsdk::rpc::camera::SetDefinitionDataResponse>* CameraService::Stub::PrepareAsyncSetDefinitionDataRaw(::grpc::ClientContext* context, const ::mavsdk::rpc::camera::SetDefinitionDataRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::mavsdk::rpc::camera::SetDefinitionDataResponse, ::mavsdk::rpc::camera::SetDefinitionDataRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_SetDefinitionData_, context, request);
 }
 
-::grpc::ClientAsyncResponseReader< ::mavsdk::rpc::camera::SetDefinitionFileDataResponse>* CameraService::Stub::AsyncSetDefinitionFileDataRaw(::grpc::ClientContext* context, const ::mavsdk::rpc::camera::SetDefinitionFileDataRequest& request, ::grpc::CompletionQueue* cq) {
+::grpc::ClientAsyncResponseReader< ::mavsdk::rpc::camera::SetDefinitionDataResponse>* CameraService::Stub::AsyncSetDefinitionDataRaw(::grpc::ClientContext* context, const ::mavsdk::rpc::camera::SetDefinitionDataRequest& request, ::grpc::CompletionQueue* cq) {
   auto* result =
-    this->PrepareAsyncSetDefinitionFileDataRaw(context, request, cq);
+    this->PrepareAsyncSetDefinitionDataRaw(context, request, cq);
   result->StartCall();
   return result;
 }
@@ -785,12 +785,12 @@ CameraService::Service::Service() {
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       CameraService_method_names[22],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< CameraService::Service, ::mavsdk::rpc::camera::SetDefinitionFileDataRequest, ::mavsdk::rpc::camera::SetDefinitionFileDataResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+      new ::grpc::internal::RpcMethodHandler< CameraService::Service, ::mavsdk::rpc::camera::SetDefinitionDataRequest, ::mavsdk::rpc::camera::SetDefinitionDataResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](CameraService::Service* service,
              ::grpc::ServerContext* ctx,
-             const ::mavsdk::rpc::camera::SetDefinitionFileDataRequest* req,
-             ::mavsdk::rpc::camera::SetDefinitionFileDataResponse* resp) {
-               return service->SetDefinitionFileData(ctx, req, resp);
+             const ::mavsdk::rpc::camera::SetDefinitionDataRequest* req,
+             ::mavsdk::rpc::camera::SetDefinitionDataResponse* resp) {
+               return service->SetDefinitionData(ctx, req, resp);
              }, this)));
 }
 
@@ -951,7 +951,7 @@ CameraService::Service::~Service() {
   return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
 }
 
-::grpc::Status CameraService::Service::SetDefinitionFileData(::grpc::ServerContext* context, const ::mavsdk::rpc::camera::SetDefinitionFileDataRequest* request, ::mavsdk::rpc::camera::SetDefinitionFileDataResponse* response) {
+::grpc::Status CameraService::Service::SetDefinitionData(::grpc::ServerContext* context, const ::mavsdk::rpc::camera::SetDefinitionDataRequest* request, ::mavsdk::rpc::camera::SetDefinitionDataResponse* response) {
   (void) context;
   (void) request;
   (void) response;

@@ -179,6 +179,20 @@ mavsdk::CameraServer::Result CameraRpcClient::fill_capture_status(
     return mavsdk::CameraServer::Result();
 }
 
+mavsdk::CameraServer::Result CameraRpcClient::retrieve_current_settings(
+    std::vector<mavsdk::Camera::Setting> &settings) {
+    return mavsdk::CameraServer::Result::Success;
+}
+
+mavsdk::CameraServer::Result CameraRpcClient::set_setting(mavsdk::Camera::Setting setting) {
+    return mavsdk::CameraServer::Result::Success;
+}
+
+std::pair<mavsdk::CameraServer::Result, mavsdk::Camera::Setting> CameraRpcClient::get_setting(
+    mavsdk::Camera::Setting setting) const {
+    return {mavsdk::CameraServer::Result::Success, setting};
+}
+
 static mavsdk::CameraServer::Result translateFromRpcResult(
     const mavsdk::rpc::camera::CameraResult_Result result) {
     switch (result) {
