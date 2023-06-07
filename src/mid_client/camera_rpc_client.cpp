@@ -10,6 +10,9 @@ namespace mid {
 static mavsdk::CameraServer::Result translateFromRpcResult(
     const mavsdk::rpc::camera::CameraResult_Result result);
 
+static mavsdk::rpc::camera::Mode translateFromCameraServerMode(
+    const mavsdk::CameraServer::Mode server_mode);
+
 CameraRpcClient::CameraRpcClient() {}
 
 CameraRpcClient::~CameraRpcClient() {}
@@ -43,31 +46,122 @@ mavsdk::CameraServer::Result CameraRpcClient::take_photo(int index) {
 }
 
 mavsdk::CameraServer::Result CameraRpcClient::start_video() {
-    return mavsdk::CameraServer::Result();
+    std::lock_guard<std::mutex> lock(_mutex);
+    LogDebug() << "rpc call start video ";
+    _is_recording_video = true;
+    _start_video_time = std::chrono::steady_clock::now();
+
+    mavsdk::rpc::camera::StartVideoRequest request;
+    grpc::ClientContext context;
+    mavsdk::rpc::camera::StartVideoResponse response;
+    grpc::Status status = _stub->StartVideo(&context, request, &response);
+    if (!status.ok()) {
+        LogDebug() << "Grpc status error message : " << status.error_message();
+        return mavsdk::CameraServer::Result::NoSystem;
+    }
+    LogDebug() << " Start video result : " << response.camera_result().result_str();
+    return translateFromRpcResult(response.camera_result().result());
 }
 
 mavsdk::CameraServer::Result CameraRpcClient::stop_video() {
-    return mavsdk::CameraServer::Result();
+    std::lock_guard<std::mutex> lock(_mutex);
+    LogDebug() << "rpc call stop video ";
+    _is_recording_video = false;
+
+    mavsdk::rpc::camera::StopVideoRequest request;
+    grpc::ClientContext context;
+    mavsdk::rpc::camera::StopVideoResponse response;
+    grpc::Status status = _stub->StopVideo(&context, request, &response);
+    if (!status.ok()) {
+        LogDebug() << "Grpc status error message : " << status.error_message();
+        return mavsdk::CameraServer::Result::NoSystem;
+    }
+    LogDebug() << " Stop video result : " << response.camera_result().result_str();
+    return translateFromRpcResult(response.camera_result().result());
 }
 
 mavsdk::CameraServer::Result CameraRpcClient::start_video_streaming(int stream_id) {
-    return mavsdk::CameraServer::Result();
+    std::lock_guard<std::mutex> lock(_mutex);
+    LogDebug() << "rpc call start video streaming " << stream_id;
+
+    mavsdk::rpc::camera::StartVideoStreamingRequest request;
+    request.set_stream_id(stream_id);
+    grpc::ClientContext context;
+    mavsdk::rpc::camera::StartVideoStreamingResponse response;
+    grpc::Status status = _stub->StartVideoStreaming(&context, request, &response);
+    if (!status.ok()) {
+        LogDebug() << "Grpc status error message : " << status.error_message();
+        return mavsdk::CameraServer::Result::NoSystem;
+    }
+    LogDebug() << " Start video streaming result : " << response.camera_result().result_str();
+    return translateFromRpcResult(response.camera_result().result());
 }
 
 mavsdk::CameraServer::Result CameraRpcClient::stop_video_streaming(int stream_id) {
-    return mavsdk::CameraServer::Result();
+    std::lock_guard<std::mutex> lock(_mutex);
+    LogDebug() << "rpc call stop video streaming " << stream_id;
+
+    mavsdk::rpc::camera::StopVideoStreamingRequest request;
+    request.set_stream_id(stream_id);
+    grpc::ClientContext context;
+    mavsdk::rpc::camera::StopVideoStreamingResponse response;
+    grpc::Status status = _stub->StopVideoStreaming(&context, request, &response);
+    if (!status.ok()) {
+        LogDebug() << "Grpc status error message : " << status.error_message();
+        return mavsdk::CameraServer::Result::NoSystem;
+    }
+    LogDebug() << " Stop video streaming result : " << response.camera_result().result_str();
+    return translateFromRpcResult(response.camera_result().result());
 }
 
 mavsdk::CameraServer::Result CameraRpcClient::set_mode(mavsdk::CameraServer::Mode mode) {
-    return mavsdk::CameraServer::Result();
+    std::lock_guard<std::mutex> lock(_mutex);
+    LogDebug() << "rpc call set mode " << mode;
+
+    mavsdk::rpc::camera::SetModeRequest request;
+    request.set_mode(translateFromCameraServerMode(mode));
+    grpc::ClientContext context;
+    mavsdk::rpc::camera::SetModeResponse response;
+    grpc::Status status = _stub->SetMode(&context, request, &response);
+    if (!status.ok()) {
+        LogDebug() << "Grpc status error message : " << status.error_message();
+        return mavsdk::CameraServer::Result::NoSystem;
+    }
+    LogDebug() << " Set mode result : " << response.camera_result().result_str();
+    return translateFromRpcResult(response.camera_result().result());
 }
 
 mavsdk::CameraServer::Result CameraRpcClient::format_storage(int storage_id) {
-    return mavsdk::CameraServer::Result();
+    std::lock_guard<std::mutex> lock(_mutex);
+    LogDebug() << "rpc call format storage " << storage_id;
+
+    mavsdk::rpc::camera::FormatStorageRequest request;
+    request.set_storage_id(storage_id);
+    grpc::ClientContext context;
+    mavsdk::rpc::camera::FormatStorageResponse response;
+    grpc::Status status = _stub->FormatStorage(&context, request, &response);
+    if (!status.ok()) {
+        LogDebug() << "Grpc status error message : " << status.error_message();
+        return mavsdk::CameraServer::Result::NoSystem;
+    }
+    LogDebug() << "Format storage result : " << response.camera_result().result_str();
+    return translateFromRpcResult(response.camera_result().result());
 }
 
 mavsdk::CameraServer::Result CameraRpcClient::reset_settings() {
-    return mavsdk::CameraServer::Result();
+    std::lock_guard<std::mutex> lock(_mutex);
+    LogDebug() << "rpc call reset settings";
+
+    mavsdk::rpc::camera::ResetSettingsRequest request;
+    grpc::ClientContext context;
+    mavsdk::rpc::camera::ResetSettingsResponse response;
+    grpc::Status status = _stub->ResetSettings(&context, request, &response);
+    if (!status.ok()) {
+        LogDebug() << "Grpc status error message : " << status.error_message();
+        return mavsdk::CameraServer::Result::NoSystem;
+    }
+    LogDebug() << "Reset settings result : " << response.camera_result().result_str();
+    return translateFromRpcResult(response.camera_result().result());
 }
 
 mavsdk::CameraServer::Result CameraRpcClient::fill_information(
@@ -109,6 +203,18 @@ static mavsdk::CameraServer::Result translateFromRpcResult(
             return mavsdk::CameraServer::Result::WrongArgument;
         case mavsdk::rpc::camera::CameraResult_Result_RESULT_NO_SYSTEM:
             return mavsdk::CameraServer::Result::NoSystem;
+    }
+}
+
+static mavsdk::rpc::camera::Mode translateFromCameraServerMode(
+    const mavsdk::CameraServer::Mode server_mode) {
+    switch (server_mode) {
+        case mavsdk::CameraServer::Mode::Photo:
+            return mavsdk::rpc::camera::Mode::MODE_PHOTO;
+        case mavsdk::CameraServer::Mode::Video:
+            return mavsdk::rpc::camera::Mode::MODE_VIDEO;
+        case mavsdk::CameraServer::Mode::Unknown:
+            return mavsdk::rpc::camera::Mode::MODE_UNKNOWN;
     }
 }
 

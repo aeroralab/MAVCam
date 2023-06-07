@@ -9,3 +9,4 @@ include(cmake/compiler_flags.cmake)
 
 add_subdirectory(base)
 add_subdirectory(mid_client)
+add_subdirectory(mid_server)

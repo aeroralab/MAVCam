@@ -12,7 +12,7 @@
 
 namespace mid {
 
-bool MidClient::Init(std::string &connection_url, int rpc_port) {
+bool MidClient::init(std::string &connection_url, int rpc_port) {
     //Todo need check connection url first
     _connection_url = connection_url;
     _rpc_port = rpc_port;
@@ -22,7 +22,7 @@ bool MidClient::Init(std::string &connection_url, int rpc_port) {
     return true;
 }
 
-bool MidClient::StartRunloop() {
+bool MidClient::start_runloop() {
     mavsdk::Mavsdk mavsdk;
     mavsdk::Mavsdk::Configuration configuration(mavsdk::Mavsdk::Configuration::UsageType::Camera);
     mavsdk.set_configuration(configuration);
@@ -38,16 +38,16 @@ bool MidClient::StartRunloop() {
     auto server_component =
         mavsdk.server_component_by_type(mavsdk::Mavsdk::ServerComponentType::Camera);
     auto camera_server = mavsdk::CameraServer{server_component};
-    SubscribeCameraOperation(camera_server);
+    subscribe_camera_operation(camera_server);
     auto param_server = mavsdk::ParamServer{server_component};
-    SubscribeParamOperation(param_server);
+    subscribe_param_operation(param_server);
 
     while (true) {
         std::this_thread::sleep_for(std::chrono::seconds(1));
     }
 }
 
-void MidClient::SubscribeCameraOperation(mavsdk::CameraServer &camera_server) {
+void MidClient::subscribe_camera_operation(mavsdk::CameraServer &camera_server) {
     camera_server.subscribe_take_photo([this, &camera_server](int32_t index) {
         _camera_client->take_photo(index);
 
@@ -113,7 +113,7 @@ void MidClient::SubscribeCameraOperation(mavsdk::CameraServer &camera_server) {
     }
 }
 
-void MidClient::SubscribeParamOperation(mavsdk::ParamServer &param_server) {
+void MidClient::subscribe_param_operation(mavsdk::ParamServer &param_server) {
     return;
     param_server.provide_param_custom("CAM_EV", "1.0", mavsdk::ParamServer::Type::Float);
     param_server.subscribe_param_changed(
