@@ -56,6 +56,11 @@ private:
     std::atomic<bool> _init_information{false};
     mavsdk::CameraServer::Information _information;
 private:
+    std::unique_ptr<grpc::ClientReader<mavsdk::rpc::camera::StatusResponse>> _status_reader;
+    std::atomic<bool> _init_status{false};
+    mavsdk::CameraServer::StorageInformation _storage_information;
+    mavsdk::CameraServer::CaptureStatus _capture_status;
+private:
     std::shared_ptr<grpc::Channel> _channel;
     std::unique_ptr<mavsdk::rpc::camera::CameraService::Stub> _stub;
 private:  // backend work thread

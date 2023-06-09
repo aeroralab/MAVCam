@@ -36,11 +36,14 @@ Camera::Result CameraImpl::stop_photo_interval() const {
 
 Camera::Result CameraImpl::start_video() const {
     LogDebug() << "call start video";
+    _status.video_on = true;
+    _start_video_time = std::chrono::steady_clock::now();
     return Camera::Result::Success;
 }
 
 Camera::Result CameraImpl::stop_video() const {
     LogDebug() << "call stop video";
+    _status.video_on = false;
     return Camera::Result::Success;
 }
 
@@ -74,7 +77,7 @@ Camera::Mode CameraImpl::mode() const {
 }
 
 void CameraImpl::subscribe_information(const Camera::InformationCallback &callback) {
-    //std::lock_guard<std::mutex> lock(_callback_mutex);
+    std::lock_guard<std::mutex> lock(_callback_mutex);
     _need_update_camera_information = true;
     _camera_information_callback = callback;
 }
@@ -103,9 +106,28 @@ Camera::VideoStreamInfo CameraImpl::video_stream_info() const {}
 
 void CameraImpl::subscribe_capture_info(const Camera::CaptureInfoCallback &callback) {}
 
-void CameraImpl::subscribe_status(const Camera::StatusCallback &callback) {}
+void CameraImpl::subscribe_status(const Camera::StatusCallback &callback) {
+    std::lock_guard<std::mutex> lock(_callback_mutex);
+    _status_callback = callback;
+}
 
-Camera::Status CameraImpl::status() const {}
+Camera::Status CameraImpl::status() const {
+    //TODO just demo
+    _status.available_storage_mib = 1024 * 1024;
+    _status.total_storage_mib = 4 * 1024 * 1024;
+    _status.storage_id = 1;
+    _status.storage_status = Status::StorageStatus::Formatted;
+    _status.storage_type = Status::StorageType::Sd;
+    if (_status.video_on) {
+        auto current_time = std::chrono::steady_clock::now();
+        _status.recording_time_s =
+            std::chrono::duration_cast<std::chrono::seconds>(current_time - _start_video_time)
+                .count();
+    } else {
+        _status.recording_time_s = 0;
+    }
+    return _status;
+}
 
 void CameraImpl::subscribe_current_settings(const Camera::CurrentSettingsCallback &callback) {}
 
@@ -156,11 +178,18 @@ void CameraImpl::stop() {
 
 void CameraImpl::work_thread(CameraImpl *self) {
     while (!self->_should_exit) {
-        std::lock_guard<std::mutex> lock(self->_callback_mutex);
-        if (self->_need_update_camera_information) {
-            std::cout << "call informaiton" << std::endl;
-            self->_camera_information_callback(self->information());
-            self->_need_update_camera_information = false;
+        {
+            std::lock_guard<std::mutex> lock(self->_callback_mutex);
+            if (self->_need_update_camera_information) {
+                LogDebug() << "update camera information";
+                self->_camera_information_callback(self->information());
+                self->_need_update_camera_information = false;
+            }
+            // send status
+            if (self->_status_callback != nullptr) {
+                self->_status_callback(self->status());
+                self->_status_callback = nullptr;
+            }
         }
         std::this_thread::sleep_for(std::chrono::milliseconds(800));
     }

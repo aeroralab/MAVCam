@@ -286,6 +286,72 @@ public:
         return rpc_obj;
     }
 
+    static std::unique_ptr<mavsdk::rpc::camera::Status> translateToRpcStatus(
+        const mid::Camera::Status &status) {
+        auto rpc_obj = std::make_unique<mavsdk::rpc::camera::Status>();
+
+        rpc_obj->set_video_on(status.video_on);
+
+        rpc_obj->set_photo_interval_on(status.photo_interval_on);
+
+        rpc_obj->set_used_storage_mib(status.used_storage_mib);
+
+        rpc_obj->set_available_storage_mib(status.available_storage_mib);
+
+        rpc_obj->set_total_storage_mib(status.total_storage_mib);
+
+        rpc_obj->set_recording_time_s(status.recording_time_s);
+
+        rpc_obj->set_media_folder_name(status.media_folder_name);
+
+        rpc_obj->set_storage_status(translateToRpcStorageStatus(status.storage_status));
+
+        rpc_obj->set_storage_id(status.storage_id);
+
+        rpc_obj->set_storage_type(translateToRpcStorageType(status.storage_type));
+
+        return rpc_obj;
+    }
+
+    static mavsdk::rpc::camera::Status::StorageStatus translateToRpcStorageStatus(
+        const mid::Camera::Status::StorageStatus &storage_status) {
+        switch (storage_status) {
+            default:
+                LogError() << "Unknown storage_status enum value: "
+                           << static_cast<int>(storage_status);
+            // FALLTHROUGH
+            case mid::Camera::Status::StorageStatus::NotAvailable:
+                return mavsdk::rpc::camera::Status_StorageStatus_STORAGE_STATUS_NOT_AVAILABLE;
+            case mid::Camera::Status::StorageStatus::Unformatted:
+                return mavsdk::rpc::camera::Status_StorageStatus_STORAGE_STATUS_UNFORMATTED;
+            case mid::Camera::Status::StorageStatus::Formatted:
+                return mavsdk::rpc::camera::Status_StorageStatus_STORAGE_STATUS_FORMATTED;
+            case mid::Camera::Status::StorageStatus::NotSupported:
+                return mavsdk::rpc::camera::Status_StorageStatus_STORAGE_STATUS_NOT_SUPPORTED;
+        }
+    }
+
+    static mavsdk::rpc::camera::Status::StorageType translateToRpcStorageType(
+        const mid::Camera::Status::StorageType &storage_type) {
+        switch (storage_type) {
+            default:
+                LogError() << "Unknown storage_type enum value: " << static_cast<int>(storage_type);
+            // FALLTHROUGH
+            case mid::Camera::Status::StorageType::Unknown:
+                return mavsdk::rpc::camera::Status_StorageType_STORAGE_TYPE_UNKNOWN;
+            case mid::Camera::Status::StorageType::UsbStick:
+                return mavsdk::rpc::camera::Status_StorageType_STORAGE_TYPE_USB_STICK;
+            case mid::Camera::Status::StorageType::Sd:
+                return mavsdk::rpc::camera::Status_StorageType_STORAGE_TYPE_SD;
+            case mid::Camera::Status::StorageType::Microsd:
+                return mavsdk::rpc::camera::Status_StorageType_STORAGE_TYPE_MICROSD;
+            case mid::Camera::Status::StorageType::Hd:
+                return mavsdk::rpc::camera::Status_StorageType_STORAGE_TYPE_HD;
+            case mid::Camera::Status::StorageType::Other:
+                return mavsdk::rpc::camera::Status_StorageType_STORAGE_TYPE_OTHER;
+        }
+    }
+
     ::grpc::Status Prepare(::grpc::ServerContext *context,
                            const ::mavsdk::rpc::camera::PrepareRequest *request,
                            ::mavsdk::rpc::camera::PrepareResponse *response) override {
@@ -416,7 +482,6 @@ public:
         ::grpc::ServerContext *context,
         const ::mavsdk::rpc::camera::SubscribeInformationRequest *request,
         ::grpc::ServerWriter<::mavsdk::rpc::camera::InformationResponse> *writer) override {
-        LogDebug() << "Subscribe information";
         auto stream_closed_promise = std::make_shared<std::promise<void>>();
         auto stream_closed_future = stream_closed_promise->get_future();
         register_stream_stop_promise(stream_closed_promise);
@@ -471,7 +536,24 @@ public:
     ::grpc::Status SubscribeStatus(
         ::grpc::ServerContext *context,
         const ::mavsdk::rpc::camera::SubscribeStatusRequest *request,
-        ::grpc::ServerWriter<::mavsdk::rpc::camera::StatusResponse> *writer) override {}
+        ::grpc::ServerWriter<::mavsdk::rpc::camera::StatusResponse> *writer) override {
+        auto stream_closed_promise = std::make_shared<std::promise<void>>();
+        auto stream_closed_future = stream_closed_promise->get_future();
+        register_stream_stop_promise(stream_closed_promise);
+        _plugin->subscribe_status(
+            [this, &writer, &stream_closed_promise](const mid::Camera::Status status) {
+                mavsdk::rpc::camera::StatusResponse rpc_response;
+
+                rpc_response.set_allocated_camera_status(translateToRpcStatus(status).release());
+
+                writer->Write(rpc_response);
+                unregister_stream_stop_promise(stream_closed_promise);
+                stream_closed_promise->set_value();
+            });
+
+        stream_closed_future.wait();
+        return grpc::Status::OK;
+    }
 
     ::grpc::Status SubscribeCurrentSettings(
         ::grpc::ServerContext *context,

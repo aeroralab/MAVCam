@@ -9,11 +9,15 @@ namespace mid {
 
 static mavsdk::CameraServer::Result translateFromRpcResult(
     const mavsdk::rpc::camera::CameraResult_Result result);
-
 static mavsdk::rpc::camera::Mode translateFromCameraServerMode(
     const mavsdk::CameraServer::Mode server_mode);
+
 static void fillInformation(const mavsdk::rpc::camera::Information &input,
                             mavsdk::CameraServer::Information &output);
+static void fillStorageInformation(const mavsdk::rpc::camera::Status &input,
+                                   mavsdk::CameraServer::StorageInformation &output);
+static void fillCaptureStatus(const mavsdk::rpc::camera::Status &input,
+                              mavsdk::CameraServer::CaptureStatus &output);
 
 CameraRpcClient::CameraRpcClient() {}
 
@@ -186,19 +190,21 @@ mavsdk::CameraServer::Result CameraRpcClient::fill_information(
 
 mavsdk::CameraServer::Result CameraRpcClient::fill_storage_information(
     mavsdk::CameraServer::StorageInformation &storage_information) {
-    return mavsdk::CameraServer::Result();
+    storage_information = _storage_information;
+    return mavsdk::CameraServer::Result::Success;
 }
 
 mavsdk::CameraServer::Result CameraRpcClient::fill_capture_status(
     mavsdk::CameraServer::CaptureStatus &capture_status) {
-    return mavsdk::CameraServer::Result();
+    capture_status = _capture_status;
+    return mavsdk::CameraServer::Result::Success;
 }
 
 mavsdk::CameraServer::Result CameraRpcClient::retrieve_current_settings(
     std::vector<mavsdk::Camera::Setting> &settings) {
     std::lock_guard<std::mutex> lock(_mutex);
     LogDebug() << "rpc call retrive current settings";
-
+    return mavsdk::CameraServer::Result::Success;
     // mavsdk::rpc::camera::SubscribeCurrentSettingsRequest request;
     // grpc::ClientContext context;
     // mavsdk::rpc::camera::CurrentSettingsResponse response;
@@ -253,14 +259,24 @@ void CameraRpcClient::work_thread(CameraRpcClient *self) {
             self->_information_reader = self->_stub->SubscribeInformation(&context, request);
 
             mavsdk::rpc::camera::InformationResponse response;
-            while (self->_information_reader->Read(&response)) {
+            if (self->_information_reader->Read(&response)) {
                 fillInformation(response.information(), self->_information);
             }
             auto status = self->_information_reader->Finish();
             self->_init_information = true;
         }
+        if (!self->_init_status) {
+            mavsdk::rpc::camera::SubscribeStatusRequest request;
+            grpc::ClientContext context;
+            self->_status_reader = self->_stub->SubscribeStatus(&context, request);
+            //self->_init_status = true;
 
-        std::this_thread::sleep_for(std::chrono::milliseconds(600));
+            mavsdk::rpc::camera::StatusResponse response;
+            if (self->_status_reader->Read(&response)) {
+                fillStorageInformation(response.camera_status(), self->_storage_information);
+                fillCaptureStatus(response.camera_status(), self->_capture_status);
+            }
+        }
     }
 }
 
@@ -316,6 +332,22 @@ static void fillInformation(const mavsdk::rpc::camera::Information &input,
     output.lens_id = input.lens_id();
     output.definition_file_version = input.definition_file_version();
     output.definition_file_uri = input.definition_file_uri();
+}
+
+static void fillStorageInformation(const mavsdk::rpc::camera::Status &input,
+                                   mavsdk::CameraServer::StorageInformation &output) {
+    output.used_storage_mib = input.used_storage_mib();
+    output.available_storage_mib = input.available_storage_mib();
+    output.total_storage_mib = input.total_storage_mib();
+    // output.storage_status =
+    output.storage_id = input.storage_id();
+    // output.storage_type =
+}
+
+static void fillCaptureStatus(const mavsdk::rpc::camera::Status &input,
+                              mavsdk::CameraServer::CaptureStatus &output) {
+    output.recording_time_s = input.recording_time_s();
+    output.available_capacity = input.available_storage_mib();
 }
 
 }  // namespace mid

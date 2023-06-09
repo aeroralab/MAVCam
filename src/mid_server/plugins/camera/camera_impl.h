@@ -1,6 +1,7 @@
 #pragma once
 
 #include <atomic>
+#include <chrono>
 #include <mutex>
 #include <thread>
 
@@ -59,6 +60,9 @@ private:
     Camera::InformationCallback _camera_information_callback;
     std::atomic<bool> _need_update_video_stream_info;
     Camera::VideoStreamInfoCallback _video_stream_info_callback;
+    mutable std::chrono::steady_clock::time_point _start_video_time;
+    mutable Camera::Status _status;
+    Camera::StatusCallback _status_callback;
 };
 
 }  // namespace mid
