@@ -1,4 +1,4 @@
-# Middleware
+# MAVCam
 
 ## Basic architecture
 ```mermaid
