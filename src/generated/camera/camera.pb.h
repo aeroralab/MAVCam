@@ -8811,11 +8811,15 @@ class Information final :
   enum : int {
     kVendorNameFieldNumber = 1,
     kModelNameFieldNumber = 2,
-    kFocalLengthMmFieldNumber = 3,
-    kHorizontalSensorSizeMmFieldNumber = 4,
-    kVerticalSensorSizeMmFieldNumber = 5,
-    kHorizontalResolutionPxFieldNumber = 6,
-    kVerticalResolutionPxFieldNumber = 7,
+    kFirmwareVersionFieldNumber = 3,
+    kDefinitionFileUriFieldNumber = 11,
+    kFocalLengthMmFieldNumber = 4,
+    kHorizontalSensorSizeMmFieldNumber = 5,
+    kVerticalSensorSizeMmFieldNumber = 6,
+    kHorizontalResolutionPxFieldNumber = 7,
+    kVerticalResolutionPxFieldNumber = 8,
+    kLensIdFieldNumber = 9,
+    kDefinitionFileVersionFieldNumber = 10,
   };
   // string vendor_name = 1;
   void clear_vendor_name();
@@ -8845,7 +8849,35 @@ class Information final :
   std::string* _internal_mutable_model_name();
   public:
 
-  // float focal_length_mm = 3;
+  // string firmware_version = 3;
+  void clear_firmware_version();
+  const std::string& firmware_version() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_firmware_version(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_firmware_version();
+  PROTOBUF_NODISCARD std::string* release_firmware_version();
+  void set_allocated_firmware_version(std::string* firmware_version);
+  private:
+  const std::string& _internal_firmware_version() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_firmware_version(const std::string& value);
+  std::string* _internal_mutable_firmware_version();
+  public:
+
+  // string definition_file_uri = 11;
+  void clear_definition_file_uri();
+  const std::string& definition_file_uri() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_definition_file_uri(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_definition_file_uri();
+  PROTOBUF_NODISCARD std::string* release_definition_file_uri();
+  void set_allocated_definition_file_uri(std::string* definition_file_uri);
+  private:
+  const std::string& _internal_definition_file_uri() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_definition_file_uri(const std::string& value);
+  std::string* _internal_mutable_definition_file_uri();
+  public:
+
+  // float focal_length_mm = 4;
   void clear_focal_length_mm();
   float focal_length_mm() const;
   void set_focal_length_mm(float value);
@@ -8854,7 +8886,7 @@ class Information final :
   void _internal_set_focal_length_mm(float value);
   public:
 
-  // float horizontal_sensor_size_mm = 4;
+  // float horizontal_sensor_size_mm = 5;
   void clear_horizontal_sensor_size_mm();
   float horizontal_sensor_size_mm() const;
   void set_horizontal_sensor_size_mm(float value);
@@ -8863,7 +8895,7 @@ class Information final :
   void _internal_set_horizontal_sensor_size_mm(float value);
   public:
 
-  // float vertical_sensor_size_mm = 5;
+  // float vertical_sensor_size_mm = 6;
   void clear_vertical_sensor_size_mm();
   float vertical_sensor_size_mm() const;
   void set_vertical_sensor_size_mm(float value);
@@ -8872,7 +8904,7 @@ class Information final :
   void _internal_set_vertical_sensor_size_mm(float value);
   public:
 
-  // uint32 horizontal_resolution_px = 6;
+  // uint32 horizontal_resolution_px = 7;
   void clear_horizontal_resolution_px();
   uint32_t horizontal_resolution_px() const;
   void set_horizontal_resolution_px(uint32_t value);
@@ -8881,13 +8913,31 @@ class Information final :
   void _internal_set_horizontal_resolution_px(uint32_t value);
   public:
 
-  // uint32 vertical_resolution_px = 7;
+  // uint32 vertical_resolution_px = 8;
   void clear_vertical_resolution_px();
   uint32_t vertical_resolution_px() const;
   void set_vertical_resolution_px(uint32_t value);
   private:
   uint32_t _internal_vertical_resolution_px() const;
   void _internal_set_vertical_resolution_px(uint32_t value);
+  public:
+
+  // uint32 lens_id = 9;
+  void clear_lens_id();
+  uint32_t lens_id() const;
+  void set_lens_id(uint32_t value);
+  private:
+  uint32_t _internal_lens_id() const;
+  void _internal_set_lens_id(uint32_t value);
+  public:
+
+  // uint32 definition_file_version = 10;
+  void clear_definition_file_version();
+  uint32_t definition_file_version() const;
+  void set_definition_file_version(uint32_t value);
+  private:
+  uint32_t _internal_definition_file_version() const;
+  void _internal_set_definition_file_version(uint32_t value);
   public:
 
   // @@protoc_insertion_point(class_scope:mavsdk.rpc.camera.Information)
@@ -8899,11 +8949,15 @@ class Information final :
   typedef void DestructorSkippable_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr vendor_name_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr model_name_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr firmware_version_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr definition_file_uri_;
   float focal_length_mm_;
   float horizontal_sensor_size_mm_;
   float vertical_sensor_size_mm_;
   uint32_t horizontal_resolution_px_;
   uint32_t vertical_resolution_px_;
+  uint32_t lens_id_;
+  uint32_t definition_file_version_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_camera_2fcamera_2eproto;
 };
@@ -13638,7 +13692,57 @@ inline void Information::set_allocated_model_name(std::string* model_name) {
   // @@protoc_insertion_point(field_set_allocated:mavsdk.rpc.camera.Information.model_name)
 }
 
-// float focal_length_mm = 3;
+// string firmware_version = 3;
+inline void Information::clear_firmware_version() {
+  firmware_version_.ClearToEmpty();
+}
+inline const std::string& Information::firmware_version() const {
+  // @@protoc_insertion_point(field_get:mavsdk.rpc.camera.Information.firmware_version)
+  return _internal_firmware_version();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void Information::set_firmware_version(ArgT0&& arg0, ArgT... args) {
+ 
+ firmware_version_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:mavsdk.rpc.camera.Information.firmware_version)
+}
+inline std::string* Information::mutable_firmware_version() {
+  std::string* _s = _internal_mutable_firmware_version();
+  // @@protoc_insertion_point(field_mutable:mavsdk.rpc.camera.Information.firmware_version)
+  return _s;
+}
+inline const std::string& Information::_internal_firmware_version() const {
+  return firmware_version_.Get();
+}
+inline void Information::_internal_set_firmware_version(const std::string& value) {
+  
+  firmware_version_.Set(value, GetArenaForAllocation());
+}
+inline std::string* Information::_internal_mutable_firmware_version() {
+  
+  return firmware_version_.Mutable(GetArenaForAllocation());
+}
+inline std::string* Information::release_firmware_version() {
+  // @@protoc_insertion_point(field_release:mavsdk.rpc.camera.Information.firmware_version)
+  return firmware_version_.Release();
+}
+inline void Information::set_allocated_firmware_version(std::string* firmware_version) {
+  if (firmware_version != nullptr) {
+    
+  } else {
+    
+  }
+  firmware_version_.SetAllocated(firmware_version, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (firmware_version_.IsDefault()) {
+    firmware_version_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:mavsdk.rpc.camera.Information.firmware_version)
+}
+
+// float focal_length_mm = 4;
 inline void Information::clear_focal_length_mm() {
   focal_length_mm_ = 0;
 }
@@ -13658,7 +13762,7 @@ inline void Information::set_focal_length_mm(float value) {
   // @@protoc_insertion_point(field_set:mavsdk.rpc.camera.Information.focal_length_mm)
 }
 
-// float horizontal_sensor_size_mm = 4;
+// float horizontal_sensor_size_mm = 5;
 inline void Information::clear_horizontal_sensor_size_mm() {
   horizontal_sensor_size_mm_ = 0;
 }
@@ -13678,7 +13782,7 @@ inline void Information::set_horizontal_sensor_size_mm(float value) {
   // @@protoc_insertion_point(field_set:mavsdk.rpc.camera.Information.horizontal_sensor_size_mm)
 }
 
-// float vertical_sensor_size_mm = 5;
+// float vertical_sensor_size_mm = 6;
 inline void Information::clear_vertical_sensor_size_mm() {
   vertical_sensor_size_mm_ = 0;
 }
@@ -13698,7 +13802,7 @@ inline void Information::set_vertical_sensor_size_mm(float value) {
   // @@protoc_insertion_point(field_set:mavsdk.rpc.camera.Information.vertical_sensor_size_mm)
 }
 
-// uint32 horizontal_resolution_px = 6;
+// uint32 horizontal_resolution_px = 7;
 inline void Information::clear_horizontal_resolution_px() {
   horizontal_resolution_px_ = 0u;
 }
@@ -13718,7 +13822,7 @@ inline void Information::set_horizontal_resolution_px(uint32_t value) {
   // @@protoc_insertion_point(field_set:mavsdk.rpc.camera.Information.horizontal_resolution_px)
 }
 
-// uint32 vertical_resolution_px = 7;
+// uint32 vertical_resolution_px = 8;
 inline void Information::clear_vertical_resolution_px() {
   vertical_resolution_px_ = 0u;
 }
@@ -13736,6 +13840,96 @@ inline void Information::_internal_set_vertical_resolution_px(uint32_t value) {
 inline void Information::set_vertical_resolution_px(uint32_t value) {
   _internal_set_vertical_resolution_px(value);
   // @@protoc_insertion_point(field_set:mavsdk.rpc.camera.Information.vertical_resolution_px)
+}
+
+// uint32 lens_id = 9;
+inline void Information::clear_lens_id() {
+  lens_id_ = 0u;
+}
+inline uint32_t Information::_internal_lens_id() const {
+  return lens_id_;
+}
+inline uint32_t Information::lens_id() const {
+  // @@protoc_insertion_point(field_get:mavsdk.rpc.camera.Information.lens_id)
+  return _internal_lens_id();
+}
+inline void Information::_internal_set_lens_id(uint32_t value) {
+  
+  lens_id_ = value;
+}
+inline void Information::set_lens_id(uint32_t value) {
+  _internal_set_lens_id(value);
+  // @@protoc_insertion_point(field_set:mavsdk.rpc.camera.Information.lens_id)
+}
+
+// uint32 definition_file_version = 10;
+inline void Information::clear_definition_file_version() {
+  definition_file_version_ = 0u;
+}
+inline uint32_t Information::_internal_definition_file_version() const {
+  return definition_file_version_;
+}
+inline uint32_t Information::definition_file_version() const {
+  // @@protoc_insertion_point(field_get:mavsdk.rpc.camera.Information.definition_file_version)
+  return _internal_definition_file_version();
+}
+inline void Information::_internal_set_definition_file_version(uint32_t value) {
+  
+  definition_file_version_ = value;
+}
+inline void Information::set_definition_file_version(uint32_t value) {
+  _internal_set_definition_file_version(value);
+  // @@protoc_insertion_point(field_set:mavsdk.rpc.camera.Information.definition_file_version)
+}
+
+// string definition_file_uri = 11;
+inline void Information::clear_definition_file_uri() {
+  definition_file_uri_.ClearToEmpty();
+}
+inline const std::string& Information::definition_file_uri() const {
+  // @@protoc_insertion_point(field_get:mavsdk.rpc.camera.Information.definition_file_uri)
+  return _internal_definition_file_uri();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void Information::set_definition_file_uri(ArgT0&& arg0, ArgT... args) {
+ 
+ definition_file_uri_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:mavsdk.rpc.camera.Information.definition_file_uri)
+}
+inline std::string* Information::mutable_definition_file_uri() {
+  std::string* _s = _internal_mutable_definition_file_uri();
+  // @@protoc_insertion_point(field_mutable:mavsdk.rpc.camera.Information.definition_file_uri)
+  return _s;
+}
+inline const std::string& Information::_internal_definition_file_uri() const {
+  return definition_file_uri_.Get();
+}
+inline void Information::_internal_set_definition_file_uri(const std::string& value) {
+  
+  definition_file_uri_.Set(value, GetArenaForAllocation());
+}
+inline std::string* Information::_internal_mutable_definition_file_uri() {
+  
+  return definition_file_uri_.Mutable(GetArenaForAllocation());
+}
+inline std::string* Information::release_definition_file_uri() {
+  // @@protoc_insertion_point(field_release:mavsdk.rpc.camera.Information.definition_file_uri)
+  return definition_file_uri_.Release();
+}
+inline void Information::set_allocated_definition_file_uri(std::string* definition_file_uri) {
+  if (definition_file_uri != nullptr) {
+    
+  } else {
+    
+  }
+  definition_file_uri_.SetAllocated(definition_file_uri, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (definition_file_uri_.IsDefault()) {
+    definition_file_uri_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:mavsdk.rpc.camera.Information.definition_file_uri)
 }
 
 // -------------------------------------------------------------------

@@ -8,6 +8,8 @@ set(MID_SERVER_SOURCES
     ${CMAKE_CURRENT_SOURCE_DIR}/../generated/mavsdk_options.pb.cc
     ${CMAKE_CURRENT_SOURCE_DIR}/../generated/camera/camera.grpc.pb.cc
     ${CMAKE_CURRENT_SOURCE_DIR}/../generated/camera/camera.pb.cc
+    ${CMAKE_CURRENT_SOURCE_DIR}/plugins/camera/camera.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/plugins/camera/camera_impl.cpp
 )
 
 set(EXECUTABLE_NAME mid_server)
@@ -18,6 +20,7 @@ add_executable(${EXECUTABLE_NAME}
 
 target_include_directories(${EXECUTABLE_NAME}
     PRIVATE
+    ${CMAKE_CURRENT_SOURCE_DIR}
     ${CMAKE_CURRENT_SOURCE_DIR}/../generated
     ${CMAKE_CURRENT_SOURCE_DIR}/../
     ${DEPS_INSTALL_PATH}/include

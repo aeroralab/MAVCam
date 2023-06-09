@@ -17,8 +17,8 @@ bool MidClient::init(std::string &connection_url, int rpc_port) {
     _connection_url = connection_url;
     _rpc_port = rpc_port;
 
-    _camera_client = CreateLocalCameraClient();  // use local client
-    //_camera_client = CreateRpcCameraClient(_rpc_port);  // use rpc client
+    //_camera_client = CreateLocalCameraClient();  // use local client
+    _camera_client = CreateRpcCameraClient(_rpc_port);  // use rpc client
     return true;
 }
 

@@ -90,7 +90,7 @@ mavsdk::CameraServer::Result CameraLocalClient::fill_information(
     information.vertical_resolution_px = 2464;
     information.lens_id = 0;
     information.definition_file_version = 1;
-    information.definition_file_uri = "ftp://90.xml";
+    information.definition_file_uri = "ftp://C10.xml";  //TODO just demo
     return mavsdk::CameraServer::Result::Success;
 }
 

@@ -12,16 +12,25 @@ static mavsdk::CameraServer::Result translateFromRpcResult(
 
 static mavsdk::rpc::camera::Mode translateFromCameraServerMode(
     const mavsdk::CameraServer::Mode server_mode);
+static void fillInformation(const mavsdk::rpc::camera::Information &input,
+                            mavsdk::CameraServer::Information &output);
 
 CameraRpcClient::CameraRpcClient() {}
 
-CameraRpcClient::~CameraRpcClient() {}
+CameraRpcClient::~CameraRpcClient() {
+    stop();
+}
 
 bool CameraRpcClient::Init(int rpc_port) {
     std::string target = "0.0.0.0:" + std::to_string(rpc_port);
     //the channel isn't authenticated
     _channel = grpc::CreateChannel(target, grpc::InsecureChannelCredentials());
     _stub = mavsdk::rpc::camera::CameraService::NewStub(_channel);
+
+    _init_information = false;
+
+    _should_exit = false;
+    _work_thread = new std::thread(work_thread, this);
     return true;
 }
 
@@ -166,7 +175,13 @@ mavsdk::CameraServer::Result CameraRpcClient::reset_settings() {
 
 mavsdk::CameraServer::Result CameraRpcClient::fill_information(
     mavsdk::CameraServer::Information &information) {
-    return mavsdk::CameraServer::Result();
+    while (!_init_information) {
+        //just wait for informaiton
+        continue;
+    }
+
+    information = _information;
+    return mavsdk::CameraServer::Result::Success;
 }
 
 mavsdk::CameraServer::Result CameraRpcClient::fill_storage_information(
@@ -181,16 +196,72 @@ mavsdk::CameraServer::Result CameraRpcClient::fill_capture_status(
 
 mavsdk::CameraServer::Result CameraRpcClient::retrieve_current_settings(
     std::vector<mavsdk::Camera::Setting> &settings) {
-    return mavsdk::CameraServer::Result::Success;
+    std::lock_guard<std::mutex> lock(_mutex);
+    LogDebug() << "rpc call retrive current settings";
+
+    // mavsdk::rpc::camera::SubscribeCurrentSettingsRequest request;
+    // grpc::ClientContext context;
+    // mavsdk::rpc::camera::CurrentSettingsResponse response;
+    // grpc::Status status = _stub->SubscribeCurrentSettings(&context, request);
+    // if (!status.ok()) {
+    //     LogDebug() << "Grpc status error message : " << status.error_message();
+    //     return mavsdk::CameraServer::Result::NoSystem;
+    // }
+    // LogDebug() << "Reset settings result : " << response.camera_result().result_str();
+    // return translateFromRpcResult(response.camera_result().result());
 }
 
 mavsdk::CameraServer::Result CameraRpcClient::set_setting(mavsdk::Camera::Setting setting) {
+    std::lock_guard<std::mutex> lock(_mutex);
+    LogDebug() << "rpc call set" << setting.setting_id << " to " << setting.option.option_id;
+
+    mavsdk::rpc::camera::SetSettingRequest request;
+    // request.setting().set_setting_id(setting.setting_id);
+    // request.setting().option().set_option_id(setting.option.option_id);
+    grpc::ClientContext context;
+    mavsdk::rpc::camera::SetSettingResponse response;
+    grpc::Status status = _stub->SetSetting(&context, request, &response);
+    if (!status.ok()) {
+        LogDebug() << "Grpc status error message : " << status.error_message();
+        return mavsdk::CameraServer::Result::NoSystem;
+    }
+    LogDebug() << "Reset settings result : " << response.camera_result().result_str();
+    return translateFromRpcResult(response.camera_result().result());
+
     return mavsdk::CameraServer::Result::Success;
 }
 
 std::pair<mavsdk::CameraServer::Result, mavsdk::Camera::Setting> CameraRpcClient::get_setting(
     mavsdk::Camera::Setting setting) const {
     return {mavsdk::CameraServer::Result::Success, setting};
+}
+
+void CameraRpcClient::stop() {
+    _should_exit = true;
+    if (_work_thread != nullptr) {
+        _work_thread->join();
+        delete _work_thread;
+        _work_thread = nullptr;
+    }
+}
+
+void CameraRpcClient::work_thread(CameraRpcClient *self) {
+    while (!self->_should_exit) {
+        if (!self->_init_information) {
+            mavsdk::rpc::camera::SubscribeInformationRequest request;
+            grpc::ClientContext context;
+            self->_information_reader = self->_stub->SubscribeInformation(&context, request);
+
+            mavsdk::rpc::camera::InformationResponse response;
+            while (self->_information_reader->Read(&response)) {
+                fillInformation(response.information(), self->_information);
+            }
+            auto status = self->_information_reader->Finish();
+            self->_init_information = true;
+        }
+
+        std::this_thread::sleep_for(std::chrono::milliseconds(600));
+    }
 }
 
 static mavsdk::CameraServer::Result translateFromRpcResult(
@@ -230,6 +301,21 @@ static mavsdk::rpc::camera::Mode translateFromCameraServerMode(
         case mavsdk::CameraServer::Mode::Unknown:
             return mavsdk::rpc::camera::Mode::MODE_UNKNOWN;
     }
+}
+
+static void fillInformation(const mavsdk::rpc::camera::Information &input,
+                            mavsdk::CameraServer::Information &output) {
+    output.vendor_name = input.vendor_name();
+    output.model_name = input.model_name();
+    output.firmware_version = input.firmware_version();
+    output.focal_length_mm = input.focal_length_mm();
+    output.horizontal_sensor_size_mm = input.horizontal_sensor_size_mm();
+    output.vertical_sensor_size_mm = input.vertical_sensor_size_mm();
+    output.horizontal_resolution_px = input.horizontal_resolution_px();
+    output.vertical_resolution_px = input.vertical_resolution_px();
+    output.lens_id = input.lens_id();
+    output.definition_file_version = input.definition_file_version();
+    output.definition_file_uri = input.definition_file_uri();
 }
 
 }  // namespace mid

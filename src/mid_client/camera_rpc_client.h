@@ -6,6 +6,7 @@
 #include <chrono>
 #include <memory>
 #include <mutex>
+#include <thread>
 
 #include "camera/camera.grpc.pb.h"
 #include "camera/camera.pb.h"
@@ -42,13 +43,24 @@ public:  //settings
 public:
     bool Init(int rpc_port);
 private:
+    void stop();
+    static void work_thread(CameraRpcClient *self);
+private:
     std::atomic<bool> _is_capture_in_progress;
     std::atomic<int> _image_count;
     std::atomic<bool> _is_recording_video;
     std::chrono::steady_clock::time_point _start_video_time;
 private:
+    std::unique_ptr<grpc::ClientReader<mavsdk::rpc::camera::InformationResponse>>
+        _information_reader;
+    std::atomic<bool> _init_information{false};
+    mavsdk::CameraServer::Information _information;
+private:
     std::shared_ptr<grpc::Channel> _channel;
     std::unique_ptr<mavsdk::rpc::camera::CameraService::Stub> _stub;
+private:  // backend work thread
+    std::thread *_work_thread{nullptr};
+    std::atomic<bool> _should_exit{false};
     std::mutex _mutex{};
 };
 
