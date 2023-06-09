@@ -17,6 +17,7 @@ static void do_camear_settings(mavsdk::Camera &camera);
 
 static inline void set_camera_settings(mavsdk::Camera &camera, const std::string &name,
                                        const std::string &value);
+static inline std::string get_camera_setting(mavsdk::Camera &camera, const std::string &name);
 
 int main(int argc, const char *argv[]) {
     // we run client plugins to act as the GCS
@@ -145,15 +146,23 @@ static std::string download_camera_definition_file_by_ftp(std::shared_ptr<mavsdk
 }
 
 static void do_camear_settings(mavsdk::Camera &camera) {
-    set_camera_settings(camera, "CAM_WBMODE", "1");
+    std::vector<std::pair<std::string, std::string>> settings;
+    settings.push_back({"CAM_WBMODE", "1"});
+    settings.push_back({"CAM_EXPMODE", "0"});
+    settings.push_back({"CAM_EV", "2.0"});
+    settings.push_back({"CAM_EXPMODE", "1"});
+    settings.push_back({"CAM_SHUTTERSPD", "0.016666"});
+    settings.push_back({"CAM_ISO", "6400"});
 
-    set_camera_settings(camera, "CAM_EXPMODE", "0");
-    set_camera_settings(camera, "CAM_EV", "2.0");
-
-    set_camera_settings(camera, "CAM_EXPMODE", "1");
-    set_camera_settings(camera, "CAM_SHUTTERSPD", "0.002083333");
-    set_camera_settings(camera, "CAM_ISO", "6400");
-
+    for (auto &it : settings) {
+        set_camera_settings(camera, it.first, it.second);
+        auto value = get_camera_setting(camera, it.first);
+        if (value.find(it.second, 0) != 0) {
+            std::cerr << "invalid result : " << it.first << " origin value " << it.second
+                      << " new value " << value << std::endl;
+            return;
+        }
+    }
     camera.set_mode(mavsdk::Camera::Mode::Video);
     set_camera_settings(camera, "CAM_VIDFMT", "2");
     set_camera_settings(camera, "CAM_VIDRES", "5");
@@ -170,4 +179,11 @@ static inline void set_camera_settings(mavsdk::Camera &camera, const std::string
     auto operation_result = camera.set_setting(setting);
     std::cout << "set " << name << " value : " << value << " result : " << operation_result
               << std::endl;
+}
+
+static inline std::string get_camera_setting(mavsdk::Camera &camera, const std::string &name) {
+    mavsdk::Camera::Setting setting;
+    setting.setting_id = name;
+    auto [result, out_setting] = camera.get_setting(setting);
+    return out_setting.option.option_id;
 }

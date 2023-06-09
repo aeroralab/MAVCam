@@ -4,6 +4,7 @@
 #include <chrono>
 #include <mutex>
 #include <thread>
+#include <vector>
 
 #include "plugins/camera/camera.h"
 
@@ -51,6 +52,7 @@ private:
     void start();
     void stop();
     static void work_thread(CameraImpl *self);
+    mid::Camera::Setting build_setting(std::string name, std::string value);
 private:
     std::thread *_work_thread{nullptr};
     std::atomic<bool> _should_exit{false};
@@ -63,6 +65,8 @@ private:
     mutable std::chrono::steady_clock::time_point _start_video_time;
     mutable Camera::Status _status;
     Camera::StatusCallback _status_callback;
+private:
+    mutable std::vector<Camera::Setting> _settings;
 };
 
 }  // namespace mid

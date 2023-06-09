@@ -154,9 +154,8 @@ std::pair<mavsdk::CameraServer::Result, mavsdk::Camera::Setting> CameraLocalClie
     if (_settings.count(setting.setting_id) == 0) {
         return {mavsdk::CameraServer::Result::WrongArgument, setting};
     }
-    mavsdk::Camera::Setting out_setting = setting;
-    out_setting.option.option_id = _settings[setting.setting_id];
-    return {mavsdk::CameraServer::Result::Success, out_setting};
+    setting.option.option_id = _settings[setting.setting_id];
+    return {mavsdk::CameraServer::Result::Success, setting};
 }
 
 mavsdk::Camera::Setting CameraLocalClient::build_setting(std::string name, std::string value) {

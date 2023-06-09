@@ -540,6 +540,7 @@ public:
         auto stream_closed_promise = std::make_shared<std::promise<void>>();
         auto stream_closed_future = stream_closed_promise->get_future();
         register_stream_stop_promise(stream_closed_promise);
+
         _plugin->subscribe_status(
             [this, &writer, &stream_closed_promise](const mid::Camera::Status status) {
                 mavsdk::rpc::camera::StatusResponse rpc_response;
@@ -558,7 +559,28 @@ public:
     ::grpc::Status SubscribeCurrentSettings(
         ::grpc::ServerContext *context,
         const ::mavsdk::rpc::camera::SubscribeCurrentSettingsRequest *request,
-        ::grpc::ServerWriter<::mavsdk::rpc::camera::CurrentSettingsResponse> *writer) override {}
+        ::grpc::ServerWriter<::mavsdk::rpc::camera::CurrentSettingsResponse> *writer) override {
+        auto stream_closed_promise = std::make_shared<std::promise<void>>();
+        auto stream_closed_future = stream_closed_promise->get_future();
+        register_stream_stop_promise(stream_closed_promise);
+
+        _plugin->subscribe_current_settings(
+            [this, &writer,
+             &stream_closed_promise](const std::vector<mid::Camera::Setting> current_settings) {
+                mavsdk::rpc::camera::CurrentSettingsResponse rpc_response;
+
+                for (const auto &elem : current_settings) {
+                    auto *ptr = rpc_response.add_current_settings();
+                    ptr->CopyFrom(*translateToRpcSetting(elem).release());
+                }
+                writer->Write(rpc_response);
+                unregister_stream_stop_promise(stream_closed_promise);
+                stream_closed_promise->set_value();
+            });
+
+        stream_closed_future.wait();
+        return grpc::Status::OK;
+    }
 
     ::grpc::Status SubscribePossibleSettingOptions(
         ::grpc::ServerContext *context,

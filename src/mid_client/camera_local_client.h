@@ -15,27 +15,27 @@ public:
     CameraLocalClient();
     virtual ~CameraLocalClient();
 public:  //operation
-    virtual mavsdk::CameraServer::Result take_photo(int index);
-    virtual mavsdk::CameraServer::Result start_video();
-    virtual mavsdk::CameraServer::Result stop_video();
-    virtual mavsdk::CameraServer::Result start_video_streaming(int stream_id);
-    virtual mavsdk::CameraServer::Result stop_video_streaming(int stream_id);
-    virtual mavsdk::CameraServer::Result set_mode(mavsdk::CameraServer::Mode mode);
-    virtual mavsdk::CameraServer::Result format_storage(int storage_id);
-    virtual mavsdk::CameraServer::Result reset_settings();
+    virtual mavsdk::CameraServer::Result take_photo(int index) override;
+    virtual mavsdk::CameraServer::Result start_video() override;
+    virtual mavsdk::CameraServer::Result stop_video() override;
+    virtual mavsdk::CameraServer::Result start_video_streaming(int stream_id) override;
+    virtual mavsdk::CameraServer::Result stop_video_streaming(int stream_id) override;
+    virtual mavsdk::CameraServer::Result set_mode(mavsdk::CameraServer::Mode mode) override;
+    virtual mavsdk::CameraServer::Result format_storage(int storage_id) override;
+    virtual mavsdk::CameraServer::Result reset_settings() override;
 public:  //subscribe
     virtual mavsdk::CameraServer::Result fill_information(
-        mavsdk::CameraServer::Information &information);
+        mavsdk::CameraServer::Information &information) override;
     virtual mavsdk::CameraServer::Result fill_storage_information(
-        mavsdk::CameraServer::StorageInformation &storage_information);
+        mavsdk::CameraServer::StorageInformation &storage_information) override;
     virtual mavsdk::CameraServer::Result fill_capture_status(
-        mavsdk::CameraServer::CaptureStatus &capture_status);
+        mavsdk::CameraServer::CaptureStatus &capture_status) override;
 public:  // settings
     virtual mavsdk::CameraServer::Result retrieve_current_settings(
-        std::vector<mavsdk::Camera::Setting> &settings);
-    mavsdk::CameraServer::Result set_setting(mavsdk::Camera::Setting setting);
+        std::vector<mavsdk::Camera::Setting> &settings) override;
+    mavsdk::CameraServer::Result set_setting(mavsdk::Camera::Setting setting) override;
     std::pair<mavsdk::CameraServer::Result, mavsdk::Camera::Setting> get_setting(
-        mavsdk::Camera::Setting setting) const;
+        mavsdk::Camera::Setting setting) const override;
 private:
     mavsdk::Camera::Setting build_setting(std::string name, std::string value);
 private:

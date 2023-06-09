@@ -61,12 +61,17 @@ private:
     mavsdk::CameraServer::StorageInformation _storage_information;
     mavsdk::CameraServer::CaptureStatus _capture_status;
 private:
+    std::unique_ptr<grpc::ClientReader<mavsdk::rpc::camera::CurrentSettingsResponse>>
+        _current_settings_reader;
+    std::atomic<bool> _init_current_settings{false};
+    mutable std::unordered_map<std::string, std::string> _settings;
+private:
     std::shared_ptr<grpc::Channel> _channel;
     std::unique_ptr<mavsdk::rpc::camera::CameraService::Stub> _stub;
 private:  // backend work thread
     std::thread *_work_thread{nullptr};
     std::atomic<bool> _should_exit{false};
-    std::mutex _mutex{};
+    mutable std::mutex _mutex{};
 };
 
 }  // namespace mid

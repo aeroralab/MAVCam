@@ -126,6 +126,7 @@ void MidClient::subscribe_param_operation(mavsdk::ParamServer &param_server) {
     _camera_client->retrieve_current_settings(settings);
 
     for (auto &setting : settings) {
+        // TODO hard code
         if (setting.setting_id == "CAM_SHUTTERSPD" || setting.setting_id == "CAM_EV") {
             param_server.provide_param_float(setting.setting_id,
                                              std::stof(setting.option.option_id));

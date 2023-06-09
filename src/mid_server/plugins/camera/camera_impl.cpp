@@ -8,6 +8,17 @@ namespace mid {
 
 CameraImpl::CameraImpl() {
     start();
+
+    // TODO just demo for settings
+    _settings.emplace_back(build_setting("CAM_MODE", "1"));
+    _settings.emplace_back(build_setting("CAM_WBMODE", "0"));
+    _settings.emplace_back(build_setting("CAM_EXPMODE", "0"));
+    _settings.emplace_back(build_setting("CAM_EV", "0"));
+    _settings.emplace_back(build_setting("CAM_ISO", "100"));
+    _settings.emplace_back(build_setting("CAM_SHUTTERSPD", "0.01"));
+    _settings.emplace_back(build_setting("CAM_VIDFMT", "1"));
+    _settings.emplace_back(build_setting("CAM_VIDRES", "0"));
+    _settings.emplace_back(build_setting("CAM_PHOTORATIO", "1"));
 }
 
 CameraImpl::~CameraImpl() {
@@ -129,7 +140,9 @@ Camera::Status CameraImpl::status() const {
     return _status;
 }
 
-void CameraImpl::subscribe_current_settings(const Camera::CurrentSettingsCallback &callback) {}
+void CameraImpl::subscribe_current_settings(const Camera::CurrentSettingsCallback &callback) {
+    callback(_settings);
+}
 
 void CameraImpl::subscribe_possible_setting_options(
     const Camera::PossibleSettingOptionsCallback &callback) {}
@@ -137,10 +150,26 @@ void CameraImpl::subscribe_possible_setting_options(
 std::vector<Camera::SettingOptions> CameraImpl::possible_setting_options() const {}
 
 Camera::Result CameraImpl::set_setting(Setting setting) const {
+    LogDebug() << "call set " << setting.setting_id << " to value " << setting.option.option_id;
+    for (auto &it : _settings) {
+        if (it.setting_id == setting.setting_id) {
+            it.option.option_id = setting.option.option_id;
+            it.option.option_description = setting.option.option_description;
+        }
+    }
     return Camera::Result::Success;
 }
 
-std::pair<Camera::Result, Camera::Setting> CameraImpl::get_setting(Camera::Setting setting) const {}
+std::pair<Camera::Result, Camera::Setting> CameraImpl::get_setting(Camera::Setting setting) const {
+    for (auto &it : _settings) {
+        if (it.setting_id == setting.setting_id) {
+            setting.option.option_id = it.option.option_id;
+            setting.option.option_description = it.option.option_description;
+            return {Camera::Result::Success, setting};
+        }
+    }
+    return {Camera::Result::WrongArgument, setting};
+}
 
 Camera::Result CameraImpl::format_storage(int32_t storage_id) const {
     LogDebug() << "call format storage " << storage_id;
@@ -193,6 +222,13 @@ void CameraImpl::work_thread(CameraImpl *self) {
         }
         std::this_thread::sleep_for(std::chrono::milliseconds(800));
     }
+}
+
+Camera::Setting CameraImpl::build_setting(std::string name, std::string value) {
+    Camera::Setting setting;
+    setting.setting_id = name;
+    setting.option.option_id = value;
+    return setting;
 }
 
 }  // namespace mid
