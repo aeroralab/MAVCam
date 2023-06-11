@@ -52,8 +52,8 @@ CameraServerService::Stub::Stub(const std::shared_ptr< ::grpc::ChannelInterface>
   : channel_(channel), rpcmethod_SetInformation_(CameraServerService_method_names[0], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   , rpcmethod_SubscribeTakePhoto_(CameraServerService_method_names[1], options.suffix_for_stats(),::grpc::internal::RpcMethod::SERVER_STREAMING, channel)
   , rpcmethod_RespondTakePhoto_(CameraServerService_method_names[2], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_SubscribeStartPhotoInterval_(CameraServerService_method_names[3], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_SubscribeStopPhotoInterval_(CameraServerService_method_names[4], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_SubscribeStartPhotoInterval_(CameraServerService_method_names[3], options.suffix_for_stats(),::grpc::internal::RpcMethod::SERVER_STREAMING, channel)
+  , rpcmethod_SubscribeStopPhotoInterval_(CameraServerService_method_names[4], options.suffix_for_stats(),::grpc::internal::RpcMethod::SERVER_STREAMING, channel)
   , rpcmethod_SubscribeStartVideo_(CameraServerService_method_names[5], options.suffix_for_stats(),::grpc::internal::RpcMethod::SERVER_STREAMING, channel)
   , rpcmethod_SubscribeStopVideo_(CameraServerService_method_names[6], options.suffix_for_stats(),::grpc::internal::RpcMethod::SERVER_STREAMING, channel)
   , rpcmethod_SubscribeStartVideoStreaming_(CameraServerService_method_names[7], options.suffix_for_stats(),::grpc::internal::RpcMethod::SERVER_STREAMING, channel)
@@ -129,50 +129,36 @@ void CameraServerService::Stub::async::RespondTakePhoto(::grpc::ClientContext* c
   return result;
 }
 
-::grpc::Status CameraServerService::Stub::SubscribeStartPhotoInterval(::grpc::ClientContext* context, const ::mavsdk::rpc::camera_server::SubscribeStartPhotoIntervalRequest& request, ::mavsdk::rpc::camera_server::StartPhotoIntervalResponse* response) {
-  return ::grpc::internal::BlockingUnaryCall< ::mavsdk::rpc::camera_server::SubscribeStartPhotoIntervalRequest, ::mavsdk::rpc::camera_server::StartPhotoIntervalResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_SubscribeStartPhotoInterval_, context, request, response);
+::grpc::ClientReader< ::mavsdk::rpc::camera_server::StartPhotoIntervalResponse>* CameraServerService::Stub::SubscribeStartPhotoIntervalRaw(::grpc::ClientContext* context, const ::mavsdk::rpc::camera_server::SubscribeStartPhotoIntervalRequest& request) {
+  return ::grpc::internal::ClientReaderFactory< ::mavsdk::rpc::camera_server::StartPhotoIntervalResponse>::Create(channel_.get(), rpcmethod_SubscribeStartPhotoInterval_, context, request);
 }
 
-void CameraServerService::Stub::async::SubscribeStartPhotoInterval(::grpc::ClientContext* context, const ::mavsdk::rpc::camera_server::SubscribeStartPhotoIntervalRequest* request, ::mavsdk::rpc::camera_server::StartPhotoIntervalResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc::internal::CallbackUnaryCall< ::mavsdk::rpc::camera_server::SubscribeStartPhotoIntervalRequest, ::mavsdk::rpc::camera_server::StartPhotoIntervalResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_SubscribeStartPhotoInterval_, context, request, response, std::move(f));
+void CameraServerService::Stub::async::SubscribeStartPhotoInterval(::grpc::ClientContext* context, const ::mavsdk::rpc::camera_server::SubscribeStartPhotoIntervalRequest* request, ::grpc::ClientReadReactor< ::mavsdk::rpc::camera_server::StartPhotoIntervalResponse>* reactor) {
+  ::grpc::internal::ClientCallbackReaderFactory< ::mavsdk::rpc::camera_server::StartPhotoIntervalResponse>::Create(stub_->channel_.get(), stub_->rpcmethod_SubscribeStartPhotoInterval_, context, request, reactor);
 }
 
-void CameraServerService::Stub::async::SubscribeStartPhotoInterval(::grpc::ClientContext* context, const ::mavsdk::rpc::camera_server::SubscribeStartPhotoIntervalRequest* request, ::mavsdk::rpc::camera_server::StartPhotoIntervalResponse* response, ::grpc::ClientUnaryReactor* reactor) {
-  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_SubscribeStartPhotoInterval_, context, request, response, reactor);
+::grpc::ClientAsyncReader< ::mavsdk::rpc::camera_server::StartPhotoIntervalResponse>* CameraServerService::Stub::AsyncSubscribeStartPhotoIntervalRaw(::grpc::ClientContext* context, const ::mavsdk::rpc::camera_server::SubscribeStartPhotoIntervalRequest& request, ::grpc::CompletionQueue* cq, void* tag) {
+  return ::grpc::internal::ClientAsyncReaderFactory< ::mavsdk::rpc::camera_server::StartPhotoIntervalResponse>::Create(channel_.get(), cq, rpcmethod_SubscribeStartPhotoInterval_, context, request, true, tag);
 }
 
-::grpc::ClientAsyncResponseReader< ::mavsdk::rpc::camera_server::StartPhotoIntervalResponse>* CameraServerService::Stub::PrepareAsyncSubscribeStartPhotoIntervalRaw(::grpc::ClientContext* context, const ::mavsdk::rpc::camera_server::SubscribeStartPhotoIntervalRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::mavsdk::rpc::camera_server::StartPhotoIntervalResponse, ::mavsdk::rpc::camera_server::SubscribeStartPhotoIntervalRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_SubscribeStartPhotoInterval_, context, request);
+::grpc::ClientAsyncReader< ::mavsdk::rpc::camera_server::StartPhotoIntervalResponse>* CameraServerService::Stub::PrepareAsyncSubscribeStartPhotoIntervalRaw(::grpc::ClientContext* context, const ::mavsdk::rpc::camera_server::SubscribeStartPhotoIntervalRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncReaderFactory< ::mavsdk::rpc::camera_server::StartPhotoIntervalResponse>::Create(channel_.get(), cq, rpcmethod_SubscribeStartPhotoInterval_, context, request, false, nullptr);
 }
 
-::grpc::ClientAsyncResponseReader< ::mavsdk::rpc::camera_server::StartPhotoIntervalResponse>* CameraServerService::Stub::AsyncSubscribeStartPhotoIntervalRaw(::grpc::ClientContext* context, const ::mavsdk::rpc::camera_server::SubscribeStartPhotoIntervalRequest& request, ::grpc::CompletionQueue* cq) {
-  auto* result =
-    this->PrepareAsyncSubscribeStartPhotoIntervalRaw(context, request, cq);
-  result->StartCall();
-  return result;
+::grpc::ClientReader< ::mavsdk::rpc::camera_server::StopPhotoIntervalResponse>* CameraServerService::Stub::SubscribeStopPhotoIntervalRaw(::grpc::ClientContext* context, const ::mavsdk::rpc::camera_server::SubscribeStopPhotoIntervalRequest& request) {
+  return ::grpc::internal::ClientReaderFactory< ::mavsdk::rpc::camera_server::StopPhotoIntervalResponse>::Create(channel_.get(), rpcmethod_SubscribeStopPhotoInterval_, context, request);
 }
 
-::grpc::Status CameraServerService::Stub::SubscribeStopPhotoInterval(::grpc::ClientContext* context, const ::mavsdk::rpc::camera_server::SubscribeStopPhotoIntervalRequest& request, ::mavsdk::rpc::camera_server::StopPhotoIntervalResponse* response) {
-  return ::grpc::internal::BlockingUnaryCall< ::mavsdk::rpc::camera_server::SubscribeStopPhotoIntervalRequest, ::mavsdk::rpc::camera_server::StopPhotoIntervalResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_SubscribeStopPhotoInterval_, context, request, response);
+void CameraServerService::Stub::async::SubscribeStopPhotoInterval(::grpc::ClientContext* context, const ::mavsdk::rpc::camera_server::SubscribeStopPhotoIntervalRequest* request, ::grpc::ClientReadReactor< ::mavsdk::rpc::camera_server::StopPhotoIntervalResponse>* reactor) {
+  ::grpc::internal::ClientCallbackReaderFactory< ::mavsdk::rpc::camera_server::StopPhotoIntervalResponse>::Create(stub_->channel_.get(), stub_->rpcmethod_SubscribeStopPhotoInterval_, context, request, reactor);
 }
 
-void CameraServerService::Stub::async::SubscribeStopPhotoInterval(::grpc::ClientContext* context, const ::mavsdk::rpc::camera_server::SubscribeStopPhotoIntervalRequest* request, ::mavsdk::rpc::camera_server::StopPhotoIntervalResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc::internal::CallbackUnaryCall< ::mavsdk::rpc::camera_server::SubscribeStopPhotoIntervalRequest, ::mavsdk::rpc::camera_server::StopPhotoIntervalResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_SubscribeStopPhotoInterval_, context, request, response, std::move(f));
+::grpc::ClientAsyncReader< ::mavsdk::rpc::camera_server::StopPhotoIntervalResponse>* CameraServerService::Stub::AsyncSubscribeStopPhotoIntervalRaw(::grpc::ClientContext* context, const ::mavsdk::rpc::camera_server::SubscribeStopPhotoIntervalRequest& request, ::grpc::CompletionQueue* cq, void* tag) {
+  return ::grpc::internal::ClientAsyncReaderFactory< ::mavsdk::rpc::camera_server::StopPhotoIntervalResponse>::Create(channel_.get(), cq, rpcmethod_SubscribeStopPhotoInterval_, context, request, true, tag);
 }
 
-void CameraServerService::Stub::async::SubscribeStopPhotoInterval(::grpc::ClientContext* context, const ::mavsdk::rpc::camera_server::SubscribeStopPhotoIntervalRequest* request, ::mavsdk::rpc::camera_server::StopPhotoIntervalResponse* response, ::grpc::ClientUnaryReactor* reactor) {
-  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_SubscribeStopPhotoInterval_, context, request, response, reactor);
-}
-
-::grpc::ClientAsyncResponseReader< ::mavsdk::rpc::camera_server::StopPhotoIntervalResponse>* CameraServerService::Stub::PrepareAsyncSubscribeStopPhotoIntervalRaw(::grpc::ClientContext* context, const ::mavsdk::rpc::camera_server::SubscribeStopPhotoIntervalRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::mavsdk::rpc::camera_server::StopPhotoIntervalResponse, ::mavsdk::rpc::camera_server::SubscribeStopPhotoIntervalRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_SubscribeStopPhotoInterval_, context, request);
-}
-
-::grpc::ClientAsyncResponseReader< ::mavsdk::rpc::camera_server::StopPhotoIntervalResponse>* CameraServerService::Stub::AsyncSubscribeStopPhotoIntervalRaw(::grpc::ClientContext* context, const ::mavsdk::rpc::camera_server::SubscribeStopPhotoIntervalRequest& request, ::grpc::CompletionQueue* cq) {
-  auto* result =
-    this->PrepareAsyncSubscribeStopPhotoIntervalRaw(context, request, cq);
-  result->StartCall();
-  return result;
+::grpc::ClientAsyncReader< ::mavsdk::rpc::camera_server::StopPhotoIntervalResponse>* CameraServerService::Stub::PrepareAsyncSubscribeStopPhotoIntervalRaw(::grpc::ClientContext* context, const ::mavsdk::rpc::camera_server::SubscribeStopPhotoIntervalRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncReaderFactory< ::mavsdk::rpc::camera_server::StopPhotoIntervalResponse>::Create(channel_.get(), cq, rpcmethod_SubscribeStopPhotoInterval_, context, request, false, nullptr);
 }
 
 ::grpc::ClientReader< ::mavsdk::rpc::camera_server::StartVideoResponse>* CameraServerService::Stub::SubscribeStartVideoRaw(::grpc::ClientContext* context, const ::mavsdk::rpc::camera_server::SubscribeStartVideoRequest& request) {
@@ -398,23 +384,23 @@ CameraServerService::Service::Service() {
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       CameraServerService_method_names[3],
-      ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< CameraServerService::Service, ::mavsdk::rpc::camera_server::SubscribeStartPhotoIntervalRequest, ::mavsdk::rpc::camera_server::StartPhotoIntervalResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+      ::grpc::internal::RpcMethod::SERVER_STREAMING,
+      new ::grpc::internal::ServerStreamingHandler< CameraServerService::Service, ::mavsdk::rpc::camera_server::SubscribeStartPhotoIntervalRequest, ::mavsdk::rpc::camera_server::StartPhotoIntervalResponse>(
           [](CameraServerService::Service* service,
              ::grpc::ServerContext* ctx,
              const ::mavsdk::rpc::camera_server::SubscribeStartPhotoIntervalRequest* req,
-             ::mavsdk::rpc::camera_server::StartPhotoIntervalResponse* resp) {
-               return service->SubscribeStartPhotoInterval(ctx, req, resp);
+             ::grpc::ServerWriter<::mavsdk::rpc::camera_server::StartPhotoIntervalResponse>* writer) {
+               return service->SubscribeStartPhotoInterval(ctx, req, writer);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       CameraServerService_method_names[4],
-      ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< CameraServerService::Service, ::mavsdk::rpc::camera_server::SubscribeStopPhotoIntervalRequest, ::mavsdk::rpc::camera_server::StopPhotoIntervalResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+      ::grpc::internal::RpcMethod::SERVER_STREAMING,
+      new ::grpc::internal::ServerStreamingHandler< CameraServerService::Service, ::mavsdk::rpc::camera_server::SubscribeStopPhotoIntervalRequest, ::mavsdk::rpc::camera_server::StopPhotoIntervalResponse>(
           [](CameraServerService::Service* service,
              ::grpc::ServerContext* ctx,
              const ::mavsdk::rpc::camera_server::SubscribeStopPhotoIntervalRequest* req,
-             ::mavsdk::rpc::camera_server::StopPhotoIntervalResponse* resp) {
-               return service->SubscribeStopPhotoInterval(ctx, req, resp);
+             ::grpc::ServerWriter<::mavsdk::rpc::camera_server::StopPhotoIntervalResponse>* writer) {
+               return service->SubscribeStopPhotoInterval(ctx, req, writer);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       CameraServerService_method_names[5],
@@ -552,17 +538,17 @@ CameraServerService::Service::~Service() {
   return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
 }
 
-::grpc::Status CameraServerService::Service::SubscribeStartPhotoInterval(::grpc::ServerContext* context, const ::mavsdk::rpc::camera_server::SubscribeStartPhotoIntervalRequest* request, ::mavsdk::rpc::camera_server::StartPhotoIntervalResponse* response) {
+::grpc::Status CameraServerService::Service::SubscribeStartPhotoInterval(::grpc::ServerContext* context, const ::mavsdk::rpc::camera_server::SubscribeStartPhotoIntervalRequest* request, ::grpc::ServerWriter< ::mavsdk::rpc::camera_server::StartPhotoIntervalResponse>* writer) {
   (void) context;
   (void) request;
-  (void) response;
+  (void) writer;
   return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
 }
 
-::grpc::Status CameraServerService::Service::SubscribeStopPhotoInterval(::grpc::ServerContext* context, const ::mavsdk::rpc::camera_server::SubscribeStopPhotoIntervalRequest* request, ::mavsdk::rpc::camera_server::StopPhotoIntervalResponse* response) {
+::grpc::Status CameraServerService::Service::SubscribeStopPhotoInterval(::grpc::ServerContext* context, const ::mavsdk::rpc::camera_server::SubscribeStopPhotoIntervalRequest* request, ::grpc::ServerWriter< ::mavsdk::rpc::camera_server::StopPhotoIntervalResponse>* writer) {
   (void) context;
   (void) request;
-  (void) response;
+  (void) writer;
   return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
 }
 
