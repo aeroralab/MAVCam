@@ -26,6 +26,11 @@ jobs:
           path: MAVSDK
           submodules: recursive
 
+      - name: install mavlink on the system
+        run: |
+            cmake -B ${{github.workspace}}/MAVSDK/third_party/mavlink/build -S ${{github.workspace}}/MAVSDK/third_party/mavlink
+            sudo cmake --build ${{github.workspace}}/MAVSDK/third_party/mavlink/build --target install
+
       - name: Config MAVSDK
         run: sudo cmake -S ${{github.workspace}}/MAVSDK -B ${{github.workspace}}/mavsdk-build -DCMAKE_BUILD_TYPE=${{env.BUILD_TYPE}}
       
