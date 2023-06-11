@@ -22,6 +22,7 @@ jobs:
         uses: actions/checkout@v3
         with:
           repository: GoerLabs/MAVSDK
+          ref: develop
           path: MAVSDK
           submodules: recursive
 
@@ -34,10 +35,11 @@ jobs:
       - name: Checkout MAVCam
         uses: actions/checkout@v3
         with:
+          path: MAVCam
           submodules: recursive
 
       - name: Configure MAVCam 
-        run: sudo cmake -B ${{github.workspace}}/build -DCMAKE_BUILD_TYPE=${{env.BUILD_TYPE}}
+        run: sudo cmake -S ${{github.workspace}}/MAVCam -B ${{github.workspace}}/mavcam-build -DCMAKE_BUILD_TYPE=${{env.BUILD_TYPE}}
 
       - name: Build MAVCam
-        run: sudo cmake --build ${{github.workspace}}/build
+        run: sudo cmake --build ${{github.workspace}}/mavcam-build
