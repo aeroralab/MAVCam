@@ -101,7 +101,7 @@ elseif(CMAKE_HOST_APPLE)
         openssl
         URL https://www.openssl.org/source/openssl-${OPENSSL_VERSION}.tar.gz
         PREFIX openssl
-        CONFIGURE_COMMAND <SOURCE_DIR>/Configure ${OPENSSL_PLATFORM} CFLAGS=${CFLAGS} --prefix=${CMAKE_INSTALL_PREFIX} ${OPENSSL_BUILD_TYPE} no-shared
+        CONFIGURE_COMMAND <SOURCE_DIR>/config ${OPENSSL_PLATFORM} CFLAGS=${CFLAGS} --prefix=${CMAKE_INSTALL_PREFIX} ${OPENSSL_BUILD_TYPE} no-shared
         )
 else()
     ExternalProject_add(

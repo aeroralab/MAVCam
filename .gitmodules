@@ -1,3 +1,3 @@
 [submodule "proto"]
 	path = proto
-	url = https://github.com/GoerLabs/MAVSDK-Proto.git
+    url = https://github.com/GoerLabs/MAVSDK-Proto.git
