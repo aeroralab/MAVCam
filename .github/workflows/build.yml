@@ -18,13 +18,26 @@ jobs:
         os: [ubuntu-22.04]
 
     steps:
-      - name: Checkout repository and submodules
+      - name: Checkout MAVSDK
+        uses: actions/checkout@v3
+        with:
+          repository: GoerLabs/MAVSDK
+          path: MAVSDK
+          submodules: recursive
+
+      - name: Config MAVSDK
+        run: sudo cmake -S ${{github.workspace}}/MAVSDK -B ${{github.workspace}}/mavsdk-build -DCMAKE_BUILD_TYPE=${{env.BUILD_TYPE}}
+      
+      - name: Buidl and install MAVSDK
+        run: sudo cmake --build ${{github.workspace}}/mavsdk-build --target install
+
+      - name: Checkout MAVCam
         uses: actions/checkout@v3
         with:
           submodules: recursive
 
-      - name: Configure
+      - name: Configure MAVCam 
         run: sudo cmake -B ${{github.workspace}}/build -DCMAKE_BUILD_TYPE=${{env.BUILD_TYPE}}
 
-      - name: Build
-        run: sudo cmake --build ${{github.workspace}}/build --config ${{env.BUILD_TYPE}}
+      - name: Build MAVCam
+        run: sudo cmake --build ${{github.workspace}}/build
