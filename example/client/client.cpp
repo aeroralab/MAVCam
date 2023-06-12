@@ -87,6 +87,15 @@ static void do_camera_operation(mavsdk::Camera &camera) {
     operation_result = camera.take_photo();
     std::cout << "take photo result : " << operation_result << std::endl;
 
+    int photo_count = 5;
+    operation_result = camera.start_photo_interval(1.0);
+    std::cout << "start take photo result : " << operation_result << std::endl;
+    while (photo_count != 0) {
+        photo_count--;
+        std::this_thread::sleep_for(std::chrono::seconds(1));
+    }
+    operation_result = camera.stop_photo_interval();
+
     operation_result = camera.start_video();
     std::cout << "start video result : " << operation_result << std::endl;
 

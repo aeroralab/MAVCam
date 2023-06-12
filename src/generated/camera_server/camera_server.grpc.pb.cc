@@ -27,8 +27,6 @@ static const char* CameraServerService_method_names[] = {
   "/mavsdk.rpc.camera_server.CameraServerService/SetInformation",
   "/mavsdk.rpc.camera_server.CameraServerService/SubscribeTakePhoto",
   "/mavsdk.rpc.camera_server.CameraServerService/RespondTakePhoto",
-  "/mavsdk.rpc.camera_server.CameraServerService/SubscribeStartPhotoInterval",
-  "/mavsdk.rpc.camera_server.CameraServerService/SubscribeStopPhotoInterval",
   "/mavsdk.rpc.camera_server.CameraServerService/SubscribeStartVideo",
   "/mavsdk.rpc.camera_server.CameraServerService/SubscribeStopVideo",
   "/mavsdk.rpc.camera_server.CameraServerService/SubscribeStartVideoStreaming",
@@ -52,19 +50,17 @@ CameraServerService::Stub::Stub(const std::shared_ptr< ::grpc::ChannelInterface>
   : channel_(channel), rpcmethod_SetInformation_(CameraServerService_method_names[0], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   , rpcmethod_SubscribeTakePhoto_(CameraServerService_method_names[1], options.suffix_for_stats(),::grpc::internal::RpcMethod::SERVER_STREAMING, channel)
   , rpcmethod_RespondTakePhoto_(CameraServerService_method_names[2], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_SubscribeStartPhotoInterval_(CameraServerService_method_names[3], options.suffix_for_stats(),::grpc::internal::RpcMethod::SERVER_STREAMING, channel)
-  , rpcmethod_SubscribeStopPhotoInterval_(CameraServerService_method_names[4], options.suffix_for_stats(),::grpc::internal::RpcMethod::SERVER_STREAMING, channel)
-  , rpcmethod_SubscribeStartVideo_(CameraServerService_method_names[5], options.suffix_for_stats(),::grpc::internal::RpcMethod::SERVER_STREAMING, channel)
-  , rpcmethod_SubscribeStopVideo_(CameraServerService_method_names[6], options.suffix_for_stats(),::grpc::internal::RpcMethod::SERVER_STREAMING, channel)
-  , rpcmethod_SubscribeStartVideoStreaming_(CameraServerService_method_names[7], options.suffix_for_stats(),::grpc::internal::RpcMethod::SERVER_STREAMING, channel)
-  , rpcmethod_SubscribeStopVideoStreaming_(CameraServerService_method_names[8], options.suffix_for_stats(),::grpc::internal::RpcMethod::SERVER_STREAMING, channel)
-  , rpcmethod_SubscribeSetMode_(CameraServerService_method_names[9], options.suffix_for_stats(),::grpc::internal::RpcMethod::SERVER_STREAMING, channel)
-  , rpcmethod_SubscribeStorageInformation_(CameraServerService_method_names[10], options.suffix_for_stats(),::grpc::internal::RpcMethod::SERVER_STREAMING, channel)
-  , rpcmethod_RespondStorageInformation_(CameraServerService_method_names[11], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_SubscribeCaptureStatus_(CameraServerService_method_names[12], options.suffix_for_stats(),::grpc::internal::RpcMethod::SERVER_STREAMING, channel)
-  , rpcmethod_RespondCaptureStatus_(CameraServerService_method_names[13], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_SubscribeFormatStorage_(CameraServerService_method_names[14], options.suffix_for_stats(),::grpc::internal::RpcMethod::SERVER_STREAMING, channel)
-  , rpcmethod_SubscribeResetSettings_(CameraServerService_method_names[15], options.suffix_for_stats(),::grpc::internal::RpcMethod::SERVER_STREAMING, channel)
+  , rpcmethod_SubscribeStartVideo_(CameraServerService_method_names[3], options.suffix_for_stats(),::grpc::internal::RpcMethod::SERVER_STREAMING, channel)
+  , rpcmethod_SubscribeStopVideo_(CameraServerService_method_names[4], options.suffix_for_stats(),::grpc::internal::RpcMethod::SERVER_STREAMING, channel)
+  , rpcmethod_SubscribeStartVideoStreaming_(CameraServerService_method_names[5], options.suffix_for_stats(),::grpc::internal::RpcMethod::SERVER_STREAMING, channel)
+  , rpcmethod_SubscribeStopVideoStreaming_(CameraServerService_method_names[6], options.suffix_for_stats(),::grpc::internal::RpcMethod::SERVER_STREAMING, channel)
+  , rpcmethod_SubscribeSetMode_(CameraServerService_method_names[7], options.suffix_for_stats(),::grpc::internal::RpcMethod::SERVER_STREAMING, channel)
+  , rpcmethod_SubscribeStorageInformation_(CameraServerService_method_names[8], options.suffix_for_stats(),::grpc::internal::RpcMethod::SERVER_STREAMING, channel)
+  , rpcmethod_RespondStorageInformation_(CameraServerService_method_names[9], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_SubscribeCaptureStatus_(CameraServerService_method_names[10], options.suffix_for_stats(),::grpc::internal::RpcMethod::SERVER_STREAMING, channel)
+  , rpcmethod_RespondCaptureStatus_(CameraServerService_method_names[11], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_SubscribeFormatStorage_(CameraServerService_method_names[12], options.suffix_for_stats(),::grpc::internal::RpcMethod::SERVER_STREAMING, channel)
+  , rpcmethod_SubscribeResetSettings_(CameraServerService_method_names[13], options.suffix_for_stats(),::grpc::internal::RpcMethod::SERVER_STREAMING, channel)
   {}
 
 ::grpc::Status CameraServerService::Stub::SetInformation(::grpc::ClientContext* context, const ::mavsdk::rpc::camera_server::SetInformationRequest& request, ::mavsdk::rpc::camera_server::SetInformationResponse* response) {
@@ -127,38 +123,6 @@ void CameraServerService::Stub::async::RespondTakePhoto(::grpc::ClientContext* c
     this->PrepareAsyncRespondTakePhotoRaw(context, request, cq);
   result->StartCall();
   return result;
-}
-
-::grpc::ClientReader< ::mavsdk::rpc::camera_server::StartPhotoIntervalResponse>* CameraServerService::Stub::SubscribeStartPhotoIntervalRaw(::grpc::ClientContext* context, const ::mavsdk::rpc::camera_server::SubscribeStartPhotoIntervalRequest& request) {
-  return ::grpc::internal::ClientReaderFactory< ::mavsdk::rpc::camera_server::StartPhotoIntervalResponse>::Create(channel_.get(), rpcmethod_SubscribeStartPhotoInterval_, context, request);
-}
-
-void CameraServerService::Stub::async::SubscribeStartPhotoInterval(::grpc::ClientContext* context, const ::mavsdk::rpc::camera_server::SubscribeStartPhotoIntervalRequest* request, ::grpc::ClientReadReactor< ::mavsdk::rpc::camera_server::StartPhotoIntervalResponse>* reactor) {
-  ::grpc::internal::ClientCallbackReaderFactory< ::mavsdk::rpc::camera_server::StartPhotoIntervalResponse>::Create(stub_->channel_.get(), stub_->rpcmethod_SubscribeStartPhotoInterval_, context, request, reactor);
-}
-
-::grpc::ClientAsyncReader< ::mavsdk::rpc::camera_server::StartPhotoIntervalResponse>* CameraServerService::Stub::AsyncSubscribeStartPhotoIntervalRaw(::grpc::ClientContext* context, const ::mavsdk::rpc::camera_server::SubscribeStartPhotoIntervalRequest& request, ::grpc::CompletionQueue* cq, void* tag) {
-  return ::grpc::internal::ClientAsyncReaderFactory< ::mavsdk::rpc::camera_server::StartPhotoIntervalResponse>::Create(channel_.get(), cq, rpcmethod_SubscribeStartPhotoInterval_, context, request, true, tag);
-}
-
-::grpc::ClientAsyncReader< ::mavsdk::rpc::camera_server::StartPhotoIntervalResponse>* CameraServerService::Stub::PrepareAsyncSubscribeStartPhotoIntervalRaw(::grpc::ClientContext* context, const ::mavsdk::rpc::camera_server::SubscribeStartPhotoIntervalRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc::internal::ClientAsyncReaderFactory< ::mavsdk::rpc::camera_server::StartPhotoIntervalResponse>::Create(channel_.get(), cq, rpcmethod_SubscribeStartPhotoInterval_, context, request, false, nullptr);
-}
-
-::grpc::ClientReader< ::mavsdk::rpc::camera_server::StopPhotoIntervalResponse>* CameraServerService::Stub::SubscribeStopPhotoIntervalRaw(::grpc::ClientContext* context, const ::mavsdk::rpc::camera_server::SubscribeStopPhotoIntervalRequest& request) {
-  return ::grpc::internal::ClientReaderFactory< ::mavsdk::rpc::camera_server::StopPhotoIntervalResponse>::Create(channel_.get(), rpcmethod_SubscribeStopPhotoInterval_, context, request);
-}
-
-void CameraServerService::Stub::async::SubscribeStopPhotoInterval(::grpc::ClientContext* context, const ::mavsdk::rpc::camera_server::SubscribeStopPhotoIntervalRequest* request, ::grpc::ClientReadReactor< ::mavsdk::rpc::camera_server::StopPhotoIntervalResponse>* reactor) {
-  ::grpc::internal::ClientCallbackReaderFactory< ::mavsdk::rpc::camera_server::StopPhotoIntervalResponse>::Create(stub_->channel_.get(), stub_->rpcmethod_SubscribeStopPhotoInterval_, context, request, reactor);
-}
-
-::grpc::ClientAsyncReader< ::mavsdk::rpc::camera_server::StopPhotoIntervalResponse>* CameraServerService::Stub::AsyncSubscribeStopPhotoIntervalRaw(::grpc::ClientContext* context, const ::mavsdk::rpc::camera_server::SubscribeStopPhotoIntervalRequest& request, ::grpc::CompletionQueue* cq, void* tag) {
-  return ::grpc::internal::ClientAsyncReaderFactory< ::mavsdk::rpc::camera_server::StopPhotoIntervalResponse>::Create(channel_.get(), cq, rpcmethod_SubscribeStopPhotoInterval_, context, request, true, tag);
-}
-
-::grpc::ClientAsyncReader< ::mavsdk::rpc::camera_server::StopPhotoIntervalResponse>* CameraServerService::Stub::PrepareAsyncSubscribeStopPhotoIntervalRaw(::grpc::ClientContext* context, const ::mavsdk::rpc::camera_server::SubscribeStopPhotoIntervalRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc::internal::ClientAsyncReaderFactory< ::mavsdk::rpc::camera_server::StopPhotoIntervalResponse>::Create(channel_.get(), cq, rpcmethod_SubscribeStopPhotoInterval_, context, request, false, nullptr);
 }
 
 ::grpc::ClientReader< ::mavsdk::rpc::camera_server::StartVideoResponse>* CameraServerService::Stub::SubscribeStartVideoRaw(::grpc::ClientContext* context, const ::mavsdk::rpc::camera_server::SubscribeStartVideoRequest& request) {
@@ -385,26 +349,6 @@ CameraServerService::Service::Service() {
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       CameraServerService_method_names[3],
       ::grpc::internal::RpcMethod::SERVER_STREAMING,
-      new ::grpc::internal::ServerStreamingHandler< CameraServerService::Service, ::mavsdk::rpc::camera_server::SubscribeStartPhotoIntervalRequest, ::mavsdk::rpc::camera_server::StartPhotoIntervalResponse>(
-          [](CameraServerService::Service* service,
-             ::grpc::ServerContext* ctx,
-             const ::mavsdk::rpc::camera_server::SubscribeStartPhotoIntervalRequest* req,
-             ::grpc::ServerWriter<::mavsdk::rpc::camera_server::StartPhotoIntervalResponse>* writer) {
-               return service->SubscribeStartPhotoInterval(ctx, req, writer);
-             }, this)));
-  AddMethod(new ::grpc::internal::RpcServiceMethod(
-      CameraServerService_method_names[4],
-      ::grpc::internal::RpcMethod::SERVER_STREAMING,
-      new ::grpc::internal::ServerStreamingHandler< CameraServerService::Service, ::mavsdk::rpc::camera_server::SubscribeStopPhotoIntervalRequest, ::mavsdk::rpc::camera_server::StopPhotoIntervalResponse>(
-          [](CameraServerService::Service* service,
-             ::grpc::ServerContext* ctx,
-             const ::mavsdk::rpc::camera_server::SubscribeStopPhotoIntervalRequest* req,
-             ::grpc::ServerWriter<::mavsdk::rpc::camera_server::StopPhotoIntervalResponse>* writer) {
-               return service->SubscribeStopPhotoInterval(ctx, req, writer);
-             }, this)));
-  AddMethod(new ::grpc::internal::RpcServiceMethod(
-      CameraServerService_method_names[5],
-      ::grpc::internal::RpcMethod::SERVER_STREAMING,
       new ::grpc::internal::ServerStreamingHandler< CameraServerService::Service, ::mavsdk::rpc::camera_server::SubscribeStartVideoRequest, ::mavsdk::rpc::camera_server::StartVideoResponse>(
           [](CameraServerService::Service* service,
              ::grpc::ServerContext* ctx,
@@ -413,7 +357,7 @@ CameraServerService::Service::Service() {
                return service->SubscribeStartVideo(ctx, req, writer);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      CameraServerService_method_names[6],
+      CameraServerService_method_names[4],
       ::grpc::internal::RpcMethod::SERVER_STREAMING,
       new ::grpc::internal::ServerStreamingHandler< CameraServerService::Service, ::mavsdk::rpc::camera_server::SubscribeStopVideoRequest, ::mavsdk::rpc::camera_server::StopVideoResponse>(
           [](CameraServerService::Service* service,
@@ -423,7 +367,7 @@ CameraServerService::Service::Service() {
                return service->SubscribeStopVideo(ctx, req, writer);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      CameraServerService_method_names[7],
+      CameraServerService_method_names[5],
       ::grpc::internal::RpcMethod::SERVER_STREAMING,
       new ::grpc::internal::ServerStreamingHandler< CameraServerService::Service, ::mavsdk::rpc::camera_server::SubscribeStartVideoStreamingRequest, ::mavsdk::rpc::camera_server::StartVideoStreamingResponse>(
           [](CameraServerService::Service* service,
@@ -433,7 +377,7 @@ CameraServerService::Service::Service() {
                return service->SubscribeStartVideoStreaming(ctx, req, writer);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      CameraServerService_method_names[8],
+      CameraServerService_method_names[6],
       ::grpc::internal::RpcMethod::SERVER_STREAMING,
       new ::grpc::internal::ServerStreamingHandler< CameraServerService::Service, ::mavsdk::rpc::camera_server::SubscribeStopVideoStreamingRequest, ::mavsdk::rpc::camera_server::StopVideoStreamingResponse>(
           [](CameraServerService::Service* service,
@@ -443,7 +387,7 @@ CameraServerService::Service::Service() {
                return service->SubscribeStopVideoStreaming(ctx, req, writer);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      CameraServerService_method_names[9],
+      CameraServerService_method_names[7],
       ::grpc::internal::RpcMethod::SERVER_STREAMING,
       new ::grpc::internal::ServerStreamingHandler< CameraServerService::Service, ::mavsdk::rpc::camera_server::SubscribeSetModeRequest, ::mavsdk::rpc::camera_server::SetModeResponse>(
           [](CameraServerService::Service* service,
@@ -453,7 +397,7 @@ CameraServerService::Service::Service() {
                return service->SubscribeSetMode(ctx, req, writer);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      CameraServerService_method_names[10],
+      CameraServerService_method_names[8],
       ::grpc::internal::RpcMethod::SERVER_STREAMING,
       new ::grpc::internal::ServerStreamingHandler< CameraServerService::Service, ::mavsdk::rpc::camera_server::SubscribeStorageInformationRequest, ::mavsdk::rpc::camera_server::StorageInformationResponse>(
           [](CameraServerService::Service* service,
@@ -463,7 +407,7 @@ CameraServerService::Service::Service() {
                return service->SubscribeStorageInformation(ctx, req, writer);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      CameraServerService_method_names[11],
+      CameraServerService_method_names[9],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< CameraServerService::Service, ::mavsdk::rpc::camera_server::RespondStorageInformationRequest, ::mavsdk::rpc::camera_server::RespondStorageInformationResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](CameraServerService::Service* service,
@@ -473,7 +417,7 @@ CameraServerService::Service::Service() {
                return service->RespondStorageInformation(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      CameraServerService_method_names[12],
+      CameraServerService_method_names[10],
       ::grpc::internal::RpcMethod::SERVER_STREAMING,
       new ::grpc::internal::ServerStreamingHandler< CameraServerService::Service, ::mavsdk::rpc::camera_server::SubscribeCaptureStatusRequest, ::mavsdk::rpc::camera_server::CaptureStatusResponse>(
           [](CameraServerService::Service* service,
@@ -483,7 +427,7 @@ CameraServerService::Service::Service() {
                return service->SubscribeCaptureStatus(ctx, req, writer);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      CameraServerService_method_names[13],
+      CameraServerService_method_names[11],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< CameraServerService::Service, ::mavsdk::rpc::camera_server::RespondCaptureStatusRequest, ::mavsdk::rpc::camera_server::RespondCaptureStatusResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](CameraServerService::Service* service,
@@ -493,7 +437,7 @@ CameraServerService::Service::Service() {
                return service->RespondCaptureStatus(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      CameraServerService_method_names[14],
+      CameraServerService_method_names[12],
       ::grpc::internal::RpcMethod::SERVER_STREAMING,
       new ::grpc::internal::ServerStreamingHandler< CameraServerService::Service, ::mavsdk::rpc::camera_server::SubscribeFormatStorageRequest, ::mavsdk::rpc::camera_server::FormatStorageResponse>(
           [](CameraServerService::Service* service,
@@ -503,7 +447,7 @@ CameraServerService::Service::Service() {
                return service->SubscribeFormatStorage(ctx, req, writer);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      CameraServerService_method_names[15],
+      CameraServerService_method_names[13],
       ::grpc::internal::RpcMethod::SERVER_STREAMING,
       new ::grpc::internal::ServerStreamingHandler< CameraServerService::Service, ::mavsdk::rpc::camera_server::SubscribeResetSettingsRequest, ::mavsdk::rpc::camera_server::ResetSettingsResponse>(
           [](CameraServerService::Service* service,
@@ -535,20 +479,6 @@ CameraServerService::Service::~Service() {
   (void) context;
   (void) request;
   (void) response;
-  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-}
-
-::grpc::Status CameraServerService::Service::SubscribeStartPhotoInterval(::grpc::ServerContext* context, const ::mavsdk::rpc::camera_server::SubscribeStartPhotoIntervalRequest* request, ::grpc::ServerWriter< ::mavsdk::rpc::camera_server::StartPhotoIntervalResponse>* writer) {
-  (void) context;
-  (void) request;
-  (void) writer;
-  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-}
-
-::grpc::Status CameraServerService::Service::SubscribeStopPhotoInterval(::grpc::ServerContext* context, const ::mavsdk::rpc::camera_server::SubscribeStopPhotoIntervalRequest* request, ::grpc::ServerWriter< ::mavsdk::rpc::camera_server::StopPhotoIntervalResponse>* writer) {
-  (void) context;
-  (void) request;
-  (void) writer;
   return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
 }
 
