@@ -183,10 +183,17 @@ mavsdk::CameraServer::Result CameraRpcClient::reset_settings() {
 
 mavsdk::CameraServer::Result CameraRpcClient::fill_information(
     mavsdk::CameraServer::Information &information) {
-    while (!_init_information) {
-        //just wait for informaiton
-        std::this_thread::sleep_for(std::chrono::milliseconds(50));
-        continue;
+    if (!_init_information) {
+        mavsdk::rpc::camera::SubscribeInformationRequest request;
+        grpc::ClientContext context;
+        auto information_reader = _stub->SubscribeInformation(&context, request);
+
+        mavsdk::rpc::camera::InformationResponse response;
+        if (information_reader->Read(&response)) {
+            fillInformation(response.information(), _information);
+        }
+        information_reader->Finish();
+        _init_information = true;
     }
 
     information = _information;
@@ -287,30 +294,16 @@ void CameraRpcClient::stop() {
 
 void CameraRpcClient::work_thread(CameraRpcClient *self) {
     while (!self->_should_exit) {
-        if (!self->_init_information) {
-            mavsdk::rpc::camera::SubscribeInformationRequest request;
-            grpc::ClientContext context;
-            self->_information_reader = self->_stub->SubscribeInformation(&context, request);
+        mavsdk::rpc::camera::SubscribeStatusRequest request;
+        grpc::ClientContext context;
+        auto status_reader = self->_stub->SubscribeStatus(&context, request);
 
-            mavsdk::rpc::camera::InformationResponse response;
-            if (self->_information_reader->Read(&response)) {
-                fillInformation(response.information(), self->_information);
-            }
-            self->_information_reader->Finish();
-            self->_init_information = true;
+        mavsdk::rpc::camera::StatusResponse response;
+        if (status_reader->Read(&response)) {
+            fillStorageInformation(response.camera_status(), self->_storage_information);
+            fillCaptureStatus(response.camera_status(), self->_capture_status);
         }
-        if (!self->_init_status) {
-            mavsdk::rpc::camera::SubscribeStatusRequest request;
-            grpc::ClientContext context;
-            self->_status_reader = self->_stub->SubscribeStatus(&context, request);
-
-            mavsdk::rpc::camera::StatusResponse response;
-            if (self->_status_reader->Read(&response)) {
-                fillStorageInformation(response.camera_status(), self->_storage_information);
-                fillCaptureStatus(response.camera_status(), self->_capture_status);
-            }
-            self->_status_reader->Finish();
-        }
+        status_reader->Finish();
     }
 }
 

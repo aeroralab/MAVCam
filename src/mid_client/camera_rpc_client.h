@@ -51,13 +51,9 @@ private:
     std::atomic<bool> _is_recording_video;
     std::chrono::steady_clock::time_point _start_video_time;
 private:
-    std::unique_ptr<grpc::ClientReader<mavsdk::rpc::camera::InformationResponse>>
-        _information_reader;
     std::atomic<bool> _init_information{false};
     mavsdk::CameraServer::Information _information;
 private:
-    std::unique_ptr<grpc::ClientReader<mavsdk::rpc::camera::StatusResponse>> _status_reader;
-    std::atomic<bool> _init_status{false};
     mavsdk::CameraServer::StorageInformation _storage_information;
     mavsdk::CameraServer::CaptureStatus _capture_status;
 private:

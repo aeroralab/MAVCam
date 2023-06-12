@@ -210,7 +210,7 @@ void CameraImpl::work_thread(CameraImpl *self) {
         {
             std::lock_guard<std::mutex> lock(self->_callback_mutex);
             if (self->_need_update_camera_information) {
-                LogDebug() << "update camera information";
+                LogDebug() << "retrive camera information";
                 self->_camera_information_callback(self->information());
                 self->_need_update_camera_information = false;
             }

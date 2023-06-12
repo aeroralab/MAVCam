@@ -26,11 +26,10 @@ target_include_directories(${EXECUTABLE_NAME}
     ${DEPS_INSTALL_PATH}/include
 )
 
-find_package(MAVSDK REQUIRED)
-
 list(APPEND CMAKE_PREFIX_PATH "${DEPS_INSTALL_PATH}")
 set(CMAKE_PREFIX_PATH ${CMAKE_PREFIX_PATH} PARENT_SCOPE)
 
+find_package(MAVSDK REQUIRED)
 find_package(OpenSSL REQUIRED)
 find_package(gRPC REQUIRED)
 
