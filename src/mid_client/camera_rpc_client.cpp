@@ -24,6 +24,11 @@ std::unique_ptr<mavsdk::rpc::camera::Setting> createRPCSetting(
     const std::string &setting_id, const std::string &setting_description,
     const std::string &option_id, const std::string &option_description);
 
+static mavsdk::CameraServer::StorageInformation::StorageStatus translateFromRpcStorageStatus(
+    const mavsdk::rpc::camera::Status::StorageStatus storage_status);
+static mavsdk::CameraServer::StorageInformation::StorageType translateFromRpcStorageType(
+    const mavsdk::rpc::camera::Status::StorageType storage_type);
+
 CameraRpcClient::CameraRpcClient() {}
 
 CameraRpcClient::~CameraRpcClient() {
@@ -366,9 +371,9 @@ static void fillStorageInformation(const mavsdk::rpc::camera::Status &input,
     output.used_storage_mib = input.used_storage_mib();
     output.available_storage_mib = input.available_storage_mib();
     output.total_storage_mib = input.total_storage_mib();
-    // output.storage_status =
+    output.storage_status = translateFromRpcStorageStatus(input.storage_status());
     output.storage_id = input.storage_id();
-    // output.storage_type =
+    output.storage_type = translateFromRpcStorageType(input.storage_type());
 }
 
 static void fillCaptureStatus(const mavsdk::rpc::camera::Status &input,
@@ -397,6 +402,44 @@ std::unique_ptr<mavsdk::rpc::camera::Setting> createRPCSetting(
     setting->set_allocated_option(option.release());
 
     return setting;
+}
+
+static mavsdk::CameraServer::StorageInformation::StorageStatus translateFromRpcStorageStatus(
+    const mavsdk::rpc::camera::Status::StorageStatus storage_status) {
+    switch (storage_status) {
+        default:
+            LogError() << "Unknown storage_status enum value: " << static_cast<int>(storage_status);
+        // FALLTHROUGH
+        case mavsdk::rpc::camera::Status_StorageStatus_STORAGE_STATUS_NOT_AVAILABLE:
+            return mavsdk::CameraServer::StorageInformation::StorageStatus::NotAvailable;
+        case mavsdk::rpc::camera::Status_StorageStatus_STORAGE_STATUS_UNFORMATTED:
+            return mavsdk::CameraServer::StorageInformation::StorageStatus::Unformatted;
+        case mavsdk::rpc::camera::Status_StorageStatus_STORAGE_STATUS_FORMATTED:
+            return mavsdk::CameraServer::StorageInformation::StorageStatus::Formatted;
+        case mavsdk::rpc::camera::Status_StorageStatus_STORAGE_STATUS_NOT_SUPPORTED:
+            return mavsdk::CameraServer::StorageInformation::StorageStatus::NotSupported;
+    }
+}
+
+static mavsdk::CameraServer::StorageInformation::StorageType translateFromRpcStorageType(
+    const mavsdk::rpc::camera::Status::StorageType storage_type) {
+    switch (storage_type) {
+        default:
+            LogError() << "Unknown storage_type enum value: " << static_cast<int>(storage_type);
+        // FALLTHROUGH
+        case mavsdk::rpc::camera::Status_StorageType_STORAGE_TYPE_UNKNOWN:
+            return mavsdk::CameraServer::StorageInformation::StorageType::Unknown;
+        case mavsdk::rpc::camera::Status_StorageType_STORAGE_TYPE_USB_STICK:
+            return mavsdk::CameraServer::StorageInformation::StorageType::UsbStick;
+        case mavsdk::rpc::camera::Status_StorageType_STORAGE_TYPE_SD:
+            return mavsdk::CameraServer::StorageInformation::StorageType::Sd;
+        case mavsdk::rpc::camera::Status_StorageType_STORAGE_TYPE_MICROSD:
+            return mavsdk::CameraServer::StorageInformation::StorageType::Microsd;
+        case mavsdk::rpc::camera::Status_StorageType_STORAGE_TYPE_HD:
+            return mavsdk::CameraServer::StorageInformation::StorageType::Hd;
+        case mavsdk::rpc::camera::Status_StorageType_STORAGE_TYPE_OTHER:
+            return mavsdk::CameraServer::StorageInformation::StorageType::Other;
+    }
 }
 
 }  // namespace mid
