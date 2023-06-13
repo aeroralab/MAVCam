@@ -32,7 +32,7 @@ public:
     virtual Camera::Information information() const override;
     virtual void subscribe_video_stream_info(
         const Camera::VideoStreamInfoCallback &callback) override;
-    virtual Camera::VideoStreamInfo video_stream_info() const override;
+    virtual std::vector<Camera::VideoStreamInfo> video_stream_info() const override;
     virtual void subscribe_capture_info(const Camera::CaptureInfoCallback &callback) override;
     virtual void subscribe_status(const Camera::StatusCallback &callback) override;
     virtual Camera::Status status() const override;

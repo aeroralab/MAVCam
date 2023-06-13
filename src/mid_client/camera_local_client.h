@@ -26,6 +26,8 @@ public:  //operation
 public:  //subscribe
     virtual mavsdk::CameraServer::Result fill_information(
         mavsdk::CameraServer::Information &information) override;
+    virtual mavsdk::CameraServer::Result fill_video_stream_info(
+        std::vector<mavsdk::CameraServer::VideoStreamInfo> &video_stream_infos) override;
     virtual mavsdk::CameraServer::Result fill_storage_information(
         mavsdk::CameraServer::StorageInformation &storage_information) override;
     virtual mavsdk::CameraServer::Result fill_capture_status(

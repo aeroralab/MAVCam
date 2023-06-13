@@ -76,6 +76,8 @@ Camera::Result CameraImpl::set_mode(Camera::Mode mode) const {
 std::pair<Camera::Result, std::vector<Camera::CaptureInfo>> CameraImpl::list_photos(
     Camera::PhotosRange photos_range) const {
     LogWarn() << "unsupport function";
+
+    return {Camera::Result::ProtocolUnsupported, {}};
 }
 
 void CameraImpl::subscribe_mode(const Camera::ModeCallback &callback) {
@@ -111,9 +113,41 @@ Camera::Information CameraImpl::information() const {
     };
 }
 
-void CameraImpl::subscribe_video_stream_info(const Camera::VideoStreamInfoCallback &callback) {}
+void CameraImpl::subscribe_video_stream_info(const Camera::VideoStreamInfoCallback &callback) {
+    std::lock_guard<std::mutex> lock(_callback_mutex);
+    _need_update_video_stream_info = true;
+    _video_stream_info_callback = callback;
+}
 
-Camera::VideoStreamInfo CameraImpl::video_stream_info() const {}
+std::vector<Camera::VideoStreamInfo> CameraImpl::video_stream_info() const {
+    mid::Camera::VideoStreamInfo normal_video_stream;
+    normal_video_stream.stream_id = 1;
+
+    normal_video_stream.settings.frame_rate_hz = 60.0;
+    normal_video_stream.settings.horizontal_resolution_pix = 1920;
+    normal_video_stream.settings.vertical_resolution_pix = 1080;
+    normal_video_stream.settings.bit_rate_b_s = 4 * 1024 * 1024;
+    normal_video_stream.settings.rotation_deg = 0;
+    normal_video_stream.settings.uri = "rtsp://10.0.0.11/live";
+    normal_video_stream.settings.horizontal_fov_deg = 0;
+    normal_video_stream.status = mid::Camera::VideoStreamInfo::VideoStreamStatus::InProgress;
+    normal_video_stream.spectrum = mid::Camera::VideoStreamInfo::VideoStreamSpectrum::VisibleLight;
+
+    mid::Camera::VideoStreamInfo infrared_video_stream;
+    infrared_video_stream.stream_id = 2;
+
+    infrared_video_stream.settings.frame_rate_hz = 24.0;
+    infrared_video_stream.settings.horizontal_resolution_pix = 1280;
+    infrared_video_stream.settings.vertical_resolution_pix = 720;
+    infrared_video_stream.settings.bit_rate_b_s = 4 * 1024;
+    infrared_video_stream.settings.rotation_deg = 0;
+    infrared_video_stream.settings.uri = "rtsp://10.0.0.11/live2";
+    infrared_video_stream.settings.horizontal_fov_deg = 0;
+    infrared_video_stream.status = mid::Camera::VideoStreamInfo::VideoStreamStatus::InProgress;
+    infrared_video_stream.spectrum = mid::Camera::VideoStreamInfo::VideoStreamSpectrum::Infrared;
+
+    return {normal_video_stream, infrared_video_stream};
+}
 
 void CameraImpl::subscribe_capture_info(const Camera::CaptureInfoCallback &callback) {}
 
@@ -147,7 +181,9 @@ void CameraImpl::subscribe_current_settings(const Camera::CurrentSettingsCallbac
 void CameraImpl::subscribe_possible_setting_options(
     const Camera::PossibleSettingOptionsCallback &callback) {}
 
-std::vector<Camera::SettingOptions> CameraImpl::possible_setting_options() const {}
+std::vector<Camera::SettingOptions> CameraImpl::possible_setting_options() const {
+    return {};
+}
 
 Camera::Result CameraImpl::set_setting(Setting setting) const {
     LogDebug() << "call set " << setting.setting_id << " to value " << setting.option.option_id;
@@ -213,6 +249,11 @@ void CameraImpl::work_thread(CameraImpl *self) {
                 LogDebug() << "retrive camera information";
                 self->_camera_information_callback(self->information());
                 self->_need_update_camera_information = false;
+            }
+            if (self->_need_update_video_stream_info) {
+                LogDebug() << "retrive video stream information";
+                self->_video_stream_info_callback(self->video_stream_info());
+                self->_need_update_video_stream_info = false;
             }
             // send status
             if (self->_status_callback != nullptr) {

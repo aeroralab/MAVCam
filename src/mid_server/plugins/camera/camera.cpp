@@ -202,13 +202,14 @@ std::ostream &operator<<(
     }
 }
 bool operator==(const Camera::VideoStreamInfo &lhs, const Camera::VideoStreamInfo &rhs) {
-    return (rhs.settings == lhs.settings) && (rhs.status == lhs.status) &&
-           (rhs.spectrum == lhs.spectrum);
+    return (rhs.stream_id == lhs.stream_id) && (rhs.settings == lhs.settings) &&
+           (rhs.status == lhs.status) && (rhs.spectrum == lhs.spectrum);
 }
 
 std::ostream &operator<<(std::ostream &str, Camera::VideoStreamInfo const &video_stream_info) {
     str << std::setprecision(15);
     str << "video_stream_info:" << '\n' << "{\n";
+    str << "    stream_id: " << video_stream_info.stream_id << '\n';
     str << "    settings: " << video_stream_info.settings << '\n';
     str << "    status: " << video_stream_info.status << '\n';
     str << "    spectrum: " << video_stream_info.spectrum << '\n';

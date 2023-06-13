@@ -108,6 +108,13 @@ void MidClient::subscribe_camera_operation(mavsdk::CameraServer &camera_server) 
     _camera_client->fill_information(information);
     auto ret = camera_server.set_information(information);
 
+    // fill video stream info
+    std::vector<mavsdk::CameraServer::VideoStreamInfo> video_stream_infos;
+    _camera_client->fill_video_stream_info(video_stream_infos);
+    if (video_stream_infos.size() > 0) {
+        ret = camera_server.set_video_stream_info(video_stream_infos);
+    }
+
     if (ret != mavsdk::CameraServer::Result::Success) {
         LogError() << "Failed to set camera info";
     }

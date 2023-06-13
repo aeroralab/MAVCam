@@ -94,6 +94,30 @@ mavsdk::CameraServer::Result CameraLocalClient::fill_information(
     return mavsdk::CameraServer::Result::Success;
 }
 
+mavsdk::CameraServer::Result CameraLocalClient::fill_video_stream_info(
+    std::vector<mavsdk::CameraServer::VideoStreamInfo> &video_stream_infos) {
+    video_stream_infos.clear();
+
+    mavsdk::CameraServer::VideoStreamInfo normal_video_stream;
+    normal_video_stream.stream_id = 1;
+
+    normal_video_stream.settings.frame_rate_hz = 60.0;
+    normal_video_stream.settings.horizontal_resolution_pix = 1920;
+    normal_video_stream.settings.vertical_resolution_pix = 1080;
+    normal_video_stream.settings.bit_rate_b_s = 4 * 1024 * 1024;
+    normal_video_stream.settings.rotation_deg = 0;
+    normal_video_stream.settings.uri = "rtsp://10.0.0.11/live";
+    normal_video_stream.settings.horizontal_fov_deg = 0;
+    normal_video_stream.status =
+        mavsdk::CameraServer::VideoStreamInfo::VideoStreamStatus::InProgress;
+    normal_video_stream.spectrum =
+        mavsdk::CameraServer::VideoStreamInfo::VideoStreamSpectrum::VisibleLight;
+
+    video_stream_infos.emplace_back(normal_video_stream);
+
+    return mavsdk::CameraServer::Result::Success;
+}
+
 mavsdk::CameraServer::Result CameraLocalClient::fill_storage_information(
     mavsdk::CameraServer::StorageInformation &storage_information) {
     constexpr int kTotalStorage = 4 * 1024 * 1024;

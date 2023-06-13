@@ -27,9 +27,7 @@ else()
     else()
         add_definitions(-fno-exceptions)
         set(warnings "-Wall -Wextra -Wshadow -Wno-strict-aliasing -Wold-style-cast -Wdouble-promotion -Wformat=2 -Wno-address-of-packed-member")
-        if (WERROR)
-            set(warnings "${warnings} -Werror")
-        endif()
+        set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Werror")
     endif()
 
 

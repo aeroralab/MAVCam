@@ -207,6 +207,8 @@ public:
         const mid::Camera::VideoStreamInfo &video_stream_info) {
         auto rpc_obj = std::make_unique<mavsdk::rpc::camera::VideoStreamInfo>();
 
+        rpc_obj->set_stream_id(video_stream_info.stream_id);
+
         rpc_obj->set_allocated_settings(
             translateToRpcVideoStreamSettings(video_stream_info.settings).release());
 
@@ -504,19 +506,21 @@ public:
 
     ::grpc::Status SubscribeVideoStreamInfo(
         ::grpc::ServerContext *context,
-        const ::mavsdk::rpc::camera::SubscribeVideoStreamInfoRequest *request,
-        ::grpc::ServerWriter<::mavsdk::rpc::camera::VideoStreamInfoResponse> *writer) override {
+        const mavsdk::rpc::camera::SubscribeVideoStreamInfoRequest *request,
+        grpc::ServerWriter<::mavsdk::rpc::camera::VideoStreamInfoResponse> *writer) override {
         auto stream_closed_promise = std::make_shared<std::promise<void>>();
         auto stream_closed_future = stream_closed_promise->get_future();
         register_stream_stop_promise(stream_closed_promise);
 
         _plugin->subscribe_video_stream_info(
-            [this, &writer,
-             &stream_closed_promise](const mid::Camera::VideoStreamInfo video_stream_info) {
+            [this, &writer, &stream_closed_promise](
+                const std::vector<mid::Camera::VideoStreamInfo> video_stream_info) {
                 mavsdk::rpc::camera::VideoStreamInfoResponse rpc_response;
 
-                rpc_response.set_allocated_video_stream_info(
-                    translateToRpcVideoStreamInfo(video_stream_info).release());
+                for (const auto &elem : video_stream_info) {
+                    auto *ptr = rpc_response.add_video_stream_infos();
+                    ptr->CopyFrom(*translateToRpcVideoStreamInfo(elem).release());
+                }
 
                 writer->Write(rpc_response);
                 unregister_stream_stop_promise(stream_closed_promise);
@@ -531,7 +535,9 @@ public:
     ::grpc::Status SubscribeCaptureInfo(
         ::grpc::ServerContext *context,
         const ::mavsdk::rpc::camera::SubscribeCaptureInfoRequest *request,
-        ::grpc::ServerWriter<::mavsdk::rpc::camera::CaptureInfoResponse> *writer) override {}
+        ::grpc::ServerWriter<::mavsdk::rpc::camera::CaptureInfoResponse> *writer) override {
+        return ::grpc::Status::OK;
+    }
 
     ::grpc::Status SubscribeStatus(
         ::grpc::ServerContext *context,
@@ -586,7 +592,9 @@ public:
         ::grpc::ServerContext *context,
         const ::mavsdk::rpc::camera::SubscribePossibleSettingOptionsRequest *request,
         ::grpc::ServerWriter<::mavsdk::rpc::camera::PossibleSettingOptionsResponse> *writer)
-        override {}
+        override {
+        return ::grpc::Status::OK;
+    }
 
     ::grpc::Status SetSetting(::grpc::ServerContext *context,
                               const ::mavsdk::rpc::camera::SetSettingRequest *request,

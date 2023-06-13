@@ -14,6 +14,9 @@ static mavsdk::rpc::camera::Mode translateFromCameraServerMode(
 
 static void fillInformation(const mavsdk::rpc::camera::Information &input,
                             mavsdk::CameraServer::Information &output);
+static void fillVideoStreamInfos(
+    const ::google::protobuf::RepeatedPtrField< ::mavsdk::rpc::camera::VideoStreamInfo> &input,
+    std::vector<mavsdk::CameraServer::VideoStreamInfo> &output);
 static void fillStorageInformation(const mavsdk::rpc::camera::Status &input,
                                    mavsdk::CameraServer::StorageInformation &output);
 static void fillCaptureStatus(const mavsdk::rpc::camera::Status &input,
@@ -24,6 +27,11 @@ std::unique_ptr<mavsdk::rpc::camera::Setting> createRPCSetting(
     const std::string &setting_id, const std::string &setting_description,
     const std::string &option_id, const std::string &option_description);
 
+static mavsdk::CameraServer::VideoStreamInfo::VideoStreamStatus translateFromRpcVideoStreamStatus(
+    const mavsdk::rpc::camera::VideoStreamInfo::VideoStreamStatus video_stream_status);
+static mavsdk::CameraServer::VideoStreamInfo::VideoStreamSpectrum
+translateFromRpcVideoStreamSpectrum(
+    const mavsdk::rpc::camera::VideoStreamInfo::VideoStreamSpectrum video_stream_spectrum);
 static mavsdk::CameraServer::StorageInformation::StorageStatus translateFromRpcStorageStatus(
     const mavsdk::rpc::camera::Status::StorageStatus storage_status);
 static mavsdk::CameraServer::StorageInformation::StorageType translateFromRpcStorageType(
@@ -205,6 +213,24 @@ mavsdk::CameraServer::Result CameraRpcClient::fill_information(
     return mavsdk::CameraServer::Result::Success;
 }
 
+mavsdk::CameraServer::Result CameraRpcClient::fill_video_stream_info(
+    std::vector<mavsdk::CameraServer::VideoStreamInfo> &video_stream_infos) {
+    if (!_init_video_stream_info) {
+        mavsdk::rpc::camera::SubscribeVideoStreamInfoRequest request;
+        grpc::ClientContext context;
+        auto video_stream_info_reader = _stub->SubscribeVideoStreamInfo(&context, request);
+        mavsdk::rpc::camera::VideoStreamInfoResponse response;
+        if (video_stream_info_reader->Read(&response)) {
+            fillVideoStreamInfos(response.video_stream_infos(), _video_stream_infos);
+        }
+        video_stream_info_reader->Finish();
+
+        _init_video_stream_info = true;
+    }
+    video_stream_infos = _video_stream_infos;
+    return mavsdk::CameraServer::Result::Success;
+}
+
 mavsdk::CameraServer::Result CameraRpcClient::fill_storage_information(
     mavsdk::CameraServer::StorageInformation &storage_information) {
     storage_information = _storage_information;
@@ -366,6 +392,32 @@ static void fillInformation(const mavsdk::rpc::camera::Information &input,
     output.definition_file_uri = input.definition_file_uri();
 }
 
+static void fillVideoStreamInfos(
+    const ::google::protobuf::RepeatedPtrField< ::mavsdk::rpc::camera::VideoStreamInfo> &input,
+    std::vector<mavsdk::CameraServer::VideoStreamInfo> &output) {
+    for (auto &it : input) {
+        mavsdk::CameraServer::VideoStreamInfo video_stream_info;
+        video_stream_info.stream_id = it.stream_id();
+
+        video_stream_info.settings.frame_rate_hz = it.settings().frame_rate_hz();
+        video_stream_info.settings.horizontal_resolution_pix =
+            it.settings().horizontal_resolution_pix();
+        video_stream_info.settings.vertical_resolution_pix =
+            it.settings().vertical_resolution_pix();
+        video_stream_info.settings.bit_rate_b_s = it.settings().bit_rate_b_s();
+        video_stream_info.settings.rotation_deg = it.settings().rotation_deg();
+        video_stream_info.settings.uri = it.settings().uri();
+        video_stream_info.settings.horizontal_fov_deg = it.settings().horizontal_fov_deg();
+
+        video_stream_info.status = translateFromRpcVideoStreamStatus(it.status());
+        video_stream_info.spectrum = translateFromRpcVideoStreamSpectrum(it.spectrum());
+
+        LogDebug() << video_stream_info;
+        output.emplace_back(video_stream_info);
+    }
+    return;
+}
+
 static void fillStorageInformation(const mavsdk::rpc::camera::Status &input,
                                    mavsdk::CameraServer::StorageInformation &output) {
     output.used_storage_mib = input.used_storage_mib();
@@ -402,6 +454,39 @@ std::unique_ptr<mavsdk::rpc::camera::Setting> createRPCSetting(
     setting->set_allocated_option(option.release());
 
     return setting;
+}
+
+static mavsdk::CameraServer::VideoStreamInfo::VideoStreamStatus translateFromRpcVideoStreamStatus(
+    const mavsdk::rpc::camera::VideoStreamInfo::VideoStreamStatus video_stream_status) {
+    switch (video_stream_status) {
+        default:
+            LogError() << "Unknown video_stream_status enum value: "
+                       << static_cast<int>(video_stream_status);
+        // FALLTHROUGH
+        case mavsdk::rpc::camera::VideoStreamInfo_VideoStreamStatus_VIDEO_STREAM_STATUS_NOT_RUNNING:
+            return mavsdk::CameraServer::VideoStreamInfo::VideoStreamStatus::NotRunning;
+        case mavsdk::rpc::camera::VideoStreamInfo_VideoStreamStatus_VIDEO_STREAM_STATUS_IN_PROGRESS:
+            return mavsdk::CameraServer::VideoStreamInfo::VideoStreamStatus::InProgress;
+    }
+}
+
+static mavsdk::CameraServer::VideoStreamInfo::VideoStreamSpectrum
+translateFromRpcVideoStreamSpectrum(
+    const mavsdk::rpc::camera::VideoStreamInfo::VideoStreamSpectrum video_stream_spectrum) {
+    switch (video_stream_spectrum) {
+        default:
+            LogError() << "Unknown video_stream_spectrum enum value: "
+                       << static_cast<int>(video_stream_spectrum);
+        // FALLTHROUGH
+        case mavsdk::rpc::camera::VideoStreamInfo_VideoStreamSpectrum_VIDEO_STREAM_SPECTRUM_UNKNOWN:
+            return mavsdk::CameraServer::VideoStreamInfo::VideoStreamSpectrum::Unknown;
+        case mavsdk::rpc::camera::
+            VideoStreamInfo_VideoStreamSpectrum_VIDEO_STREAM_SPECTRUM_VISIBLE_LIGHT:
+            return mavsdk::CameraServer::VideoStreamInfo::VideoStreamSpectrum::VisibleLight;
+        case mavsdk::rpc::camera::
+            VideoStreamInfo_VideoStreamSpectrum_VIDEO_STREAM_SPECTRUM_INFRARED:
+            return mavsdk::CameraServer::VideoStreamInfo::VideoStreamSpectrum::Infrared;
+    }
 }
 
 static mavsdk::CameraServer::StorageInformation::StorageStatus translateFromRpcStorageStatus(
