@@ -11,7 +11,7 @@ static bool is_integer(const std::string &tested_integer);
 int main(int argc, const char *argv[]) {
     std::string connection_url = default_connection;
     int rpc_port = default_rpc_port;
-
+    bool use_local = false;
     for (int i = 1; i < argc; i++) {
         const std::string current_arg = argv[i];
 
@@ -25,6 +25,8 @@ int main(int argc, const char *argv[]) {
             }
             connection_url = std::string(argv[i + 1]);
             i++;
+        } else if (current_arg == "-l") {
+            use_local = true;
         } else if (current_arg == "-r") {
             if (argc <= i + 1) {
                 usage(argv[0]);
@@ -42,7 +44,7 @@ int main(int argc, const char *argv[]) {
     }
 
     mid::MidClient client;
-    if (!client.init(connection_url, rpc_port)) {
+    if (!client.init(connection_url, use_local, rpc_port)) {
         std::cout << "Cannot init middleware client " << connection_url << std::endl;
         return 1;
     }
@@ -63,6 +65,7 @@ void usage(const char *bin_name) {
               << "  -h | --help : show this help" << '\n'
               << "  -u          : set the url on which the mavsdk server is running,\n"
               << "                (default is " << default_connection << ")\n"
+              << "  -l          : use local client\n"
               << "  -r          : set the rpc port,\n"
               << "                (default is " << default_rpc_port << ")\n";
 }

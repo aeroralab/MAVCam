@@ -16,7 +16,7 @@ public:
     MidClient() {}
     ~MidClient() {}
 public:
-    bool init(std::string &connection_url, int rpc_port);
+    bool init(std::string &connection_url, bool use_local, int rpc_port);
     bool start_runloop();
 private:
     void subscribe_camera_operation(mavsdk::CameraServer &camera_server);

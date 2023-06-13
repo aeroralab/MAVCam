@@ -368,6 +368,9 @@ static mavsdk::CameraServer::Result translateFromRpcResult(
 static mavsdk::rpc::camera::Mode translateFromCameraServerMode(
     const mavsdk::CameraServer::Mode server_mode) {
     switch (server_mode) {
+        default:
+            LogError() << "Unknown enum value: " << static_cast<int>(server_mode);
+        // FALLTHROUGH
         case mavsdk::CameraServer::Mode::Photo:
             return mavsdk::rpc::camera::Mode::MODE_PHOTO;
         case mavsdk::CameraServer::Mode::Video:

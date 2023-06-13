@@ -12,13 +12,19 @@
 
 namespace mid {
 
-bool MidClient::init(std::string &connection_url, int rpc_port) {
+bool MidClient::init(std::string &connection_url, bool use_local, int rpc_port) {
     //Todo need check connection url first
     _connection_url = connection_url;
     _rpc_port = rpc_port;
 
-    //_camera_client = CreateLocalCameraClient();  // use local client
-    _camera_client = CreateRpcCameraClient(_rpc_port);  // use rpc client
+    if (use_local) {
+        _camera_client = CreateLocalCameraClient();  // use local client
+    } else {
+        _camera_client = CreateRpcCameraClient(_rpc_port);  // use rpc client
+    }
+    if (_camera_client == nullptr) {
+        return false;
+    }
     return true;
 }
 
