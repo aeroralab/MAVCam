@@ -1,6 +1,7 @@
 #include <iostream>
 
 #include "mid_client.h"
+#include "version.h"
 
 static auto constexpr default_connection = "udp://127.0.0.1:14540";
 static auto constexpr default_rpc_port = 50051;
@@ -17,6 +18,10 @@ int main(int argc, const char *argv[]) {
 
         if (current_arg == "-h" || current_arg == "--help") {
             usage(argv[0]);
+            return 0;
+        } else if (current_arg == "-v" || current_arg == "--version") {
+            std::cout << "MAVCam client version : " << VERSION << std::endl;
+            std::cout << "build time : " << BUILD_TIME << std::endl;
             return 0;
         } else if (current_arg == "-u") {
             if (argc <= i + 1) {
@@ -63,10 +68,11 @@ void usage(const char *bin_name) {
               << '\n'
               << "Options:" << '\n'
               << "  -h | --help : show this help" << '\n'
+              << " -v | --version : show version information " << '\n'
               << "  -u          : set the url on which the mavsdk server is running,\n"
-              << "                (default is " << default_connection << ")\n"
-              << "  -l          : use local client\n"
-              << "  -r          : set the rpc port,\n"
+              << "                (default is " << default_connection << ")" << '\n'
+              << "  -l          : use local client" << '\n'
+              << "  -r          : set the rpc port," << '\n'
               << "                (default is " << default_rpc_port << ")\n";
 }
 

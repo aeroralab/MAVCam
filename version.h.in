@@ -1,0 +1,10 @@
+#ifndef MAV_CAM_H_
+#define MAV_CAM_H_
+
+#define MAJOR_VERSION "@VERSION_MAJOR@"
+#define MINOR_VERSION "@VERSION_MINOR@"
+#define PATCH_VERSION "@VERSION_PATCH@"
+#define VERSION "@VERSION_STRING@"
+#define BUILD_TIME "@BUILD_TIME@"
+
+#endif  // MAV_CAM_H_

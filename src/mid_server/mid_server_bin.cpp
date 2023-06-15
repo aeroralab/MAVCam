@@ -1,6 +1,7 @@
 #include <iostream>
 
 #include "mid_server.h"
+#include "version.h"
 
 static auto constexpr default_rpc_port = 50051;
 
@@ -15,6 +16,10 @@ int main(int argc, const char *argv[]) {
 
         if (current_arg == "-h" || current_arg == "--help") {
             usage(argv[0]);
+            return 0;
+        } else if (current_arg == "-v" || current_arg == "--version") {
+            std::cout << "MAVCam client version : " << VERSION << std::endl;
+            std::cout << "build time : " << BUILD_TIME << std::endl;
             return 0;
         } else if (current_arg == "-r") {
             if (argc <= i + 1) {
@@ -47,7 +52,8 @@ void usage(const char *bin_name) {
               << '\n'
               << "Options:" << '\n'
               << "  -h | --help : show this help" << '\n'
-              << "  -r          : set the rpc port,\n"
+              << " -v | --version : show version information " << '\n'
+              << "  -r          : set the rpc port," << '\n'
               << "                (default is " << default_rpc_port << ")\n";
 }
 
