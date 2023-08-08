@@ -30,7 +30,8 @@ bool MidClient::init(std::string &connection_url, bool use_local, int rpc_port) 
 
 bool MidClient::start_runloop() {
     mavsdk::Mavsdk mavsdk;
-    mavsdk::Mavsdk::Configuration configuration(mavsdk::Mavsdk::Configuration::UsageType::Camera);
+    mavsdk::Mavsdk::Configuration configuration(
+        mavsdk::Mavsdk::Configuration::UsageType::Autopilot);
     mavsdk.set_configuration(configuration);
 
     auto result = mavsdk.add_any_connection(_connection_url);

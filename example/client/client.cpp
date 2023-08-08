@@ -27,7 +27,7 @@ int main(int argc, const char *argv[]) {
         mavsdk::Mavsdk::Configuration::UsageType::GroundStation);
     mavsdk.set_configuration(configuration);
 
-    auto result = mavsdk.add_any_connection("udp://:14540");
+    auto result = mavsdk.add_any_connection("udp://:14450");
     if (result == mavsdk::ConnectionResult::Success) {
         std::cout << "Connected!" << std::endl;
     }

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <mavlinkcamera>
-    <definition version="1">
+    <definition version="2">
         <model>C10</model>
         <vendor>Goertek</vendor>
     </definition>
@@ -24,23 +24,10 @@
                     </exclusions>
                 </option>
                 <option name="Video" value="1">
-                    <!-- Converselly, when Camera Mode is set to Photo mode, the following parameters should be ignored (hidden from UI or disabled)-->
+                    <!-- Converselly, when Camera Mode is set to Video mode, the following parameters should be ignored (hidden from UI or disabled)-->
                     <exclusions>
                         <exclude>CAM_PHOTORATIO</exclude>
                     </exclusions>
-                    <parameterranges>
-                        <parameterrange parameter="CAM_ISO" condition="CAM_EXPMODE=1">
-                            <roption name="100" value="100" />
-                            <roption name="150" value="150" />
-                            <roption name="200" value="200" />
-                            <roption name="300" value="300" />
-                            <roption name="400" value="400" />
-                            <roption name="600" value="600" />
-                            <roption name="800" value="800" />
-                            <roption name="1600" value="1600" />
-                            <roption name="3200" value="3200" />
-                        </parameterrange>
-                    </parameterranges>
                 </option>
             </options>
         </parameter>

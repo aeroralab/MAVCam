@@ -9,14 +9,17 @@ CameraLocalClient::CameraLocalClient() {
     _image_count = 0;
     _is_recording_video = false;
 
+    _total_storage_mib = 4 * 1024;
+    _available_storage_mib = 3 * 1024;
+
     // TODO just demo for settings
     _settings["CAM_MODE"] = "1";
-    _settings["CAM_WBMODE"] = "0";
+    _settings["CAM_WBMODE"] = "4";
     _settings["CAM_EXPMODE"] = "0";
-    _settings["CAM_EV"] = "0";
-    _settings["CAM_ISO"] = "100";
+    _settings["CAM_EV"] = "1";
+    _settings["CAM_ISO"] = "200";
     _settings["CAM_SHUTTERSPD"] = "0.01";
-    _settings["CAM_VIDFMT"] = "1";
+    _settings["CAM_VIDFMT"] = "2";
     _settings["CAM_VIDRES"] = "0";
     _settings["CAM_PHOTORATIO"] = "1";
 }
@@ -62,7 +65,7 @@ mavsdk::CameraServer::Result CameraLocalClient::stop_video_streaming(int stream_
 
 mavsdk::CameraServer::Result CameraLocalClient::set_mode(mavsdk::CameraServer::Mode mode) {
     std::lock_guard<std::mutex> lock(_mutex);
-    LogDebug() << "locally call set mode" << mode;
+    LogDebug() << "locally call set mode " << mode;
     return mavsdk::CameraServer::Result::Success;
 }
 
@@ -75,13 +78,24 @@ mavsdk::CameraServer::Result CameraLocalClient::format_storage(int storage_id) {
 mavsdk::CameraServer::Result CameraLocalClient::reset_settings() {
     std::lock_guard<std::mutex> lock(_mutex);
     LogDebug() << "locally call reset settings";
+    // reset settings
+    _settings["CAM_MODE"] = "0";
+    _settings["CAM_WBMODE"] = "0";
+    _settings["CAM_EXPMODE"] = "0";
+    _settings["CAM_EV"] = "0";
+    _settings["CAM_ISO"] = "100";
+    _settings["CAM_SHUTTERSPD"] = "0.01";
+    _settings["CAM_VIDFMT"] = "1";
+    _settings["CAM_VIDRES"] = "0";
+    _settings["CAM_PHOTORATIO"] = "0";
+
     return mavsdk::CameraServer::Result::Success;
 }
 
 mavsdk::CameraServer::Result CameraLocalClient::fill_information(
     mavsdk::CameraServer::Information &information) {
     information.vendor_name = "GoerLabs";
-    information.model_name = "Simple Model";
+    information.model_name = "C10";
     information.firmware_version = "0.0.1";
     information.focal_length_mm = 3.0;
     information.horizontal_sensor_size_mm = 3.68;
@@ -90,7 +104,15 @@ mavsdk::CameraServer::Result CameraLocalClient::fill_information(
     information.vertical_resolution_px = 2464;
     information.lens_id = 0;
     information.definition_file_version = 1;
-    information.definition_file_uri = "ftp://C10.xml";  //TODO just demo
+    information.definition_file_uri = "http://127.0.0.1/C10.xml";  //TODO just demo
+    information.camera_cap_flags.emplace_back(
+        mavsdk::CameraServer::Information::CameraCapFlags::CaptureImage);
+    information.camera_cap_flags.emplace_back(
+        mavsdk::CameraServer::Information::CameraCapFlags::CaptureVideo);
+    information.camera_cap_flags.emplace_back(
+        mavsdk::CameraServer::Information::CameraCapFlags::HasModes);
+    // information.camera_cap_flags.emplace_back(
+    //     mavsdk::CameraServer::Information::CameraCapFlags::HasVideoStream);
     return mavsdk::CameraServer::Result::Success;
 }
 
@@ -120,11 +142,9 @@ mavsdk::CameraServer::Result CameraLocalClient::fill_video_stream_info(
 
 mavsdk::CameraServer::Result CameraLocalClient::fill_storage_information(
     mavsdk::CameraServer::StorageInformation &storage_information) {
-    constexpr int kTotalStorage = 4 * 1024 * 1024;
-    storage_information.total_storage_mib = kTotalStorage;
-    storage_information.used_storage_mib = 100;
-    storage_information.available_storage_mib =
-        kTotalStorage - storage_information.used_storage_mib;
+    storage_information.total_storage_mib = _total_storage_mib;
+    storage_information.used_storage_mib = _total_storage_mib - _available_storage_mib;
+    storage_information.available_storage_mib = _available_storage_mib;
     storage_information.storage_status =
         mavsdk::CameraServer::StorageInformation::StorageStatus::Formatted;
     storage_information.storage_type =
@@ -135,6 +155,7 @@ mavsdk::CameraServer::Result CameraLocalClient::fill_storage_information(
 mavsdk::CameraServer::Result CameraLocalClient::fill_capture_status(
     mavsdk::CameraServer::CaptureStatus &capture_status) {
     // not need lock guard
+    capture_status.available_capacity = _available_storage_mib;
     capture_status.image_count = _image_count;
     capture_status.image_status =
         _is_capture_in_progress
@@ -179,6 +200,7 @@ std::pair<mavsdk::CameraServer::Result, mavsdk::Camera::Setting> CameraLocalClie
         return {mavsdk::CameraServer::Result::WrongArgument, setting};
     }
     setting.option.option_id = _settings[setting.setting_id];
+    LogDebug() << "get " << setting.setting_id << " return " << setting.option.option_id;
     return {mavsdk::CameraServer::Result::Success, setting};
 }
 

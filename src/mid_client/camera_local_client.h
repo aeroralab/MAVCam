@@ -44,6 +44,8 @@ private:
     std::atomic<bool> _is_capture_in_progress;
     std::atomic<int> _image_count;
     std::atomic<bool> _is_recording_video;
+    std::atomic<float> _total_storage_mib;
+    std::atomic<float> _available_storage_mib;
     std::chrono::steady_clock::time_point _start_video_time;
     mutable std::unordered_map<std::string, std::string> _settings;
 private:
