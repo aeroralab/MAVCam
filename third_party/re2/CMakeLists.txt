@@ -1,6 +1,9 @@
-cmake_minimum_required(VERSION 3.1)
+cmake_minimum_required(VERSION 3.14)
 
 project(external-re2)
+if (CMAKE_VERSION VERSION_GREATER_EQUAL "3.24.0")
+    cmake_policy(SET CMP0135 NEW)
+endif()
 include(ExternalProject)
 
 list(APPEND CMAKE_ARGS
@@ -27,6 +30,8 @@ endforeach()
 ExternalProject_add(
     re2
     URL https://github.com/google/re2/archive/2022-04-01.tar.gz
+    URL_HASH MD5=b1c75896e425361311b4c0c091452153
     PREFIX re2
+    DOWNLOAD_DIR "${DOWNLOAD_DIR}"
     CMAKE_ARGS "${CMAKE_ARGS}"
     )

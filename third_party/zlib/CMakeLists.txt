@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.14)
 
-project(external-cares)
+project(external-zlib)
 
 if (CMAKE_VERSION VERSION_GREATER_EQUAL "3.24.0")
     cmake_policy(SET CMP0135 NEW)
@@ -11,11 +11,8 @@ list(APPEND CMAKE_ARGS
     "-DCMAKE_PREFIX_PATH:PATH=${CMAKE_PREFIX_PATH}"
     "-DCMAKE_INSTALL_PREFIX:PATH=${CMAKE_INSTALL_PREFIX}"
     "-DCMAKE_TOOLCHAIN_FILE:PATH=${CMAKE_TOOLCHAIN_FILE}"
+    "-DCMAKE_POSITION_INDEPENDENT_CODE=ON"
     "-DCMAKE_BUILD_TYPE=${CMAKE_BUILD_TYPE}"
-    "-DCARES_STATIC=ON"
-    "-DCARES_SHARED=OFF"
-    "-DCARES_STATIC_PIC=ON"
-    "-DCARES_BUILD_TOOLS=OFF"
     )
 
 if(IOS)
@@ -26,18 +23,17 @@ if(IOS)
         )
 endif()
 
-message(STATUS "Preparing external project \"c-ares\" with args:")
+message(STATUS "Preparing external project \"zlib\" with args:")
 foreach(CMAKE_ARG ${CMAKE_ARGS})
     message(STATUS "-- ${CMAKE_ARG}")
 endforeach()
 
-message(STATUS "download path ${DOWNLOAD_DIR}")
-
 ExternalProject_add(
-    cares
-    URL https://github.com/c-ares/c-ares/releases/download/cares-1_18_1/c-ares-1.18.1.tar.gz
-    URL_HASH MD5=bf770c0d3131ec0dd0575a0d2dcab226
-    PREFIX cares
+    zlib
+    URL https://github.com/madler/zlib/releases/download/v1.2.13/zlib-1.2.13.tar.gz
+    URL_HASH MD5=9b8aa094c4e5765dabf4da391f00d15c
     DOWNLOAD_DIR "${DOWNLOAD_DIR}"
+    PREFIX zlib
+    PATCH_COMMAND patch -p1 < ${PROJECT_SOURCE_DIR}/build_shared_libs.patch && patch -p1 < ${PROJECT_SOURCE_DIR}/bump_cmake_min_version.patch
     CMAKE_ARGS "${CMAKE_ARGS}"
     )

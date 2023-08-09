@@ -1,12 +1,9 @@
-cmake_minimum_required(VERSION 3.13)
+cmake_minimum_required(VERSION 3.14)
 
 option(BUILD_DEPENDENCY "Build dependencies" ON)
-option(BUILD_SHARED_LIBS "Build core as shared libraries instead of static ones" ON)
+option(BUILD_SHARED_LIBS "Build core as shared libraries instead of static ones" OFF)
 
-project(middleware)
-
-set(DEPS_BUILD_PATH "${PROJECT_BINARY_DIR}/third_party" CACHE PATH "build path for the dependencies.")
-set(DEPS_INSTALL_PATH "${DEPS_BUILD_PATH}/install" CACHE PATH "Install path for the dependencies.")
+project(MAVCam)
 
 execute_process(
     COMMAND git describe --abbrev=8 --dirty --always --tags
@@ -26,9 +23,9 @@ STRING(REGEX REPLACE v\([0-9]+\).[0-9]+.[0-9]+.*$ \\1 VERSION_MAJOR "${VERSION_S
 STRING(REGEX REPLACE v[0-9]+.\([0-9]+\).[0-9]+.*$ \\1 VERSION_MINOR "${VERSION_STR}")
 STRING(REGEX REPLACE v[0-9]+.[0-9]+.\([0-9]+\).*$ \\1 VERSION_PATCH "${VERSION_STR}")
 
-message(STATUS "Version major: ${MAVCAM_VERSION_MAJOR}")
-message(STATUS "Version minor: ${MAVCAM_VERSION_MINOR}")
-message(STATUS "Version patch: ${MAVCAM_VERSION_PATCH}")
+message(STATUS "Version major: ${VERSION_MAJOR}")
+message(STATUS "Version minor: ${VERSION_MINOR}")
+message(STATUS "Version patch: ${VERSION_PATCH}")
 
 set(BUILD_TIME "")
 string(TIMESTAMP BUILD_TIME "%Y-%m-%dT%H:%M:%S")
@@ -39,7 +36,21 @@ configure_file(
   ${CMAKE_CURRENT_SOURCE_DIR}/version.h.in
   ${CMAKE_CURRENT_BINARY_DIR}/version.h
   @ONLY)
-include_directories(${PROJECT_BINARY_DIR})
+
+set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_CURRENT_SOURCE_DIR}/cmake")
+
+set(DEP_BUILD_DIR "${PROJECT_BINARY_DIR}/third_party" CACHE PATH "Install path for the dependencies. Ignored if SUPERBUILD=OFF.")
+set(DEP_INSTALL_DIR "${DEP_BUILD_DIR}/install" CACHE PATH "Install path for the dependencies. Ignored if SUPERBUILD=OFF.")
+set(DEP_DOWNLOAD_DIR "${PROJECT_SOURCE_DIR}/download" CACHE PATH "Download path for the dependencies. Ignored if SUPERBUILD=OFF.")
 
 add_subdirectory(third_party)
+
+set(STAGING_DIR "${PROJECT_SOURCE_DIR}/stage_dir" CACHE PATH "Install path")
+
+if (NOT CMAKE_INSTALL_PREFIX)
+    set(CMAKE_INSTALL_PREFIX "/usr" CACHE PATH "Install prefix")
+endif()
+
+include(GNUInstallDirs)
+
 add_subdirectory(src)

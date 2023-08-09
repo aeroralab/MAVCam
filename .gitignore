@@ -18,6 +18,10 @@ _deps
 
 # default build path
 build
+build_dir
 
 # vscode settings
 .vscode
+
+# download path
+download

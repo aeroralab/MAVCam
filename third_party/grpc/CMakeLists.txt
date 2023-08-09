@@ -1,6 +1,9 @@
-cmake_minimum_required(VERSION 3.1)
+cmake_minimum_required(VERSION 3.14)
 
 project(external-grpc)
+if (CMAKE_VERSION VERSION_GREATER_EQUAL "3.24.0")
+    cmake_policy(SET CMP0135 NEW)
+endif()
 include(ExternalProject)
 
 list(APPEND CMAKE_ARGS
@@ -53,6 +56,8 @@ endforeach()
 ExternalProject_add(
     grpc
     URL https://github.com/grpc/grpc/archive/v1.46.2.tar.gz
+    URL_HASH MD5=cb274f74e51e90a6ac929c5298bb1d32
     PREFIX grpc
+    DOWNLOAD_DIR "${DOWNLOAD_DIR}"
     CMAKE_ARGS "${CMAKE_ARGS}"
     )

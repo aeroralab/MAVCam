@@ -1,7 +1,12 @@
-cmake_minimum_required(VERSION 3.1)
+cmake_minimum_required(VERSION 3.14)
 
 project(external-absl)
+if (CMAKE_VERSION VERSION_GREATER_EQUAL "3.24.0")
+    cmake_policy(SET CMP0135 NEW)
+endif()
 include(ExternalProject)
+
+set(ABSEIL_CPP_VERSION 20211102.0)
 
 list(APPEND CMAKE_ARGS
     "-DCMAKE_PREFIX_PATH:PATH=${CMAKE_PREFIX_PATH}"
@@ -27,8 +32,9 @@ endforeach()
 
 ExternalProject_add(
     absl
-    GIT_REPOSITORY https://github.com/abseil/abseil-cpp.git
-    GIT_TAG 20211102.0
+    URL https://github.com/abseil/abseil-cpp/archive/refs/tags/${ABSEIL_CPP_VERSION}.tar.gz
+    URL_HASH MD5=bdca561519192543378b7cade101ec43
     PREFIX absl
+    DOWNLOAD_DIR "${DOWNLOAD_DIR}"
     CMAKE_ARGS "${CMAKE_ARGS}"
     )

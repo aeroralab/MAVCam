@@ -1,9 +1,18 @@
 include(ProcessorCount)
 
 function(build_target TARGET_NAME)
+    if (NOT TARGET_NAME)
+        return()
+    endif()
+
     set(TARGET_SOURCE_DIR "${PROJECT_SOURCE_DIR}/${TARGET_NAME}")
-    set(TARGET_BINARY_DIR "${DEPS_BUILD_PATH}/${TARGET_NAME}")
-    set(TARGET_INSTALL_DIR "${DEPS_INSTALL_PATH}")
+    set(TARGET_BINARY_DIR "${DEP_BUILD_DIR}/${TARGET_NAME}")
+    set(TARGET_INSTALL_DIR "${DEP_INSTALL_DIR}")
+    set(TARGET_DOWNLOAD_DIR "${DEP_DOWNLOAD_DIR}")
+
+    if(NOT EXISTS ${TARGET_SOURCE_DIR}/CMakeLists.txt)
+        return()
+    endif()
 
     file(MAKE_DIRECTORY ${TARGET_BINARY_DIR})
 
@@ -23,6 +32,7 @@ function(build_target TARGET_NAME)
             "-DDEPLOYMENT_TARGET=${DEPLOYMENT_TARGET}" # for iOS toolchain
             "-DENABLE_STRICT_TRY_COMPILE=${ENABLE_STRICT_TRY_COMPILE}" # for iOS toolchain
             "-DMAVLINK_DIALECT=${MAVLINK_DIALECT}"
+            "-DDOWNLOAD_DIR:PATH=${TARGET_DOWNLOAD_DIR}"
             "${TARGET_SOURCE_DIR}"
         WORKING_DIRECTORY "${TARGET_BINARY_DIR}"
         RESULT_VARIABLE CONFIGURE_FAILED

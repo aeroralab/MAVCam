@@ -1,6 +1,9 @@
-cmake_minimum_required(VERSION 3.1)
+cmake_minimum_required(VERSION 3.14)
 
 project(external-protobuf)
+if (CMAKE_VERSION VERSION_GREATER_EQUAL "3.24.0")
+    cmake_policy(SET CMP0135 NEW)
+endif()
 include(ExternalProject)
 
 list(APPEND CMAKE_ARGS
@@ -37,7 +40,9 @@ endforeach()
 ExternalProject_add(
     protobuf
     URL https://github.com/protocolbuffers/protobuf/releases/download/v3.20.1/protobuf-cpp-3.20.1.tar.gz
+    URL_HASH MD5=25bf9425b7030d63fbc1113e19fcee15
     PREFIX protobuf
+    DOWNLOAD_DIR "${DOWNLOAD_DIR}"
     CMAKE_ARGS "${CMAKE_ARGS}"
     SOURCE_SUBDIR cmake
     )
