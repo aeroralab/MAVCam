@@ -21,13 +21,13 @@ static inline std::string get_camera_setting(mavsdk::Camera &camera, const std::
 
 int main(int argc, const char *argv[]) {
     // we run client plugins to act as the GCS
-    // to communicate with the camera server plugins.
+    // to communicate with the autopilot server plugins.
     mavsdk::Mavsdk mavsdk;
     mavsdk::Mavsdk::Configuration configuration(
         mavsdk::Mavsdk::Configuration::UsageType::GroundStation);
     mavsdk.set_configuration(configuration);
 
-    auto result = mavsdk.add_any_connection("udp://:14450");
+    auto result = mavsdk.add_any_connection("udp://:14550");
     if (result == mavsdk::ConnectionResult::Success) {
         std::cout << "Connected!" << std::endl;
     }
@@ -38,8 +38,8 @@ int main(int argc, const char *argv[]) {
         mavsdk.subscribe_on_new_system([&mavsdk, &prom, &handle]() {
             auto system = mavsdk.systems().back();
 
-            if (system->has_camera()) {
-                std::cout << "Discovered camera from Client" << std::endl;
+            if (system->has_autopilot()) {
+                std::cout << "Discovered autopilot from Client" << std::endl;
 
                 // Unsubscribe again as we only want to find one system.
                 mavsdk.unsubscribe_on_new_system(handle);
@@ -50,7 +50,7 @@ int main(int argc, const char *argv[]) {
         });
 
     if (fut.wait_for(std::chrono::seconds(10)) == std::future_status::timeout) {
-        std::cout << "No camera found, exiting" << std::endl;
+        std::cout << "No autopilot found, exiting" << std::endl;
         return -1;
     }
 

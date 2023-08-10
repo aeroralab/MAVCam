@@ -2,6 +2,7 @@ cmake_minimum_required(VERSION 3.14)
 
 option(BUILD_DEPENDENCY "Build dependencies" ON)
 option(BUILD_SHARED_LIBS "Build core as shared libraries instead of static ones" OFF)
+option(BUILD_EXAMPLE "Build example" ON)
 
 project(MAVCam)
 
@@ -55,3 +56,7 @@ endif()
 include(GNUInstallDirs)
 
 add_subdirectory(src)
+
+if (BUILD_EXAMPLE)
+    add_subdirectory(example/client)
+endif()
