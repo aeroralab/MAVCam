@@ -105,7 +105,18 @@ elseif(MSVC)
         BUILD_COMMAND set MAKEFLAGS= && nmake
         INSTALL_COMMAND set MAKEFLAGS= && nmake install_sw
         )
-
+elseif(CMAKE_HOST_APPLE)
+    set(OPENSSL_VERSION 1.1.1o)
+    ExternalProject_add(
+        openssl
+        URL https://www.openssl.org/source/openssl-${OPENSSL_VERSION}.tar.gz
+        URL_HASH MD5=d05e96e200d2ff0aef20c114cb5f17bf
+        PREFIX openssl
+        DOWNLOAD_DIR "${DOWNLOAD_DIR}"
+        CONFIGURE_COMMAND <SOURCE_DIR>/config ${OPENSSL_BUILD_TYPE} --prefix=${CMAKE_INSTALL_PREFIX} no-shared
+        BUILD_COMMAND make
+        INSTALL_COMMAND make install_sw
+        )
 else()
     ExternalProject_add(
         openssl

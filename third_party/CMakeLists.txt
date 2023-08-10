@@ -20,6 +20,7 @@ if(BUILD_DEPENDENCY)
     build_target(tinyxml2)
     build_target(jsoncpp)
     build_target(curl)
+    build_target(mavlink)
     build_target(MAVSDK)
 endif()
 
