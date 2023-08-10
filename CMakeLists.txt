@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 3.14)
 
 option(BUILD_DEPENDENCY "Build dependencies" ON)
 option(BUILD_SHARED_LIBS "Build core as shared libraries instead of static ones" OFF)
-option(BUILD_EXAMPLE "Build example" ON)
+option(BUILD_EXAMPLE "Build example" OFF)
 
 project(MAVCam)
 
@@ -48,10 +48,6 @@ set(DEP_DOWNLOAD_DIR "${PROJECT_SOURCE_DIR}/download" CACHE PATH "Download path 
 add_subdirectory(third_party)
 
 set(STAGING_DIR "${PROJECT_SOURCE_DIR}/stage_dir" CACHE PATH "Install path")
-
-if (NOT CMAKE_INSTALL_PREFIX)
-    set(CMAKE_INSTALL_PREFIX "/usr" CACHE PATH "Install prefix")
-endif()
 
 include(GNUInstallDirs)
 

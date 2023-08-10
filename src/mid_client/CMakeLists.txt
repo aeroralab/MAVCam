@@ -55,3 +55,7 @@ if (BUILD_SERVER)
         gRPC::grpc++
     )
 endif()
+
+install(IMPORTED_RUNTIME_ARTIFACTS MAVSDK::mavsdk DESTINATION "./") 
+install(TARGETS mid_client RUNTIME DESTINATION "./")
+

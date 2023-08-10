@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.14)
+cmake_minimum_required(VERSION 3.21)
 
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
@@ -13,3 +13,4 @@ if (BUILD_SERVER)
     add_subdirectory(mid_server)
 endif()
 add_subdirectory(mid_client)
+

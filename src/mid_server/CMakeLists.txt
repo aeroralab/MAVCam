@@ -37,3 +37,6 @@ target_link_libraries(${EXECUTABLE_NAME}
     base
     gRPC::grpc++
 )
+
+install(TARGETS mid_server RUNTIME DESTINATION "./")
+
