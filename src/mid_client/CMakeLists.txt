@@ -27,7 +27,7 @@ add_executable(${EXECUTE_NAME}
 target_include_directories(${EXECUTE_NAME}
     PRIVATE
     ${CMAKE_CURRENT_SOURCE_DIR}/../
-    ${DEPS_INSTALL_PATH}/include
+    ${DEP_INSTALL_DIR}/include
 )
 
 find_package(MAVSDK REQUIRED)

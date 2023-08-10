@@ -36,6 +36,7 @@ configure_file(
   ${CMAKE_CURRENT_SOURCE_DIR}/version.h.in
   ${CMAKE_CURRENT_BINARY_DIR}/version.h
   @ONLY)
+include_directories(${PROJECT_BINARY_DIR})
 
 set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_CURRENT_SOURCE_DIR}/cmake")
 

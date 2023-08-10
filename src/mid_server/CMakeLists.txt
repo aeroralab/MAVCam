@@ -23,7 +23,7 @@ target_include_directories(${EXECUTABLE_NAME}
     ${CMAKE_CURRENT_SOURCE_DIR}
     ${CMAKE_CURRENT_SOURCE_DIR}/../generated
     ${CMAKE_CURRENT_SOURCE_DIR}/../
-    ${DEPS_INSTALL_PATH}/include
+    ${DEP_INSTALL_DIR}/include
 )
 
 list(APPEND CMAKE_PREFIX_PATH "${DEPS_INSTALL_PATH}")
