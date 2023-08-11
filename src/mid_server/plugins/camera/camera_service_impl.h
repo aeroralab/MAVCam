@@ -455,9 +455,9 @@ public:
         return ::grpc::Status::OK;
     }
 
-    ::grpc::Status StopVideo(::grpc::ClientContext *context,
-                             const ::mavsdk::rpc::camera::StopVideoRequest &request,
-                             mavsdk::rpc::camera::StopVideoResponse *response) {
+    ::grpc::Status StopVideo(::grpc::ServerContext *context,
+                             const ::mavsdk::rpc::camera::StopVideoRequest *request,
+                             ::mavsdk::rpc::camera::StopVideoResponse *response) override {
         auto result = _plugin->stop_video();
         if (response != nullptr) {
             fillResponseWithResult(response, result);

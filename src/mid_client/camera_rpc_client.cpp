@@ -69,7 +69,7 @@ mavsdk::CameraServer::Result CameraRpcClient::take_photo(int index) {
     grpc::Status status = _stub->TakePhoto(&context, request, &response);
     _is_capture_in_progress = false;
     if (!status.ok()) {
-        LogError() << "Grpc status error message : " << status.error_message();
+        LogError() << "Grpc status errorcode: " << status.error_code();
         return mavsdk::CameraServer::Result::NoSystem;
     }
     LogDebug() << " Take photo result : " << response.camera_result().result_str();
@@ -90,7 +90,7 @@ mavsdk::CameraServer::Result CameraRpcClient::start_video() {
     mavsdk::rpc::camera::StartVideoResponse response;
     grpc::Status status = _stub->StartVideo(&context, request, &response);
     if (!status.ok()) {
-        LogError() << "Grpc status error message : " << status.error_message();
+        LogError() << "Grpc status errorcode : " << status.error_code();
         return mavsdk::CameraServer::Result::NoSystem;
     }
     LogDebug() << " Start video result : " << response.camera_result().result_str();
@@ -106,7 +106,7 @@ mavsdk::CameraServer::Result CameraRpcClient::stop_video() {
     mavsdk::rpc::camera::StopVideoResponse response;
     grpc::Status status = _stub->StopVideo(&context, request, &response);
     if (!status.ok()) {
-        LogError() << "Grpc status error message : " << status.error_message();
+        LogError() << "Grpc status errorcode : " << status.error_code();
         return mavsdk::CameraServer::Result::NoSystem;
     }
     LogDebug() << " Stop video result : " << response.camera_result().result_str();
@@ -123,7 +123,7 @@ mavsdk::CameraServer::Result CameraRpcClient::start_video_streaming(int stream_i
     mavsdk::rpc::camera::StartVideoStreamingResponse response;
     grpc::Status status = _stub->StartVideoStreaming(&context, request, &response);
     if (!status.ok()) {
-        LogError() << "Grpc status error message : " << status.error_message();
+        LogError() << "Grpc status errorcode : " << status.error_code();
         return mavsdk::CameraServer::Result::NoSystem;
     }
     LogDebug() << " Start video streaming result : " << response.camera_result().result_str();
@@ -140,7 +140,7 @@ mavsdk::CameraServer::Result CameraRpcClient::stop_video_streaming(int stream_id
     mavsdk::rpc::camera::StopVideoStreamingResponse response;
     grpc::Status status = _stub->StopVideoStreaming(&context, request, &response);
     if (!status.ok()) {
-        LogError() << "Grpc status error message : " << status.error_message();
+        LogError() << "Grpc status errorcode : " << status.error_code();
         return mavsdk::CameraServer::Result::NoSystem;
     }
     LogDebug() << " Stop video streaming result : " << response.camera_result().result_str();
@@ -156,7 +156,7 @@ mavsdk::CameraServer::Result CameraRpcClient::set_mode(mavsdk::CameraServer::Mod
     mavsdk::rpc::camera::SetModeResponse response;
     grpc::Status status = _stub->SetMode(&context, request, &response);
     if (!status.ok()) {
-        LogError() << "Grpc status error message : " << status.error_message();
+        LogError() << "Grpc status errorcode: " << status.error_code();
         return mavsdk::CameraServer::Result::NoSystem;
     }
     LogDebug() << " Set mode result : " << response.camera_result().result_str();
@@ -173,7 +173,7 @@ mavsdk::CameraServer::Result CameraRpcClient::format_storage(int storage_id) {
     mavsdk::rpc::camera::FormatStorageResponse response;
     grpc::Status status = _stub->FormatStorage(&context, request, &response);
     if (!status.ok()) {
-        LogError() << "Grpc status error message : " << status.error_message();
+        LogError() << "Grpc status errorcode: " << status.error_code();
         return mavsdk::CameraServer::Result::NoSystem;
     }
     LogDebug() << "Format storage result : " << response.camera_result().result_str();
@@ -193,7 +193,7 @@ mavsdk::CameraServer::Result CameraRpcClient::reset_settings() {
     mavsdk::rpc::camera::ResetSettingsResponse response;
     grpc::Status status = _stub->ResetSettings(&context, request, &response);
     if (!status.ok()) {
-        LogError() << "Grpc status error message : " << status.error_message();
+        LogError() << "Grpc status errorcode: " << status.error_code();
         return mavsdk::CameraServer::Result::NoSystem;
     }
     LogDebug() << "Reset settings result : " << response.camera_result().result_str();
@@ -286,7 +286,7 @@ mavsdk::CameraServer::Result CameraRpcClient::set_setting(mavsdk::Camera::Settin
     mavsdk::rpc::camera::SetSettingResponse response;
     grpc::Status status = _stub->SetSetting(&context, request, &response);
     if (!status.ok()) {
-        LogError() << "Grpc status error message : " << status.error_message();
+        LogError() << "Grpc status errorcode: " << status.error_code();
         return mavsdk::CameraServer::Result::NoSystem;
     }
     LogDebug() << "Reset settings result : " << response.camera_result().result_str();
@@ -306,7 +306,7 @@ std::pair<mavsdk::CameraServer::Result, mavsdk::Camera::Setting> CameraRpcClient
     mavsdk::rpc::camera::GetSettingResponse response;
     grpc::Status status = _stub->GetSetting(&context, request, &response);
     if (!status.ok()) {
-        LogError() << "Grpc status error message : " << status.error_message();
+        LogError() << "Grpc status errorcode: " << status.error_code();
         return {mavsdk::CameraServer::Result::NoSystem, setting};
     }
     LogDebug() << "Reset settings result : " << response.camera_result().result_str();
@@ -476,7 +476,6 @@ static void fillStorageInformation(const mavsdk::rpc::camera::Status &input,
                                    mavsdk::CameraServer::StorageInformation &output) {
     output.used_storage_mib = input.used_storage_mib();
     output.available_storage_mib = input.available_storage_mib();
-    LogDebug() << "available space" << output.available_storage_mib;
     output.total_storage_mib = input.total_storage_mib();
     output.storage_status = translateFromRpcStorageStatus(input.storage_status());
     output.storage_id = input.storage_id();

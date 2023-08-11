@@ -71,6 +71,7 @@ mavsdk::CameraServer::Result CameraLocalClient::set_mode(mavsdk::CameraServer::M
 
 mavsdk::CameraServer::Result CameraLocalClient::format_storage(int storage_id) {
     std::lock_guard<std::mutex> lock(_mutex);
+    _available_storage_mib = _total_storage_mib.load();
     LogDebug() << "locally call format storage " << storage_id;
     return mavsdk::CameraServer::Result::Success;
 }
