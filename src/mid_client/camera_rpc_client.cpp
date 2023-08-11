@@ -50,7 +50,7 @@ bool CameraRpcClient::Init(int rpc_port) {
     _stub = mavsdk::rpc::camera::CameraService::NewStub(_channel);
 
     _init_information = false;
-
+    _image_count = 0;
     _should_exit = false;
     _work_thread = new std::thread(work_thread, this);
     return true;
@@ -73,13 +73,16 @@ mavsdk::CameraServer::Result CameraRpcClient::take_photo(int index) {
         return mavsdk::CameraServer::Result::NoSystem;
     }
     LogDebug() << " Take photo result : " << response.camera_result().result_str();
-    return translateFromRpcResult(response.camera_result().result());
+    auto result = translateFromRpcResult(response.camera_result().result());
+    if (result == mavsdk::CameraServer::Result::Success) {
+        _image_count++;
+    }
+    return result;
 }
 
 mavsdk::CameraServer::Result CameraRpcClient::start_video() {
     std::lock_guard<std::mutex> lock(_mutex);
     LogDebug() << "rpc call start video ";
-    _is_recording_video = true;
     _start_video_time = std::chrono::steady_clock::now();
 
     mavsdk::rpc::camera::StartVideoRequest request;
@@ -97,7 +100,6 @@ mavsdk::CameraServer::Result CameraRpcClient::start_video() {
 mavsdk::CameraServer::Result CameraRpcClient::stop_video() {
     std::lock_guard<std::mutex> lock(_mutex);
     LogDebug() << "rpc call stop video ";
-    _is_recording_video = false;
 
     mavsdk::rpc::camera::StopVideoRequest request;
     grpc::ClientContext context;
@@ -175,7 +177,11 @@ mavsdk::CameraServer::Result CameraRpcClient::format_storage(int storage_id) {
         return mavsdk::CameraServer::Result::NoSystem;
     }
     LogDebug() << "Format storage result : " << response.camera_result().result_str();
-    return translateFromRpcResult(response.camera_result().result());
+    auto result = translateFromRpcResult(response.camera_result().result());
+    if (result == mavsdk::CameraServer::Result::Success) {
+        _image_count = 0;
+    }
+    return result;
 }
 
 mavsdk::CameraServer::Result CameraRpcClient::reset_settings() {
@@ -333,6 +339,8 @@ void CameraRpcClient::work_thread(CameraRpcClient *self) {
         if (status_reader->Read(&response)) {
             fillStorageInformation(response.camera_status(), self->_storage_information);
             fillCaptureStatus(response.camera_status(), self->_capture_status);
+            //TODO need change
+            self->_capture_status.image_count = self->_image_count;
         }
         status_reader->Finish();
     }
@@ -380,6 +388,44 @@ static mavsdk::rpc::camera::Mode translateFromCameraServerMode(
     }
 }
 
+static mavsdk::CameraServer::Information::CameraCapFlags translateFromRpcCameraCapFlags(
+    const mavsdk::rpc::camera::Information::CameraCapFlags camera_cap_flags) {
+    switch (camera_cap_flags) {
+        default:
+            LogError() << "Unknown camera_cap_flags enum value: "
+                       << static_cast<int>(camera_cap_flags);
+        // FALLTHROUGH
+        case mavsdk::rpc::camera::Information_CameraCapFlags_CAMERA_CAP_FLAGS_CAPTURE_VIDEO:
+            return mavsdk::CameraServer::Information::CameraCapFlags::CaptureVideo;
+        case mavsdk::rpc::camera::Information_CameraCapFlags_CAMERA_CAP_FLAGS_CAPTURE_IMAGE:
+            return mavsdk::CameraServer::Information::CameraCapFlags::CaptureImage;
+        case mavsdk::rpc::camera::Information_CameraCapFlags_CAMERA_CAP_FLAGS_HAS_MODES:
+            return mavsdk::CameraServer::Information::CameraCapFlags::HasModes;
+        case mavsdk::rpc::camera::
+            Information_CameraCapFlags_CAMERA_CAP_FLAGS_CAN_CAPTURE_IMAGE_IN_VIDEO_MODE:
+            return mavsdk::CameraServer::Information::CameraCapFlags::CanCaptureImageInVideoMode;
+        case mavsdk::rpc::camera::
+            Information_CameraCapFlags_CAMERA_CAP_FLAGS_CAN_CAPTURE_VIDEO_IN_IMAGE_MODE:
+            return mavsdk::CameraServer::Information::CameraCapFlags::CanCaptureVideoInImageMode;
+        case mavsdk::rpc::camera::Information_CameraCapFlags_CAMERA_CAP_FLAGS_HAS_IMAGE_SURVEY_MODE:
+            return mavsdk::CameraServer::Information::CameraCapFlags::HasImageSurveyMode;
+        case mavsdk::rpc::camera::Information_CameraCapFlags_CAMERA_CAP_FLAGS_HAS_BASIC_ZOOM:
+            return mavsdk::CameraServer::Information::CameraCapFlags::HasBasicZoom;
+        case mavsdk::rpc::camera::Information_CameraCapFlags_CAMERA_CAP_FLAGS_HAS_BASIC_FOCUS:
+            return mavsdk::CameraServer::Information::CameraCapFlags::HasBasicFocus;
+        case mavsdk::rpc::camera::Information_CameraCapFlags_CAMERA_CAP_FLAGS_HAS_VIDEO_STREAM:
+            return mavsdk::CameraServer::Information::CameraCapFlags::HasVideoStream;
+        case mavsdk::rpc::camera::Information_CameraCapFlags_CAMERA_CAP_FLAGS_HAS_TRACKING_POINT:
+            return mavsdk::CameraServer::Information::CameraCapFlags::HasTrackingPoint;
+        case mavsdk::rpc::camera::
+            Information_CameraCapFlags_CAMERA_CAP_FLAGS_HAS_TRACKING_RECTANGLE:
+            return mavsdk::CameraServer::Information::CameraCapFlags::HasTrackingRectangle;
+        case mavsdk::rpc::camera::
+            Information_CameraCapFlags_CAMERA_CAP_FLAGS_HAS_TRACKING_GEO_STATUS:
+            return mavsdk::CameraServer::Information::CameraCapFlags::HasTrackingGeoStatus;
+    }
+}
+
 static void fillInformation(const mavsdk::rpc::camera::Information &input,
                             mavsdk::CameraServer::Information &output) {
     output.vendor_name = input.vendor_name();
@@ -393,6 +439,11 @@ static void fillInformation(const mavsdk::rpc::camera::Information &input,
     output.lens_id = input.lens_id();
     output.definition_file_version = input.definition_file_version();
     output.definition_file_uri = input.definition_file_uri();
+    for (int i = 0; i < input.camera_cap_flags_size(); i++) {
+        mavsdk::rpc::camera::Information::CameraCapFlags camera_cap_flag =
+            input.camera_cap_flags(i);
+        output.camera_cap_flags.emplace_back(translateFromRpcCameraCapFlags(camera_cap_flag));
+    }
 }
 
 static void fillVideoStreamInfos(
@@ -425,6 +476,7 @@ static void fillStorageInformation(const mavsdk::rpc::camera::Status &input,
                                    mavsdk::CameraServer::StorageInformation &output) {
     output.used_storage_mib = input.used_storage_mib();
     output.available_storage_mib = input.available_storage_mib();
+    LogDebug() << "available space" << output.available_storage_mib;
     output.total_storage_mib = input.total_storage_mib();
     output.storage_status = translateFromRpcStorageStatus(input.storage_status());
     output.storage_id = input.storage_id();
@@ -435,6 +487,9 @@ static void fillCaptureStatus(const mavsdk::rpc::camera::Status &input,
                               mavsdk::CameraServer::CaptureStatus &output) {
     output.recording_time_s = input.recording_time_s();
     output.available_capacity = input.available_storage_mib();
+    output.video_status = input.video_on()
+                            ? mavsdk::CameraServer::CaptureStatus::VideoStatus::CaptureInProgress
+                            : mavsdk::CameraServer::CaptureStatus::VideoStatus::Idle;
 }
 
 mavsdk::Camera::Setting buildSettings(std::string name, std::string value) {

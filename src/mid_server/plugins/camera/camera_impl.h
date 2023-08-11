@@ -67,6 +67,8 @@ private:
     Camera::StatusCallback _status_callback;
 private:
     mutable std::vector<Camera::Setting> _settings;
+    mutable std::atomic<float> _total_storage_mib;
+    mutable std::atomic<float> _available_storage_mib;
 };
 
 }  // namespace mid

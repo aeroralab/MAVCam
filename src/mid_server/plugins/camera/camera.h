@@ -446,6 +446,41 @@ public:
      * @brief Type to represent a camera information.
      */
     struct Information {
+        /**
+         * @brief
+         */
+        enum class CameraCapFlags {
+            CaptureVideo,               /**< @brief Camera is able to record video. */
+            CaptureImage,               /**< @brief Camera is able to capture images. */
+            HasModes,                   /**< @brief Camera has separate Video and Image/Photo modes
+                         (MAV_CMD_SET_CAMERA_MODE). */
+            CanCaptureImageInVideoMode, /**< @brief Camera can capture images while in video mode.
+                                         */
+            CanCaptureVideoInImageMode, /**< @brief Camera can capture videos while in Photo/Image
+                                           mode. */
+            HasImageSurveyMode, /**< @brief Camera has image survey mode (MAV_CMD_SET_CAMERA_MODE).
+                                 */
+            HasBasicZoom,  /**< @brief Camera has basic zoom control (MAV_CMD_SET_CAMERA_ZOOM). */
+            HasBasicFocus, /**< @brief Camera has basic focus control (MAV_CMD_SET_CAMERA_FOCUS). */
+            HasVideoStream,   /**< @brief Camera has video streaming capabilities (request
+                               VIDEO_STREAM_INFORMATION with MAV_CMD_REQUEST_MESSAGE for video
+                               streaming info). */
+            HasTrackingPoint, /**< @brief Camera supports tracking of a point on the camera view..
+                               */
+            HasTrackingRectangle, /**< @brief Camera supports tracking of a selection rectangle on
+                                     the camera view.. */
+            HasTrackingGeoStatus, /**< @brief Camera supports tracking geo status
+                                     (CAMERA_TRACKING_GEO_STATUS).. */
+        };
+
+        /**
+         * @brief Stream operator to print information about a `Camera::CameraCapFlags`.
+         *
+         * @return A reference to the stream.
+         */
+        friend std::ostream &operator<<(
+            std::ostream &str, Camera::Information::CameraCapFlags const &camera_cap_flags);
+
         std::string vendor_name{};           /**< @brief Name of the camera vendor */
         std::string model_name{};            /**< @brief Name of the camera model */
         std::string firmware_version{};      /**< @brief Camera firmware version in
@@ -460,6 +495,8 @@ public:
             definition_file_version{}; /**< @brief Camera definition file version (iteration) */
         std::string
             definition_file_uri{}; /**< @brief Camera definition URI (http or mavlink ftp) */
+        std::vector<CameraCapFlags>
+            camera_cap_flags{}; /**< @brief Camera capability flags (Array) */
     };
 
     /**

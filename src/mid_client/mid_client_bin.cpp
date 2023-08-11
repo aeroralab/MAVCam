@@ -12,7 +12,7 @@ static bool is_integer(const std::string &tested_integer);
 int main(int argc, const char *argv[]) {
     std::string connection_url = default_connection;
     int rpc_port = default_rpc_port;
-    bool use_local = true;
+    bool use_local = false;
     for (int i = 1; i < argc; i++) {
         const std::string current_arg = argv[i];
 

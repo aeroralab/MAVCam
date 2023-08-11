@@ -19,6 +19,9 @@ CameraImpl::CameraImpl() {
     _settings.emplace_back(build_setting("CAM_VIDFMT", "1"));
     _settings.emplace_back(build_setting("CAM_VIDRES", "0"));
     _settings.emplace_back(build_setting("CAM_PHOTORATIO", "1"));
+
+    _total_storage_mib = 2 * 1024 * 1024;
+    _available_storage_mib = 1 * 1024 * 1024;
 }
 
 CameraImpl::~CameraImpl() {
@@ -96,21 +99,23 @@ void CameraImpl::subscribe_information(const Camera::InformationCallback &callba
 }
 
 Camera::Information CameraImpl::information() const {
-    return {
-        // clang-format off
-        .vendor_name = "GoerLabs",
-        .model_name = "C10",
-         .firmware_version = "0.0.1",
-        .focal_length_mm = 3.0,
-        .horizontal_sensor_size_mm = 3.68,
-        .vertical_sensor_size_mm = 2.76,
-        .horizontal_resolution_px = 3280,
-        .vertical_resolution_px = 2464,
-        .lens_id = 0,
-        .definition_file_version = 1,
-        .definition_file_uri = "ftp://C10.xml",  //TODO just demo
-        // clang-format on
-    };
+    Camera::Information information;
+    information.vendor_name = "GoerLabs";
+    information.model_name = "C10";
+    information.firmware_version = "0.0.1";
+    information.focal_length_mm = 3.0;
+    information.horizontal_sensor_size_mm = 3.68;
+    information.vertical_sensor_size_mm = 2.76;
+    information.horizontal_resolution_px = 3280;
+    information.vertical_resolution_px = 2464;
+    information.lens_id = 0;
+    information.definition_file_version = 1;
+    information.definition_file_uri = "http://127.0.0.1/C10.xml";  //TODO just demo
+    information.camera_cap_flags.emplace_back(Camera::Information::CameraCapFlags::CaptureImage);
+    information.camera_cap_flags.emplace_back(Camera::Information::CameraCapFlags::CaptureVideo);
+    information.camera_cap_flags.emplace_back(Camera::Information::CameraCapFlags::HasModes);
+
+    return information;
 }
 
 void CameraImpl::subscribe_video_stream_info(const Camera::VideoStreamInfoCallback &callback) {
@@ -157,9 +162,10 @@ void CameraImpl::subscribe_status(const Camera::StatusCallback &callback) {
 }
 
 Camera::Status CameraImpl::status() const {
+    // LogDebug() << "call get status ";
     //TODO just demo
-    _status.available_storage_mib = 1024 * 1024;
-    _status.total_storage_mib = 4 * 1024 * 1024;
+    _status.available_storage_mib = _available_storage_mib;
+    _status.total_storage_mib = _total_storage_mib;
     _status.storage_id = 1;
     _status.storage_status = Status::StorageStatus::Formatted;
     _status.storage_type = Status::StorageType::Sd;
@@ -208,6 +214,7 @@ std::pair<Camera::Result, Camera::Setting> CameraImpl::get_setting(Camera::Setti
 }
 
 Camera::Result CameraImpl::format_storage(int32_t storage_id) const {
+    _available_storage_mib = _total_storage_mib.load();
     LogDebug() << "call format storage " << storage_id;
     return Camera::Result::Success;
 }
