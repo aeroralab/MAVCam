@@ -1,0 +1,62 @@
+From 2561af5f08c5dd0bffbe28b103cf508d488504c8 Mon Sep 17 00:00:00 2001
+From: "xueshen.an" <xueshen.an@goertek.com>
+Date: Fri, 11 Aug 2023 15:37:03 +0800
+Subject: [PATCH] disable LIGHTTPD_STATIC flags for static build
+
+---
+ src/CMakeLists.txt | 18 +++++++-----------
+ 1 file changed, 7 insertions(+), 11 deletions(-)
+
+diff --git a/src/CMakeLists.txt b/src/CMakeLists.txt
+index 100dc76..f830410 100644
+--- a/src/CMakeLists.txt
++++ b/src/CMakeLists.txt
+@@ -82,7 +82,8 @@ endif()
+ option(BUILD_STATIC "build a static lighttpd with all modules added")
+ 
+ if(BUILD_STATIC)
+-	set(LIGHTTPD_STATIC 1)
++	###No need to define as lighttpd will look for symbols of built-in modules by self-executable
++	###set(LIGHTTPD_STATIC 1)
+ elseif(APPLE)
+ 	set(CMAKE_SHARED_MODULE_PREFIX "")
+ else()
+@@ -802,11 +803,7 @@ if(WITH_MAXMINDDB)
+ 	check_library_exists(maxminddb MMDB_open "" HAVE_MAXMINDDB)
+ endif()
+ 
+-if(NOT BUILD_STATIC)
+-	check_include_files(dlfcn.h HAVE_DLFCN_H)
+-else()
+-	unset(HAVE_DLFCN_H)
+-endif()
++check_include_files(dlfcn.h HAVE_DLFCN_H)
+ 
+ if(HAVE_DLFCN_H)
+ 	check_library_exists(dl dlopen "" HAVE_LIBDL)
+@@ -860,6 +857,7 @@ if(WIN32)
+ endif()
+ 
+   set(BUILTIN_MODS
++    h2.c
+     mod_rewrite.c
+     mod_redirect.c
+     mod_access.c
+@@ -1176,11 +1174,9 @@ if(WIN32)
+ 	set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -DNVALGRIND")
+ endif()
+ 
+-if(NOT BUILD_STATIC)
+-	if(HAVE_LIBDL)
+-		target_link_libraries(lighttpd dl)
+-		target_link_libraries(test_mod dl)
+-	endif()
++if(HAVE_LIBDL)
++	target_link_libraries(lighttpd dl)
++	target_link_libraries(test_mod dl)
+ endif()
+ 
+ if(NOT ${CRYPTO_LIBRARY} EQUAL "")
+-- 
+2.34.1
+
