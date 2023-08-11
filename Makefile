@@ -21,7 +21,7 @@ all: $(PKG_TARGET)
 build-MAVCam:
 	@mkdir -p $(CURRENT_DIR)/$(PKG_BUILD) && (\
 	pushd $(CURRENT_DIR)/$(PKG_BUILD)/; \
-		cmake -DCMAKE_INSTALL_PREFIX=/MAVCam -DCMAKE_TOOLCHAIN_FILE=$(CURRENT_DIR)/cmake/gcc-linaro-aarch64-linux.toolchain.cmake -DCMAKE_BUILD_TYPE=Release -DSTAGING_DIR=$(CURRENT_DIR)/$(PKG_BIN) ../ ; \
+		cmake -DCMAKE_INSTALL_PREFIX=/MAVCam -DCMAKE_TOOLCHAIN_FILE=$(CURRENT_DIR)/cmake/gcc-linaro-aarch64-linux.toolchain.cmake -DSTAGING_DIR=$(CURRENT_DIR)/$(PKG_BIN) ../ ; \
 		make -j$(RK_APP_JOBS); \
 		make DESTDIR=$(CURRENT_DIR)/$(PKG_BIN) install; \
 		rm -rf $(CURRENT_DIR)$(PKG_BIN_INSTALL)/usr/share; \
