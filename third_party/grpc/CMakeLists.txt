@@ -6,6 +6,8 @@ if (CMAKE_VERSION VERSION_GREATER_EQUAL "3.24.0")
 endif()
 include(ExternalProject)
 
+SET(GRPC_VERSION 1.61.1)
+
 list(APPEND CMAKE_ARGS
     "-DCMAKE_PREFIX_PATH:PATH=${CMAKE_PREFIX_PATH}"
     "-DCMAKE_INSTALL_PREFIX:PATH=${CMAKE_INSTALL_PREFIX}"
@@ -55,8 +57,7 @@ endforeach()
 
 ExternalProject_add(
     grpc
-    URL https://github.com/grpc/grpc/archive/v1.46.2.tar.gz
-    URL_HASH MD5=cb274f74e51e90a6ac929c5298bb1d32
+    URL https://github.com/grpc/grpc/archive/v${GRPC_VERSION}.tar.gz
     PREFIX grpc
     DOWNLOAD_DIR "${DOWNLOAD_DIR}"
     CMAKE_ARGS "${CMAKE_ARGS}"
