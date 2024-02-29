@@ -38,8 +38,8 @@ endforeach()
 
 ExternalProject_add(
     curl
-    URL https://github.com/curl/curl/releases/download/curl-7_84_0/curl-7.84.0.tar.gz 
-    URL_HASH MD5=d0b9238c62a95aeaab66458c0e31d999
+    URL https://github.com/curl/curl/releases/download/curl-7_88_0/curl-7.88.0.tar.gz
+    URL_HASH MD5=f59fd1626bd6af4b715186b443e3ab7e
     PREFIX curl
     DOWNLOAD_DIR "${DOWNLOAD_DIR}"
     CMAKE_ARGS "${CMAKE_ARGS}"
