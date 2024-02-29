@@ -6,7 +6,7 @@ if (CMAKE_VERSION VERSION_GREATER_EQUAL "3.24.0")
 endif()
 include(ExternalProject)
 
-set(ABSEIL_CPP_VERSION 20211102.0)
+set(ABSEIL_CPP_VERSION 20240116.1)
 
 list(APPEND CMAKE_ARGS
     "-DCMAKE_PREFIX_PATH:PATH=${CMAKE_PREFIX_PATH}"
@@ -14,7 +14,7 @@ list(APPEND CMAKE_ARGS
     "-DCMAKE_TOOLCHAIN_FILE:PATH=${CMAKE_TOOLCHAIN_FILE}"
     "-DCMAKE_POSITION_INDEPENDENT_CODE=ON"
     "-DCMAKE_BUILD_TYPE=${CMAKE_BUILD_TYPE}"
-    "-DCMAKE_CXX_STANDARD=11"
+    "-DCMAKE_CXX_STANDARD=17"
     )
 
 if(IOS)
@@ -33,7 +33,7 @@ endforeach()
 ExternalProject_add(
     absl
     URL https://github.com/abseil/abseil-cpp/archive/refs/tags/${ABSEIL_CPP_VERSION}.tar.gz
-    URL_HASH MD5=bdca561519192543378b7cade101ec43
+    URL_HASH MD5=fdff5a0a90a8ffcded7dee1c08f02a6c
     PREFIX absl
     DOWNLOAD_DIR "${DOWNLOAD_DIR}"
     CMAKE_ARGS "${CMAKE_ARGS}"
