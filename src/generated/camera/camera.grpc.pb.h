@@ -7,23 +7,23 @@
 #include "camera/camera.pb.h"
 
 #include <functional>
-#include <grpcpp/impl/codegen/async_generic_service.h>
-#include <grpcpp/impl/codegen/async_stream.h>
-#include <grpcpp/impl/codegen/async_unary_call.h>
-#include <grpcpp/impl/codegen/client_callback.h>
-#include <grpcpp/impl/codegen/client_context.h>
-#include <grpcpp/impl/codegen/completion_queue.h>
-#include <grpcpp/impl/codegen/message_allocator.h>
-#include <grpcpp/impl/codegen/method_handler.h>
-#include <grpcpp/impl/codegen/proto_utils.h>
-#include <grpcpp/impl/codegen/rpc_method.h>
-#include <grpcpp/impl/codegen/server_callback.h>
-#include <grpcpp/impl/codegen/server_callback_handlers.h>
-#include <grpcpp/impl/codegen/server_context.h>
-#include <grpcpp/impl/codegen/service_type.h>
-#include <grpcpp/impl/codegen/status.h>
-#include <grpcpp/impl/codegen/stub_options.h>
-#include <grpcpp/impl/codegen/sync_stream.h>
+#include <grpcpp/generic/async_generic_service.h>
+#include <grpcpp/support/async_stream.h>
+#include <grpcpp/support/async_unary_call.h>
+#include <grpcpp/support/client_callback.h>
+#include <grpcpp/client_context.h>
+#include <grpcpp/completion_queue.h>
+#include <grpcpp/support/message_allocator.h>
+#include <grpcpp/support/method_handler.h>
+#include <grpcpp/impl/proto_utils.h>
+#include <grpcpp/impl/rpc_method.h>
+#include <grpcpp/support/server_callback.h>
+#include <grpcpp/impl/server_callback_handlers.h>
+#include <grpcpp/server_context.h>
+#include <grpcpp/impl/service_type.h>
+#include <grpcpp/support/status.h>
+#include <grpcpp/support/stub_options.h>
+#include <grpcpp/support/sync_stream.h>
 
 namespace mavsdk {
 namespace rpc {
@@ -269,13 +269,7 @@ class CameraService final {
     }
     //
     // Manual set the definition data
-    //
-    // The camera will use the definition data to config the camera
-    // The camera already support http protocol to download definition file
-    // But we want to support mavlink ftp way to download file too.
-    // We don't want the camera to use file system to maintain the definition file.
-    // So we use mavlink ftp to download the definition file first, 
-    // and read the definition file data to manual set. 
+    // e.g. use mavlink ftp download definition file and set to camera
     virtual ::grpc::Status SetDefinitionData(::grpc::ClientContext* context, const ::mavsdk::rpc::camera::SetDefinitionDataRequest& request, ::mavsdk::rpc::camera::SetDefinitionDataResponse* response) = 0;
     std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::mavsdk::rpc::camera::SetDefinitionDataResponse>> AsyncSetDefinitionData(::grpc::ClientContext* context, const ::mavsdk::rpc::camera::SetDefinitionDataRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::mavsdk::rpc::camera::SetDefinitionDataResponse>>(AsyncSetDefinitionDataRaw(context, request, cq));
@@ -379,13 +373,7 @@ class CameraService final {
       virtual void ResetSettings(::grpc::ClientContext* context, const ::mavsdk::rpc::camera::ResetSettingsRequest* request, ::mavsdk::rpc::camera::ResetSettingsResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
       //
       // Manual set the definition data
-      //
-      // The camera will use the definition data to config the camera
-      // The camera already support http protocol to download definition file
-      // But we want to support mavlink ftp way to download file too.
-      // We don't want the camera to use file system to maintain the definition file.
-      // So we use mavlink ftp to download the definition file first, 
-      // and read the definition file data to manual set. 
+      // e.g. use mavlink ftp download definition file and set to camera
       virtual void SetDefinitionData(::grpc::ClientContext* context, const ::mavsdk::rpc::camera::SetDefinitionDataRequest* request, ::mavsdk::rpc::camera::SetDefinitionDataResponse* response, std::function<void(::grpc::Status)>) = 0;
       virtual void SetDefinitionData(::grpc::ClientContext* context, const ::mavsdk::rpc::camera::SetDefinitionDataRequest* request, ::mavsdk::rpc::camera::SetDefinitionDataResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
     };
@@ -839,13 +827,7 @@ class CameraService final {
     virtual ::grpc::Status ResetSettings(::grpc::ServerContext* context, const ::mavsdk::rpc::camera::ResetSettingsRequest* request, ::mavsdk::rpc::camera::ResetSettingsResponse* response);
     //
     // Manual set the definition data
-    //
-    // The camera will use the definition data to config the camera
-    // The camera already support http protocol to download definition file
-    // But we want to support mavlink ftp way to download file too.
-    // We don't want the camera to use file system to maintain the definition file.
-    // So we use mavlink ftp to download the definition file first, 
-    // and read the definition file data to manual set. 
+    // e.g. use mavlink ftp download definition file and set to camera
     virtual ::grpc::Status SetDefinitionData(::grpc::ServerContext* context, const ::mavsdk::rpc::camera::SetDefinitionDataRequest* request, ::mavsdk::rpc::camera::SetDefinitionDataResponse* response);
   };
   template <class BaseClass>
