@@ -18,6 +18,8 @@ list(APPEND CMAKE_ARGS
     "-Dprotobuf_MODULE_COMPATIBLE=ON"
     "-Dprotobuf_MSVC_STATIC_RUNTIME=OFF"
     "-DCMAKE_POSITION_INDEPENDENT_CODE=ON"
+    "-Dprotobuf_ABSL_PROVIDER=package"
+    "-DCMAKE_CXX_STANDARD=17"
     )
 
 if(CMAKE_CROSSCOMPILING)
@@ -42,8 +44,8 @@ endforeach()
 ExternalProject_add(
     protobuf
     URL https://github.com/protocolbuffers/protobuf/releases/download/v${PROTOBUF_VERSION}/protobuf-${PROTOBUF_VERSION}.tar.gz
+    URL_HASH MD5=105105aae0153d60059e982ead4d1d94
     PREFIX protobuf
     DOWNLOAD_DIR "${DOWNLOAD_DIR}"
     CMAKE_ARGS "${CMAKE_ARGS}"
-    SOURCE_SUBDIR cmake
     )
