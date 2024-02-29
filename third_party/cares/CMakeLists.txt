@@ -33,8 +33,8 @@ endforeach()
 
 ExternalProject_add(
     cares
-    URL https://github.com/c-ares/c-ares/releases/download/cares-1_18_1/c-ares-1.18.1.tar.gz
-    URL_HASH MD5=bf770c0d3131ec0dd0575a0d2dcab226
+    URL https://github.com/c-ares/c-ares/releases/download/cares-1_19_1/c-ares-1.19.1.tar.gz
+    URL_HASH MD5=dafc5825a92dc907e144570e4e75a908
     PREFIX cares
     DOWNLOAD_DIR "${DOWNLOAD_DIR}"
     CMAKE_ARGS "${CMAKE_ARGS}"
