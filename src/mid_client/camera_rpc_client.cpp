@@ -485,7 +485,7 @@ static void fillStorageInformation(const mavsdk::rpc::camera::Status &input,
 static void fillCaptureStatus(const mavsdk::rpc::camera::Status &input,
                               mavsdk::CameraServer::CaptureStatus &output) {
     output.recording_time_s = input.recording_time_s();
-    output.available_capacity = input.available_storage_mib();
+    output.available_capacity_mib = input.available_storage_mib();
     output.video_status = input.video_on()
                             ? mavsdk::CameraServer::CaptureStatus::VideoStatus::CaptureInProgress
                             : mavsdk::CameraServer::CaptureStatus::VideoStatus::Idle;

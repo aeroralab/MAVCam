@@ -156,7 +156,7 @@ mavsdk::CameraServer::Result CameraLocalClient::fill_storage_information(
 mavsdk::CameraServer::Result CameraLocalClient::fill_capture_status(
     mavsdk::CameraServer::CaptureStatus &capture_status) {
     // not need lock guard
-    capture_status.available_capacity = _available_storage_mib;
+    capture_status.available_capacity_mib = _available_storage_mib;
     capture_status.image_count = _image_count;
     capture_status.image_status =
         _is_capture_in_progress

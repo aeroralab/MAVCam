@@ -29,10 +29,7 @@ bool MidClient::init(std::string &connection_url, bool use_local, int rpc_port) 
 }
 
 bool MidClient::start_runloop() {
-    mavsdk::Mavsdk mavsdk;
-    mavsdk::Mavsdk::Configuration configuration(
-        mavsdk::Mavsdk::Configuration::UsageType::Autopilot);
-    mavsdk.set_configuration(configuration);
+    mavsdk::Mavsdk mavsdk{mavsdk::Mavsdk::Configuration{mavsdk::Mavsdk::ComponentType::Autopilot}};
 
     auto result = mavsdk.add_any_connection(_connection_url);
     if (result != mavsdk::ConnectionResult::Success) {
@@ -42,8 +39,7 @@ bool MidClient::start_runloop() {
     LogInfo() << "Created middleware client success";
 
     // works as camera
-    auto server_component =
-        mavsdk.server_component_by_type(mavsdk::Mavsdk::ServerComponentType::Camera);
+    auto server_component = mavsdk.server_component_by_type(mavsdk::Mavsdk::ComponentType::Camera);
     auto camera_server = mavsdk::CameraServer{server_component};
     subscribe_camera_operation(camera_server);
     auto param_server = mavsdk::ParamServer{server_component};
@@ -66,7 +62,7 @@ void MidClient::subscribe_camera_operation(mavsdk::CameraServer &camera_server) 
                              std::chrono::system_clock::now().time_since_epoch())
                              .count();
         auto success = true;
-        camera_server.respond_take_photo(mavsdk::CameraServer::TakePhotoFeedback::Ok,
+        camera_server.respond_take_photo(mavsdk::CameraServer::CameraFeedback::Ok,
                                          mavsdk::CameraServer::CaptureInfo{
                                              .position = position,
                                              .attitude_quaternion = attitude,
@@ -94,13 +90,15 @@ void MidClient::subscribe_camera_operation(mavsdk::CameraServer &camera_server) 
     camera_server.subscribe_storage_information([this, &camera_server](int32_t storage_id) {
         mavsdk::CameraServer::StorageInformation storage_information;
         _camera_client->fill_storage_information(storage_information);
-        camera_server.respond_storage_information(storage_information);
+        camera_server.respond_storage_information(mavsdk::CameraServer::CameraFeedback::Ok,
+                                                  storage_information);
     });
 
     camera_server.subscribe_capture_status([this, &camera_server](int32_t reserved) {
         mavsdk::CameraServer::CaptureStatus capture_status;
         _camera_client->fill_capture_status(capture_status);
-        camera_server.respond_capture_status(capture_status);
+        camera_server.respond_capture_status(mavsdk::CameraServer::CameraFeedback::Ok,
+                                             capture_status);
     });
 
     camera_server.subscribe_format_storage(
@@ -128,13 +126,22 @@ void MidClient::subscribe_camera_operation(mavsdk::CameraServer &camera_server) 
 }
 
 void MidClient::subscribe_param_operation(mavsdk::ParamServer &param_server) {
-    param_server.subscribe_custom_param_changed(
-        [this](mavsdk::ParamServer::CustomParam custom_param) {
-            mavsdk::Camera::Setting setting;
-            setting.setting_id = custom_param.name;
-            setting.option.option_id = custom_param.value;
-            _camera_client->set_setting(setting);
-        });
+    param_server.subscribe_changed_param_float([this](mavsdk::ParamServer::FloatParam float_param) {
+        std::cout << "param server change " << float_param.name << " to " << float_param.value
+                  << std::endl;
+        mavsdk::Camera::Setting setting;
+        setting.setting_id = float_param.name;
+        setting.option.option_id = float_param.value;
+        _camera_client->set_setting(setting);
+    });
+    param_server.subscribe_changed_param_int([this](mavsdk::ParamServer::IntParam int_param) {
+        std::cout << "param server change " << int_param.name << " to " << int_param.value
+                  << std::endl;
+        mavsdk::Camera::Setting setting;
+        setting.setting_id = int_param.name;
+        setting.option.option_id = int_param.value;
+        _camera_client->set_setting(setting);
+    });
 
     std::vector<mavsdk::Camera::Setting> settings;
     _camera_client->retrieve_current_settings(settings);
