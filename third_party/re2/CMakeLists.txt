@@ -29,8 +29,7 @@ endforeach()
 
 ExternalProject_add(
     re2
-    URL https://github.com/google/re2/archive/2022-04-01.tar.gz
-    URL_HASH MD5=b1c75896e425361311b4c0c091452153
+    URL https://github.com/google/re2/archive/2023-11-01.tar.gz
     PREFIX re2
     DOWNLOAD_DIR "${DOWNLOAD_DIR}"
     CMAKE_ARGS "${CMAKE_ARGS}"
