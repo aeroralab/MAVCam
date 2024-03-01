@@ -47,15 +47,11 @@ int main(int argc, const char *argv[]) {
     auto system = fut.get();
     auto camera = mavsdk::Camera{system};
 
-    camera.subscribe_information([](mavsdk::Camera::Information info) {
-        std::cout << "Camera information:" << std::endl;
-        std::cout << info << std::endl;
-    });
+    camera.subscribe_status(
+        [](mavsdk::Camera::Status status) { std::cout << status << std::endl; });
 
-    camera.subscribe_status([](mavsdk::Camera::Status status) {
-        std::cout << "Camera status:" << std::endl;
-        std::cout << status << std::endl;
-    });
+    camera.subscribe_capture_info(
+        [](mavsdk::Camera::CaptureInfo capture_info) { std::cout << capture_info << std::endl; });
 
     do_camera_operation(camera);
 
@@ -68,6 +64,12 @@ int main(int argc, const char *argv[]) {
 static void do_camera_operation(mavsdk::Camera &camera) {
     auto operation_result = camera.format_storage(1);
     std::cout << "format storage result : " << operation_result << std::endl;
+
+    operation_result = camera.reset_settings();
+    std::cout << "Reset camera settings result : " << operation_result << std::endl;
+
+    operation_result = camera.take_photo();
+    std::cout << "take photo result : " << operation_result << std::endl;
 
     operation_result = camera.take_photo();
     std::cout << "take photo result : " << operation_result << std::endl;
@@ -98,7 +100,4 @@ static void do_camera_operation(mavsdk::Camera &camera) {
 
     operation_result = camera.set_mode(mavsdk::Camera::Mode::Video);
     std::cout << "Set camera to video mode result : " << operation_result << std::endl;
-
-    operation_result = camera.reset_settings();
-    std::cout << "Reset camera settings result : " << operation_result << std::endl;
 }
