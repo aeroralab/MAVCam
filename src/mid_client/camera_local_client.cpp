@@ -105,15 +105,15 @@ mavsdk::CameraServer::Result CameraLocalClient::fill_information(
     information.vertical_resolution_px = 2464;
     information.lens_id = 0;
     information.definition_file_version = 1;
-    information.definition_file_uri = "http://127.0.0.1/C10.xml";  //TODO just demo
+    information.definition_file_uri = "ftp://definition/C10.xml";  //TODO: just demo
     information.camera_cap_flags.emplace_back(
         mavsdk::CameraServer::Information::CameraCapFlags::CaptureImage);
     information.camera_cap_flags.emplace_back(
         mavsdk::CameraServer::Information::CameraCapFlags::CaptureVideo);
     information.camera_cap_flags.emplace_back(
         mavsdk::CameraServer::Information::CameraCapFlags::HasModes);
-    // information.camera_cap_flags.emplace_back(
-    //     mavsdk::CameraServer::Information::CameraCapFlags::HasVideoStream);
+    information.camera_cap_flags.emplace_back(
+        mavsdk::CameraServer::Information::CameraCapFlags::HasVideoStream);
     return mavsdk::CameraServer::Result::Success;
 }
 

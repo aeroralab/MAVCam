@@ -2,6 +2,7 @@
 
 #include <mavsdk/mavsdk.h>
 #include <mavsdk/plugins/camera_server/camera_server.h>
+#include <mavsdk/plugins/ftp_server/ftp_server.h>
 #include <mavsdk/plugins/param_server/param_server.h>
 
 #include <chrono>
@@ -12,10 +13,12 @@
 
 namespace mid {
 
-bool MidClient::init(std::string &connection_url, bool use_local, int rpc_port) {
+bool MidClient::init(std::string &connection_url, bool use_local, int32_t rpc_port,
+                     std::string &ftp_root_path) {
     //Todo need check connection url first
     _connection_url = connection_url;
     _rpc_port = rpc_port;
+    _ftp_root_path = ftp_root_path;
 
     if (use_local) {
         _camera_client = CreateLocalCameraClient();  // use local client
@@ -29,7 +32,7 @@ bool MidClient::init(std::string &connection_url, bool use_local, int rpc_port) 
 }
 
 bool MidClient::start_runloop() {
-    mavsdk::Mavsdk mavsdk{mavsdk::Mavsdk::Configuration{mavsdk::Mavsdk::ComponentType::Autopilot}};
+    mavsdk::Mavsdk mavsdk{mavsdk::Mavsdk::Configuration{mavsdk::Mavsdk::ComponentType::Camera}};
 
     auto result = mavsdk.add_any_connection(_connection_url);
     if (result != mavsdk::ConnectionResult::Success) {
@@ -39,11 +42,14 @@ bool MidClient::start_runloop() {
     LogInfo() << "Created middleware client success";
 
     // works as camera
-    auto server_component = mavsdk.server_component_by_type(mavsdk::Mavsdk::ComponentType::Camera);
-    auto camera_server = mavsdk::CameraServer{server_component};
+    // auto server_component = mavsdk.server_component_by_type(mavsdk::Mavsdk::ComponentType::Camera);
+    auto camera_server = mavsdk::CameraServer{mavsdk.server_component()};
     subscribe_camera_operation(camera_server);
-    auto param_server = mavsdk::ParamServer{server_component};
+    auto param_server = mavsdk::ParamServer{mavsdk.server_component()};
     subscribe_param_operation(param_server);
+    auto ftp_server = mavsdk::FtpServer{mavsdk.server_component()};
+    ftp_server.set_root_dir(_ftp_root_path);
+    LogInfo() << "Launch ftp server with root path " << _ftp_root_path;
 
     while (true) {
         std::this_thread::sleep_for(std::chrono::seconds(1));
@@ -127,19 +133,18 @@ void MidClient::subscribe_camera_operation(mavsdk::CameraServer &camera_server) 
 
 void MidClient::subscribe_param_operation(mavsdk::ParamServer &param_server) {
     param_server.subscribe_changed_param_float([this](mavsdk::ParamServer::FloatParam float_param) {
-        std::cout << "param server change " << float_param.name << " to " << float_param.value
-                  << std::endl;
+        LogDebug() << "param server change float " << float_param.name << " to "
+                   << float_param.value;
         mavsdk::Camera::Setting setting;
         setting.setting_id = float_param.name;
-        setting.option.option_id = float_param.value;
+        setting.option.option_id = std::to_string(float_param.value);
         _camera_client->set_setting(setting);
     });
     param_server.subscribe_changed_param_int([this](mavsdk::ParamServer::IntParam int_param) {
-        std::cout << "param server change " << int_param.name << " to " << int_param.value
-                  << std::endl;
+        LogDebug() << "param server change int " << int_param.name << " to " << int_param.value;
         mavsdk::Camera::Setting setting;
         setting.setting_id = int_param.name;
-        setting.option.option_id = int_param.value;
+        setting.option.option_id = std::to_string(int_param.value);
         _camera_client->set_setting(setting);
     });
 
