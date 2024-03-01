@@ -252,12 +252,12 @@ void CameraImpl::work_thread(CameraImpl *self) {
     while (!self->_should_exit) {
         {
             std::lock_guard<std::mutex> lock(self->_callback_mutex);
-            if (self->_need_update_camera_information) {
+            if (self->_need_update_camera_information && self->_camera_information_callback) {
                 LogDebug() << "retrive camera information";
                 self->_camera_information_callback(self->information());
                 self->_need_update_camera_information = false;
             }
-            if (self->_need_update_video_stream_info) {
+            if (self->_need_update_video_stream_info && self->_video_stream_info_callback) {
                 LogDebug() << "retrive video stream information";
                 self->_video_stream_info_callback(self->video_stream_info());
                 self->_need_update_video_stream_info = false;

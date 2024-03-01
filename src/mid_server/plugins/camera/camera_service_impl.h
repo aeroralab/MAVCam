@@ -1,6 +1,6 @@
 #pragma once
 
-//TODO may need auto generate
+//TODO need auto generate
 #include <atomic>
 #include <cmath>
 #include <future>

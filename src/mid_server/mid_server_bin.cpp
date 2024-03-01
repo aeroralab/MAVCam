@@ -18,7 +18,7 @@ int main(int argc, const char *argv[]) {
             usage(argv[0]);
             return 0;
         } else if (current_arg == "-v" || current_arg == "--version") {
-            std::cout << "MAVCam client version : " << VERSION << std::endl;
+            std::cout << "MAVCam server version : " << VERSION << std::endl;
             std::cout << "build time : " << BUILD_TIME << std::endl;
             return 0;
         } else if (current_arg == "-r") {
@@ -26,14 +26,13 @@ int main(int argc, const char *argv[]) {
                 usage(argv[0]);
                 return 1;
             }
-
             const std::string rpc_port_string(argv[i + 1]);
-            i++;
             if (!is_integer(rpc_port_string)) {
                 usage(argv[0]);
                 return 1;
             }
             rpc_port = std::stoi(rpc_port_string);
+            i++;
         }
     }
 
@@ -51,10 +50,10 @@ void usage(const char *bin_name) {
     std::cout << "Usage: " << bin_name << " [Options]" << '\n'
               << '\n'
               << "Options:" << '\n'
-              << "  -h | --help : show this help" << '\n'
-              << " -v | --version : show version information " << '\n'
-              << "  -r          : set the rpc port," << '\n'
-              << "                (default is " << default_rpc_port << ")\n";
+              << "\t-h | --help     : show this help" << '\n'
+              << "\t-v | --version  : show version information " << '\n'
+              << "\t-r              : set the rpc port,"
+              << "(default is " << default_rpc_port << ")\n";
 }
 
 bool is_integer(const std::string &tested_integer) {
