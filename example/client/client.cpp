@@ -182,12 +182,12 @@ static std::string download_camera_definition_file_by_ftp(std::shared_ptr<mavsdk
 
 static void do_camera_settings(mavsdk::Camera &camera) {
     std::vector<std::pair<std::string, std::string>> settings;
-    // settings.push_back({"CAM_WBMODE", "1"});
-    // settings.push_back({"CAM_EXPMODE", "0"});
+    settings.push_back({"CAM_WBMODE", "1"});
+    settings.push_back({"CAM_EXPMODE", "0"});
     settings.push_back({"CAM_EV", "2.0"});
-    // settings.push_back({"CAM_EXPMODE", "1"});
-    // settings.push_back({"CAM_SHUTTERSPD", "0.016666"});
-    // settings.push_back({"CAM_ISO", "6400"});
+    settings.push_back({"CAM_EXPMODE", "1"});
+    settings.push_back({"CAM_SHUTTERSPD", "0.016666"});
+    settings.push_back({"CAM_ISO", "6400"});
 
     for (auto &it : settings) {
         set_camera_settings(camera, it.first, it.second);
@@ -195,15 +195,11 @@ static void do_camera_settings(mavsdk::Camera &camera) {
         if (value.find(it.second, 0) != 0) {
             std::cerr << "invalid result : " << it.first << " origin value " << it.second
                       << " new value " << value << std::endl;
-            return;
         }
     }
     camera.set_mode(mavsdk::Camera::Mode::Video);
     set_camera_settings(camera, "CAM_VIDFMT", "2");
     set_camera_settings(camera, "CAM_VIDRES", "5");
-
-    camera.set_mode(mavsdk::Camera::Mode::Photo);
-    set_camera_settings(camera, "CAM_PHOTORATIO", "3");
 }
 
 static inline void set_camera_settings(mavsdk::Camera &camera, const std::string &name,
