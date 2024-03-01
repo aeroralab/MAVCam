@@ -54,5 +54,5 @@ include(GNUInstallDirs)
 add_subdirectory(src)
 
 if (BUILD_EXAMPLE)
-    add_subdirectory(example/client)
+    add_subdirectory(example)
 endif()

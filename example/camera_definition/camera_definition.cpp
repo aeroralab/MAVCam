@@ -27,7 +27,7 @@ int main(int argc, const char *argv[]) {
 
     auto result = mavsdk.add_any_connection("udp://:14550");
     if (result == mavsdk::ConnectionResult::Success) {
-        std::cout << "Connected!" << std::endl;
+        std::cout << "Connected success !" << std::endl;
     }
 
     auto prom = std::promise<std::shared_ptr<mavsdk::System>>{};

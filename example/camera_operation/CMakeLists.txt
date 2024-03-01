@@ -7,12 +7,12 @@ project(camera_operation)
 
 message(STATUS "build camera operation example")
 
-add_executable(${CMAKE_PROJECT_NAME}
+add_executable(${PROJECT_NAME}
     camera_operation.cpp
 )
 
 find_package(MAVSDK REQUIRED)
 
-target_link_libraries(${CMAKE_PROJECT_NAME}
+target_link_libraries(${PROJECT_NAME}
     MAVSDK::mavsdk
 )
