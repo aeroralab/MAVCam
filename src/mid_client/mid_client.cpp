@@ -79,19 +79,30 @@ void MidClient::subscribe_camera_operation(mavsdk::CameraServer &camera_server) 
                                          });
     });
 
-    camera_server.subscribe_start_video(
-        [this](int32_t stream_id) { _camera_client->start_video(); });
+    camera_server.subscribe_start_video([this, &camera_server](int32_t stream_id) {
+        auto result = _camera_client->start_video();
+        camera_server.respond_start_video(mavsdk::CameraServer::CameraFeedback::Ok);
+    });
 
-    camera_server.subscribe_stop_video([this](int32_t stream_id) { _camera_client->stop_video(); });
+    camera_server.subscribe_stop_video([this, &camera_server](int32_t stream_id) {
+        auto result = _camera_client->stop_video();
+        camera_server.respond_stop_video(mavsdk::CameraServer::CameraFeedback::Ok);
+    });
 
-    camera_server.subscribe_start_video_streaming(
-        [this](int32_t stream_id) { _camera_client->start_video_streaming(stream_id); });
+    camera_server.subscribe_start_video_streaming([this, &camera_server](int32_t stream_id) {
+        auto result = _camera_client->start_video_streaming(stream_id);
+        camera_server.respond_start_video_streaming(mavsdk::CameraServer::CameraFeedback::Ok);
+    });
 
-    camera_server.subscribe_stop_video_streaming(
-        [this](int32_t stream_id) { _camera_client->stop_video_streaming(stream_id); });
+    camera_server.subscribe_stop_video_streaming([this, &camera_server](int32_t stream_id) {
+        auto result = _camera_client->stop_video_streaming(stream_id);
+        camera_server.respond_stop_video_streaming(mavsdk::CameraServer::CameraFeedback::Ok);
+    });
 
-    camera_server.subscribe_set_mode(
-        [this](mavsdk::CameraServer::Mode mode) { _camera_client->set_mode(mode); });
+    camera_server.subscribe_set_mode([this, &camera_server](mavsdk::CameraServer::Mode mode) {
+        auto result = _camera_client->set_mode(mode);
+        camera_server.respond_set_mode(mavsdk::CameraServer::CameraFeedback::Ok);
+    });
 
     camera_server.subscribe_storage_information([this, &camera_server](int32_t storage_id) {
         mavsdk::CameraServer::StorageInformation storage_information;
@@ -107,11 +118,15 @@ void MidClient::subscribe_camera_operation(mavsdk::CameraServer &camera_server) 
                                              capture_status);
     });
 
-    camera_server.subscribe_format_storage(
-        [this](int storage_id) { _camera_client->format_storage(storage_id); });
+    camera_server.subscribe_format_storage([this, &camera_server](int storage_id) {
+        auto result = _camera_client->format_storage(storage_id);
+        camera_server.respond_format_storage(mavsdk::CameraServer::CameraFeedback::Ok);
+    });
 
-    camera_server.subscribe_reset_settings(
-        [this](int camera_id) { _camera_client->reset_settings(); });
+    camera_server.subscribe_reset_settings([this, &camera_server](int camera_id) {
+        auto result = _camera_client->reset_settings();
+        camera_server.respond_reset_settings(mavsdk::CameraServer::CameraFeedback::Ok);
+    });
     // Then set the initial state of everything.
 
     // Finally call set_information() to "activate" the camera plugin.
