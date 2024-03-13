@@ -36,5 +36,6 @@ ExternalProject_add(
     URL_HASH MD5=fdff5a0a90a8ffcded7dee1c08f02a6c
     PREFIX absl
     DOWNLOAD_DIR "${DOWNLOAD_DIR}"
+    PATCH_COMMAND patch -p1 < ${PROJECT_SOURCE_DIR}/0001-Fix-GCC7-C-17-build.patch
     CMAKE_ARGS "${CMAKE_ARGS}"
     )
