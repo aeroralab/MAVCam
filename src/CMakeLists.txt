@@ -5,7 +5,7 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 include(cmake/compiler_flags.cmake)
 
-option(BUILD_SERVER "Build server and client with grpc support" ON)
+option(BUILD_SERVER "Build server and client with grpc support" OFF)
 
 add_subdirectory(base)
 if (BUILD_SERVER)

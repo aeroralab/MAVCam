@@ -1,6 +1,7 @@
 cmake_minimum_required(VERSION 3.14)
 
 option(BUILD_DEPENDENCY "Build dependencies" ON)
+option(BUILD_GRPC "Build with grpc support" ON)
 option(BUILD_SHARED_LIBS "Build core as shared libraries instead of static ones" OFF)
 option(BUILD_EXAMPLE "Build example" OFF)
 
@@ -44,12 +45,11 @@ set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_CURRENT_SOURCE_DIR}/cmake")
 set(DEP_BUILD_DIR "${PROJECT_BINARY_DIR}/third_party" CACHE PATH "Install path for the dependencies. Ignored if SUPERBUILD=OFF.")
 set(DEP_INSTALL_DIR "${DEP_BUILD_DIR}/install" CACHE PATH "Install path for the dependencies. Ignored if SUPERBUILD=OFF.")
 set(DEP_DOWNLOAD_DIR "${PROJECT_SOURCE_DIR}/download" CACHE PATH "Download path for the dependencies. Ignored if SUPERBUILD=OFF.")
-
-add_subdirectory(third_party)
-
 set(STAGING_DIR "${PROJECT_SOURCE_DIR}/stage_dir" CACHE PATH "Install path")
 
 include(GNUInstallDirs)
+
+add_subdirectory(third_party)
 
 add_subdirectory(src)
 
