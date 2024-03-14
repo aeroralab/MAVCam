@@ -10,7 +10,7 @@
 #include <utility>
 #include <vector>
 
-namespace mid {
+namespace mav {
 
 /**
  * @brief Can be used to manage cameras that implement the MAVLink
@@ -797,4 +797,4 @@ public:
     const Camera &operator=(const Camera &) = delete;
 };
 
-}  // namespace mid
+}  // namespace mav

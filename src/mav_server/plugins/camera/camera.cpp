@@ -2,7 +2,7 @@
 
 #include <iomanip>
 
-namespace mid {
+namespace mav {
 using Position = Camera::Position;
 using Quaternion = Camera::Quaternion;
 using EulerAngle = Camera::EulerAngle;

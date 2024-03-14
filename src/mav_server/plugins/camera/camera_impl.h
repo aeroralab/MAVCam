@@ -8,7 +8,7 @@
 
 #include "plugins/camera/camera.h"
 
-namespace mid {
+namespace mav {
 
 class CameraImpl : public Camera {
 public:
@@ -52,7 +52,7 @@ private:
     void start();
     void stop();
     static void work_thread(CameraImpl *self);
-    mid::Camera::Setting build_setting(std::string name, std::string value);
+    mav::Camera::Setting build_setting(std::string name, std::string value);
 private:
     std::thread *_work_thread{nullptr};
     std::atomic<bool> _should_exit{false};
@@ -71,4 +71,4 @@ private:
     mutable std::atomic<float> _available_storage_mib;
 };
 
-}  // namespace mid
+}  // namespace mav

@@ -1,6 +1,6 @@
 #include <iostream>
 
-#include "mid_server.h"
+#include "mav_server.h"
 #include "version.h"
 
 static auto constexpr default_rpc_port = 50051;
@@ -36,7 +36,7 @@ int main(int argc, const char *argv[]) {
         }
     }
 
-    mid::MidServer server;
+    mav::MavServer server;
     if (!server.init(rpc_port)) {
         std::cout << "Init rpc server failed";
         return 1;

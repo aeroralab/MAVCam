@@ -1,11 +1,11 @@
 #pragma once
 
-namespace mid {
+namespace mav {
 
-class MidServer final {
+class MavServer final {
 public:
-    MidServer() {}
-    ~MidServer() {}
+    MavServer() {}
+    ~MavServer() {}
 public:
     bool init(int rpc_port);
     bool start_runloop();
@@ -13,4 +13,4 @@ private:
     int _rpc_port;
 };
 
-}  // namespace mid
+}  // namespace mav

@@ -1,4 +1,4 @@
-#include "mid_server.h"
+#include "mav_server.h"
 
 #include <grpc++/grpc++.h>
 
@@ -10,14 +10,14 @@
 #include "plugins/camera/camera_impl.h"
 #include "plugins/camera/camera_service_impl.h"
 
-namespace mid {
+namespace mav {
 
-bool MidServer::init(int rpc_port) {
+bool MavServer::init(int rpc_port) {
     _rpc_port = rpc_port;
     return true;
 }
 
-bool MidServer::start_runloop() {
+bool MavServer::start_runloop() {
     std::string server_address{"127.0.0.1"};
     server_address += ":" + std::to_string(_rpc_port);
     CameraServiceImpl service(std::make_shared<CameraImpl>());
@@ -30,10 +30,10 @@ bool MidServer::start_runloop() {
     std::unique_ptr<grpc::Server> server{builder.BuildAndStart()};
 
     // Run server
-    LogInfo() << "Server listening on " << server_address;
+    base::LogInfo() << "Server listening on " << server_address;
     server->Wait();
 
     return 0;
 }
 
-}  // namespace mid
+}  // namespace mav

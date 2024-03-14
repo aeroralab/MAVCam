@@ -94,6 +94,5 @@ bool is_integer(const std::string &tested_integer) {
             return false;
         }
     }
-
     return true;
 }

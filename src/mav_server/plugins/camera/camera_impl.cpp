@@ -4,7 +4,7 @@
 
 #include "base/log.h"
 
-namespace mid {
+namespace mav {
 
 CameraImpl::CameraImpl() {
     start();
@@ -29,56 +29,56 @@ CameraImpl::~CameraImpl() {
 }
 
 Camera::Result CameraImpl::prepare() const {
-    LogDebug() << "call prepare";
+    base::LogDebug() << "call prepare";
     return Camera::Result::Success;
 }
 
 Camera::Result CameraImpl::take_photo() const {
-    LogDebug() << "call take photo";
+    base::LogDebug() << "call take photo";
     return Camera::Result::Success;
 }
 
 Camera::Result CameraImpl::start_photo_interval(float interval_s) const {
-    LogDebug() << "call start photo interval " << interval_s;
+    base::LogDebug() << "call start photo interval " << interval_s;
     return Camera::Result::Success;
 }
 
 Camera::Result CameraImpl::stop_photo_interval() const {
-    LogDebug() << "call stop photo interval";
+    base::LogDebug() << "call stop photo interval";
     return Camera::Result::Success;
 }
 
 Camera::Result CameraImpl::start_video() const {
-    LogDebug() << "call start video";
+    base::LogDebug() << "call start video";
     _status.video_on = true;
     _start_video_time = std::chrono::steady_clock::now();
     return Camera::Result::Success;
 }
 
 Camera::Result CameraImpl::stop_video() const {
-    LogDebug() << "call stop video";
+    base::LogDebug() << "call stop video";
     _status.video_on = false;
     return Camera::Result::Success;
 }
 
 Camera::Result CameraImpl::start_video_streaming(int32_t stream_id) const {
-    LogDebug() << "call start video streaming " << stream_id;
+    base::LogDebug() << "call start video streaming " << stream_id;
     return Camera::Result::Success;
 }
 
 Camera::Result CameraImpl::stop_video_streaming(int32_t stream_id) const {
-    LogDebug() << "call stop video streaming " << stream_id;
+    base::LogDebug() << "call stop video streaming " << stream_id;
     return Camera::Result::Success;
 }
 
 Camera::Result CameraImpl::set_mode(Camera::Mode mode) const {
-    LogDebug() << "call set mode " << mode;
+    base::LogDebug() << "call set mode " << mode;
     return Camera::Result::Success;
 }
 
 std::pair<Camera::Result, std::vector<Camera::CaptureInfo>> CameraImpl::list_photos(
     Camera::PhotosRange photos_range) const {
-    LogWarn() << "unsupport function";
+    base::LogWarn() << "unsupport function";
 
     return {Camera::Result::ProtocolUnsupported, {}};
 }
@@ -125,7 +125,7 @@ void CameraImpl::subscribe_video_stream_info(const Camera::VideoStreamInfoCallba
 }
 
 std::vector<Camera::VideoStreamInfo> CameraImpl::video_stream_info() const {
-    mid::Camera::VideoStreamInfo normal_video_stream;
+    mav::Camera::VideoStreamInfo normal_video_stream;
     normal_video_stream.stream_id = 1;
 
     normal_video_stream.settings.frame_rate_hz = 60.0;
@@ -135,10 +135,10 @@ std::vector<Camera::VideoStreamInfo> CameraImpl::video_stream_info() const {
     normal_video_stream.settings.rotation_deg = 0;
     normal_video_stream.settings.uri = "rtsp://10.0.0.11/live";
     normal_video_stream.settings.horizontal_fov_deg = 0;
-    normal_video_stream.status = mid::Camera::VideoStreamInfo::VideoStreamStatus::InProgress;
-    normal_video_stream.spectrum = mid::Camera::VideoStreamInfo::VideoStreamSpectrum::VisibleLight;
+    normal_video_stream.status = mav::Camera::VideoStreamInfo::VideoStreamStatus::InProgress;
+    normal_video_stream.spectrum = mav::Camera::VideoStreamInfo::VideoStreamSpectrum::VisibleLight;
 
-    mid::Camera::VideoStreamInfo infrared_video_stream;
+    mav::Camera::VideoStreamInfo infrared_video_stream;
     infrared_video_stream.stream_id = 2;
 
     infrared_video_stream.settings.frame_rate_hz = 24.0;
@@ -148,8 +148,8 @@ std::vector<Camera::VideoStreamInfo> CameraImpl::video_stream_info() const {
     infrared_video_stream.settings.rotation_deg = 0;
     infrared_video_stream.settings.uri = "rtsp://10.0.0.11/live2";
     infrared_video_stream.settings.horizontal_fov_deg = 0;
-    infrared_video_stream.status = mid::Camera::VideoStreamInfo::VideoStreamStatus::InProgress;
-    infrared_video_stream.spectrum = mid::Camera::VideoStreamInfo::VideoStreamSpectrum::Infrared;
+    infrared_video_stream.status = mav::Camera::VideoStreamInfo::VideoStreamStatus::InProgress;
+    infrared_video_stream.spectrum = mav::Camera::VideoStreamInfo::VideoStreamSpectrum::Infrared;
 
     return {normal_video_stream, infrared_video_stream};
 }
@@ -192,7 +192,8 @@ std::vector<Camera::SettingOptions> CameraImpl::possible_setting_options() const
 }
 
 Camera::Result CameraImpl::set_setting(Setting setting) const {
-    LogDebug() << "call set " << setting.setting_id << " to value " << setting.option.option_id;
+    base::LogDebug() << "call set " << setting.setting_id << " to value "
+                     << setting.option.option_id;
     for (auto &it : _settings) {
         if (it.setting_id == setting.setting_id) {
             it.option.option_id = setting.option.option_id;
@@ -215,22 +216,22 @@ std::pair<Camera::Result, Camera::Setting> CameraImpl::get_setting(Camera::Setti
 
 Camera::Result CameraImpl::format_storage(int32_t storage_id) const {
     _available_storage_mib = _total_storage_mib.load();
-    LogDebug() << "call format storage " << storage_id;
+    base::LogDebug() << "call format storage " << storage_id;
     return Camera::Result::Success;
 }
 
 Camera::Result CameraImpl::select_camera(int32_t camera_id) const {
-    LogWarn() << "unsupport function";
+    base::LogWarn() << "unsupport function";
     return Camera::Result::ProtocolUnsupported;
 }
 
 Camera::Result CameraImpl::reset_settings() const {
-    LogDebug() << "call reset settings";
+    base::LogDebug() << "call reset settings";
     return Camera::Result::Success;
 }
 
 Camera::Result CameraImpl::set_definition_data(std::string definition_data) const {
-    LogWarn() << "unsupport function";
+    base::LogWarn() << "unsupport function";
     return Camera::Result::ProtocolUnsupported;
 }
 
@@ -253,12 +254,12 @@ void CameraImpl::work_thread(CameraImpl *self) {
         {
             std::lock_guard<std::mutex> lock(self->_callback_mutex);
             if (self->_need_update_camera_information && self->_camera_information_callback) {
-                LogDebug() << "retrive camera information";
+                base::LogDebug() << "retrive camera information";
                 self->_camera_information_callback(self->information());
                 self->_need_update_camera_information = false;
             }
             if (self->_need_update_video_stream_info && self->_video_stream_info_callback) {
-                LogDebug() << "retrive video stream information";
+                base::LogDebug() << "retrive video stream information";
                 self->_video_stream_info_callback(self->video_stream_info());
                 self->_need_update_video_stream_info = false;
             }
@@ -279,4 +280,4 @@ Camera::Setting CameraImpl::build_setting(std::string name, std::string value) {
     return setting;
 }
 
-}  // namespace mid
+}  // namespace mav

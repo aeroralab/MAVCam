@@ -1,9 +1,10 @@
 
-project(mid_server)
+project(mav_server)
+set(EXECUTABLE_NAME mav_server)
 
-set(MID_SERVER_SOURCES
-    mid_server_bin.cpp
-    mid_server.cpp
+set(MAV_SERVER_SOURCES
+    mav_server_bin.cpp
+    mav_server.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/../generated/mavsdk_options.grpc.pb.cc
     ${CMAKE_CURRENT_SOURCE_DIR}/../generated/mavsdk_options.pb.cc
     ${CMAKE_CURRENT_SOURCE_DIR}/../generated/camera/camera.grpc.pb.cc
@@ -12,10 +13,8 @@ set(MID_SERVER_SOURCES
     ${CMAKE_CURRENT_SOURCE_DIR}/plugins/camera/camera_impl.cpp
 )
 
-set(EXECUTABLE_NAME mid_server)
-
 add_executable(${EXECUTABLE_NAME}
-    ${MID_SERVER_SOURCES}
+    ${MAV_SERVER_SOURCES}
 )
 
 target_include_directories(${EXECUTABLE_NAME}
@@ -38,5 +37,5 @@ target_link_libraries(${EXECUTABLE_NAME}
     gRPC::grpc++
 )
 
-install(TARGETS mid_server RUNTIME DESTINATION "./")
+install(TARGETS ${EXECUTABLE_NAME} RUNTIME DESTINATION "./")
 

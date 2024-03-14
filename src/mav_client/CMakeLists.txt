@@ -1,6 +1,8 @@
 
 project(mav_client)
 
+set(EXECUTE_NAME mav_client)
+
 set(MAV_CLIENT_SOURCES
     mav_client_bin.cpp
     mav_client.cpp
@@ -10,15 +12,13 @@ set(MAV_CLIENT_SOURCES
 
 if (BUILD_SERVER)
     set(MAV_CLIENT_SOURCES
-        ${MID_CLIENT_SOURCES}
+        ${MAV_CLIENT_SOURCES}
         camera_rpc_client.cpp
         ${CMAKE_CURRENT_SOURCE_DIR}/../generated/mavsdk_options.grpc.pb.cc
         ${CMAKE_CURRENT_SOURCE_DIR}/../generated/mavsdk_options.pb.cc
         ${CMAKE_CURRENT_SOURCE_DIR}/../generated/camera/camera.grpc.pb.cc
         ${CMAKE_CURRENT_SOURCE_DIR}/../generated/camera/camera.pb.cc)
 endif()
-
-set(EXECUTE_NAME mav_client)
 
 add_executable(${EXECUTE_NAME}
     ${MAV_CLIENT_SOURCES}
