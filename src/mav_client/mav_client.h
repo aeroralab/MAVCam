@@ -7,14 +7,14 @@ class CameraServer;
 class ParamServer;
 }  // namespace mavsdk
 
-namespace mid {
+namespace mav {
 
 class CameraClient;
 
-class MidClient {
+class MavClient {
 public:
-    MidClient() {}
-    ~MidClient() {}
+    MavClient() {}
+    ~MavClient() {}
 public:
     bool init(std::string &connection_url, bool use_local, int32_t rpc_port,
               std::string &ftp_root_path);
@@ -29,4 +29,4 @@ private:
     std::string _ftp_root_path;
 };
 
-}  // namespace mid
+}  // namespace mav

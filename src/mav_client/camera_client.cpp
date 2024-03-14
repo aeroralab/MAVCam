@@ -5,7 +5,7 @@
 #include "camera_rpc_client.h"
 #endif
 
-namespace mid {
+namespace mav {
 
 CameraClient *CreateLocalCameraClient() {
     return new CameraLocalClient();

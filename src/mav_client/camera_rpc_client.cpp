@@ -5,7 +5,7 @@
 #include "base/log.h"
 #include "camera/camera.pb.h"
 
-namespace mid {
+namespace mav {
 
 static mavsdk::CameraServer::Result translateFromRpcResult(
     const mavsdk::rpc::camera::CameraResult_Result result);
@@ -517,7 +517,7 @@ static mavsdk::CameraServer::VideoStreamInfo::VideoStreamStatus translateFromRpc
     const mavsdk::rpc::camera::VideoStreamInfo::VideoStreamStatus video_stream_status) {
     switch (video_stream_status) {
         default:
-            LogError() << "Unknown video_stream_status enum value: "
+            base::LogError() << "Unknown video_stream_status enum value: "
                        << static_cast<int>(video_stream_status);
         // FALLTHROUGH
         case mavsdk::rpc::camera::VideoStreamInfo_VideoStreamStatus_VIDEO_STREAM_STATUS_NOT_RUNNING:
@@ -532,7 +532,7 @@ translateFromRpcVideoStreamSpectrum(
     const mavsdk::rpc::camera::VideoStreamInfo::VideoStreamSpectrum video_stream_spectrum) {
     switch (video_stream_spectrum) {
         default:
-            LogError() << "Unknown video_stream_spectrum enum value: "
+            base::LogError() << "Unknown video_stream_spectrum enum value: "
                        << static_cast<int>(video_stream_spectrum);
         // FALLTHROUGH
         case mavsdk::rpc::camera::VideoStreamInfo_VideoStreamSpectrum_VIDEO_STREAM_SPECTRUM_UNKNOWN:
@@ -550,7 +550,7 @@ static mavsdk::CameraServer::StorageInformation::StorageStatus translateFromRpcS
     const mavsdk::rpc::camera::Status::StorageStatus storage_status) {
     switch (storage_status) {
         default:
-            LogError() << "Unknown storage_status enum value: " << static_cast<int>(storage_status);
+            base::LogError() << "Unknown storage_status enum value: " << static_cast<int>(storage_status);
         // FALLTHROUGH
         case mavsdk::rpc::camera::Status_StorageStatus_STORAGE_STATUS_NOT_AVAILABLE:
             return mavsdk::CameraServer::StorageInformation::StorageStatus::NotAvailable;
@@ -567,7 +567,7 @@ static mavsdk::CameraServer::StorageInformation::StorageType translateFromRpcSto
     const mavsdk::rpc::camera::Status::StorageType storage_type) {
     switch (storage_type) {
         default:
-            LogError() << "Unknown storage_type enum value: " << static_cast<int>(storage_type);
+            base::LogError() << "Unknown storage_type enum value: " << static_cast<int>(storage_type);
         // FALLTHROUGH
         case mavsdk::rpc::camera::Status_StorageType_STORAGE_TYPE_UNKNOWN:
             return mavsdk::CameraServer::StorageInformation::StorageType::Unknown;
@@ -584,4 +584,4 @@ static mavsdk::CameraServer::StorageInformation::StorageType translateFromRpcSto
     }
 }
 
-}  // namespace mid
+}  // namespace mav

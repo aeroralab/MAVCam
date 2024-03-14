@@ -5,7 +5,7 @@
 
 #include <vector>
 
-namespace mid {
+namespace mav {
 
 class CameraClient {
 public:

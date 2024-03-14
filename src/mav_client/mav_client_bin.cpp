@@ -1,7 +1,7 @@
 #include <filesystem>
 #include <iostream>
 
-#include "mid_client.h"
+#include "mav_client.h"
 #include "version.h"
 
 static auto constexpr default_connection = "udp://127.0.0.1:14550";
@@ -24,7 +24,7 @@ int main(int argc, const char *argv[]) {
             usage(argv[0]);
             return 0;
         } else if (current_arg == "-v" || current_arg == "--version") {
-            std::cout << "MAVCam client version : " << VERSION << std::endl;
+            std::cout << "Mavlink client version : " << VERSION << std::endl;
             std::cout << "build time : " << BUILD_TIME << std::endl;
             return 0;
         } else if (current_arg == "-u") {
@@ -58,7 +58,7 @@ int main(int argc, const char *argv[]) {
         }
     }
 
-    mid::MidClient client;
+    mav::MavClient client;
     if (!client.init(connection_url, use_local, rpc_port, default_ftp_path)) {
         std::cout << "Cannot init middleware client " << connection_url << std::endl;
         return 1;

@@ -1,15 +1,15 @@
 
-project(mid_client)
+project(mav_client)
 
-set(MID_CLIENT_SOURCES
-    mid_client_bin.cpp
-    mid_client.cpp
+set(MAV_CLIENT_SOURCES
+    mav_client_bin.cpp
+    mav_client.cpp
     camera_client.cpp
     camera_local_client.cpp
 )
 
 if (BUILD_SERVER)
-    set(MID_CLIENT_SOURCES
+    set(MAV_CLIENT_SOURCES
         ${MID_CLIENT_SOURCES}
         camera_rpc_client.cpp
         ${CMAKE_CURRENT_SOURCE_DIR}/../generated/mavsdk_options.grpc.pb.cc
@@ -18,10 +18,10 @@ if (BUILD_SERVER)
         ${CMAKE_CURRENT_SOURCE_DIR}/../generated/camera/camera.pb.cc)
 endif()
 
-set(EXECUTE_NAME mid_client)
+set(EXECUTE_NAME mav_client)
 
 add_executable(${EXECUTE_NAME}
-    ${MID_CLIENT_SOURCES}
+    ${MAV_CLIENT_SOURCES}
 )
 
 target_include_directories(${EXECUTE_NAME}
@@ -57,5 +57,5 @@ if (BUILD_SERVER)
 endif()
 
 install(IMPORTED_RUNTIME_ARTIFACTS MAVSDK::mavsdk DESTINATION "./") 
-install(TARGETS mid_client RUNTIME DESTINATION "./")
+install(TARGETS ${EXECUTE_NAME} RUNTIME DESTINATION "./")
 

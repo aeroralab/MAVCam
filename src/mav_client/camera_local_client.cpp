@@ -2,7 +2,7 @@
 
 #include "base/log.h"
 
-namespace mid {
+namespace mav {
 
 CameraLocalClient::CameraLocalClient() {
     _is_capture_in_progress = false;
@@ -28,7 +28,7 @@ CameraLocalClient::~CameraLocalClient() {}
 
 mavsdk::CameraServer::Result CameraLocalClient::take_photo(int index) {
     std::lock_guard<std::mutex> lock(_mutex);
-    LogDebug() << "locally call take photo " << index;
+    base::LogDebug() << "locally call take photo " << index;
     _is_capture_in_progress = true;
     auto result = mavsdk::CameraServer::Result::Success;
     _is_capture_in_progress = false;
@@ -38,7 +38,7 @@ mavsdk::CameraServer::Result CameraLocalClient::take_photo(int index) {
 
 mavsdk::CameraServer::Result CameraLocalClient::start_video() {
     std::lock_guard<std::mutex> lock(_mutex);
-    LogDebug() << "locally call start video";
+    base::LogDebug() << "locally call start video";
     _is_recording_video = true;
     _start_video_time = std::chrono::steady_clock::now();
     return mavsdk::CameraServer::Result::Success;
@@ -46,39 +46,39 @@ mavsdk::CameraServer::Result CameraLocalClient::start_video() {
 
 mavsdk::CameraServer::Result CameraLocalClient::stop_video() {
     std::lock_guard<std::mutex> lock(_mutex);
-    LogDebug() << "locally call stop video";
+    base::LogDebug() << "locally call stop video";
     _is_recording_video = false;
     return mavsdk::CameraServer::Result::Success;
 }
 
 mavsdk::CameraServer::Result CameraLocalClient::start_video_streaming(int stream_id) {
     std::lock_guard<std::mutex> lock(_mutex);
-    LogDebug() << "locally call start video streaming";
+    base::LogDebug() << "locally call start video streaming";
     return mavsdk::CameraServer::Result::Success;
 }
 
 mavsdk::CameraServer::Result CameraLocalClient::stop_video_streaming(int stream_id) {
     std::lock_guard<std::mutex> lock(_mutex);
-    LogDebug() << "locally call stop video streaming";
+    base::LogDebug() << "locally call stop video streaming";
     return mavsdk::CameraServer::Result::Success;
 }
 
 mavsdk::CameraServer::Result CameraLocalClient::set_mode(mavsdk::CameraServer::Mode mode) {
     std::lock_guard<std::mutex> lock(_mutex);
-    LogDebug() << "locally call set mode " << mode;
+    base::LogDebug() << "locally call set mode " << mode;
     return mavsdk::CameraServer::Result::Success;
 }
 
 mavsdk::CameraServer::Result CameraLocalClient::format_storage(int storage_id) {
     std::lock_guard<std::mutex> lock(_mutex);
     _available_storage_mib = _total_storage_mib.load();
-    LogDebug() << "locally call format storage " << storage_id;
+    base::LogDebug() << "locally call format storage " << storage_id;
     return mavsdk::CameraServer::Result::Success;
 }
 
 mavsdk::CameraServer::Result CameraLocalClient::reset_settings() {
     std::lock_guard<std::mutex> lock(_mutex);
-    LogDebug() << "locally call reset settings";
+    base::LogDebug() << "locally call reset settings";
     // reset settings
     _settings["CAM_MODE"] = "0";
     _settings["CAM_WBMODE"] = "0";
@@ -186,9 +186,9 @@ mavsdk::CameraServer::Result CameraLocalClient::retrieve_current_settings(
 }
 
 mavsdk::CameraServer::Result CameraLocalClient::set_setting(mavsdk::Camera::Setting setting) {
-    LogDebug() << "change " << setting.setting_id << " to " << setting.option.option_id;
+    base::LogDebug() << "change " << setting.setting_id << " to " << setting.option.option_id;
     if (_settings.count(setting.setting_id) == 0) {
-        LogError() << "Unsupport setting " << setting.setting_id;
+        base::LogError() << "Unsupport setting " << setting.setting_id;
         return mavsdk::CameraServer::Result::WrongArgument;
     }
     _settings[setting.setting_id] = setting.option.option_id;
@@ -201,7 +201,7 @@ std::pair<mavsdk::CameraServer::Result, mavsdk::Camera::Setting> CameraLocalClie
         return {mavsdk::CameraServer::Result::WrongArgument, setting};
     }
     setting.option.option_id = _settings[setting.setting_id];
-    LogDebug() << "get " << setting.setting_id << " return " << setting.option.option_id;
+    base::LogDebug() << "get " << setting.setting_id << " return " << setting.option.option_id;
     return {mavsdk::CameraServer::Result::Success, setting};
 }
 
@@ -212,4 +212,4 @@ mavsdk::Camera::Setting CameraLocalClient::build_setting(std::string name, std::
     return setting;
 }
 
-}  // namespace mid
+}  // namespace mav
