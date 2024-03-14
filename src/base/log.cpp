@@ -17,7 +17,7 @@
 #define ANSI_COLOR_RESET "\x1b[0m"
 #endif
 
-namespace mid {
+namespace base {
 
 static log::Callback callback_{nullptr};
 
@@ -78,4 +78,4 @@ void set_color(Color color) {
 #endif
 }
 
-}  // namespace mid
+}  // namespace base

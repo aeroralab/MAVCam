@@ -19,14 +19,14 @@
 #define FILENAME __FILE__
 #endif
 
+namespace base {
+
 #define call_user_callback(...) call_user_callback_located(FILENAME, __LINE__, __VA_ARGS__)
 
 #define LogDebug() LogDebugDetailed(FILENAME, __LINE__)
 #define LogInfo() LogInfoDetailed(FILENAME, __LINE__)
 #define LogWarn() LogWarnDetailed(FILENAME, __LINE__)
 #define LogError() LogErrDetailed(FILENAME, __LINE__)
-
-namespace mid {
 
 enum class Color {
     Red,
@@ -124,8 +124,8 @@ public:
 #endif
     }
 
-    LogDetailed(const mid::LogDetailed &) = delete;
-    void operator=(const mid::LogDetailed &) = delete;
+    LogDetailed(const base::LogDetailed &) = delete;
+    void operator=(const base::LogDetailed &) = delete;
 protected:
     log::Level _log_level = log::Level::Debug;
 private:
@@ -162,4 +162,4 @@ public:
     }
 };
 
-}  // namespace mid
+}  // namespace base

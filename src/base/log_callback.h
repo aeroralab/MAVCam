@@ -3,7 +3,7 @@
 #include <functional>
 #include <string>
 
-namespace mid::log {
+namespace base::log {
 
 // defined numeric values can be useful for filtering message by severity
 enum class Level : int {
@@ -22,4 +22,4 @@ using Callback =
 extern Callback &get_callback();
 extern void subscribe(const Callback &callback);
 
-}  // namespace mid::log
+}  // namespace base::log
