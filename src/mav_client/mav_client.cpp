@@ -32,22 +32,26 @@ bool MavClient::init(std::string &connection_url, bool use_local, int32_t rpc_po
 }
 
 bool MavClient::start_runloop() {
-    mavsdk::Mavsdk mavsdk{mavsdk::Mavsdk::Configuration{mavsdk::Mavsdk::ComponentType::Camera}};
+    mavsdk::Mavsdk mavsdk{mavsdk::Mavsdk::Configuration{mavsdk::Mavsdk::ComponentType::Autopilot}};
 
     auto result = mavsdk.add_any_connection(_connection_url);
     if (result != mavsdk::ConnectionResult::Success) {
         base::LogError() << "Could not establish connection: " << result;
         return false;
     }
-    base::LogInfo() << "Created middleware client success";
+    base::LogInfo() << "Created mav client success";
 
     // works as camera
-    // auto server_component = mavsdk.server_component_by_type(mavsdk::Mavsdk::ComponentType::Camera);
-    auto camera_server = mavsdk::CameraServer{mavsdk.server_component()};
+    auto server_component = mavsdk.server_component_by_type(mavsdk::Mavsdk::ComponentType::Camera);
+    if (server_component == nullptr) {
+        base::LogError() << "no camera component";
+        return false;
+    }
+    auto camera_server = mavsdk::CameraServer{server_component};
     subscribe_camera_operation(camera_server);
-    auto param_server = mavsdk::ParamServer{mavsdk.server_component()};
+    auto param_server = mavsdk::ParamServer{server_component};
     subscribe_param_operation(param_server);
-    auto ftp_server = mavsdk::FtpServer{mavsdk.server_component()};
+    auto ftp_server = mavsdk::FtpServer{server_component};
     ftp_server.set_root_dir(_ftp_root_path);
     base::LogInfo() << "Launch ftp server with root path " << _ftp_root_path;
 

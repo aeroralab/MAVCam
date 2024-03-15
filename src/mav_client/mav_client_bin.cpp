@@ -60,7 +60,7 @@ int main(int argc, const char *argv[]) {
 
     mav::MavClient client;
     if (!client.init(connection_url, use_local, rpc_port, default_ftp_path)) {
-        std::cout << "Cannot init middleware client " << connection_url << std::endl;
+        std::cout << "Cannot init mav client " << connection_url << std::endl;
         return 1;
     }
 
