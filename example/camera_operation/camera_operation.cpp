@@ -13,7 +13,8 @@
 static void do_camera_operation(mavsdk::Camera &camera);
 
 int main(int argc, const char *argv[]) {
-    // we run client plugins to act as the GCS to communicate with the camera server plugins.
+    // we run client plugins to act as the GCS
+    // to communicate with the camera server plugins.
     mavsdk::Mavsdk mavsdk{
         mavsdk::Mavsdk::Configuration{mavsdk::Mavsdk::ComponentType::GroundStation}};
 
@@ -21,6 +22,9 @@ int main(int argc, const char *argv[]) {
     if (result == mavsdk::ConnectionResult::Success) {
         std::cout << "Connected success !" << std::endl;
     }
+
+    //wait for all component added
+    std::this_thread::sleep_for(std::chrono::seconds(1));
 
     auto prom = std::promise<std::shared_ptr<mavsdk::System>>{};
     auto fut = prom.get_future();
@@ -35,7 +39,7 @@ int main(int argc, const char *argv[]) {
                 mavsdk.unsubscribe_on_new_system(handle);
                 prom.set_value(system);
             } else {
-                std::cout << "No camera system found" << std::endl;
+                std::cout << "System has no camera" << std::endl;
             }
         });
 

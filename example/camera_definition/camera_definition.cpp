@@ -21,7 +21,7 @@ static inline std::string get_camera_setting(mavsdk::Camera &camera, const std::
 
 int main(int argc, const char *argv[]) {
     // we run client plugins to act as the GCS
-    // to communicate with the autopilot server plugins.
+    // to communicate with the camera server plugins.
     mavsdk::Mavsdk mavsdk{
         mavsdk::Mavsdk::Configuration{mavsdk::Mavsdk::ComponentType::GroundStation}};
 
@@ -29,6 +29,8 @@ int main(int argc, const char *argv[]) {
     if (result == mavsdk::ConnectionResult::Success) {
         std::cout << "Connected success !" << std::endl;
     }
+    //wait for all component added
+    std::this_thread::sleep_for(std::chrono::seconds(1));
 
     auto prom = std::promise<std::shared_ptr<mavsdk::System>>{};
     auto fut = prom.get_future();
@@ -43,7 +45,7 @@ int main(int argc, const char *argv[]) {
                 mavsdk.unsubscribe_on_new_system(handle);
                 prom.set_value(system);
             } else {
-                std::cout << "No camera system found" << std::endl;
+                std::cout << "System has no camera" << std::endl;
             }
         });
 
@@ -53,10 +55,10 @@ int main(int argc, const char *argv[]) {
     }
 
     auto system = fut.get();
+    auto camera = mavsdk::Camera{system};
 
     auto prom_definition = std::promise<std::string>{};
     auto fut_definition = prom_definition.get_future();
-    auto camera = mavsdk::Camera{system};
     std::atomic<bool> already_get_definition{false};
     camera.subscribe_information(
         [&prom_definition, &already_get_definition](mavsdk::Camera::Information info) {
@@ -79,6 +81,9 @@ int main(int argc, const char *argv[]) {
                 auto result = camera.set_definition_data(define_data);
                 std::cout << "set camera definition data result : " << result << std::endl;
                 do_camera_settings(camera);
+            } else {
+                std::cout << "cannot download definition data file" << std::endl;
+                return 1;
             }
         }
     }
