@@ -86,6 +86,12 @@ void MavClient::subscribe_camera_operation(mavsdk::CameraServer &camera_server) 
                                              .index = index,
                                              .file_url = {},
                                          });
+
+        // the qgc use capture status to change the take photo status
+        mavsdk::CameraServer::CaptureStatus capture_status;
+        _camera_client->fill_capture_status(capture_status);
+        camera_server.respond_capture_status(mavsdk::CameraServer::CameraFeedback::Ok,
+                                             capture_status);
     });
 
     camera_server.subscribe_start_video([this, &camera_server](int32_t stream_id) {
@@ -121,6 +127,7 @@ void MavClient::subscribe_camera_operation(mavsdk::CameraServer &camera_server) 
     });
 
     camera_server.subscribe_capture_status([this, &camera_server](int32_t reserved) {
+        base::LogDebug() << "respond capture status";
         mavsdk::CameraServer::CaptureStatus capture_status;
         _camera_client->fill_capture_status(capture_status);
         camera_server.respond_capture_status(mavsdk::CameraServer::CameraFeedback::Ok,

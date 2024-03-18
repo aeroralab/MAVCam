@@ -1,5 +1,8 @@
 #include "camera_local_client.h"
 
+#include <chrono>
+#include <thread>
+
 #include "base/log.h"
 
 namespace mav {
@@ -33,6 +36,7 @@ mavsdk::CameraServer::Result CameraLocalClient::take_photo(int index) {
     auto result = mavsdk::CameraServer::Result::Success;
     _is_capture_in_progress = false;
     _image_count++;
+    std::this_thread::sleep_for(std::chrono::seconds(1));
     return result;
 }
 
@@ -129,7 +133,7 @@ mavsdk::CameraServer::Result CameraLocalClient::fill_video_stream_info(
     normal_video_stream.settings.vertical_resolution_pix = 1080;
     normal_video_stream.settings.bit_rate_b_s = 4 * 1024 * 1024;
     normal_video_stream.settings.rotation_deg = 0;
-    normal_video_stream.settings.uri = "rtsp://10.0.0.11/live";
+    normal_video_stream.settings.uri = "";
     normal_video_stream.settings.horizontal_fov_deg = 0;
     normal_video_stream.status =
         mavsdk::CameraServer::VideoStreamInfo::VideoStreamStatus::InProgress;
