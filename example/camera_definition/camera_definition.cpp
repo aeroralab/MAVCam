@@ -74,8 +74,8 @@ int main(int argc, const char *argv[]) {
         std::cout << "Not definition file found" << std::endl;
     } else {
         std::string file_uri = fut_definition.get();
-        if (file_uri.find("ftp://") == 0) {
-            file_uri = file_uri.substr(6);
+        if (file_uri.find("mftp://") == 0) {
+            file_uri = file_uri.substr(7);
             std::string define_data = download_camera_definition_file_by_ftp(system, file_uri);
             if (define_data.size() > 0) {
                 auto result = camera.set_definition_data(define_data);
