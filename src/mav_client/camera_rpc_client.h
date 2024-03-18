@@ -43,7 +43,7 @@ public:  //settings
     virtual std::pair<mavsdk::CameraServer::Result, mavsdk::Camera::Setting> get_setting(
         mavsdk::Camera::Setting setting) const override;
 public:
-    bool Init(int rpc_port);
+    bool init(int rpc_port);
 private:
     void stop();
     static void work_thread(CameraRpcClient *self);

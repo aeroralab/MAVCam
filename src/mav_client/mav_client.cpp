@@ -15,7 +15,7 @@ namespace mav {
 
 bool MavClient::init(std::string &connection_url, bool use_local, int32_t rpc_port,
                      std::string &ftp_root_path) {
-    //Todo need check connection url first
+    //TODO need check connection url first
     _connection_url = connection_url;
     _rpc_port = rpc_port;
     _ftp_root_path = ftp_root_path;

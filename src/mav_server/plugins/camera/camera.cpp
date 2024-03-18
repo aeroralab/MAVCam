@@ -407,4 +407,4 @@ std::ostream &operator<<(std::ostream &str, Camera::Information const &informati
     return str;
 }
 
-}  // namespace mid
+}  // namespace mav

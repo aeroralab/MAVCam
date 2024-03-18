@@ -40,4 +40,5 @@ public:  //settings
 
 CameraClient *CreateLocalCameraClient();
 CameraClient *CreateRpcCameraClient(int rpc_port);
-}  // namespace mid
+
+}  // namespace mav

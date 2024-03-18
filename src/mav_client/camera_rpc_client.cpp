@@ -43,7 +43,7 @@ CameraRpcClient::~CameraRpcClient() {
     stop();
 }
 
-bool CameraRpcClient::Init(int rpc_port) {
+bool CameraRpcClient::init(int rpc_port) {
     std::string target = "0.0.0.0:" + std::to_string(rpc_port);
     //the channel isn't authenticated
     _channel = grpc::CreateChannel(target, grpc::InsecureChannelCredentials());

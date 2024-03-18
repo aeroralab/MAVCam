@@ -14,11 +14,11 @@ CameraClient *CreateLocalCameraClient() {
 CameraClient *CreateRpcCameraClient(int rpc_port) {
 #ifdef ENABLE_SERVER
     CameraRpcClient *client = new CameraRpcClient();
-    client->Init(rpc_port);
+    client->init(rpc_port);
     return client;
 #else
     return nullptr;
 #endif
 }
 
-}  // namespace mid
+}  // namespace mav
