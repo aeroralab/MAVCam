@@ -41,18 +41,23 @@ bool MavClient::start_runloop() {
     }
     base::LogInfo() << "Created mav client success";
 
-    // works as camera
-    auto server_component = mavsdk.server_component_by_type(mavsdk::Mavsdk::ComponentType::Camera);
-    if (server_component == nullptr) {
-        base::LogError() << "no camera component";
+    // run ftp server in autopilot component
+    auto autopilot_component =
+        mavsdk.server_component_by_type(mavsdk::Mavsdk::ComponentType::Autopilot);
+    auto ftp_server = mavsdk::FtpServer{autopilot_component};
+    ftp_server.set_root_dir(_ftp_root_path);
+
+    // run camera and param server in camera component
+    auto camera_component = mavsdk.server_component_by_type(mavsdk::Mavsdk::ComponentType::Camera);
+    if (camera_component == nullptr) {
+        base::LogError() << "cannot create camera component";
         return false;
     }
-    auto camera_server = mavsdk::CameraServer{server_component};
+    auto camera_server = mavsdk::CameraServer{camera_component};
     subscribe_camera_operation(camera_server);
-    auto param_server = mavsdk::ParamServer{server_component};
+    auto param_server = mavsdk::ParamServer{camera_component};
     subscribe_param_operation(param_server);
-    auto ftp_server = mavsdk::FtpServer{server_component};
-    ftp_server.set_root_dir(_ftp_root_path);
+
     base::LogInfo() << "Launch ftp server with root path " << _ftp_root_path;
 
     while (true) {
