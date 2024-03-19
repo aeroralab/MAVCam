@@ -1,0 +1,11 @@
+
+{% if is_sync %}
+/**
+ * @brief {{ method_description | replace('\n', '\n *')}}
+ *
+ * This function is blocking.
+ *
+ * @return Result of request.
+ */
+{% if has_result %}Result{% else %}void{% endif %} {{ name.lower_snake_case }}({% for param in params %}{% if param.type_info.name.endswith("Result") %}Result{% else %}{{ param.type_info.name }}{% endif %} {{ param.name.lower_snake_case }}{{ ", " if not loop.last }}{% endfor %}) const;
+{% endif %}

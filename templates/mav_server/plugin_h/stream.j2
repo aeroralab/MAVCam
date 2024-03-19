@@ -1,0 +1,9 @@
+
+{% if is_sync %}
+/**
+ * @brief Poll for '{{ return_type.name }}' (blocking).
+ *
+ * @return One {{ return_type.name }} update.
+ */
+{{ return_type.name }} {{ name.lower_snake_case }}({% for param in params %}{{ param.type_info.name }} {{ param.name.lower_snake_case }}{% if not loop.last %}, {% endif %}{% endfor %}) const;
+{% endif %}

@@ -1,0 +1,12 @@
+
+{% if is_sync %}
+{% if return_type.is_repeated %}
+std::vector<{% if not return_type.is_primitive %}{{ plugin_name.upper_camel_case }}::{% endif %}{{ return_type.inner_name }}>
+{% else %}
+{% if not return_type.is_primitive %}{{ plugin_name.upper_camel_case }}::{% endif %}{{ return_type.name }}
+{%endif -%} {{ plugin_name.upper_camel_case }}Impl::{{ name.lower_snake_case }}({% for param in params %}{{ plugin_name.upper_camel_case }}::{{ param.type_info.name }} {{ param.name.lower_snake_case }}{% if not loop.last %}, {% endif %}{% endfor %}) const
+{
+    // TODO :)
+    return {};
+}
+{% endif %}

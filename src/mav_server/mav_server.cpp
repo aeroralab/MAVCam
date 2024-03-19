@@ -20,7 +20,7 @@ bool MavServer::init(int rpc_port) {
 bool MavServer::start_runloop() {
     std::string server_address{"127.0.0.1"};
     server_address += ":" + std::to_string(_rpc_port);
-    CameraServiceImpl service(std::make_shared<CameraImpl>());
+    CameraServiceImpl service(std::make_shared<Camera>());
 
     // Build server
     grpc::ServerBuilder builder;

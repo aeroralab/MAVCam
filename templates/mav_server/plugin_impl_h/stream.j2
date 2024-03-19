@@ -1,0 +1,9 @@
+
+{% if is_sync %}
+/**
+ * @brief Poll for '{{ return_type.name }}' (blocking).
+ *
+ * @return One {{ return_type.name }} update.
+ */
+{% if return_type.is_repeated %}std::vector<{{ plugin_name.upper_camel_case }}::{{ return_type.inner_name }}>{% else %}{{ plugin_name.upper_camel_case }}::{{ return_type.name }}{% endif %} {{ name.lower_snake_case }}({% for param in params %}{{ param.type_info.name }} {{ param.name.lower_snake_case }}{% if not loop.last %}, {% endif %}{% endfor %}) const;
+{% endif %}

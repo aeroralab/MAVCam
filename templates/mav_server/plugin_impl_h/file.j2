@@ -1,0 +1,19 @@
+#pragma once
+
+#include "plugins/{{ plugin_name.lower_snake_case }}/{{ plugin_name.lower_snake_case }}.h"
+
+namespace mav {
+
+class {{ plugin_name.upper_camel_case }}Impl final {
+public:
+    explicit {{ plugin_name.upper_camel_case }}Impl();
+    ~{{ plugin_name.upper_camel_case }}Impl();
+
+{% for method in methods %}
+{{ indent(method, 1) }}
+{% endfor %}
+
+private:
+};
+
+} // namespace mav

@@ -1,0 +1,17 @@
+#include "{{ plugin_name.lower_snake_case }}_impl.h"
+
+namespace mav {
+
+{{ plugin_name.upper_camel_case }}Impl::{{ plugin_name.upper_camel_case }}Impl() 
+{
+}
+
+{{ plugin_name.upper_camel_case }}Impl::~{{ plugin_name.upper_camel_case }}Impl()
+{
+}
+
+{% for method in methods %}
+{{ method }}
+{% endfor %}
+
+} // namespace mav
