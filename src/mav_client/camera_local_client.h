@@ -14,7 +14,7 @@ class CameraLocalClient : public CameraClient {
 public:
     CameraLocalClient();
     virtual ~CameraLocalClient();
-public:  //operation
+public:  // operation
     virtual mavsdk::CameraServer::Result take_photo(int index) override;
     virtual mavsdk::CameraServer::Result start_video() override;
     virtual mavsdk::CameraServer::Result stop_video() override;
@@ -23,7 +23,7 @@ public:  //operation
     virtual mavsdk::CameraServer::Result set_mode(mavsdk::CameraServer::Mode mode) override;
     virtual mavsdk::CameraServer::Result format_storage(int storage_id) override;
     virtual mavsdk::CameraServer::Result reset_settings() override;
-public:  //subscribe
+public:  // subscribe
     virtual mavsdk::CameraServer::Result fill_information(
         mavsdk::CameraServer::Information &information) override;
     virtual mavsdk::CameraServer::Result fill_video_stream_info(

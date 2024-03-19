@@ -15,7 +15,7 @@ namespace mav {
 
 bool MavClient::init(std::string &connection_url, bool use_local, int32_t rpc_port,
                      std::string &ftp_root_path) {
-    //TODO need check connection url first
+    // TODO need check connection url first
     _connection_url = connection_url;
     _rpc_port = rpc_port;
     _ftp_root_path = ftp_root_path;
@@ -69,7 +69,7 @@ void MavClient::subscribe_camera_operation(mavsdk::CameraServer &camera_server) 
     camera_server.subscribe_take_photo([this, &camera_server](int32_t index) {
         _camera_client->take_photo(index);
 
-        //TODO no position info for now
+        // TODO no position info for now
         auto position = mavsdk::CameraServer::Position{};
         auto attitude = mavsdk::CameraServer::Quaternion{};
 

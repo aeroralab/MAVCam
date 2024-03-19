@@ -15,7 +15,7 @@ static mavsdk::rpc::camera::Mode translateFromCameraServerMode(
 static void fillInformation(const mavsdk::rpc::camera::Information &input,
                             mavsdk::CameraServer::Information &output);
 static void fillVideoStreamInfos(
-    const ::google::protobuf::RepeatedPtrField< ::mavsdk::rpc::camera::VideoStreamInfo> &input,
+    const ::google::protobuf::RepeatedPtrField<::mavsdk::rpc::camera::VideoStreamInfo> &input,
     std::vector<mavsdk::CameraServer::VideoStreamInfo> &output);
 static void fillStorageInformation(const mavsdk::rpc::camera::Status &input,
                                    mavsdk::CameraServer::StorageInformation &output);
@@ -45,7 +45,7 @@ CameraRpcClient::~CameraRpcClient() {
 
 bool CameraRpcClient::init(int rpc_port) {
     std::string target = "0.0.0.0:" + std::to_string(rpc_port);
-    //the channel isn't authenticated
+    // the channel isn't authenticated
     _channel = grpc::CreateChannel(target, grpc::InsecureChannelCredentials());
     _stub = mavsdk::rpc::camera::CameraService::NewStub(_channel);
 
@@ -339,7 +339,7 @@ void CameraRpcClient::work_thread(CameraRpcClient *self) {
         if (status_reader->Read(&response)) {
             fillStorageInformation(response.camera_status(), self->_storage_information);
             fillCaptureStatus(response.camera_status(), self->_capture_status);
-            //TODO need change
+            // TODO need change
             self->_capture_status.image_count = self->_image_count;
         }
         status_reader->Finish();
@@ -447,7 +447,7 @@ static void fillInformation(const mavsdk::rpc::camera::Information &input,
 }
 
 static void fillVideoStreamInfos(
-    const ::google::protobuf::RepeatedPtrField< ::mavsdk::rpc::camera::VideoStreamInfo> &input,
+    const ::google::protobuf::RepeatedPtrField<::mavsdk::rpc::camera::VideoStreamInfo> &input,
     std::vector<mavsdk::CameraServer::VideoStreamInfo> &output) {
     for (auto &it : input) {
         mavsdk::CameraServer::VideoStreamInfo video_stream_info;

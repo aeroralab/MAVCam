@@ -21,7 +21,7 @@ public:  // operation
     virtual mavsdk::CameraServer::Result set_mode(mavsdk::CameraServer::Mode mode) = 0;
     virtual mavsdk::CameraServer::Result format_storage(int storage_id) = 0;
     virtual mavsdk::CameraServer::Result reset_settings() = 0;
-public:  //subscribe
+public:  // subscribe
     virtual mavsdk::CameraServer::Result fill_information(
         mavsdk::CameraServer::Information &information) = 0;
     virtual mavsdk::CameraServer::Result fill_video_stream_info(
@@ -30,7 +30,7 @@ public:  //subscribe
         mavsdk::CameraServer::StorageInformation &storage_information) = 0;
     virtual mavsdk::CameraServer::Result fill_capture_status(
         mavsdk::CameraServer::CaptureStatus &capture_status) = 0;
-public:  //settings
+public:  // settings
     virtual mavsdk::CameraServer::Result retrieve_current_settings(
         std::vector<mavsdk::Camera::Setting> &settings) = 0;
     virtual mavsdk::CameraServer::Result set_setting(mavsdk::Camera::Setting setting) = 0;
