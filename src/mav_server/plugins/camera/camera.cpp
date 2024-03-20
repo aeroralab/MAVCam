@@ -22,7 +22,7 @@ using Setting = Camera::Setting;
 using SettingOptions = Camera::SettingOptions;
 using Information = Camera::Information;
 
-Camera::Camera() {}
+Camera::Camera() : _impl{std::make_unique<CameraImpl>()} {}
 
 Camera::~Camera() {}
 

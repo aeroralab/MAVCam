@@ -1,5 +1,11 @@
 #pragma once
 
+#include <atomic>
+#include <chrono>
+#include <mutex>
+#include <thread>
+#include <vector>
+
 #include "plugins/camera/camera.h"
 
 namespace mav {
@@ -200,6 +206,20 @@ public:
      */
     Camera::Result set_definition_data(std::string definition_data);
 private:
+    mav::Camera::Setting build_setting(std::string name, std::string value);
+private:
+    std::thread *_work_thread{nullptr};
+    std::atomic<bool> _should_exit{false};
+    std::mutex _callback_mutex{};
+    std::atomic<bool> _need_update_camera_information;
+    std::atomic<bool> _need_update_video_stream_info;
+    mutable std::chrono::steady_clock::time_point _start_video_time;
+    mutable Camera::Status _status;
+private:
+    Camera::Mode _current_mode;
+    mutable std::vector<Camera::Setting> _settings;
+    mutable std::atomic<float> _total_storage_mib;
+    mutable std::atomic<float> _available_storage_mib;
 };
 
 }  // namespace mav
