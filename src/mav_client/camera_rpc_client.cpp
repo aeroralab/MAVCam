@@ -49,6 +49,16 @@ bool CameraRpcClient::init(int rpc_port) {
     _channel = grpc::CreateChannel(target, grpc::InsecureChannelCredentials());
     _stub = mavsdk::rpc::camera::CameraService::NewStub(_channel);
 
+    // call prepare to init mav camera
+    mavsdk::rpc::camera::PrepareRequest request;
+    grpc::ClientContext context;
+    mavsdk::rpc::camera::PrepareResponse response;
+    grpc::Status status = _stub->Prepare(&context, request, &response);
+    if (!status.ok()) {
+        base::LogError() << "Call rpc prepare failed with errorcode: " << status.error_code();
+        return false;
+    }
+
     _init_information = false;
     _image_count = 0;
     _should_exit = false;
@@ -69,7 +79,7 @@ mavsdk::CameraServer::Result CameraRpcClient::take_photo(int index) {
     grpc::Status status = _stub->TakePhoto(&context, request, &response);
     _is_capture_in_progress = false;
     if (!status.ok()) {
-        base::LogError() << "Grpc status errorcode: " << status.error_code();
+        base::LogError() << "call rpc take_photo failed with errorcode: " << status.error_code();
         return mavsdk::CameraServer::Result::NoSystem;
     }
     base::LogDebug() << " Take photo result : " << response.camera_result().result_str();
@@ -90,7 +100,7 @@ mavsdk::CameraServer::Result CameraRpcClient::start_video() {
     mavsdk::rpc::camera::StartVideoResponse response;
     grpc::Status status = _stub->StartVideo(&context, request, &response);
     if (!status.ok()) {
-        base::LogError() << "Grpc status errorcode : " << status.error_code();
+        base::LogError() << "call rpc start_video failed with errorcode : " << status.error_code();
         return mavsdk::CameraServer::Result::NoSystem;
     }
     base::LogDebug() << " Start video result : " << response.camera_result().result_str();
@@ -106,7 +116,7 @@ mavsdk::CameraServer::Result CameraRpcClient::stop_video() {
     mavsdk::rpc::camera::StopVideoResponse response;
     grpc::Status status = _stub->StopVideo(&context, request, &response);
     if (!status.ok()) {
-        base::LogError() << "Grpc status errorcode : " << status.error_code();
+        base::LogError() << "call rpc stop_video failed with errorcode : " << status.error_code();
         return mavsdk::CameraServer::Result::NoSystem;
     }
     base::LogDebug() << " Stop video result : " << response.camera_result().result_str();
@@ -123,7 +133,8 @@ mavsdk::CameraServer::Result CameraRpcClient::start_video_streaming(int stream_i
     mavsdk::rpc::camera::StartVideoStreamingResponse response;
     grpc::Status status = _stub->StartVideoStreaming(&context, request, &response);
     if (!status.ok()) {
-        base::LogError() << "Grpc status errorcode : " << status.error_code();
+        base::LogError() << "call rpc start_video_streaming failed with errorcode : "
+                         << status.error_code();
         return mavsdk::CameraServer::Result::NoSystem;
     }
     base::LogDebug() << " Start video streaming result : " << response.camera_result().result_str();
@@ -140,7 +151,8 @@ mavsdk::CameraServer::Result CameraRpcClient::stop_video_streaming(int stream_id
     mavsdk::rpc::camera::StopVideoStreamingResponse response;
     grpc::Status status = _stub->StopVideoStreaming(&context, request, &response);
     if (!status.ok()) {
-        base::LogError() << "Grpc status errorcode : " << status.error_code();
+        base::LogError() << "call rpc stop_video_streaming failed with errorcode : "
+                         << status.error_code();
         return mavsdk::CameraServer::Result::NoSystem;
     }
     base::LogDebug() << " Stop video streaming result : " << response.camera_result().result_str();
@@ -156,7 +168,7 @@ mavsdk::CameraServer::Result CameraRpcClient::set_mode(mavsdk::CameraServer::Mod
     mavsdk::rpc::camera::SetModeResponse response;
     grpc::Status status = _stub->SetMode(&context, request, &response);
     if (!status.ok()) {
-        base::LogError() << "Grpc status errorcode: " << status.error_code();
+        base::LogError() << "call rpc set_mode failed with errorcode: " << status.error_code();
         return mavsdk::CameraServer::Result::NoSystem;
     }
     base::LogDebug() << " Set mode result : " << response.camera_result().result_str();
@@ -173,7 +185,8 @@ mavsdk::CameraServer::Result CameraRpcClient::format_storage(int storage_id) {
     mavsdk::rpc::camera::FormatStorageResponse response;
     grpc::Status status = _stub->FormatStorage(&context, request, &response);
     if (!status.ok()) {
-        base::LogError() << "Grpc status errorcode: " << status.error_code();
+        base::LogError() << "call rpc format_storage failed with errorcode: "
+                         << status.error_code();
         return mavsdk::CameraServer::Result::NoSystem;
     }
     base::LogDebug() << "Format storage result : " << response.camera_result().result_str();
@@ -193,7 +206,8 @@ mavsdk::CameraServer::Result CameraRpcClient::reset_settings() {
     mavsdk::rpc::camera::ResetSettingsResponse response;
     grpc::Status status = _stub->ResetSettings(&context, request, &response);
     if (!status.ok()) {
-        base::LogError() << "Grpc status errorcode: " << status.error_code();
+        base::LogError() << "call rpc reset_settings failed with errorcode: "
+                         << status.error_code();
         return mavsdk::CameraServer::Result::NoSystem;
     }
     base::LogDebug() << "Reset settings result : " << response.camera_result().result_str();
@@ -216,6 +230,7 @@ mavsdk::CameraServer::Result CameraRpcClient::fill_information(
     }
 
     information = _information;
+    base::LogDebug() << "got rpc information " << _information;
     return mavsdk::CameraServer::Result::Success;
 }
 
@@ -234,6 +249,10 @@ mavsdk::CameraServer::Result CameraRpcClient::fill_video_stream_info(
         _init_video_stream_info = true;
     }
     video_stream_infos = _video_stream_infos;
+    base::LogDebug() << "got rpc video stream infos ";
+    for (auto &it : _video_stream_infos) {
+        base::LogDebug() << it;
+    }
     return mavsdk::CameraServer::Result::Success;
 }
 
@@ -306,7 +325,7 @@ std::pair<mavsdk::CameraServer::Result, mavsdk::Camera::Setting> CameraRpcClient
     mavsdk::rpc::camera::GetSettingResponse response;
     grpc::Status status = _stub->GetSetting(&context, request, &response);
     if (!status.ok()) {
-        base::LogError() << "Grpc status errorcode: " << status.error_code();
+        base::LogError() << "Grpc status errorcode : " << status.error_code();
         return {mavsdk::CameraServer::Result::NoSystem, setting};
     }
     base::LogDebug() << "Reset settings result : " << response.camera_result().result_str();

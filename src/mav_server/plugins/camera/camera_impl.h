@@ -243,18 +243,7 @@ public:
 private:
     mav::Camera::Setting build_setting(std::string name, std::string value);
 private:
-    void start();
-    void stop();
-    static void work_thread(CameraImpl *self);
-    std::thread *_work_thread{nullptr};
-    std::atomic<bool> _should_exit{false};
-    std::mutex _callback_mutex{};
-private:
     Camera::ModeCallback _camera_mode_callback;
-    std::atomic<bool> _need_update_camera_information;
-    Camera::InformationCallback _camera_information_callback;
-    std::atomic<bool> _need_update_video_stream_info;
-    Camera::VideoStreamInfoCallback _video_stream_info_callback;
     Camera::CaptureInfoCallback _capture_info_callback;
     mutable Camera::Status _status;
     Camera::StatusCallback _status_callback;
