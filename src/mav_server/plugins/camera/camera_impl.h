@@ -107,11 +107,21 @@ public:
         Camera::PhotosRange photos_range);
 
     /**
+     * @brief Subscribe to camera mode updates.
+     */
+    void mode_async(const Camera::ModeCallback &callback);
+
+    /**
      * @brief Poll for 'Mode' (blocking).
      *
      * @return One Mode update.
      */
     Camera::Mode mode() const;
+
+    /**
+     * @brief Subscribe to camera information updates.
+     */
+    void information_async(const Camera::InformationCallback &callback);
 
     /**
      * @brief Poll for 'Information' (blocking).
@@ -121,6 +131,11 @@ public:
     Camera::Information information() const;
 
     /**
+     * @brief Subscribe to video stream info updates.
+     */
+    void video_stream_info_async(const Camera::VideoStreamInfoCallback &callback);
+
+    /**
      * @brief Poll for 'std::vector<VideoStreamInfo>' (blocking).
      *
      * @return One std::vector<VideoStreamInfo> update.
@@ -128,11 +143,31 @@ public:
     std::vector<Camera::VideoStreamInfo> video_stream_info() const;
 
     /**
+     * @brief Subscribe to capture info updates.
+     */
+    void capture_info_async(const Camera::CaptureInfoCallback &callback);
+
+    /**
+     * @brief Subscribe to camera status updates.
+     */
+    void status_async(const Camera::StatusCallback &callback);
+
+    /**
      * @brief Poll for 'Status' (blocking).
      *
      * @return One Status update.
      */
     Camera::Status status() const;
+
+    /**
+     * @brief Get the list of current camera settings.
+     */
+    void current_settings_async(const Camera::CurrentSettingsCallback &callback);
+
+    /**
+     * @brief Get the list of settings that can be changed.
+     */
+    void possible_setting_options_async(const Camera::PossibleSettingOptionsCallback &callback);
 
     /**
      * @brief Poll for 'std::vector<SettingOptions>' (blocking).
@@ -208,15 +243,24 @@ public:
 private:
     mav::Camera::Setting build_setting(std::string name, std::string value);
 private:
+    void start();
+    void stop();
+    static void work_thread(CameraImpl *self);
     std::thread *_work_thread{nullptr};
     std::atomic<bool> _should_exit{false};
     std::mutex _callback_mutex{};
-    std::atomic<bool> _need_update_camera_information;
-    std::atomic<bool> _need_update_video_stream_info;
-    mutable std::chrono::steady_clock::time_point _start_video_time;
-    mutable Camera::Status _status;
 private:
-    Camera::Mode _current_mode;
+    Camera::ModeCallback _camera_mode_callback;
+    std::atomic<bool> _need_update_camera_information;
+    Camera::InformationCallback _camera_information_callback;
+    std::atomic<bool> _need_update_video_stream_info;
+    Camera::VideoStreamInfoCallback _video_stream_info_callback;
+    Camera::CaptureInfoCallback _capture_info_callback;
+    mutable Camera::Status _status;
+    Camera::StatusCallback _status_callback;
+private:
+    mutable Camera::Mode _current_mode{Camera::Mode::Unknown};
+    mutable std::chrono::steady_clock::time_point _start_video_time;
     mutable std::vector<Camera::Setting> _settings;
     mutable std::atomic<float> _total_storage_mib;
     mutable std::atomic<float> _available_storage_mib;

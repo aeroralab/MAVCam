@@ -6,9 +6,13 @@ namespace mav {
 
 CameraImpl::CameraImpl() {}
 
-CameraImpl::~CameraImpl() {}
+CameraImpl::~CameraImpl() {
+    stop();
+}
 
 Camera::Result CameraImpl::prepare() {
+    _current_mode = Camera::Mode::Photo;
+
     // TODO just demo for settings
     _settings.emplace_back(build_setting("CAM_MODE", "1"));
     _settings.emplace_back(build_setting("CAM_WBMODE", "0"));
@@ -22,6 +26,8 @@ Camera::Result CameraImpl::prepare() {
 
     _total_storage_mib = 2 * 1024 * 1024;
     _available_storage_mib = 1 * 1024 * 1024;
+
+    start();
     return Camera::Result::Success;
 }
 
@@ -70,12 +76,21 @@ Camera::Result CameraImpl::set_mode(Camera::Mode mode) {
 
 std::pair<Camera::Result, std::vector<Camera::CaptureInfo>> CameraImpl::list_photos(
     Camera::PhotosRange photos_range) {
-    base::LogWarn() << "unsupport list_photos function";
+    base::LogDebug() << "call list_photos " << photos_range;
+
     return {Camera::Result::ProtocolUnsupported, {}};
+}
+
+void CameraImpl::mode_async(const Camera::ModeCallback &callback) {
+    _camera_mode_callback = callback;
 }
 
 Camera::Mode CameraImpl::mode() const {
     return _current_mode;
+}
+
+void CameraImpl::information_async(const Camera::InformationCallback &callback) {
+    _camera_information_callback = callback;
 }
 
 Camera::Information CameraImpl::information() const {
@@ -97,6 +112,10 @@ Camera::Information CameraImpl::information() const {
     information.camera_cap_flags.emplace_back(Camera::Information::CameraCapFlags::HasVideoStream);
 
     return information;
+}
+
+void CameraImpl::video_stream_info_async(const Camera::VideoStreamInfoCallback &callback) {
+    _video_stream_info_callback = callback;
 }
 
 std::vector<Camera::VideoStreamInfo> CameraImpl::video_stream_info() const {
@@ -129,8 +148,15 @@ std::vector<Camera::VideoStreamInfo> CameraImpl::video_stream_info() const {
     return {normal_video_stream, infrared_video_stream};
 }
 
+void CameraImpl::capture_info_async(const Camera::CaptureInfoCallback &callback) {
+    _capture_info_callback = callback;
+}
+
+void CameraImpl::status_async(const Camera::StatusCallback &callback) {
+    _status_callback = callback;
+}
+
 Camera::Status CameraImpl::status() const {
-    // LogDebug() << "call get status ";
     // TODO just demo
     _status.available_storage_mib = _available_storage_mib;
     _status.total_storage_mib = _total_storage_mib;
@@ -146,6 +172,15 @@ Camera::Status CameraImpl::status() const {
         _status.recording_time_s = 0;
     }
     return _status;
+}
+
+void CameraImpl::current_settings_async(const Camera::CurrentSettingsCallback &callback) {
+    // TODO :)
+}
+
+void CameraImpl::possible_setting_options_async(
+    const Camera::PossibleSettingOptionsCallback &callback) {
+    // TODO :)
 }
 
 std::vector<Camera::SettingOptions> CameraImpl::possible_setting_options() const {
@@ -183,7 +218,7 @@ Camera::Result CameraImpl::format_storage(int32_t storage_id) {
 }
 
 Camera::Result CameraImpl::select_camera(int32_t camera_id) {
-    base::LogWarn() << "unsupport function";
+    base::LogDebug() << "call select_camera";
     return Camera::Result::ProtocolUnsupported;
 }
 
@@ -193,7 +228,7 @@ Camera::Result CameraImpl::reset_settings() {
 }
 
 Camera::Result CameraImpl::set_definition_data(std::string definition_data) {
-    base::LogWarn() << "unsupport function";
+    base::LogDebug() << "call set_definition_data";
     return Camera::Result::ProtocolUnsupported;
 }
 
@@ -202,6 +237,44 @@ Camera::Setting CameraImpl::build_setting(std::string name, std::string value) {
     setting.setting_id = name;
     setting.option.option_id = value;
     return setting;
+}
+
+void CameraImpl::start() {
+    _should_exit = false;
+    _work_thread = new std::thread(work_thread, this);
+}
+
+void CameraImpl::stop() {
+    _should_exit = true;
+    if (_work_thread != nullptr) {
+        _work_thread->join();
+        delete _work_thread;
+        _work_thread = nullptr;
+    }
+}
+
+void CameraImpl::work_thread(CameraImpl *self) {
+    while (!self->_should_exit) {
+        {
+            std::lock_guard<std::mutex> lock(self->_callback_mutex);
+            if (self->_need_update_camera_information && self->_camera_information_callback) {
+                base::LogDebug() << "retrive camera information";
+                self->_camera_information_callback(self->information());
+                self->_need_update_camera_information = false;
+            }
+            if (self->_need_update_video_stream_info && self->_video_stream_info_callback) {
+                base::LogDebug() << "retrive video stream information";
+                self->_video_stream_info_callback(self->video_stream_info());
+                self->_need_update_video_stream_info = false;
+            }
+            // send status
+            if (self->_status_callback != nullptr) {
+                self->_status_callback(self->status());
+                self->_status_callback = nullptr;
+            }
+        }
+        std::this_thread::sleep_for(std::chrono::milliseconds(800));
+    }
 }
 
 }  // namespace mav

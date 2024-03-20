@@ -596,11 +596,31 @@ public:
     std::pair<Result, std::vector<Camera::CaptureInfo>> list_photos(PhotosRange photos_range) const;
 
     /**
+     * @brief Callback type for mode_async.
+     */
+    using ModeCallback = std::function<void(Mode)>;
+
+    /**
+     * @brief Subscribe to camera mode updates.
+     */
+    void mode_async(const ModeCallback &callback);
+
+    /**
      * @brief Poll for 'Mode' (blocking).
      *
      * @return One Mode update.
      */
     Mode mode() const;
+
+    /**
+     * @brief Callback type for information_async.
+     */
+    using InformationCallback = std::function<void(Information)>;
+
+    /**
+     * @brief Subscribe to camera information updates.
+     */
+    void information_async(const InformationCallback &callback);
 
     /**
      * @brief Poll for 'Information' (blocking).
@@ -610,6 +630,16 @@ public:
     Information information() const;
 
     /**
+     * @brief Callback type for video_stream_info_async.
+     */
+    using VideoStreamInfoCallback = std::function<void(std::vector<VideoStreamInfo>)>;
+
+    /**
+     * @brief Subscribe to video stream info updates.
+     */
+    void video_stream_info_async(const VideoStreamInfoCallback &callback);
+
+    /**
      * @brief Poll for 'std::vector<VideoStreamInfo>' (blocking).
      *
      * @return One std::vector<VideoStreamInfo> update.
@@ -617,11 +647,51 @@ public:
     std::vector<VideoStreamInfo> video_stream_info() const;
 
     /**
+     * @brief Callback type for capture_info_async.
+     */
+    using CaptureInfoCallback = std::function<void(CaptureInfo)>;
+
+    /**
+     * @brief Subscribe to capture info updates.
+     */
+    void capture_info_async(const CaptureInfoCallback &callback);
+
+    /**
+     * @brief Callback type for status_async.
+     */
+    using StatusCallback = std::function<void(Status)>;
+
+    /**
+     * @brief Subscribe to camera status updates.
+     */
+    void status_async(const StatusCallback &callback);
+
+    /**
      * @brief Poll for 'Status' (blocking).
      *
      * @return One Status update.
      */
     Status status() const;
+
+    /**
+     * @brief Callback type for current_settings_async.
+     */
+    using CurrentSettingsCallback = std::function<void(std::vector<Setting>)>;
+
+    /**
+     * @brief Get the list of current camera settings.
+     */
+    void current_settings_async(const CurrentSettingsCallback &callback);
+
+    /**
+     * @brief Callback type for possible_setting_options_async.
+     */
+    using PossibleSettingOptionsCallback = std::function<void(std::vector<SettingOptions>)>;
+
+    /**
+     * @brief Get the list of settings that can be changed.
+     */
+    void possible_setting_options_async(const PossibleSettingOptionsCallback &callback);
 
     /**
      * @brief Poll for 'std::vector<SettingOptions>' (blocking).

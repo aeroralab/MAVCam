@@ -67,20 +67,48 @@ std::pair<Camera::Result, std::vector<Camera::CaptureInfo>> Camera::list_photos(
     return _impl->list_photos(photos_range);
 }
 
+void Camera::mode_async(const ModeCallback &callback) {
+    _impl->mode_async(callback);
+}
+
 Camera::Mode Camera::mode() const {
     return _impl->mode();
+}
+
+void Camera::information_async(const InformationCallback &callback) {
+    _impl->information_async(callback);
 }
 
 Camera::Information Camera::information() const {
     return _impl->information();
 }
 
+void Camera::video_stream_info_async(const VideoStreamInfoCallback &callback) {
+    _impl->video_stream_info_async(callback);
+}
+
 std::vector<Camera::VideoStreamInfo> Camera::video_stream_info() const {
     return _impl->video_stream_info();
 }
 
+void Camera::capture_info_async(const CaptureInfoCallback &callback) {
+    _impl->capture_info_async(callback);
+}
+
+void Camera::status_async(const StatusCallback &callback) {
+    _impl->status_async(callback);
+}
+
 Camera::Status Camera::status() const {
     return _impl->status();
+}
+
+void Camera::current_settings_async(const CurrentSettingsCallback &callback) {
+    _impl->current_settings_async(callback);
+}
+
+void Camera::possible_setting_options_async(const PossibleSettingOptionsCallback &callback) {
+    _impl->possible_setting_options_async(callback);
 }
 
 std::vector<Camera::SettingOptions> Camera::possible_setting_options() const {
