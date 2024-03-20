@@ -88,6 +88,7 @@ template_path_plugin_h="${script_dir}/../templates/mav_server/plugin_h"
 template_path_plugin_cpp="${script_dir}/../templates/mav_server/plugin_cpp"
 template_path_plugin_impl_h="${script_dir}/../templates/mav_server/plugin_impl_h"
 template_path_plugin_impl_cpp="${script_dir}/../templates/mav_server/plugin_impl_cpp"
+template_path_plugin_service_impl_h="${script_dir}/../templates/mav_server/plugin_service_impl_h"
 
 server_plugin_list=("camera" )
 server_plugin_count=${#server_plugin_list[*]}
@@ -130,4 +131,8 @@ do
             echo "-> Not creating ${file_impl_cpp} because it already exists"
         fi
     fi
+
+    file_service_impl_h=" ${script_dir}/../src/mav_server/plugins/${plugin}/${plugin}_service_impl.h"
+    ${protoc_binary} -I ${proto_dir} --custom_out=${tmp_output_dir} --plugin=protoc-gen-custom=${protoc_gen_mavsdk} --custom_opt="file_ext=h,template_path=${template_path_plugin_service_impl_h}" ${proto_dir}/${plugin}/${plugin}.proto
+    mv ${tmp_output_dir}/${plugin}/$(snake_case_to_camel_case ${plugin}).h ${file_service_impl_h}
 done
