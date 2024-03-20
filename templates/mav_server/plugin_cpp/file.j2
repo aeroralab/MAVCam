@@ -15,7 +15,7 @@ using {{ struct.name.upper_camel_case }} = {{ plugin_name.upper_camel_case }}::{
     {%- endif %}
 {% endfor %}
 
-{{ plugin_name.upper_camel_case }}::{{ plugin_name.upper_camel_case }}() {}
+{{ plugin_name.upper_camel_case }}::{{ plugin_name.upper_camel_case }}() : _impl{std::make_unique<{{ plugin_name.upper_camel_case }}Impl>()} {}
 
 {{ plugin_name.upper_camel_case }}::~{{ plugin_name.upper_camel_case }}() {}
 

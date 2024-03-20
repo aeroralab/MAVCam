@@ -108,26 +108,26 @@ do
     mv ${tmp_output_dir}/${plugin}/$(snake_case_to_camel_case ${plugin}).cpp ${file_cpp}
 
     file_impl_h="${script_dir}/../src/mav_server/plugins/${plugin}/${plugin}_impl.h"
-    # if [[ ! -f "${file_impl_h}" ]]; then
+    if [[ ! -f "${file_impl_h}" ]]; then
         ${protoc_binary} -I ${proto_dir} --custom_out=${tmp_output_dir} --plugin=protoc-gen-custom=${protoc_gen_mavsdk} --custom_opt="file_ext=h,template_path=${template_path_plugin_impl_h}" ${proto_dir}/${plugin}/${plugin}.proto
         mv ${tmp_output_dir}/${plugin}/$(snake_case_to_camel_case ${plugin}).h ${file_impl_h}
         echo "-> Creating ${file_impl_h}"
-    # else
-    #     # Warn if file is not checked in yet.
-    #     if [[ ! $(git -C ${repo_dir} ls-files --error-unmatch ${file_impl_h} 2> /dev/null) ]]; then
-    #         echo "-> Not creating ${file_impl_h} because it already exists"
-    #     fi
-    # fi
+    else
+        # Warn if file is not checked in yet.
+        if [[ ! $(git -C ${repo_dir} ls-files --error-unmatch ${file_impl_h} 2> /dev/null) ]]; then
+            echo "-> Not creating ${file_impl_h} because it already exists"
+        fi
+    fi
 
     file_impl_cpp="${script_dir}/../src/mav_server/plugins/${plugin}/${plugin}_impl.cpp"
-    # if [[ ! -f $file_impl_cpp ]]; then
+    if [[ ! -f $file_impl_cpp ]]; then
         ${protoc_binary} -I ${proto_dir} --custom_out=${tmp_output_dir} --plugin=protoc-gen-custom=${protoc_gen_mavsdk} --custom_opt="file_ext=cpp,template_path=${template_path_plugin_impl_cpp}" ${proto_dir}/${plugin}/${plugin}.proto
         mv ${tmp_output_dir}/${plugin}/$(snake_case_to_camel_case ${plugin}).cpp ${file_impl_cpp}
         echo "-> Creating ${file_impl_cpp}"
-    # else
-    #     # Warn if file is not checked in yet.
-    #     if [[ ! $(git -C ${repo_dir} ls-files --error-unmatch ${file_impl_cpp} 2> /dev/null) ]]; then
-    #         echo "-> Not creating ${file_impl_cpp} because it already exists"
-    #     fi
-    # fi
+    else
+        # Warn if file is not checked in yet.
+        if [[ ! $(git -C ${repo_dir} ls-files --error-unmatch ${file_impl_cpp} 2> /dev/null) ]]; then
+            echo "-> Not creating ${file_impl_cpp} because it already exists"
+        fi
+    fi
 done
