@@ -1,3 +1,11 @@
+{% if is_async %}
+
+void {{ plugin_name.upper_camel_case }}Impl::{{ name.lower_snake_case }}_async({% for param in params %}{{ plugin_name.upper_camel_case }}::{{ param.type_info.name }} {{ param.name.lower_snake_case }}, {% endfor %}const {{ plugin_name.upper_camel_case }}::{{ name.upper_camel_case }}Callback& callback)
+{
+    // TODO :)
+}
+
+{% endif %}
 
 {% if is_sync %}
 {% if return_type.is_repeated %}

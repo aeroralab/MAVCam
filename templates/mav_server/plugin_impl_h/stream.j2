@@ -1,4 +1,11 @@
 
+{% if is_async %}
+/**
+ * @brief {{ method_description | replace('\n', '\n *')}}
+ */
+void {{ name.lower_snake_case }}_async({% for param in params %}{{ param.type_info.name }} {{ param.name.lower_snake_case }}, {% endfor %}const {{ plugin_name.upper_camel_case }}::{{ name.upper_camel_case }}Callback& callback);
+{% endif %}
+
 {% if is_sync %}
 /**
  * @brief Poll for '{{ return_type.name }}' (blocking).
