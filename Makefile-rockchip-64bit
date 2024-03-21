@@ -21,7 +21,7 @@ all: $(PKG_TARGET)
 build-MAVCam:
 	@mkdir -p $(CURRENT_DIR)/$(PKG_BUILD) && (\
 	pushd $(CURRENT_DIR)/$(PKG_BUILD)/; \
-		cmake -DCMAKE_INSTALL_PREFIX=/MAVCam -DCMAKE_TOOLCHAIN_FILE=$(CURRENT_DIR)/cmake/gcc-arm-10.3-2021.07-x86_64-aarch64-none-linux.cmake -DBUILD_GRPC=ON -DBUILD_SERVER=OFF -DSTAGING_DIR=$(CURRENT_DIR)/$(PKG_BIN) ../ ; \
+		cmake -DCMAKE_INSTALL_PREFIX=/MAVCam -DCMAKE_TOOLCHAIN_FILE=$(CURRENT_DIR)/cmake/gcc-arm-10.3-2021.07-x86_64-aarch64-none-linux.cmake -DBUILD_GRPC=ON -DBUILD_SERVER=ON -DSTAGING_DIR=$(CURRENT_DIR)/$(PKG_BIN) ../ ; \
 		make -j4; \
 		make DESTDIR=$(CURRENT_DIR)/$(PKG_BIN) install; \
 		rm -rf $(CURRENT_DIR)$(PKG_BIN_INSTALL)/usr/share; \

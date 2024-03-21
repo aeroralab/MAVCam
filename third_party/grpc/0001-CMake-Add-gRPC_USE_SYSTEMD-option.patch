@@ -1,0 +1,43 @@
+From 1faf2183819ae00c886023d10273d88d6147c16c Mon Sep 17 00:00:00 2001
+From: "xueshen.an" <xueshen.an@goertek.com>
+Date: Thu, 21 Mar 2024 16:02:29 +0800
+Subject: [PATCH] CMake Add gRPC_USE_SYSTEMD option
+
+  Allows to disable systemd support
+---
+ systemd.cmake | 21 ++++++++++++++++-----
+ 1 file changed, 16 insertions(+), 5 deletions(-)
+
+diff --git a/cmake/systemd.cmake b/cmake/systemd.cmake
+index a342101..559c8d2 100644
+--- a/cmake/systemd.cmake
++++ b/cmake/systemd.cmake
+@@ -12,9 +12,20 @@
+ # See the License for the specific language governing permissions and
+ # limitations under the License.
+ 
+-find_package(systemd)
+-if(TARGET systemd)
+-  set(_gRPC_SYSTEMD_LIBRARIES systemd ${SYSTEMD_LINK_LIBRARIES})
+-  add_definitions(-DHAVE_LIBSYSTEMD)
++set(gRPC_USE_SYSTEMD "AUTO" CACHE STRING "Build with libsystemd support if available. Can be ON, OFF or AUTO")
++
++if (NOT gRPC_USE_SYSTEMD STREQUAL "OFF")
++  if (gRPC_USE_SYSTEMD STREQUAL "ON")
++    find_package(systemd REQUIRED)
++  elseif (gRPC_USE_SYSTEMD STREQUAL "AUTO")
++    find_package(systemd)
++  else()
++    message(FATAL_ERROR "Unknown value for gRPC_USE_SYSTEMD = ${gRPC_USE_SYSTEMD}")
++  endif()
++
++  if(TARGET systemd)
++    set(_gRPC_SYSTEMD_LIBRARIES systemd ${SYSTEMD_LINK_LIBRARIES})
++    add_definitions(-DHAVE_LIBSYSTEMD)
++  endif()
++  set(_gRPC_FIND_SYSTEMD "if(NOT systemd_FOUND)\n  find_package(systemd)\nendif()")
+ endif()
+-set(_gRPC_FIND_SYSTEMD "if(NOT systemd_FOUND)\n  find_package(systemd)\nendif()")
+-- 
+2.34.1
+
