@@ -6,7 +6,7 @@
     </definition>
     <parameters>
         <!-- control = 0 tells us this should not create an automatic UI control -->
-        <parameter name="CAM_MODE" type="int32" default="1" control="0">
+        <parameter name="CAM_MODE" type="int32" default="0" control="0">
             <description>Camera Mode</description>
             <!-- This tells us when this parameter changes, these parameters must be updated (requested)-->
             <updates>

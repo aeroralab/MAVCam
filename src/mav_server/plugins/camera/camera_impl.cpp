@@ -13,7 +13,12 @@ Camera::Result CameraImpl::prepare() {
     _current_mode = Camera::Mode::Photo;
 
     // TODO just demo for settings
-    _settings.emplace_back(build_setting("CAM_MODE", "1"));
+    // CAM_MODE is define in definition file, photo mode as 0, video mode as 1
+    if (_current_mode == Camera::Mode::Photo) {
+        _settings.emplace_back(build_setting("CAM_MODE", "0"));
+    } else {
+        _settings.emplace_back(build_setting("CAM_MODE", "1"));
+    }
     _settings.emplace_back(build_setting("CAM_WBMODE", "0"));
     _settings.emplace_back(build_setting("CAM_EXPMODE", "0"));
     _settings.emplace_back(build_setting("CAM_EV", "0"));
@@ -69,6 +74,15 @@ Camera::Result CameraImpl::stop_video_streaming(int32_t stream_id) {
 
 Camera::Result CameraImpl::set_mode(Camera::Mode mode) {
     base::LogDebug() << "call set mode " << mode;
+    _current_mode = mode;
+    // also need change mode in settings
+    if (_current_mode == Camera::Mode::Photo) {
+        auto setting = build_setting("CAM_MODE", "0");
+        set_setting(setting);
+    } else {
+        auto setting = build_setting("CAM_MODE", "1");
+        set_setting(setting);
+    }
     return Camera::Result::Success;
 }
 
