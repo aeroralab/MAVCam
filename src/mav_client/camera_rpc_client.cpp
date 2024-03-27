@@ -273,7 +273,7 @@ mavsdk::CameraServer::Result CameraRpcClient::retrieve_current_settings(
     std::lock_guard<std::mutex> lock(_mutex);
     mavsdk::rpc::camera::SubscribeCurrentSettingsRequest request;
     grpc::ClientContext context;
-    _current_settings_reader = _stub->current_settings_async(&context, request);
+    _current_settings_reader = _stub->SubscribeCurrentSettings(&context, request);
 
     mavsdk::rpc::camera::CurrentSettingsResponse response;
     if (_current_settings_reader->Read(&response)) {
