@@ -271,24 +271,20 @@ mavsdk::CameraServer::Result CameraRpcClient::fill_capture_status(
 mavsdk::CameraServer::Result CameraRpcClient::retrieve_current_settings(
     std::vector<mavsdk::Camera::Setting> &settings) {
     std::lock_guard<std::mutex> lock(_mutex);
-    if (!_init_current_settings) {
-        mavsdk::rpc::camera::SubscribeCurrentSettingsRequest request;
-        grpc::ClientContext context;
-        _current_settings_reader = _stub->SubscribeCurrentSettings(&context, request);
+    mavsdk::rpc::camera::SubscribeCurrentSettingsRequest request;
+    grpc::ClientContext context;
+    _current_settings_reader = _stub->current_settings_async(&context, request);
 
-        mavsdk::rpc::camera::CurrentSettingsResponse response;
-        if (_current_settings_reader->Read(&response)) {
-            for (auto &setting : response.current_settings()) {
-                base::LogDebug() << "setitng " << setting.setting_id() << " value "
-                                 << setting.option().option_id();
-                _settings[setting.setting_id()] = setting.option().option_id();
-                settings.emplace_back(
-                    buildSettings(setting.setting_id(), setting.option().option_id()));
-            }
+    mavsdk::rpc::camera::CurrentSettingsResponse response;
+    if (_current_settings_reader->Read(&response)) {
+        for (auto &setting : response.current_settings()) {
+            base::LogDebug() << "setitng " << setting.setting_id() << " value "
+                             << setting.option().option_id();
+            settings.emplace_back(
+                buildSettings(setting.setting_id(), setting.option().option_id()));
         }
-        _current_settings_reader->Finish();
-        _init_current_settings = true;
     }
+    _current_settings_reader->Finish();
     return mavsdk::CameraServer::Result::Success;
 }
 
@@ -308,7 +304,7 @@ mavsdk::CameraServer::Result CameraRpcClient::set_setting(mavsdk::Camera::Settin
         base::LogError() << "Grpc status errorcode: " << status.error_code();
         return mavsdk::CameraServer::Result::NoSystem;
     }
-    base::LogDebug() << "Reset settings result : " << response.camera_result().result_str();
+    base::LogDebug() << "Set settings result : " << response.camera_result().result_str();
     return translateFromRpcResult(response.camera_result().result());
 
     return mavsdk::CameraServer::Result::Success;
@@ -328,7 +324,7 @@ std::pair<mavsdk::CameraServer::Result, mavsdk::Camera::Setting> CameraRpcClient
         base::LogError() << "Grpc status errorcode : " << status.error_code();
         return {mavsdk::CameraServer::Result::NoSystem, setting};
     }
-    base::LogDebug() << "Reset settings result : " << response.camera_result().result_str();
+    base::LogDebug() << "Get settings result : " << response.camera_result().result_str();
 
     setting.setting_id = response.setting().setting_id();
     setting.setting_description = response.setting().setting_description();
