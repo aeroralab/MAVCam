@@ -138,6 +138,12 @@ void MavClient::subscribe_camera_operation(mavsdk::CameraServer &camera_server) 
         auto result = _camera_client->reset_settings();
         camera_server.respond_reset_settings(mavsdk::CameraServer::CameraFeedback::Ok);
     });
+
+    camera_server.subscribe_settings([this, &camera_server](int reserved) {
+        mavsdk::CameraServer::Settings settings;
+        auto result = _camera_client->fill_settings(settings);
+        camera_server.respond_settings(settings);
+    });
     // Then set the initial state of everything.
 
     // Finally call set_information() to "activate" the camera plugin.

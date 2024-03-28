@@ -36,6 +36,8 @@ public:  // subscribe
         mavsdk::CameraServer::StorageInformation &storage_information) override;
     virtual mavsdk::CameraServer::Result fill_capture_status(
         mavsdk::CameraServer::CaptureStatus &capture_status) override;
+    virtual mavsdk::CameraServer::Result fill_settings(
+        mavsdk::CameraServer::Settings &settings) override;
 public:  // settings
     virtual mavsdk::CameraServer::Result retrieve_current_settings(
         std::vector<mavsdk::Camera::Setting> &settings) override;
@@ -60,6 +62,8 @@ private:
 private:
     mavsdk::CameraServer::StorageInformation _storage_information;
     mavsdk::CameraServer::CaptureStatus _capture_status;
+private:
+    mavsdk::CameraServer::Mode _current_mode;
 private:
     std::unique_ptr<grpc::ClientReader<mavsdk::rpc::camera::CurrentSettingsResponse>>
         _current_settings_reader;

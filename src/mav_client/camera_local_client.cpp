@@ -7,6 +7,8 @@
 
 namespace mav {
 
+static std::string kCameraModeName = "CAM_MODE";
+
 CameraLocalClient::CameraLocalClient() {
     _is_capture_in_progress = false;
     _image_count = 0;
@@ -16,7 +18,7 @@ CameraLocalClient::CameraLocalClient() {
     _available_storage_mib = 3 * 1024;
 
     // TODO just demo for settings
-    _settings["CAM_MODE"] = "1";
+    _settings[kCameraModeName] = "0";
     _settings["CAM_WBMODE"] = "4";
     _settings["CAM_EXPMODE"] = "0";
     _settings["CAM_EV"] = "1";
@@ -70,6 +72,11 @@ mavsdk::CameraServer::Result CameraLocalClient::stop_video_streaming(int stream_
 mavsdk::CameraServer::Result CameraLocalClient::set_mode(mavsdk::CameraServer::Mode mode) {
     std::lock_guard<std::mutex> lock(_mutex);
     base::LogDebug() << "locally call set mode " << mode;
+    if (mode == mavsdk::CameraServer::Mode::Photo) {
+        _settings[kCameraModeName] = "0";
+    } else {
+        _settings[kCameraModeName] = "1";
+    }
     return mavsdk::CameraServer::Result::Success;
 }
 
@@ -84,7 +91,7 @@ mavsdk::CameraServer::Result CameraLocalClient::reset_settings() {
     std::lock_guard<std::mutex> lock(_mutex);
     base::LogDebug() << "locally call reset settings";
     // reset settings
-    _settings["CAM_MODE"] = "0";
+    _settings[kCameraModeName] = "0";
     _settings["CAM_WBMODE"] = "0";
     _settings["CAM_EXPMODE"] = "0";
     _settings["CAM_EV"] = "0";
@@ -177,6 +184,19 @@ mavsdk::CameraServer::Result CameraLocalClient::fill_capture_status(
     } else {
         capture_status.recording_time_s = 0;
     }
+    return mavsdk::CameraServer::Result::Success;
+}
+
+mavsdk::CameraServer::Result CameraLocalClient::fill_settings(
+    mavsdk::CameraServer::Settings &settings) {
+    base::LogDebug() << "locally call fill settings ";
+    if (_settings[kCameraModeName] == "0") {
+        settings.mode = mavsdk::CameraServer::Mode::Photo;
+    } else {
+        settings.mode = mavsdk::CameraServer::Mode::Video;
+    }
+    settings.zoom_level = 0;
+    settings.focus_level = 0;
     return mavsdk::CameraServer::Result::Success;
 }
 

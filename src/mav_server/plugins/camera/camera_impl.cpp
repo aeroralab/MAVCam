@@ -4,12 +4,7 @@
 
 namespace mav {
 
-CameraImpl::CameraImpl() {}
-
-CameraImpl::~CameraImpl() {}
-
-Camera::Result CameraImpl::prepare() {
-    base::LogDebug() << "call prepare";
+CameraImpl::CameraImpl() {
     _current_mode = Camera::Mode::Photo;
 
     // TODO just demo for settings
@@ -30,7 +25,12 @@ Camera::Result CameraImpl::prepare() {
 
     _total_storage_mib = 2 * 1024 * 1024;
     _available_storage_mib = 1 * 1024 * 1024;
+}
 
+CameraImpl::~CameraImpl() {}
+
+Camera::Result CameraImpl::prepare() {
+    base::LogDebug() << "call prepare";
     return Camera::Result::Success;
 }
 

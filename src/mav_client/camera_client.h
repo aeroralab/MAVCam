@@ -30,6 +30,8 @@ public:  // subscribe
         mavsdk::CameraServer::StorageInformation &storage_information) = 0;
     virtual mavsdk::CameraServer::Result fill_capture_status(
         mavsdk::CameraServer::CaptureStatus &capture_status) = 0;
+    virtual mavsdk::CameraServer::Result fill_settings(
+        mavsdk::CameraServer::Settings &settings) = 0;
 public:  // settings
     virtual mavsdk::CameraServer::Result retrieve_current_settings(
         std::vector<mavsdk::Camera::Setting> &settings) = 0;

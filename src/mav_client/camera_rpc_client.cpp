@@ -7,6 +7,8 @@
 
 namespace mav {
 
+static std::string kCameraModeName = "CAM_MODE";
+
 static mavsdk::CameraServer::Result translateFromRpcResult(
     const mavsdk::rpc::camera::CameraResult_Result result);
 static mavsdk::rpc::camera::Mode translateFromCameraServerMode(
@@ -171,7 +173,9 @@ mavsdk::CameraServer::Result CameraRpcClient::set_mode(mavsdk::CameraServer::Mod
         base::LogError() << "call rpc set_mode failed with errorcode: " << status.error_code();
         return mavsdk::CameraServer::Result::NoSystem;
     }
-    base::LogDebug() << " Set mode result : " << response.camera_result().result_str();
+    _current_mode = mode;
+    base::LogDebug() << " Set mode to " << mode
+                     << "result : " << response.camera_result().result_str();
     return translateFromRpcResult(response.camera_result().result());
 }
 
@@ -268,6 +272,15 @@ mavsdk::CameraServer::Result CameraRpcClient::fill_capture_status(
     return mavsdk::CameraServer::Result::Success;
 }
 
+mavsdk::CameraServer::Result CameraRpcClient::fill_settings(
+    mavsdk::CameraServer::Settings &settings) {
+    base::LogDebug() << "rpc call fill settings " << _current_mode;
+    settings.mode = _current_mode;
+    settings.zoom_level = 0;
+    settings.focus_level = 0;
+    return mavsdk::CameraServer::Result::Success;
+}
+
 mavsdk::CameraServer::Result CameraRpcClient::retrieve_current_settings(
     std::vector<mavsdk::Camera::Setting> &settings) {
     std::lock_guard<std::mutex> lock(_mutex);
@@ -278,8 +291,15 @@ mavsdk::CameraServer::Result CameraRpcClient::retrieve_current_settings(
     mavsdk::rpc::camera::CurrentSettingsResponse response;
     if (_current_settings_reader->Read(&response)) {
         for (auto &setting : response.current_settings()) {
-            base::LogDebug() << "setitng " << setting.setting_id() << " value "
+            base::LogDebug() << "settings " << setting.setting_id() << " value "
                              << setting.option().option_id();
+            if (setting.setting_id() == kCameraModeName) {
+                if (setting.option().option_id() == "0") {
+                    _current_mode = mavsdk::CameraServer::Mode::Photo;
+                } else {
+                    _current_mode = mavsdk::CameraServer::Mode::Video;
+                }
+            }
             settings.emplace_back(
                 buildSettings(setting.setting_id(), setting.option().option_id()));
         }
@@ -304,6 +324,15 @@ mavsdk::CameraServer::Result CameraRpcClient::set_setting(mavsdk::Camera::Settin
         base::LogError() << "Grpc status errorcode: " << status.error_code();
         return mavsdk::CameraServer::Result::NoSystem;
     }
+    // sync current camera mode
+    if (setting.setting_id == kCameraModeName) {
+        if (setting.option.option_id == "0") {
+            _current_mode = mavsdk::CameraServer::Mode::Photo;
+        } else {
+            _current_mode = mavsdk::CameraServer::Mode::Video;
+        }
+    }
+
     base::LogDebug() << "Set settings result : " << response.camera_result().result_str();
     return translateFromRpcResult(response.camera_result().result());
 
