@@ -19,6 +19,8 @@ _deps
 # default build path
 build
 build_dir
+build_rockchip_64bit
+stage_rockchip_64bit
 
 # vscode settings
 .vscode
