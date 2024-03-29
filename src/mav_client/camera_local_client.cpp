@@ -36,9 +36,9 @@ mavsdk::CameraServer::Result CameraLocalClient::take_photo(int index) {
     base::LogDebug() << "locally call take photo " << index;
     _is_capture_in_progress = true;
     auto result = mavsdk::CameraServer::Result::Success;
+    std::this_thread::sleep_for(std::chrono::seconds(1));
     _is_capture_in_progress = false;
     _image_count++;
-    std::this_thread::sleep_for(std::chrono::seconds(1));
     return result;
 }
 
@@ -83,6 +83,8 @@ mavsdk::CameraServer::Result CameraLocalClient::set_mode(mavsdk::CameraServer::M
 mavsdk::CameraServer::Result CameraLocalClient::format_storage(int storage_id) {
     std::lock_guard<std::mutex> lock(_mutex);
     _available_storage_mib = _total_storage_mib.load();
+    // clear image count
+    _image_count = 0;
     base::LogDebug() << "locally call format storage " << storage_id;
     return mavsdk::CameraServer::Result::Success;
 }
@@ -99,7 +101,7 @@ mavsdk::CameraServer::Result CameraLocalClient::reset_settings() {
     _settings["CAM_SHUTTERSPD"] = "0.01";
     _settings["CAM_VIDFMT"] = "1";
     _settings["CAM_VIDRES"] = "0";
-    _settings["CAM_PHOTORATIO"] = "0";
+    _settings["CAM_PHOTORATIO"] = "1";
 
     return mavsdk::CameraServer::Result::Success;
 }
@@ -202,6 +204,7 @@ mavsdk::CameraServer::Result CameraLocalClient::fill_settings(
 
 mavsdk::CameraServer::Result CameraLocalClient::retrieve_current_settings(
     std::vector<mavsdk::Camera::Setting> &settings) {
+    settings.clear();
     for (auto &it : _settings) {
         settings.emplace_back(build_setting(it.first, it.second));
     }

@@ -48,8 +48,8 @@ bool MavClient::start_runloop() {
         return false;
     }
     auto camera_server = mavsdk::CameraServer{camera_component};
-    subscribe_camera_operation(camera_server);
     auto param_server = mavsdk::ParamServer{camera_component};
+    subscribe_camera_operation(camera_server, param_server);
     subscribe_param_operation(param_server);
     auto ftp_server = mavsdk::FtpServer{camera_component};
     ftp_server.set_root_dir(_ftp_root_path);
@@ -60,7 +60,8 @@ bool MavClient::start_runloop() {
     }
 }
 
-void MavClient::subscribe_camera_operation(mavsdk::CameraServer &camera_server) {
+void MavClient::subscribe_camera_operation(mavsdk::CameraServer &camera_server,
+                                           mavsdk::ParamServer &param_server) {
     camera_server.subscribe_take_photo([this, &camera_server](int32_t index) {
         _camera_client->take_photo(index);
 
@@ -134,8 +135,10 @@ void MavClient::subscribe_camera_operation(mavsdk::CameraServer &camera_server) 
         camera_server.respond_format_storage(mavsdk::CameraServer::CameraFeedback::Ok);
     });
 
-    camera_server.subscribe_reset_settings([this, &camera_server](int camera_id) {
+    camera_server.subscribe_reset_settings([this, &camera_server, &param_server](int camera_id) {
         auto result = _camera_client->reset_settings();
+        //reset settings need fill param again
+        fill_param(param_server);
         camera_server.respond_reset_settings(mavsdk::CameraServer::CameraFeedback::Ok);
     });
 
@@ -181,16 +184,23 @@ void MavClient::subscribe_param_operation(mavsdk::ParamServer &param_server) {
         _camera_client->set_setting(setting);
     });
 
+    fill_param(param_server);
+}
+
+void MavClient::fill_param(mavsdk::ParamServer &param_server) {
     std::vector<mavsdk::Camera::Setting> settings;
     _camera_client->retrieve_current_settings(settings);
 
     for (auto &setting : settings) {
+        base::LogDebug() << "fill param " << setting.setting_id
+                         << " to value: " << setting.option.option_id;
         // TODO hard code
         if (setting.setting_id == "CAM_SHUTTERSPD" || setting.setting_id == "CAM_EV") {
             param_server.provide_param_float(setting.setting_id,
                                              std::stof(setting.option.option_id));
         } else {
-            param_server.provide_param_int(setting.setting_id, std::stoi(setting.option.option_id));
+            auto result = param_server.provide_param_int(setting.setting_id,
+                                                         std::stoi(setting.option.option_id));
         }
     }
 }

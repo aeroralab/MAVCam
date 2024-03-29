@@ -14,7 +14,7 @@ CameraImpl::CameraImpl() {
     } else {
         _settings.emplace_back(build_setting("CAM_MODE", "1"));
     }
-    _settings.emplace_back(build_setting("CAM_WBMODE", "0"));
+    _settings.emplace_back(build_setting("CAM_WBMODE", "1"));
     _settings.emplace_back(build_setting("CAM_EXPMODE", "0"));
     _settings.emplace_back(build_setting("CAM_EV", "0"));
     _settings.emplace_back(build_setting("CAM_ISO", "100"));
@@ -243,6 +243,18 @@ Camera::Result CameraImpl::select_camera(int32_t camera_id) {
 
 Camera::Result CameraImpl::reset_settings() {
     base::LogDebug() << "call reset settings";
+    // reset all value to default value
+    _current_mode = Camera::Mode::Photo;
+    _settings.clear();
+    _settings.emplace_back(build_setting("CAM_MODE", "0"));
+    _settings.emplace_back(build_setting("CAM_WBMODE", "0"));
+    _settings.emplace_back(build_setting("CAM_EXPMODE", "0"));
+    _settings.emplace_back(build_setting("CAM_EV", "0"));
+    _settings.emplace_back(build_setting("CAM_ISO", "100"));
+    _settings.emplace_back(build_setting("CAM_SHUTTERSPD", "0.01"));
+    _settings.emplace_back(build_setting("CAM_VIDFMT", "1"));
+    _settings.emplace_back(build_setting("CAM_VIDRES", "0"));
+    _settings.emplace_back(build_setting("CAM_PHOTORATIO", "1"));
     return Camera::Result::Success;
 }
 
