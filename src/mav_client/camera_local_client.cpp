@@ -142,7 +142,7 @@ mavsdk::CameraServer::Result CameraLocalClient::fill_video_stream_info(
     normal_video_stream.settings.vertical_resolution_pix = 1080;
     normal_video_stream.settings.bit_rate_b_s = 4 * 1024 * 1024;
     normal_video_stream.settings.rotation_deg = 0;
-    normal_video_stream.settings.uri = "";
+    normal_video_stream.settings.uri = "udp://192.168.10.64:5600";
     normal_video_stream.settings.horizontal_fov_deg = 0;
     normal_video_stream.status =
         mavsdk::CameraServer::VideoStreamInfo::VideoStreamStatus::InProgress;

@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.14)
+cmake_minimum_required(VERSION 3.18)
 
 project(external-MAVSDK)
 
@@ -29,10 +29,23 @@ foreach(CMAKE_ARG ${CMAKE_ARGS})
     message(STATUS "-- ${CMAKE_ARG}")
 endforeach()
 
-ExternalProject_add(
-    MAVSDK
-    GIT_REPOSITORY https://github.com/GoerLabs/MAVSDK
-    GIT_TAG develop
-    PREFIX MAVSDK
-    CMAKE_ARGS "${CMAKE_ARGS}"
+if(BUILD_QCOM_RB5)
+    ExternalProject_add(
+        MAVSDK
+        GIT_REPOSITORY https://github.com/GoerLabs/MAVSDK
+        GIT_TAG develop
+        PREFIX MAVSDK
+        GIT_PROGRESS 1
+        PATCH_COMMAND patch -p1 < ${PROJECT_SOURCE_DIR}/0001-fixed-qcom-rb5-cross-compile-error.patch
+        CMAKE_ARGS "${CMAKE_ARGS}"
     )
+else()
+    ExternalProject_add(
+        MAVSDK
+        GIT_REPOSITORY https://github.com/GoerLabs/MAVSDK
+        GIT_TAG develop
+        PREFIX MAVSDK
+        GIT_PROGRESS 1
+        CMAKE_ARGS "${CMAKE_ARGS}"
+    )
+endif()

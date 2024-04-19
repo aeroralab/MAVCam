@@ -30,6 +30,8 @@ target_include_directories(${EXECUTE_NAME}
     ${DEP_INSTALL_DIR}/include
 )
 
+set(MAVSDK_DIR ${CMAKE_PREFIX_PATH}/lib/cmake/MAVSDK/)
+
 find_package(MAVSDK REQUIRED)
 
 target_link_libraries(${EXECUTE_NAME}

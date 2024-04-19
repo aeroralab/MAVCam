@@ -21,6 +21,7 @@ build
 build_dir
 build_rockchip_64bit
 stage_rockchip_64bit
+build_rb5
 
 # vscode settings
 .vscode
