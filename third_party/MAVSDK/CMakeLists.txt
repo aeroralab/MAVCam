@@ -7,6 +7,8 @@ if (CMAKE_VERSION VERSION_GREATER_EQUAL "3.24.0")
 endif()
 include(ExternalProject)
 
+set(MAVSDK_VERSION 1.5.0)
+
 list(APPEND CMAKE_ARGS
     "-DCMAKE_PREFIX_PATH:PATH=${CMAKE_PREFIX_PATH}"
     "-DCMAKE_INSTALL_PREFIX:PATH=${CMAKE_INSTALL_PREFIX}"
@@ -32,20 +34,20 @@ endforeach()
 if(BUILD_QCOM_RB5)
     ExternalProject_add(
         MAVSDK
-        GIT_REPOSITORY https://github.com/GoerLabs/MAVSDK
-        GIT_TAG develop
+        URL https://github.com/GoerLabs/MAVSDK/archive/refs/tags/v${MAVSDK_VERSION}.tar.gz
+        URL_HASH MD5=8a7d7faf4d8b9b9fbbdfeca3f15e01b8
         PREFIX MAVSDK
-        GIT_PROGRESS 1
+        DOWNLOAD_DIR "${DOWNLOAD_DIR}"
         PATCH_COMMAND patch -p1 < ${PROJECT_SOURCE_DIR}/0001-fixed-qcom-rb5-cross-compile-error.patch
         CMAKE_ARGS "${CMAKE_ARGS}"
     )
 else()
     ExternalProject_add(
         MAVSDK
-        GIT_REPOSITORY https://github.com/GoerLabs/MAVSDK
-        GIT_TAG develop
+        URL https://github.com/GoerLabs/MAVSDK/archive/refs/tags/v${MAVSDK_VERSION}.tar.gz
+        URL_HASH MD5=8a7d7faf4d8b9b9fbbdfeca3f15e01b8
         PREFIX MAVSDK
-        GIT_PROGRESS 1
+        DOWNLOAD_DIR "${DOWNLOAD_DIR}"
         CMAKE_ARGS "${CMAKE_ARGS}"
     )
 endif()
