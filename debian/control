@@ -1,0 +1,15 @@
+Source: mavcam
+Section: base
+Priority: optional
+Maintainer: Thomas An <xueshen.an@aeroratech.com>
+Build-Depends: debhelper (>= 11)
+Standards-Version: 4.1.3
+Homepage: https://www.aeroratech.com/
+Vcs-Git: https://github.com/aeroratech/MAVCam.git
+Vcs-Browser: https://github.com/aeroratech/MAVCam
+
+Package: mavcam
+Architecture: any
+Multi-Arch: same
+Depends: ${shlibs:Depends}, ${misc:Depends}
+Description: mavlink camera control service

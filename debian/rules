@@ -1,0 +1,16 @@
+#!/usr/bin/make -f
+# See debhelper(7) (uncomment to enable)
+# Uncomment this to turn on verbose mode
+export DH_VERBOSE=1
+
+%:
+	dh $@ --without=build-stamp --builddirectory=build
+
+override_dh_auto_configure:
+	dh_auto_configure -O --buildsystem=cmake -O --builddirectory=build -- \
+		-DCMAKE_BUILD_TYPE=Release \
+		-DBUILD_EXAMPLE=OFF \
+		-DCMAKE_INSTALL_PREFIX=/usr/local/
+
+override_dh_auto_clean:
+	 dh_clean -- 
