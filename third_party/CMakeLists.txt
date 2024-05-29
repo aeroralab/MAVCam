@@ -4,14 +4,15 @@ project(third_party)
 
 include(cmake/build_target.cmake)
 
-
 if(BUILD_DEPENDENCY)
     list(APPEND CMAKE_PREFIX_PATH "${DEP_INSTALL_DIR}")
     set(CMAKE_PREFIX_PATH ${CMAKE_PREFIX_PATH} PARENT_SCOPE)
     set(PKG_CONFIG_PATH "${DEP_INSTALL_DIR}/usr/lib/pkgconfig:${DEP_INSTALL_DIR}/usr/share/pkgconfig:${DEP_INSTALL_DIR}/lib/pkgconfig:${DEP_INSTALL_DIR}/share/pkgconfig" PARENT_SCOPE)
 
     build_target(zlib)
-    build_target(openssl)
+    if (NOT BUILD_QCOM_RB5)
+        build_target(openssl)
+    endif()
     if (BUILD_GRPC)
         build_target(cares)
         build_target(absl)
@@ -25,6 +26,8 @@ if(BUILD_DEPENDENCY)
     build_target(mavlink)
     build_target(MAVSDK)
     build_target(pcre2)
-    build_target(lighttpd)
+    if (NOT BUILD_QCOM_RB5)
+        build_target(lighttpd)
+    endif()
 endif()
 

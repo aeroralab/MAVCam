@@ -34,5 +34,3 @@ set(CPACK_DEBIAN_PACKAGE_ARCHITECTURE "arm64")
 set(CMAKE_SYSROOT "/opt/toolchain/gcc-arm-10.3-2021.07-x86_64-aarch64-none-linux-gnu/aarch64-none-linux-gnu/libc")
 
 include("${CMAKE_CURRENT_LIST_DIR}/common.toolchain.cmake")
-
-#option(CONFIG_AR9341SDK "Artosyn AR9341 SDK" ON)

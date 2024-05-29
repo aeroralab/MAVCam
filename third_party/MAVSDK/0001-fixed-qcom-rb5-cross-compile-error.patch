@@ -1,0 +1,39 @@
+From 77126a46bc24718c79fe625a3e047ae1d13d006a Mon Sep 17 00:00:00 2001
+From: "xueshen.an" <xueshen.an@goertek.com>
+Date: Fri, 17 May 2024 14:37:30 +0800
+Subject: [PATCH] fixed qcom rb5 cross compile error
+
+---
+ src/mavsdk/CMakeLists.txt      | 2 +-
+ src/mavsdk/core/CMakeLists.txt | 2 ++
+ 2 files changed, 3 insertions(+), 1 deletion(-)
+
+diff --git a/src/mavsdk/CMakeLists.txt b/src/mavsdk/CMakeLists.txt
+index 9b8d9a8..abd7078 100644
+--- a/src/mavsdk/CMakeLists.txt
++++ b/src/mavsdk/CMakeLists.txt
+@@ -20,7 +20,7 @@ target_link_libraries(mavsdk
+ if (NOT APPLE AND NOT ANDROID AND NOT MSVC)
+     target_link_libraries(mavsdk
+         PRIVATE
+-        stdc++fs
++#        stdc++fs
+     )
+ endif()
+ 
+diff --git a/src/mavsdk/core/CMakeLists.txt b/src/mavsdk/core/CMakeLists.txt
+index c8b1b1e..0d5d687 100644
+--- a/src/mavsdk/core/CMakeLists.txt
++++ b/src/mavsdk/core/CMakeLists.txt
+@@ -1,6 +1,8 @@
+ set(THREADS_PREFER_PTHREAD_FLAG ON)
+ find_package(Threads REQUIRED)
+ 
++set(MAVLink_DIR ${CMAKE_PREFIX_PATH}/lib/cmake/MAVLink)
++
+ find_package(MAVLink REQUIRED)
+ 
+ get_target_property(
+-- 
+2.34.1
+

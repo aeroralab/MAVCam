@@ -14,3 +14,9 @@ if (BUILD_SERVER)
 endif()
 add_subdirectory(mav_client)
 
+#install definition file
+set(INSTALL_DESTINATION $(CMAKE_INSTALL_PREFIX)/definition)
+set(DEFINITION_DIR ${CMAKE_CURRENT_SOURCE_DIR}/definition)
+
+install(DIRECTORY ${DEFINITION_DIR} DESTINATION ${CMAKE_INSTALL_PREFIX})
+

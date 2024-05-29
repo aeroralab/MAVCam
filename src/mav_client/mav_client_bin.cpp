@@ -15,7 +15,7 @@ int main(int argc, const char *argv[]) {
     std::string connection_url = default_connection;
     int rpc_port = default_rpc_port;
     bool use_local = false;
-    default_ftp_path = std::filesystem::current_path().append("build");
+    default_ftp_path = std::filesystem::current_path();
 
     for (int i = 1; i < argc; i++) {
         const std::string current_arg = argv[i];
@@ -82,10 +82,10 @@ void usage(const char *bin_name) {
               << "\t-u             : set the url on which the mavsdk server is running,"
               << " (default is " << default_connection << ")" << '\n'
               << "\t-l             : use local client" << '\n'
-              << "\t-r             : set the remote port,"
-              << " (default is " << default_rpc_port << ")\n"
-              << "\t-f | --ftp_path: set the ftp root path,"
-              << " (default is " << default_ftp_path << ")" << '\n';
+              << "\t-r             : set the remote port," << " (default is " << default_rpc_port
+              << ")\n"
+              << "\t-f | --ftp_path: set the ftp root path," << " (default is " << default_ftp_path
+              << ")" << '\n';
 }
 
 bool is_integer(const std::string &tested_integer) {
