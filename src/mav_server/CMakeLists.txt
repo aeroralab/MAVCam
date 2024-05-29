@@ -37,5 +37,5 @@ target_link_libraries(${EXECUTABLE_NAME}
     gRPC::grpc++
 )
 
-install(TARGETS ${EXECUTABLE_NAME} RUNTIME DESTINATION "./")
+install(TARGETS ${EXECUTABLE_NAME} RUNTIME DESTINATION "bin")
 

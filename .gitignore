@@ -29,3 +29,11 @@ install_rb5
 
 # download path
 download
+
+#debian temp folder
+**/debian/.debhelper
+**/debian/files
+**/debian/*.debhelper.log
+**/debian/mavcam/
+**/debian/mavcam.substvars
+

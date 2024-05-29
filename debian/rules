@@ -10,7 +10,7 @@ override_dh_auto_configure:
 	dh_auto_configure -O --buildsystem=cmake -O --builddirectory=build -- \
 		-DCMAKE_BUILD_TYPE=Release \
 		-DBUILD_EXAMPLE=OFF \
-		-DCMAKE_INSTALL_PREFIX=/usr/local/
+		-DCMAKE_INSTALL_PREFIX=/usr/
 
 override_dh_auto_clean:
 	 dh_clean -- 
