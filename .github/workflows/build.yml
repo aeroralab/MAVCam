@@ -11,15 +11,15 @@ env:
   BUILD_TYPE: Release
 
 jobs:
-  build-under-linux:
+  build-ubuntu-linux:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        os: [ubuntu-22.04]
+        os: [ubuntu-22.04, ubuntu-20.04]
 
     steps:
       - name: Checkout MAVCam
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           path: MAVCam
           submodules: recursive
@@ -29,3 +29,26 @@ jobs:
 
       - name: Build MAVCam
         run: sudo cmake --build ${{github.workspace}}/mavcam-build
+
+  debian-package:
+    name: Debian package (ubuntu 22.04)
+    runs-on: ubuntu-22.04
+    steps:
+      - name: Checkout MAVCam
+        uses: actions/checkout@v4
+        with:
+          path: MAVCam
+          submodules: recursive
+
+      - name: Install dependency packages
+        run: sudo apt-get update && sudo apt-get install -y build-essential debhelper fakeroot
+
+      - name: Generate changelog
+        run: |
+          cd MAVCam
+          ./tools/generate_debian_changelog.sh > debian/changelog
+
+      - name: Build package
+        run: |
+          cd MAVCam
+          dpkg-buildpackage -us -uc
