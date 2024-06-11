@@ -31,7 +31,7 @@ foreach(CMAKE_ARG ${CMAKE_ARGS})
     message(STATUS "-- ${CMAKE_ARG}")
 endforeach()
 
-if(BUILD_QCOM_RB5)
+if(BUILD_QCOMM_RB5)
     ExternalProject_add(
         MAVSDK
         URL https://github.com/GoerLabs/MAVSDK/archive/refs/tags/v${MAVSDK_VERSION}.tar.gz
