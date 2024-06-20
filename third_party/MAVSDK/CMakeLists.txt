@@ -16,6 +16,7 @@ list(APPEND CMAKE_ARGS
     "-DCMAKE_BUILD_TYPE=${CMAKE_BUILD_TYPE}"
     "-DSUPERBUILD=OFF"
     "-DBUILD_TESTS=OFF"
+    "-DBUILD_WITHOUT_CURL=ON"
     )
 
 if(IOS)
@@ -31,7 +32,7 @@ foreach(CMAKE_ARG ${CMAKE_ARGS})
     message(STATUS "-- ${CMAKE_ARG}")
 endforeach()
 
-if(BUILD_QCOMM_RB5)
+if(BUILD_QCOM)
     ExternalProject_add(
         MAVSDK
         URL https://github.com/GoerLabs/MAVSDK/archive/refs/tags/v${MAVSDK_VERSION}.tar.gz

@@ -41,11 +41,23 @@ foreach(CMAKE_ARG ${CMAKE_ARGS})
     message(STATUS "-- ${CMAKE_ARG}")
 endforeach()
 
-ExternalProject_add(
-    protobuf
-    URL https://github.com/protocolbuffers/protobuf/releases/download/v${PROTOBUF_VERSION}/protobuf-${PROTOBUF_VERSION}.tar.gz
-    URL_HASH MD5=105105aae0153d60059e982ead4d1d94
-    PREFIX protobuf
-    DOWNLOAD_DIR "${DOWNLOAD_DIR}"
-    CMAKE_ARGS "${CMAKE_ARGS}"
-    )
+if(BUILD_QCOM)
+    ExternalProject_add(
+        protobuf
+        URL https://github.com/protocolbuffers/protobuf/releases/download/v${PROTOBUF_VERSION}/protobuf-${PROTOBUF_VERSION}.tar.gz
+        URL_HASH MD5=105105aae0153d60059e982ead4d1d94
+        PREFIX protobuf
+        DOWNLOAD_DIR "${DOWNLOAD_DIR}"
+        PATCH_COMMAND patch -p1 < ${PROJECT_SOURCE_DIR}/0001-manually-add-abseil-cpp-find-path.patch
+        CMAKE_ARGS "${CMAKE_ARGS}"
+        )
+else()
+    ExternalProject_add(
+        protobuf
+        URL https://github.com/protocolbuffers/protobuf/releases/download/v${PROTOBUF_VERSION}/protobuf-${PROTOBUF_VERSION}.tar.gz
+        URL_HASH MD5=105105aae0153d60059e982ead4d1d94
+        PREFIX protobuf
+        DOWNLOAD_DIR "${DOWNLOAD_DIR}"
+        CMAKE_ARGS "${CMAKE_ARGS}"
+        )
+endif()

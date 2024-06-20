@@ -1,0 +1,24 @@
+From 339bf51592ccca15835925c9ffde2950060bc0f3 Mon Sep 17 00:00:00 2001
+From: "xueshen.an" <xueshen.an@aeroratech.com>
+Date: Tue, 11 Jun 2024 15:52:03 +0800
+Subject: [PATCH] manually add abseil cpp find path
+
+---
+ cmake/abseil-cpp.cmake | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/cmake/abseil-cpp.cmake b/cmake/abseil-cpp.cmake
+index b50fb89..db61b84 100644
+--- a/cmake/abseil-cpp.cmake
++++ b/cmake/abseil-cpp.cmake
+@@ -33,6 +33,7 @@ elseif(protobuf_ABSL_PROVIDER STREQUAL "module")
+   endif()
+ elseif(protobuf_ABSL_PROVIDER STREQUAL "package")
+   # Use "CONFIG" as there is no built-in cmake module for absl.
++  set(absl_DIR ${CMAKE_PREFIX_PATH}/lib/cmake/absl)
+   find_package(absl REQUIRED CONFIG)
+ endif()
+ set(_protobuf_FIND_ABSL "if(NOT TARGET absl::strings)\n  find_package(absl CONFIG)\nendif()")
+-- 
+2.34.1
+
