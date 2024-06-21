@@ -1,0 +1,24 @@
+From fe7fa55f43058a500a5564aaaac92c1a91efc53f Mon Sep 17 00:00:00 2001
+From: "xueshen.an" <xueshen.an@aeroratech.com>
+Date: Fri, 21 Jun 2024 16:33:36 +0800
+Subject: [PATCH 2/2] manually set utf8_range in protobuf-config.cmake.in
+
+---
+ cmake/protobuf-config.cmake.in | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/cmake/protobuf-config.cmake.in b/cmake/protobuf-config.cmake.in
+index 44805c7..17f35d9 100644
+--- a/cmake/protobuf-config.cmake.in
++++ b/cmake/protobuf-config.cmake.in
+@@ -4,6 +4,7 @@ include("${CMAKE_CURRENT_LIST_DIR}/protobuf-options.cmake")
+ # Depend packages
+ @_protobuf_FIND_ZLIB@
+ @_protobuf_FIND_ABSL@
++set(utf8_range_DIR ${CMAKE_PREFIX_PATH}/lib/cmake/utf8_range)
+ @_protobuf_FIND_UTF8_RANGE@
+ 
+ # Imported targets
+-- 
+2.34.1
+

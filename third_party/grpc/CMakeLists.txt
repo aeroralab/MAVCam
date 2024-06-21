@@ -57,6 +57,17 @@ foreach(CMAKE_ARG ${CMAKE_ARGS})
     message(STATUS "-- ${CMAKE_ARG}")
 endforeach()
 
+if(BUILD_QCOM)
+ExternalProject_add(
+    grpc
+    URL https://github.com/grpc/grpc/archive/v${GRPC_VERSION}.tar.gz
+    URL_HASH MD5=ebc2bfbf6deee40c908a6e8b8e2dd191
+    PREFIX grpc
+    DOWNLOAD_DIR "${DOWNLOAD_DIR}"
+    PATCH_COMMAND patch -p1 < ${PROJECT_SOURCE_DIR}/0001-CMake-Add-gRPC_USE_SYSTEMD-option.patch && patch -p1 < ${PROJECT_SOURCE_DIR}/0002-fixed-qcomm-cmake-find_package-issue.patch
+    CMAKE_ARGS "${CMAKE_ARGS}"
+    )
+else()
 ExternalProject_add(
     grpc
     URL https://github.com/grpc/grpc/archive/v${GRPC_VERSION}.tar.gz
@@ -66,3 +77,4 @@ ExternalProject_add(
     PATCH_COMMAND patch -p1 < ${PROJECT_SOURCE_DIR}/0001-CMake-Add-gRPC_USE_SYSTEMD-option.patch
     CMAKE_ARGS "${CMAKE_ARGS}"
     )
+endif()

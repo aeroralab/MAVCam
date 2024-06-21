@@ -1,7 +1,7 @@
-From 339bf51592ccca15835925c9ffde2950060bc0f3 Mon Sep 17 00:00:00 2001
+From 52bd71b91519c1a50773c4453dcc9948259a1072 Mon Sep 17 00:00:00 2001
 From: "xueshen.an" <xueshen.an@aeroratech.com>
 Date: Tue, 11 Jun 2024 15:52:03 +0800
-Subject: [PATCH] manually add abseil cpp find path
+Subject: [PATCH 1/2] manually add abseil cpp find path
 
 ---
  cmake/abseil-cpp.cmake | 1 +

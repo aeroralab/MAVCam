@@ -48,7 +48,7 @@ if(BUILD_QCOM)
         URL_HASH MD5=105105aae0153d60059e982ead4d1d94
         PREFIX protobuf
         DOWNLOAD_DIR "${DOWNLOAD_DIR}"
-        PATCH_COMMAND patch -p1 < ${PROJECT_SOURCE_DIR}/0001-manually-add-abseil-cpp-find-path.patch
+        PATCH_COMMAND patch -p1 < ${PROJECT_SOURCE_DIR}/0001-manually-add-abseil-cpp-find-path.patch && patch -p1 < ${PROJECT_SOURCE_DIR}/0002-manually-set-utf8_range-in-protobuf-config.cmake.in.patch
         CMAKE_ARGS "${CMAKE_ARGS}"
         )
 else()

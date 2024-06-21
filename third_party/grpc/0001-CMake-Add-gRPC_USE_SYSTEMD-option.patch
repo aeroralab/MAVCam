@@ -1,11 +1,11 @@
-From 1faf2183819ae00c886023d10273d88d6147c16c Mon Sep 17 00:00:00 2001
+From f7933333c6bcac3420a99f055534cf9b8f33afdf Mon Sep 17 00:00:00 2001
 From: "xueshen.an" <xueshen.an@goertek.com>
 Date: Thu, 21 Mar 2024 16:02:29 +0800
-Subject: [PATCH] CMake Add gRPC_USE_SYSTEMD option
+Subject: [PATCH 1/2] CMake Add gRPC_USE_SYSTEMD option
 
   Allows to disable systemd support
 ---
- systemd.cmake | 21 ++++++++++++++++-----
+ cmake/systemd.cmake | 21 ++++++++++++++++-----
  1 file changed, 16 insertions(+), 5 deletions(-)
 
 diff --git a/cmake/systemd.cmake b/cmake/systemd.cmake
