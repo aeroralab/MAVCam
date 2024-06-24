@@ -1,0 +1,25 @@
+From b0aaa504f110933dd8ed08bb05e8ea3dab12838c Mon Sep 17 00:00:00 2001
+From: "xueshen.an" <xueshen.an@aeroratech.com>
+Date: Mon, 24 Jun 2024 18:12:13 +0800
+Subject: [PATCH 2/2] manually set MAVSDK version
+
+---
+ CMakeLists.txt | 2 ++
+ 1 file changed, 2 insertions(+)
+
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+index 6137112..c1e815b 100644
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -28,6 +28,8 @@ if (NOT GITVER EQUAL "0")
+     set(VERSION_STR "0.0.0")
+ endif()
+ 
++set(VERSION_STR "v1.5.0")
++
+ message(STATUS "Version: ${VERSION_STR}")
+ STRING(REGEX REPLACE v\([0-9]+\).[0-9]+.[0-9]+.*$ \\1 MAVSDK_VERSION_MAJOR "${VERSION_STR}")
+ STRING(REGEX REPLACE v[0-9]+.\([0-9]+\).[0-9]+.*$ \\1 MAVSDK_VERSION_MINOR "${VERSION_STR}")
+-- 
+2.34.1
+
