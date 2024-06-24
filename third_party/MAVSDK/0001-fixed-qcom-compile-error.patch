@@ -1,0 +1,58 @@
+From 4815565cc6d8d0f00e7151a54d7c96117788e058 Mon Sep 17 00:00:00 2001
+From: "xueshen.an" <xueshen.an@aeroratech.com>
+Date: Mon, 24 Jun 2024 13:37:14 +0800
+Subject: [PATCH] fixed qcom compile error
+
+---
+ src/cmake/Modules/Findjsoncpp.cmake  | 1 +
+ src/cmake/Modules/Findtinyxml2.cmake | 1 +
+ src/mavsdk/CMakeLists.txt            | 2 +-
+ src/mavsdk/core/CMakeLists.txt       | 1 +
+ 4 files changed, 4 insertions(+), 1 deletion(-)
+
+diff --git a/src/cmake/Modules/Findjsoncpp.cmake b/src/cmake/Modules/Findjsoncpp.cmake
+index 21dd6ea..71e99b3 100644
+--- a/src/cmake/Modules/Findjsoncpp.cmake
++++ b/src/cmake/Modules/Findjsoncpp.cmake
+@@ -1,3 +1,4 @@
++set(jsoncpp_DIR ${CMAKE_PREFIX_PATH}/lib/cmake/jsoncpp)
+ find_package(jsoncpp CONFIG QUIET)
+ 
+ if(NOT TARGET JsonCpp::JsonCpp)
+diff --git a/src/cmake/Modules/Findtinyxml2.cmake b/src/cmake/Modules/Findtinyxml2.cmake
+index a452ef1..fd42c7e 100644
+--- a/src/cmake/Modules/Findtinyxml2.cmake
++++ b/src/cmake/Modules/Findtinyxml2.cmake
+@@ -1,3 +1,4 @@
++set(TINYXML2_DIR ${CMAKE_PREFIX_PATH}/lib/cmake/tinyxml2)
+ find_package(TINYXML2 CONFIG QUIET)
+ 
+ if(NOT TARGET tinyxml2::tinyxml2)
+diff --git a/src/mavsdk/CMakeLists.txt b/src/mavsdk/CMakeLists.txt
+index 9b8d9a8..8b8caf3 100644
+--- a/src/mavsdk/CMakeLists.txt
++++ b/src/mavsdk/CMakeLists.txt
+@@ -20,7 +20,7 @@ target_link_libraries(mavsdk
+ if (NOT APPLE AND NOT ANDROID AND NOT MSVC)
+     target_link_libraries(mavsdk
+         PRIVATE
+-        stdc++fs
++        # stdc++fs
+     )
+ endif()
+ 
+diff --git a/src/mavsdk/core/CMakeLists.txt b/src/mavsdk/core/CMakeLists.txt
+index c8b1b1e..112909b 100644
+--- a/src/mavsdk/core/CMakeLists.txt
++++ b/src/mavsdk/core/CMakeLists.txt
+@@ -1,6 +1,7 @@
+ set(THREADS_PREFER_PTHREAD_FLAG ON)
+ find_package(Threads REQUIRED)
+ 
++set(MAVLink_DIR ${CMAKE_PREFIX_PATH}/lib/cmake/MAVLink)
+ find_package(MAVLink REQUIRED)
+ 
+ get_target_property(
+-- 
+2.34.1
+

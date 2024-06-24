@@ -39,7 +39,7 @@ if(BUILD_QCOM)
         URL_HASH MD5=8a7d7faf4d8b9b9fbbdfeca3f15e01b8
         PREFIX MAVSDK
         DOWNLOAD_DIR "${DOWNLOAD_DIR}"
-        PATCH_COMMAND patch -p1 < ${PROJECT_SOURCE_DIR}/0001-fixed-qcom-rb5-cross-compile-error.patch
+        PATCH_COMMAND patch -p1 < ${PROJECT_SOURCE_DIR}/0001-fixed-qcom-compile-error.patch
         CMAKE_ARGS "${CMAKE_ARGS}"
     )
 else()
