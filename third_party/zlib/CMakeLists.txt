@@ -13,6 +13,7 @@ list(APPEND CMAKE_ARGS
     "-DCMAKE_TOOLCHAIN_FILE:PATH=${CMAKE_TOOLCHAIN_FILE}"
     "-DCMAKE_POSITION_INDEPENDENT_CODE=ON"
     "-DCMAKE_BUILD_TYPE=${CMAKE_BUILD_TYPE}"
+    "-DZLIB_BUILD_EXAMPLES=OFF"
     )
 
 if(IOS)
@@ -30,10 +31,10 @@ endforeach()
 
 ExternalProject_add(
     zlib
-    URL https://github.com/madler/zlib/releases/download/v1.2.13/zlib-1.2.13.tar.gz
-    URL_HASH MD5=9b8aa094c4e5765dabf4da391f00d15c
+    URL https://github.com/madler/zlib/archive/refs/tags/v1.3.1.tar.gz
+    URL_HASH MD5=ddb17dbbf2178807384e57ba0d81e6a1
     DOWNLOAD_DIR "${DOWNLOAD_DIR}"
     PREFIX zlib
-    PATCH_COMMAND patch -p1 < ${PROJECT_SOURCE_DIR}/build_shared_libs.patch && patch -p1 < ${PROJECT_SOURCE_DIR}/bump_cmake_min_version.patch
+    PATCH_COMMAND patch -p1 < ${PROJECT_SOURCE_DIR}/0001-change-pc-file-path-and-disable-shared-library-insta.patch
     CMAKE_ARGS "${CMAKE_ARGS}"
     )
