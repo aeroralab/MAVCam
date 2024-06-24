@@ -46,10 +46,18 @@ if (BUILD_SERVER)
         ${CMAKE_CURRENT_SOURCE_DIR}/../generated
     )
 
-    list(APPEND CMAKE_PREFIX_PATH "${DEPS_INSTALL_PATH}")
-    set(CMAKE_PREFIX_PATH ${CMAKE_PREFIX_PATH} PARENT_SCOPE)
-
     find_package(OpenSSL REQUIRED)
+    if (BUILD_QCOM)
+        find_package(PkgConfig REQUIRED)
+        pkg_check_modules(ZLIB REQUIRED zlib)
+        target_link_libraries(${EXECUTE_NAME} PRIVATE ${ZLIB_LIBRARIES})
+    
+        set(gRPC_DIR ${CMAKE_PREFIX_PATH}/lib/cmake/grpc)
+        set(Protobuf_DIR ${CMAKE_PREFIX_PATH}/lib/cmake/protobuf)
+        set(absl_DIR ${CMAKE_PREFIX_PATH}/lib/cmake/absl)
+        set(re2_DIR ${CMAKE_PREFIX_PATH}/lib/cmake/re2)
+        set(c-ares_DIR ${CMAKE_PREFIX_PATH}/lib/cmake/c-ares)
+    endif()
     find_package(gRPC REQUIRED)
 
     target_link_libraries(${EXECUTE_NAME}
@@ -58,6 +66,8 @@ if (BUILD_SERVER)
     )
 endif()
 
-install(IMPORTED_RUNTIME_ARTIFACTS MAVSDK::mavsdk DESTINATION "lib") 
+if (NOT BUILD_QCOM)
+    install(TARGETS MAVSDK::mavsdk LIBRARY DESTINATION "lib")
+endif() 
 install(TARGETS ${EXECUTE_NAME} RUNTIME DESTINATION "bin")
 

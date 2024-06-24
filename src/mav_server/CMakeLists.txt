@@ -25,10 +25,19 @@ target_include_directories(${EXECUTABLE_NAME}
     ${DEP_INSTALL_DIR}/include
 )
 
-list(APPEND CMAKE_PREFIX_PATH "${DEPS_INSTALL_PATH}")
-set(CMAKE_PREFIX_PATH ${CMAKE_PREFIX_PATH} PARENT_SCOPE)
-
 find_package(OpenSSL REQUIRED)
+
+if (BUILD_QCOM)
+    find_package(PkgConfig REQUIRED)
+    pkg_check_modules(ZLIB REQUIRED zlib)
+
+    set(gRPC_DIR ${CMAKE_PREFIX_PATH}/lib/cmake/grpc)
+    set(Protobuf_DIR ${CMAKE_PREFIX_PATH}/lib/cmake/protobuf)
+    set(absl_DIR ${CMAKE_PREFIX_PATH}/lib/cmake/absl)
+    set(re2_DIR ${CMAKE_PREFIX_PATH}/lib/cmake/re2)
+    set(c-ares_DIR ${CMAKE_PREFIX_PATH}/lib/cmake/c-ares)
+endif()
+
 find_package(gRPC REQUIRED)
 
 target_link_libraries(${EXECUTABLE_NAME}

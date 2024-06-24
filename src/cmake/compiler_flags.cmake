@@ -27,7 +27,9 @@ else()
     else()
         add_definitions(-fno-exceptions)
         set(warnings "-Wall -Wextra -Wshadow -Wno-strict-aliasing -Wold-style-cast -Wdouble-promotion -Wformat=2 -Wno-address-of-packed-member")
-        set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Werror")
+        if (NOT BUILD_QCOM)
+            set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Werror")
+        endif()
     endif()
 
 
