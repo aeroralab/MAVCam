@@ -1,0 +1,77 @@
+From cdc5eed4d1acafa454bed13a4b526bb7a29d5635 Mon Sep 17 00:00:00 2001
+From: "xueshen.an" <xueshen.an@aeroratech.com>
+Date: Tue, 25 Jun 2024 16:41:42 +0800
+Subject: [PATCH 4/4] fixed gcc 9 compile error
+
+---
+ .../transport/binder/transport/binder_transport.cc | 14 +++++++-------
+ 1 file changed, 7 insertions(+), 7 deletions(-)
+
+diff --git a/src/core/ext/transport/binder/transport/binder_transport.cc b/src/core/ext/transport/binder/transport/binder_transport.cc
+index aad7b43..22b4ad3 100644
+--- a/src/core/ext/transport/binder/transport/binder_transport.cc
++++ b/src/core/ext/transport/binder/transport/binder_transport.cc
+@@ -645,7 +645,7 @@ static void perform_transport_op_locked(void* transport_op,
+ }
+ 
+ void grpc_binder_transport::PerformOp(grpc_transport_op* op) {
+-  gpr_log(GPR_INFO, __func__);
++  gpr_log(GPR_INFO, "%s", __func__);
+   op->handler_private.extra_arg = this;
+   GRPC_BINDER_REF_TRANSPORT(this, "perform_transport_op");
+   combiner->Run(GRPC_CLOSURE_INIT(&op->handler_private.closure,
+@@ -666,7 +666,7 @@ static void destroy_stream_locked(void* sp, grpc_error_handle /*error*/) {
+ 
+ void grpc_binder_transport::DestroyStream(grpc_stream* gs,
+                                           grpc_closure* then_schedule_closure) {
+-  gpr_log(GPR_INFO, __func__);
++  gpr_log(GPR_INFO, "%s", __func__);
+   grpc_binder_stream* stream = reinterpret_cast<grpc_binder_stream*>(gs);
+   stream->destroy_stream_then_closure = then_schedule_closure;
+   stream->t->combiner->Run(
+@@ -686,13 +686,13 @@ static void destroy_transport_locked(void* gt, grpc_error_handle /*error*/) {
+ }
+ 
+ void grpc_binder_transport::Orphan() {
+-  gpr_log(GPR_INFO, __func__);
++  gpr_log(GPR_INFO, "%s", __func__);
+   combiner->Run(GRPC_CLOSURE_CREATE(destroy_transport_locked, this, nullptr),
+                 absl::OkStatus());
+ }
+ 
+ grpc_endpoint* grpc_binder_transport::GetEndpoint() {
+-  gpr_log(GPR_INFO, __func__);
++  gpr_log(GPR_INFO, "%s", __func__);
+   return nullptr;
+ }
+ 
+@@ -710,7 +710,7 @@ grpc_binder_transport::grpc_binder_transport(
+           is_client ? "binder_transport_client" : "binder_transport_server",
+           GRPC_CHANNEL_READY),
+       refs(1, nullptr) {
+-  gpr_log(GPR_INFO, __func__);
++  gpr_log(GPR_INFO, "%s", __func__);
+   transport_stream_receiver =
+       std::make_shared<grpc_binder::TransportStreamReceiverImpl>(
+           is_client, /*accept_stream_callback=*/[this] {
+@@ -739,7 +739,7 @@ grpc_core::Transport* grpc_create_binder_transport_client(
+     std::unique_ptr<grpc_binder::Binder> endpoint_binder,
+     std::shared_ptr<grpc::experimental::binder::SecurityPolicy>
+         security_policy) {
+-  gpr_log(GPR_INFO, __func__);
++  gpr_log(GPR_INFO, "%s", __func__);
+ 
+   GPR_ASSERT(endpoint_binder != nullptr);
+   GPR_ASSERT(security_policy != nullptr);
+@@ -754,7 +754,7 @@ grpc_core::Transport* grpc_create_binder_transport_server(
+     std::unique_ptr<grpc_binder::Binder> client_binder,
+     std::shared_ptr<grpc::experimental::binder::SecurityPolicy>
+         security_policy) {
+-  gpr_log(GPR_INFO, __func__);
++  gpr_log(GPR_INFO, "%s", __func__);
+ 
+   GPR_ASSERT(client_binder != nullptr);
+   GPR_ASSERT(security_policy != nullptr);
+-- 
+2.34.1
+

@@ -1,7 +1,7 @@
-From 56f5383de38efad84d0266fd68d96e1114699243 Mon Sep 17 00:00:00 2001
+From 0a040cc571599b0ba5f58c25437e3a705e4b0a9f Mon Sep 17 00:00:00 2001
 From: "xueshen.an" <xueshen.an@aeroratech.com>
 Date: Fri, 21 Jun 2024 16:06:57 +0800
-Subject: [PATCH 2/3] fixed qcomm cmake find_package issue
+Subject: [PATCH 2/4] fixed qcomm cmake find_package issue
 
 ---
  cmake/abseil-cpp.cmake | 1 +

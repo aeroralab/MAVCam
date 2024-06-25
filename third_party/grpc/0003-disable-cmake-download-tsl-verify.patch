@@ -1,7 +1,7 @@
-From a72afc2ded2f1e6bc285eede015aac1017620b5e Mon Sep 17 00:00:00 2001
+From 9f7e8d96b0b4035706aa7a9aab69119945886b6c Mon Sep 17 00:00:00 2001
 From: "xueshen.an" <xueshen.an@aeroratech.com>
 Date: Tue, 25 Jun 2024 14:27:32 +0800
-Subject: [PATCH 3/3] disable cmake download tsl verify
+Subject: [PATCH 3/4] disable cmake download tsl verify
 
 ---
  cmake/download_archive.cmake | 2 +-
