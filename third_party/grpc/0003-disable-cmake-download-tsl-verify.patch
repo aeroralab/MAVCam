@@ -1,0 +1,25 @@
+From a72afc2ded2f1e6bc285eede015aac1017620b5e Mon Sep 17 00:00:00 2001
+From: "xueshen.an" <xueshen.an@aeroratech.com>
+Date: Tue, 25 Jun 2024 14:27:32 +0800
+Subject: [PATCH 3/3] disable cmake download tsl verify
+
+---
+ cmake/download_archive.cmake | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/cmake/download_archive.cmake b/cmake/download_archive.cmake
+index 820aafa..edd64fe 100644
+--- a/cmake/download_archive.cmake
++++ b/cmake/download_archive.cmake
+@@ -25,7 +25,7 @@ function(download_archive destination url hash strip_prefix)
+   file(DOWNLOAD ${url} ${_TEMPORARY_FILE}
+        TIMEOUT 60
+        EXPECTED_HASH SHA256=${hash}
+-       TLS_VERIFY ON)
++       TLS_VERIFY OFF)
+   # Extract
+   execute_process(COMMAND
+                   ${CMAKE_COMMAND} -E tar xvf ${_TEMPORARY_FILE}
+-- 
+2.34.1
+
