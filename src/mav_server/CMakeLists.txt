@@ -28,9 +28,6 @@ target_include_directories(${EXECUTABLE_NAME}
 find_package(OpenSSL REQUIRED)
 
 if (BUILD_QCOM)
-    find_package(PkgConfig REQUIRED)
-    pkg_check_modules(ZLIB REQUIRED zlib)
-
     set(gRPC_DIR ${CMAKE_PREFIX_PATH}/lib/cmake/grpc)
     set(Protobuf_DIR ${CMAKE_PREFIX_PATH}/lib/cmake/protobuf)
     set(absl_DIR ${CMAKE_PREFIX_PATH}/lib/cmake/absl)
@@ -46,5 +43,5 @@ target_link_libraries(${EXECUTABLE_NAME}
     gRPC::grpc++
 )
 
-install(TARGETS ${EXECUTABLE_NAME} RUNTIME DESTINATION "bin")
+install(TARGETS ${EXECUTABLE_NAME} RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR})
 

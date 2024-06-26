@@ -48,10 +48,6 @@ if (BUILD_SERVER)
 
     find_package(OpenSSL REQUIRED)
     if (BUILD_QCOM)
-        find_package(PkgConfig REQUIRED)
-        pkg_check_modules(ZLIB REQUIRED zlib)
-        target_link_libraries(${EXECUTE_NAME} PRIVATE ${ZLIB_LIBRARIES})
-    
         set(gRPC_DIR ${CMAKE_PREFIX_PATH}/lib/cmake/grpc)
         set(Protobuf_DIR ${CMAKE_PREFIX_PATH}/lib/cmake/protobuf)
         set(absl_DIR ${CMAKE_PREFIX_PATH}/lib/cmake/absl)
@@ -66,8 +62,26 @@ if (BUILD_SERVER)
     )
 endif()
 
-if (NOT BUILD_QCOM)
-    install(TARGETS MAVSDK::mavsdk LIBRARY DESTINATION "lib")
-endif() 
-install(TARGETS ${EXECUTE_NAME} RUNTIME DESTINATION "bin")
+# get_cmake_property(_variableNames VARIABLES)
+# foreach (_variableName ${_variableNames})
+#    if (_variableName MATCHES "MAVSDK")
+#       message(STATUS "${_variableName}=${${_variableName}}")
+#    endif()
+# endforeach()
 
+get_target_property(MAVSDK_LIBRARY_PATH MAVSDK::mavsdk IMPORTED_LOCATION)
+if(NOT MAVSDK_LIBRARY_PATH)
+    # message(WARNING "IMPORTED_LOCATION for MAVSDK::mavsdk is empty, try to use LOCATION property")
+    get_target_property(ALTERNATIVE_LIBRARY_PATH MAVSDK::mavsdk LOCATION)
+    set(MAVSDK_LIBRARY_PATH ${ALTERNATIVE_LIBRARY_PATH})
+endif()
+message(STATUS "MAVSDK path: ${MAVSDK_LIBRARY_PATH}")
+
+# TODO (anxs) temp solution to manually create symlink
+install(CODE "execute_process(COMMAND ${CMAKE_COMMAND} -E create_symlink libmavsdk.so.${MAVSDK_VERSION} libmavsdk.so.${MAVSDK_VERSION_MAJOR} WORKING_DIRECTORY ${CMAKE_INSTALL_PREFIX}/lib)")
+
+install(FILES ${MAVSDK_LIBRARY_PATH}
+    DESTINATION lib
+)
+
+install(TARGETS ${EXECUTE_NAME} RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR})
