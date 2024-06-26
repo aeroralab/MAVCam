@@ -60,6 +60,7 @@ bool CameraRpcClient::init(int rpc_port) {
         base::LogError() << "Call rpc prepare failed with errorcode: " << status.error_code();
         return false;
     }
+    base::LogError() << "Success call prepare camera function";
 
     _init_information = false;
     _image_count = 0;

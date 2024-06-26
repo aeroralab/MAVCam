@@ -1,12 +1,16 @@
 #include "camera_impl.h"
 
+#include <dlfcn.h>
+#include <unistd.h>
+
 #include "base/log.h"
 
 namespace mav {
 
-CameraImpl::CameraImpl() {
-    _current_mode = Camera::Mode::Photo;
+#define QCOM_CAMERA_LIBERAY "libqcom_camera.so"
+typedef mav_camera::MavCamera *(*create_qcom_camera_fun)();
 
+CameraImpl::CameraImpl() {
     // TODO just demo for settings
     // CAM_MODE is define in definition file, photo mode as 0, video mode as 1
     if (_current_mode == Camera::Mode::Photo) {
@@ -30,12 +34,46 @@ CameraImpl::CameraImpl() {
 CameraImpl::~CameraImpl() {}
 
 Camera::Result CameraImpl::prepare() {
-    base::LogDebug() << "call prepare";
+    _plugin_handle = dlopen(QCOM_CAMERA_LIBERAY, RTLD_NOW);
+    if (_plugin_handle == NULL) {
+        char const *err_str = dlerror();
+        base::LogError() << "load module " << QCOM_CAMERA_LIBERAY << " failed "
+                         << (err_str != NULL ? err_str : "unknown");
+        return Camera::Result::Error;
+    }
+
+    create_qcom_camera_fun create_camera_fun =
+        (create_qcom_camera_fun)dlsym(_plugin_handle, "create_qcom_camera");
+    if (create_camera_fun == NULL) {
+        base::LogError() << "cannot find symbol create_qcom_camera";
+        dlclose(_plugin_handle);
+        _plugin_handle = NULL;
+        return Camera::Result::Error;
+    }
+
+    _mav_camera = create_camera_fun();
+    if (_mav_camera == nullptr) {
+        base::LogError() << "cannot create mav camera instance";
+        dlclose(_plugin_handle);
+        _plugin_handle = NULL;
+        return Camera::Result::Error;
+    }
+    mav_camera::Result result = _mav_camera->open();
+    if (result == mav_camera::Result::Success) {
+        base::LogDebug() << "open qcom camera success";
+    }
+
+    _current_mode = Camera::Mode::Photo;
+    _mav_camera->set_mode(mav_camera::Mode::Photo);
+    //after set mode we need reset storage path and current timestamp
+    _mav_camera->set_storage_path("/data/camera");
+    _mav_camera->set_timestamp(1718699965544);
+
     return Camera::Result::Success;
 }
 
 Camera::Result CameraImpl::take_photo() {
-    base::LogDebug() << "call take photo";
+    _mav_camera->take_photo();
     return Camera::Result::Success;
 }
 
@@ -79,9 +117,13 @@ Camera::Result CameraImpl::set_mode(Camera::Mode mode) {
     if (_current_mode == Camera::Mode::Photo) {
         auto setting = build_setting("CAM_MODE", "0");
         set_setting(setting);
+
+        _mav_camera->set_mode(mav_camera::Mode::Photo);
     } else {
         auto setting = build_setting("CAM_MODE", "1");
         set_setting(setting);
+
+        _mav_camera->set_mode(mav_camera::Mode::Video);
     }
     return Camera::Result::Success;
 }
@@ -109,17 +151,17 @@ void CameraImpl::information_async(const Camera::InformationCallback &callback) 
 
 Camera::Information CameraImpl::information() const {
     Camera::Information information;
-    information.vendor_name = "GoerLabs";
-    information.model_name = "C10";
-    information.firmware_version = "0.0.1";
+    information.vendor_name = "Aeroratech";
+    information.model_name = "D64TR";
+    information.firmware_version = "0.1.0";
     information.focal_length_mm = 3.0;
     information.horizontal_sensor_size_mm = 3.68;
     information.vertical_sensor_size_mm = 2.76;
-    information.horizontal_resolution_px = 3280;
-    information.vertical_resolution_px = 2464;
+    information.horizontal_resolution_px = 9248;
+    information.vertical_resolution_px = 6944;
     information.lens_id = 0;
     information.definition_file_version = 1;
-    information.definition_file_uri = "mftp://definition/C10.xml";  // TODO just demo
+    information.definition_file_uri = "mftp://definition/D64TR.xml";  // TODO just demo
     information.camera_cap_flags.emplace_back(Camera::Information::CameraCapFlags::CaptureImage);
     information.camera_cap_flags.emplace_back(Camera::Information::CameraCapFlags::CaptureVideo);
     information.camera_cap_flags.emplace_back(Camera::Information::CameraCapFlags::HasModes);

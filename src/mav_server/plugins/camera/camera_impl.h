@@ -6,6 +6,7 @@
 #include <thread>
 #include <vector>
 
+#include "mav_camera.h"
 #include "plugins/camera/camera.h"
 
 namespace mav {
@@ -253,6 +254,9 @@ private:
     mutable std::vector<Camera::Setting> _settings;
     mutable std::atomic<float> _total_storage_mib;
     mutable std::atomic<float> _available_storage_mib;
+private:
+    void *_plugin_handle;
+    mav_camera::MavCamera *_mav_camera;
 };
 
 }  // namespace mav
