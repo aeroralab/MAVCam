@@ -41,6 +41,7 @@ target_link_libraries(${EXECUTE_NAME}
 )
 
 if (BUILD_SERVER)
+    add_compile_definitions(ENABLE_SERVER)
     target_include_directories(${EXECUTE_NAME}
         PRIVATE
         ${CMAKE_CURRENT_SOURCE_DIR}/../generated

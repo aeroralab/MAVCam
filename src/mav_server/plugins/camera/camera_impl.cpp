@@ -161,7 +161,7 @@ Camera::Information CameraImpl::information() const {
     information.vertical_resolution_px = 6944;
     information.lens_id = 0;
     information.definition_file_version = 1;
-    information.definition_file_uri = "mftp://definition/D64TR.xml";  // TODO just demo
+    information.definition_file_uri = "mftp://definition/D64TR.xml";
     information.camera_cap_flags.emplace_back(Camera::Information::CameraCapFlags::CaptureImage);
     information.camera_cap_flags.emplace_back(Camera::Information::CameraCapFlags::CaptureVideo);
     information.camera_cap_flags.emplace_back(Camera::Information::CameraCapFlags::HasModes);

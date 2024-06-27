@@ -10,7 +10,6 @@ option(BUILD_SERVER "Build server and client with grpc support" ON)
 add_subdirectory(base)
 add_subdirectory(mav_client)
 if (BUILD_SERVER)
-    add_compile_definitions(ENABLE_SERVER)
     add_subdirectory(mav_server)
 endif()
 
