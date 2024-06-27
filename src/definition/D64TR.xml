@@ -40,7 +40,6 @@
                 <option name="Sunny" value="4" />
                 <option name="Cloudy" value="5" />
                 <option name="Fluorescent" value="7" />
-                <option name="Lock" value="99" />
             </options>
         </parameter>
         <parameter name="CAM_EXPMODE" type="int32" default="0">

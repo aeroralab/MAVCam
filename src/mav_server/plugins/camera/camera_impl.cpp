@@ -7,25 +7,13 @@
 
 namespace mav {
 
+const std::string kCameraModeName = "CAM_MODE";
+
 #define QCOM_CAMERA_LIBERAY "libqcom_camera.so"
 typedef mav_camera::MavCamera *(*create_qcom_camera_fun)();
 
 CameraImpl::CameraImpl() {
-    // TODO just demo for settings
-    // CAM_MODE is define in definition file, photo mode as 0, video mode as 1
-    if (_current_mode == Camera::Mode::Photo) {
-        _settings.emplace_back(build_setting("CAM_MODE", "0"));
-    } else {
-        _settings.emplace_back(build_setting("CAM_MODE", "1"));
-    }
-    _settings.emplace_back(build_setting("CAM_WBMODE", "1"));
-    _settings.emplace_back(build_setting("CAM_EXPMODE", "0"));
-    _settings.emplace_back(build_setting("CAM_EV", "0"));
-    _settings.emplace_back(build_setting("CAM_ISO", "100"));
-    _settings.emplace_back(build_setting("CAM_SHUTTERSPD", "0.01"));
-    _settings.emplace_back(build_setting("CAM_VIDFMT", "1"));
-    _settings.emplace_back(build_setting("CAM_VIDRES", "0"));
-    _settings.emplace_back(build_setting("CAM_PHOTORATIO", "1"));
+    _current_mode = Camera::Mode::Unknown;
 
     _total_storage_mib = 2 * 1024 * 1024;
     _available_storage_mib = 1 * 1024 * 1024;
@@ -63,11 +51,17 @@ Camera::Result CameraImpl::prepare() {
         base::LogDebug() << "open qcom camera success";
     }
 
-    _current_mode = Camera::Mode::Photo;
-    _mav_camera->set_mode(mav_camera::Mode::Photo);
-    //after set mode we need reset storage path and current timestamp
-    _mav_camera->set_storage_path("/data/camera");
-    _mav_camera->set_timestamp(1718699965544);
+    _settings.emplace_back(build_setting(kCameraModeName, "0"));
+    set_mode(Camera::Mode::Photo);
+
+    // get all settings
+    _settings.emplace_back(build_setting("CAM_WBMODE", "0"));
+    _settings.emplace_back(build_setting("CAM_EXPMODE", "0"));
+    _settings.emplace_back(build_setting("CAM_EV", "0"));
+    _settings.emplace_back(build_setting("CAM_ISO", "100"));
+    _settings.emplace_back(build_setting("CAM_SHUTTERSPD", "0.01"));
+    _settings.emplace_back(build_setting("CAM_VIDFMT", "1"));
+    _settings.emplace_back(build_setting("CAM_VIDRES", "0"));
 
     return Camera::Result::Success;
 }
@@ -111,20 +105,30 @@ Camera::Result CameraImpl::stop_video_streaming(int32_t stream_id) {
 }
 
 Camera::Result CameraImpl::set_mode(Camera::Mode mode) {
-    base::LogDebug() << "call set mode " << mode;
+    if (_current_mode == mode) {
+        // same mode do not change again
+        return Camera::Result::Success;
+    }
+
+    base::LogDebug() << "call set camera to mode " << mode;
     _current_mode = mode;
     // also need change mode in settings
     if (_current_mode == Camera::Mode::Photo) {
-        auto setting = build_setting("CAM_MODE", "0");
+        auto setting = build_setting(kCameraModeName, "0");
         set_setting(setting);
 
         _mav_camera->set_mode(mav_camera::Mode::Photo);
     } else {
-        auto setting = build_setting("CAM_MODE", "1");
+        auto setting = build_setting(kCameraModeName, "1");
         set_setting(setting);
 
         _mav_camera->set_mode(mav_camera::Mode::Video);
     }
+
+    //after set mode we need reset storage path and current timestamp
+    _mav_camera->set_storage_path("/data/camera");
+    _mav_camera->set_timestamp(1719480602639);
+
     return Camera::Result::Success;
 }
 
@@ -251,10 +255,19 @@ std::vector<Camera::SettingOptions> CameraImpl::possible_setting_options() const
 Camera::Result CameraImpl::set_setting(Camera::Setting setting) {
     base::LogDebug() << "call set " << setting.setting_id << " to value "
                      << setting.option.option_id;
-    for (auto &it : _settings) {
-        if (it.setting_id == setting.setting_id) {
-            it.option.option_id = setting.option.option_id;
-            it.option.option_description = setting.option.option_description;
+    //camera mode settings
+    if (setting.setting_id == kCameraModeName) {
+        if (setting.option.option_id == "0") {
+            set_mode(Camera::Mode::Photo);
+        } else {
+            set_mode(Camera::Mode::Video);
+        }
+    } else {  // other settings
+        for (auto &it : _settings) {
+            if (it.setting_id == setting.setting_id) {
+                it.option.option_id = setting.option.option_id;
+                it.option.option_description = setting.option.option_description;
+            }
         }
     }
     return Camera::Result::Success;
@@ -286,17 +299,14 @@ Camera::Result CameraImpl::select_camera(int32_t camera_id) {
 Camera::Result CameraImpl::reset_settings() {
     base::LogDebug() << "call reset settings";
     // reset all value to default value
-    _current_mode = Camera::Mode::Photo;
-    _settings.clear();
-    _settings.emplace_back(build_setting("CAM_MODE", "0"));
-    _settings.emplace_back(build_setting("CAM_WBMODE", "0"));
-    _settings.emplace_back(build_setting("CAM_EXPMODE", "0"));
-    _settings.emplace_back(build_setting("CAM_EV", "0"));
-    _settings.emplace_back(build_setting("CAM_ISO", "100"));
-    _settings.emplace_back(build_setting("CAM_SHUTTERSPD", "0.01"));
-    _settings.emplace_back(build_setting("CAM_VIDFMT", "1"));
-    _settings.emplace_back(build_setting("CAM_VIDRES", "0"));
-    _settings.emplace_back(build_setting("CAM_PHOTORATIO", "1"));
+    set_mode(Camera::Mode::Photo);
+    set_setting(build_setting("CAM_WBMODE", "0"));
+    set_setting(build_setting("CAM_EXPMODE", "0"));
+    set_setting(build_setting("CAM_EV", "0"));
+    set_setting(build_setting("CAM_ISO", "100"));
+    set_setting(build_setting("CAM_SHUTTERSPD", "0.01"));
+    set_setting(build_setting("CAM_VIDFMT", "1"));
+    set_setting(build_setting("CAM_VIDRES", "0"));
     return Camera::Result::Success;
 }
 
