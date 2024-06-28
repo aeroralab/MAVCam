@@ -243,6 +243,14 @@ public:
     Camera::Result set_definition_data(std::string definition_data);
 private:
     mav::Camera::Setting build_setting(std::string name, std::string value);
+    /**
+     * @brief set whitebalance mode
+    */
+    bool set_whitebalance_mode(std::string mode);
+    /**
+     * @brief get camera whitebalance mode
+    */
+    std::string get_whitebalance_mode();
 private:
     Camera::ModeCallback _camera_mode_callback;
     Camera::CaptureInfoCallback _capture_info_callback;

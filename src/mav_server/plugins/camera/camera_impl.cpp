@@ -8,6 +8,7 @@
 namespace mav {
 
 const std::string kCameraModeName = "CAM_MODE";
+const std::string kWhitebalanceModeName = "CAM_WBMODE";
 
 #define QCOM_CAMERA_LIBERAY "libqcom_camera.so"
 typedef mav_camera::MavCamera *(*create_qcom_camera_fun)();
@@ -55,7 +56,8 @@ Camera::Result CameraImpl::prepare() {
     set_mode(Camera::Mode::Photo);
 
     // get all settings
-    _settings.emplace_back(build_setting("CAM_WBMODE", "0"));
+    std::string wb_mode = get_whitebalance_mode();
+    _settings.emplace_back(build_setting(kWhitebalanceModeName, wb_mode));
     _settings.emplace_back(build_setting("CAM_EXPMODE", "0"));
     _settings.emplace_back(build_setting("CAM_EV", "0"));
     _settings.emplace_back(build_setting("CAM_ISO", "100"));
@@ -255,6 +257,7 @@ std::vector<Camera::SettingOptions> CameraImpl::possible_setting_options() const
 Camera::Result CameraImpl::set_setting(Camera::Setting setting) {
     base::LogDebug() << "call set " << setting.setting_id << " to value "
                      << setting.option.option_id;
+    bool set_success = false;
     //camera mode settings
     if (setting.setting_id == kCameraModeName) {
         if (setting.option.option_id == "0") {
@@ -262,7 +265,11 @@ Camera::Result CameraImpl::set_setting(Camera::Setting setting) {
         } else {
             set_mode(Camera::Mode::Video);
         }
+    } else if (setting.setting_id == kWhitebalanceModeName) {  // whitebalance mode
+        set_success = set_whitebalance_mode(setting.option.option_id);
     } else {  // other settings
+    }
+    if (set_success) {  // update current setting
         for (auto &it : _settings) {
             if (it.setting_id == setting.setting_id) {
                 it.option.option_id = setting.option.option_id;
@@ -300,7 +307,10 @@ Camera::Result CameraImpl::reset_settings() {
     base::LogDebug() << "call reset settings";
     // reset all value to default value
     set_mode(Camera::Mode::Photo);
-    set_setting(build_setting("CAM_WBMODE", "0"));
+
+    set_whitebalance_mode("0");
+    set_setting(build_setting(kWhitebalanceModeName, "0"));
+
     set_setting(build_setting("CAM_EXPMODE", "0"));
     set_setting(build_setting("CAM_EV", "0"));
     set_setting(build_setting("CAM_ISO", "100"));
@@ -320,6 +330,61 @@ Camera::Setting CameraImpl::build_setting(std::string name, std::string value) {
     setting.setting_id = name;
     setting.option.option_id = value;
     return setting;
+}
+
+/**
+    <option name="Auto" value="0" />
+    <option name="Incandescent" value="1" />
+    <option name="Sunrise" value="2" />
+    <option name="Sunset" value="3" />
+    <option name="Sunny" value="4" />
+    <option name="Cloudy" value="5" />
+    <option name="Fluorescent" value="7" />
+*/
+bool CameraImpl::set_whitebalance_mode(std::string mode) {
+    mav_camera::Result result;
+    if (mode == "0") {
+        result = _mav_camera->set_white_balance(mav_camera::kAutoWhitebalanceValue);
+    } else if (mode == "1") {
+        result = _mav_camera->set_white_balance(2200);
+    } else if (mode == "2") {
+        result = _mav_camera->set_white_balance(2500);
+    } else if (mode == "3") {
+        result = _mav_camera->set_white_balance(3000);
+    } else if (mode == "4") {
+        result = _mav_camera->set_white_balance(5200);
+    } else if (mode == "5") {
+        result = _mav_camera->set_white_balance(6200);
+    } else if (mode == "7") {
+        result = _mav_camera->set_white_balance(4000);
+    }
+    base::LogDebug() << "set whitebalance mode " << mode << " result " << (int)result;
+
+    return result == mav_camera::Result::Success;
+}
+
+std::string CameraImpl::get_whitebalance_mode() {
+    auto [result, value] = _mav_camera->get_white_balance();
+    if (result != mav_camera::Result::Success) {
+        return "0";
+    }
+    if (value == mav_camera::kAutoWhitebalanceValue) {
+        return "0";
+    } else if (value == 2200) {
+        return "1";
+    } else if (value == 2500) {
+        return "2";
+    } else if (value == 3000) {
+        return "3";
+    } else if (value == 5200) {
+        return "4";
+    } else if (value == 6200) {
+        return "5";
+    } else if (value == 4000) {
+        return "7";
+    }
+    base::LogWarn() << "invalid white balance value " << value;
+    return "0";
 }
 
 }  // namespace mav
