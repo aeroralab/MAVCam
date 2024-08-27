@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <mavlinkcamera>
-    <definition version="3">
+    <definition version="4">
         <model>D64TR</model>
         <vendor>Aeroratech</vendor>
     </definition>
@@ -28,6 +28,15 @@
                         <exclude>CAM_PHOTORATIO</exclude>
                     </exclusions>
                 </option>
+            </options>
+        </parameter>
+        <parameter name="CAM_DISPLAY_MODE" type="int32" default="0">
+            <description>Camera display mode</description>
+            <options>
+                <option name="RGB Only" value="0" />
+                <option name="IR Only" value="1" />
+                <option name="Side by Side" value="2" />
+                <option name="PIP" value="3" />
             </options>
         </parameter>
         <parameter name="CAM_WBMODE" type="int32" default="0">
@@ -129,10 +138,6 @@
                 <option name="1920 x 1080 120fps (FHD)" value="2" />
                 <option name="1920 x 1080 60fps (FHD)" value="3" />
                 <option name="1920 x 1080 30fps (FHD)" value="4" />
-                <!-- 1280 x 720 -->
-                <option name="1280 x 720 120fps (HD)" value="5" />
-                <option name="1280 x 720 60fps (HD)" value="6" />
-                <option name="1280 x 720 30fps (HD)" value="7" />
             </options>
         </parameter>
         <parameter name="CAM_VIDFMT" type="int32" default="1">

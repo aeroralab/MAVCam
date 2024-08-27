@@ -244,6 +244,14 @@ public:
 private:
     mav::Camera::Setting build_setting(std::string name, std::string value);
     /**
+     * @brief set camera display mode
+     */
+    bool set_camera_display_mode(std::string mode);
+    /**
+     * @brief get current camera display mode
+     */
+    std::string get_camera_display_mode();
+    /**
      * @brief set whitebalance mode
     */
     bool set_whitebalance_mode(std::string mode);

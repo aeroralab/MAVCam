@@ -7,8 +7,10 @@
 
 namespace mav {
 
+const std::string kCameraDisplayModeName = "CAM_DISPLAY_MODE";
 const std::string kCameraModeName = "CAM_MODE";
 const std::string kWhitebalanceModeName = "CAM_WBMODE";
+const std::string kStreamingUrl = "127.0.0.1:8554";
 
 #define QCOM_CAMERA_LIBERAY "libqcom_camera.so"
 typedef mav_camera::MavCamera *(*create_qcom_camera_fun)();
@@ -47,15 +49,42 @@ Camera::Result CameraImpl::prepare() {
         _plugin_handle = NULL;
         return Camera::Result::Error;
     }
-    mav_camera::Result result = _mav_camera->open();
+
+    _mav_camera->set_timestamp(1724721206027);
+
+    mav_camera::Options options;
+    options.preview_drm_output = false;
+    options.preview_v4l2_output = false;
+    options.preview_weston_output = true;
+
+    options.preview_width = 1920;
+    options.preview_height = 1080;
+    options.snapshot_width = 4624;
+    options.snapshot_height = 3472;
+    options.video_width = 1920;
+    options.video_height = 1080;
+
+    options.infrared_camera_path = "/dev/video2";
+    options.framerate = 60;
+    options.debug_calc_fps = false;
+    options.init_mode = mav_camera::Mode::Video;
+
+    mav_camera::Result result = _mav_camera->open(options);
     if (result == mav_camera::Result::Success) {
         base::LogDebug() << "open qcom camera success";
     }
 
-    _settings.emplace_back(build_setting(kCameraModeName, "0"));
-    set_mode(Camera::Mode::Photo);
+    if (options.init_mode == mav_camera::Mode::Photo) {
+        _settings.emplace_back(build_setting(kCameraModeName, "0"));
+    } else {
+        _settings.emplace_back(build_setting(kCameraModeName, "1"));
+    }
+
+    _mav_camera->start_streaming(kStreamingUrl);
 
     // get all settings
+    auto display_mode = get_camera_display_mode();
+    _settings.emplace_back(build_setting(kCameraDisplayModeName, display_mode));
     std::string wb_mode = get_whitebalance_mode();
     _settings.emplace_back(build_setting(kWhitebalanceModeName, wb_mode));
     _settings.emplace_back(build_setting("CAM_EXPMODE", "0"));
@@ -87,12 +116,14 @@ Camera::Result CameraImpl::start_video() {
     base::LogDebug() << "call start video";
     _status.video_on = true;
     _start_video_time = std::chrono::steady_clock::now();
+    _mav_camera->start_video();
     return Camera::Result::Success;
 }
 
 Camera::Result CameraImpl::stop_video() {
     base::LogDebug() << "call stop video";
     _status.video_on = false;
+    _mav_camera->stop_video();
     return Camera::Result::Success;
 }
 
@@ -127,10 +158,6 @@ Camera::Result CameraImpl::set_mode(Camera::Mode mode) {
         _mav_camera->set_mode(mav_camera::Mode::Video);
     }
 
-    //after set mode we need reset storage path and current timestamp
-    _mav_camera->set_storage_path("/data/camera");
-    _mav_camera->set_timestamp(1719480602639);
-
     return Camera::Result::Success;
 }
 
@@ -159,7 +186,7 @@ Camera::Information CameraImpl::information() const {
     Camera::Information information;
     information.vendor_name = "Aeroratech";
     information.model_name = "D64TR";
-    information.firmware_version = "0.1.0";
+    information.firmware_version = "0.3.0";
     information.focal_length_mm = 3.0;
     information.horizontal_sensor_size_mm = 3.68;
     information.vertical_sensor_size_mm = 2.76;
@@ -188,27 +215,14 @@ std::vector<Camera::VideoStreamInfo> CameraImpl::video_stream_info() const {
     normal_video_stream.settings.frame_rate_hz = 60.0;
     normal_video_stream.settings.horizontal_resolution_pix = 1920;
     normal_video_stream.settings.vertical_resolution_pix = 1080;
-    normal_video_stream.settings.bit_rate_b_s = 4 * 1024 * 1024;
+    normal_video_stream.settings.bit_rate_b_s = 5000000;
     normal_video_stream.settings.rotation_deg = 0;
-    normal_video_stream.settings.uri = "rtsp://10.0.0.11/live";
+    normal_video_stream.settings.uri = "rtsp://169.254.254.1/live";
     normal_video_stream.settings.horizontal_fov_deg = 0;
     normal_video_stream.status = mav::Camera::VideoStreamInfo::VideoStreamStatus::InProgress;
     normal_video_stream.spectrum = mav::Camera::VideoStreamInfo::VideoStreamSpectrum::VisibleLight;
 
-    mav::Camera::VideoStreamInfo infrared_video_stream;
-    infrared_video_stream.stream_id = 2;
-
-    infrared_video_stream.settings.frame_rate_hz = 24.0;
-    infrared_video_stream.settings.horizontal_resolution_pix = 1280;
-    infrared_video_stream.settings.vertical_resolution_pix = 720;
-    infrared_video_stream.settings.bit_rate_b_s = 4 * 1024;
-    infrared_video_stream.settings.rotation_deg = 0;
-    infrared_video_stream.settings.uri = "rtsp://10.0.0.11/live2";
-    infrared_video_stream.settings.horizontal_fov_deg = 0;
-    infrared_video_stream.status = mav::Camera::VideoStreamInfo::VideoStreamStatus::InProgress;
-    infrared_video_stream.spectrum = mav::Camera::VideoStreamInfo::VideoStreamSpectrum::Infrared;
-
-    return {normal_video_stream, infrared_video_stream};
+    return {normal_video_stream};
 }
 
 void CameraImpl::capture_info_async(const Camera::CaptureInfoCallback &callback) {
@@ -265,6 +279,8 @@ Camera::Result CameraImpl::set_setting(Camera::Setting setting) {
         } else {
             set_mode(Camera::Mode::Video);
         }
+    } else if (setting.setting_id == kCameraDisplayModeName) {
+        set_success = set_camera_display_mode(setting.option.option_id);
     } else if (setting.setting_id == kWhitebalanceModeName) {  // whitebalance mode
         set_success = set_whitebalance_mode(setting.option.option_id);
     } else {  // other settings
@@ -307,6 +323,8 @@ Camera::Result CameraImpl::reset_settings() {
     base::LogDebug() << "call reset settings";
     // reset all value to default value
     set_mode(Camera::Mode::Photo);
+    set_camera_display_mode("0");
+    set_setting(build_setting(kCameraDisplayModeName, "0"));
 
     set_whitebalance_mode("0");
     set_setting(build_setting(kWhitebalanceModeName, "0"));
@@ -330,6 +348,48 @@ Camera::Setting CameraImpl::build_setting(std::string name, std::string value) {
     setting.setting_id = name;
     setting.option.option_id = value;
     return setting;
+}
+
+bool CameraImpl::set_camera_display_mode(std::string mode) {
+    mav_camera::Result result = mav_camera::Result::Unknown;
+    if (mode == "0") {
+        result = _mav_camera->set_preview_stream_output_type(
+            mav_camera::PreivewStreamOutputType::RGBStreamOnly);
+    } else if (mode == "1") {
+        result = _mav_camera->set_preview_stream_output_type(
+            mav_camera::PreivewStreamOutputType::InfraredStreamOnly);
+    } else if (mode == "2") {
+        result = _mav_camera->set_preview_stream_output_type(
+            mav_camera::PreivewStreamOutputType::MixSideBySide);
+    } else if (mode == "3") {
+        result = _mav_camera->set_preview_stream_output_type(
+            mav_camera::PreivewStreamOutputType::MixPIP);
+    }
+    base::LogDebug() << "set camera display mode to " << mode << " result " << int(result);
+    return result == mav_camera::Result::Success;
+}
+
+std::string CameraImpl::get_camera_display_mode() {
+    mav_camera::Result result;
+    mav_camera::PreivewStreamOutputType preview_type;
+    std::tie(result, preview_type) = _mav_camera->get_preview_stream_output_type();
+    if (result == mav_camera::Result::Success) {
+        switch (preview_type) {
+            case mav_camera::PreivewStreamOutputType::RGBStreamOnly:
+                return "0";
+                break;
+            case mav_camera::PreivewStreamOutputType::InfraredStreamOnly:
+                return "1";
+                break;
+            case mav_camera::PreivewStreamOutputType::MixSideBySide:
+                return "2";
+                break;
+            case mav_camera::PreivewStreamOutputType::MixPIP:
+                return "3";
+                break;
+        }
+    }
+    return 0;
 }
 
 /**
@@ -358,7 +418,7 @@ bool CameraImpl::set_whitebalance_mode(std::string mode) {
     } else if (mode == "7") {
         result = _mav_camera->set_white_balance(4000);
     }
-    base::LogDebug() << "set whitebalance mode " << mode << " result " << (int)result;
+    base::LogDebug() << "set whitebalance mode to " << mode << " result " << (int)result;
 
     return result == mav_camera::Result::Success;
 }

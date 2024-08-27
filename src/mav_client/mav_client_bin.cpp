@@ -4,7 +4,7 @@
 #include "mav_client.h"
 #include "version.h"
 
-static auto constexpr default_connection = "udp://127.0.0.1:14550";
+static auto constexpr default_connection = "udp://169.254.254.2:14550";
 static auto constexpr default_rpc_port = 50051;
 static std::string default_ftp_path = "";
 
