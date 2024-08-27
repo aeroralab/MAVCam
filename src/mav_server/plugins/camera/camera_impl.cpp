@@ -183,24 +183,43 @@ void CameraImpl::information_async(const Camera::InformationCallback &callback) 
 }
 
 Camera::Information CameraImpl::information() const {
-    Camera::Information information;
-    information.vendor_name = "Aeroratech";
-    information.model_name = "D64TR";
-    information.firmware_version = "0.3.0";
-    information.focal_length_mm = 3.0;
-    information.horizontal_sensor_size_mm = 3.68;
-    information.vertical_sensor_size_mm = 2.76;
-    information.horizontal_resolution_px = 9248;
-    information.vertical_resolution_px = 6944;
-    information.lens_id = 0;
-    information.definition_file_version = 1;
-    information.definition_file_uri = "mftp://definition/D64TR.xml";
-    information.camera_cap_flags.emplace_back(Camera::Information::CameraCapFlags::CaptureImage);
-    information.camera_cap_flags.emplace_back(Camera::Information::CameraCapFlags::CaptureVideo);
-    information.camera_cap_flags.emplace_back(Camera::Information::CameraCapFlags::HasModes);
-    information.camera_cap_flags.emplace_back(Camera::Information::CameraCapFlags::HasVideoStream);
+    Camera::Information out_info;
 
-    return information;
+    mav_camera::Information in_info;
+    auto result = _mav_camera->get_information(in_info);
+    if (result == mav_camera::Result::Success) {
+        out_info.vendor_name = in_info.vendor_name;
+        out_info.model_name = in_info.model_name;
+        out_info.firmware_version = in_info.firmware_version;
+        out_info.focal_length_mm = in_info.focal_length_mm;
+        out_info.horizontal_sensor_size_mm = in_info.horizontal_sensor_size_mm;
+        out_info.vertical_sensor_size_mm = in_info.vertical_sensor_size_mm;
+        out_info.horizontal_resolution_px = in_info.horizontal_resolution_px;
+        out_info.vertical_resolution_px = in_info.vertical_resolution_px;
+        out_info.lens_id = in_info.lens_id;
+        out_info.definition_file_version = in_info.definition_file_version;
+        out_info.definition_file_uri = "mftp://definition/" + in_info.definition_file_name;
+
+    } else {
+        out_info.vendor_name = "Unknown";
+        out_info.model_name = "Unknown";
+        out_info.firmware_version = "0.0.0";
+        out_info.focal_length_mm = 0;
+        out_info.horizontal_sensor_size_mm = 0;
+        out_info.vertical_sensor_size_mm = 0;
+        out_info.horizontal_resolution_px = 0;
+        out_info.vertical_resolution_px = 0;
+        out_info.lens_id = 0;
+        out_info.definition_file_version = 0;
+        out_info.definition_file_uri = "";
+    }
+
+    out_info.camera_cap_flags.emplace_back(Camera::Information::CameraCapFlags::CaptureImage);
+    out_info.camera_cap_flags.emplace_back(Camera::Information::CameraCapFlags::CaptureVideo);
+    out_info.camera_cap_flags.emplace_back(Camera::Information::CameraCapFlags::HasModes);
+    out_info.camera_cap_flags.emplace_back(Camera::Information::CameraCapFlags::HasVideoStream);
+
+    return out_info;
 }
 
 void CameraImpl::video_stream_info_async(const Camera::VideoStreamInfoCallback &callback) {
