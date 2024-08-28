@@ -57,17 +57,22 @@ Camera::Result CameraImpl::prepare() {
     options.preview_v4l2_output = false;
     options.preview_weston_output = true;
 
-    options.preview_width = 1920;
-    options.preview_height = 1080;
+    options.init_mode = mav_camera::Mode::Photo;
+    if (options.init_mode == mav_camera::Mode::Photo) {
+        options.preview_width = 1920;
+        options.preview_height = 1440;
+    } else {
+        options.preview_width = 1920;
+        options.preview_height = 1080;
+    }
     options.snapshot_width = 4624;
     options.snapshot_height = 3472;
     options.video_width = 1920;
     options.video_height = 1080;
 
     options.infrared_camera_path = "/dev/video2";
-    options.framerate = 60;
+    options.framerate = 30;
     options.debug_calc_fps = false;
-    options.init_mode = mav_camera::Mode::Video;
 
     mav_camera::Result result = _mav_camera->open(options);
     if (result == mav_camera::Result::Success) {
@@ -236,7 +241,7 @@ std::vector<Camera::VideoStreamInfo> CameraImpl::video_stream_info() const {
     normal_video_stream.settings.vertical_resolution_pix = 1080;
     normal_video_stream.settings.bit_rate_b_s = 5000000;
     normal_video_stream.settings.rotation_deg = 0;
-    normal_video_stream.settings.uri = "rtsp://169.254.254.1/live";
+    normal_video_stream.settings.uri = "rtsp://169.254.254.1:8900/live";
     normal_video_stream.settings.horizontal_fov_deg = 0;
     normal_video_stream.status = mav::Camera::VideoStreamInfo::VideoStreamStatus::InProgress;
     normal_video_stream.spectrum = mav::Camera::VideoStreamInfo::VideoStreamSpectrum::VisibleLight;
