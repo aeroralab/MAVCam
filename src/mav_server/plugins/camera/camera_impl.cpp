@@ -30,6 +30,8 @@ const int32_t kVideoHeight = 1080;
 typedef mav_camera::MavCamera *(*create_qcom_camera_fun)();
 
 CameraImpl::CameraImpl() {
+    _plugin_handle = NULL;
+    _mav_camera = nullptr;
     _current_mode = Camera::Mode::Unknown;
     _framerate = 30;
 }
@@ -37,6 +39,7 @@ CameraImpl::CameraImpl() {
 CameraImpl::~CameraImpl() {}
 
 Camera::Result CameraImpl::prepare() {
+    close_camera();
     _plugin_handle = dlopen(QCOM_CAMERA_LIBERAY, RTLD_NOW);
     if (_plugin_handle == NULL) {
         char const *err_str = dlerror();
@@ -432,6 +435,18 @@ Camera::Result CameraImpl::reset_settings() {
 Camera::Result CameraImpl::set_definition_data(std::string definition_data) {
     base::LogDebug() << "call set_definition_data";
     return Camera::Result::ProtocolUnsupported;
+}
+
+void CameraImpl::close_camera() {
+    if (_mav_camera != nullptr) {
+        _mav_camera->stop_streaming();
+        _mav_camera->close();
+        delete _mav_camera;
+    }
+    if (_plugin_handle != NULL) {
+        dlclose(_plugin_handle);
+        _plugin_handle = NULL;
+    }
 }
 
 Camera::Setting CameraImpl::build_setting(std::string name, std::string value) {

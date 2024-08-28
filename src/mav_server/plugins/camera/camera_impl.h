@@ -242,6 +242,13 @@ public:
      */
     Camera::Result set_definition_data(std::string definition_data);
 private:
+    /**
+     * @brief close camera and release resource
+     */
+    void close_camera();
+    /**
+     * @brief build setting with name and value
+     */
     mav::Camera::Setting build_setting(std::string name, std::string value);
     /**
      * @brief set camera display mode
