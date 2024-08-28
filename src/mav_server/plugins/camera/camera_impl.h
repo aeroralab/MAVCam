@@ -277,6 +277,7 @@ private:
 private:
     void *_plugin_handle;
     mav_camera::MavCamera *_mav_camera;
+    int32_t _framerate;
 };
 
 }  // namespace mav

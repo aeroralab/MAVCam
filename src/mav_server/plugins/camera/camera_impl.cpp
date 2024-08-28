@@ -9,14 +9,29 @@ namespace mav {
 
 const std::string kCameraDisplayModeName = "CAM_DISPLAY_MODE";
 const std::string kCameraModeName = "CAM_MODE";
+const std::string kPhotoResolution = "CAM_PHOTO_RES";
 const std::string kWhitebalanceModeName = "CAM_WBMODE";
 const std::string kStreamingUrl = "127.0.0.1:8554";
 
+const int32_t kPreviewWidth = 1920;
+const int32_t kPreviewPhotoHeight = 1440;
+const int32_t kPreviewVideoHeight = 1080;
+
+const int32_t kSnapshotWidth = 9248;
+const int32_t kSnapshotHeight = 6944;
+const int32_t kSnapshotHalfWidth = 4624;
+const int32_t kSnapshotHalfHeight = 3472;
+
+const int32_t kVideoWidth = 1920;
+const int32_t kVideoHeight = 1080;
+
 #define QCOM_CAMERA_LIBERAY "libqcom_camera.so"
+
 typedef mav_camera::MavCamera *(*create_qcom_camera_fun)();
 
 CameraImpl::CameraImpl() {
     _current_mode = Camera::Mode::Unknown;
+    _framerate = 30;
 }
 
 CameraImpl::~CameraImpl() {}
@@ -56,19 +71,19 @@ Camera::Result CameraImpl::prepare() {
 
     options.init_mode = mav_camera::Mode::Photo;
     if (options.init_mode == mav_camera::Mode::Photo) {
-        options.preview_width = 1920;
-        options.preview_height = 1440;
+        options.preview_width = kPreviewWidth;
+        options.preview_height = kPreviewPhotoHeight;
     } else {
-        options.preview_width = 1920;
-        options.preview_height = 1080;
+        options.preview_width = kPreviewWidth;
+        options.preview_height = kPreviewPhotoHeight;
     }
-    options.snapshot_width = 4624;
-    options.snapshot_height = 3472;
-    options.video_width = 1920;
-    options.video_height = 1080;
+    options.snapshot_width = kSnapshotHalfWidth;
+    options.snapshot_height = kSnapshotHalfHeight;
+    options.video_width = kVideoWidth;
+    options.video_height = kVideoHeight;
 
     options.infrared_camera_path = "/dev/video2";
-    options.framerate = 30;
+    options.framerate = _framerate;
     options.debug_calc_fps = false;
 
     mav_camera::Result result = _mav_camera->open(options);
@@ -93,6 +108,7 @@ Camera::Result CameraImpl::prepare() {
     // get all settings
     auto display_mode = get_camera_display_mode();
     _settings.emplace_back(build_setting(kCameraDisplayModeName, display_mode));
+    _settings.emplace_back(build_setting(kPhotoResolution, "1"));  // 1 for 4624x3472
     std::string wb_mode = get_whitebalance_mode();
     _settings.emplace_back(build_setting(kWhitebalanceModeName, wb_mode));
     _settings.emplace_back(build_setting("CAM_EXPMODE", "0"));
@@ -239,10 +255,15 @@ std::vector<Camera::VideoStreamInfo> CameraImpl::video_stream_info() const {
     mav::Camera::VideoStreamInfo normal_video_stream;
     normal_video_stream.stream_id = 1;
 
-    normal_video_stream.settings.frame_rate_hz = 60.0;
-    normal_video_stream.settings.horizontal_resolution_pix = 1920;
-    normal_video_stream.settings.vertical_resolution_pix = 1080;
-    normal_video_stream.settings.bit_rate_b_s = 5000000;
+    normal_video_stream.settings.frame_rate_hz = _framerate;
+    mav_camera::Result result;
+    int32_t preview_width = 0;
+    int32_t preview_height = 0;
+    std::tie(result, preview_width, preview_height) = _mav_camera->get_preview_resolution();
+    normal_video_stream.settings.horizontal_resolution_pix = preview_width;
+    normal_video_stream.settings.vertical_resolution_pix = preview_height;
+    // TODO(thomas) : not set video bitrate for now
+    normal_video_stream.settings.bit_rate_b_s = 0;
     normal_video_stream.settings.rotation_deg = 0;
     normal_video_stream.settings.uri = "rtsp://169.254.254.1:8900/live";
     normal_video_stream.settings.horizontal_fov_deg = 0;
@@ -341,10 +362,20 @@ Camera::Result CameraImpl::set_setting(Camera::Setting setting) {
         }
     } else if (setting.setting_id == kCameraDisplayModeName) {
         set_success = set_camera_display_mode(setting.option.option_id);
+    } else if (setting.setting_id == kPhotoResolution) {
+        if (setting.option.option_id == "0") {
+            auto result = _mav_camera->set_snapshot_resolution(kSnapshotWidth, kSnapshotHeight);
+            set_success = result == mav_camera::Result::Success;
+        } else if (setting.option.option_id == "1") {
+            auto result =
+                _mav_camera->set_snapshot_resolution(kSnapshotHalfWidth, kSnapshotHalfHeight);
+            set_success = result == mav_camera::Result::Success;
+        }
     } else if (setting.setting_id == kWhitebalanceModeName) {  // whitebalance mode
         set_success = set_whitebalance_mode(setting.option.option_id);
     } else {  // other settings
     }
+
     if (set_success) {  // update current setting
         for (auto &it : _settings) {
             if (it.setting_id == setting.setting_id) {
