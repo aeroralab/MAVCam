@@ -259,6 +259,10 @@ private:
      * @brief get camera whitebalance mode
     */
     std::string get_whitebalance_mode();
+    /**
+     * @brief convert mav_camera::Result to mav::Camera::Result
+     */
+    mav::Camera::Result convert_camera_result_to_mav_result(mav_camera::Result input_result);
 private:
     Camera::ModeCallback _camera_mode_callback;
     Camera::CaptureInfoCallback _capture_info_callback;
@@ -268,8 +272,8 @@ private:
     mutable Camera::Mode _current_mode{Camera::Mode::Unknown};
     mutable std::chrono::steady_clock::time_point _start_video_time;
     mutable std::vector<Camera::Setting> _settings;
-    mutable std::atomic<float> _total_storage_mib;
-    mutable std::atomic<float> _available_storage_mib;
+    mutable std::mutex _storage_information_mutex;
+    mutable mav_camera::StorageInformation _current_storage_information;
 private:
     void *_plugin_handle;
     mav_camera::MavCamera *_mav_camera;

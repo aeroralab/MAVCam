@@ -1,5 +1,6 @@
 #include "camera_rpc_client.h"
 
+#include <chrono>
 #include <string>
 
 #include "base/log.h"
@@ -389,6 +390,7 @@ void CameraRpcClient::work_thread(CameraRpcClient *self) {
             self->_capture_status.image_count = self->_image_count;
         }
         status_reader->Finish();
+        std::this_thread::sleep_for(std::chrono::milliseconds(1000));
     }
 }
 

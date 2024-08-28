@@ -17,9 +17,6 @@ typedef mav_camera::MavCamera *(*create_qcom_camera_fun)();
 
 CameraImpl::CameraImpl() {
     _current_mode = Camera::Mode::Unknown;
-
-    _total_storage_mib = 2 * 1024 * 1024;
-    _available_storage_mib = 1 * 1024 * 1024;
 }
 
 CameraImpl::~CameraImpl() {}
@@ -50,7 +47,7 @@ Camera::Result CameraImpl::prepare() {
         return Camera::Result::Error;
     }
 
-    _mav_camera->set_timestamp(1724721206027);
+    _mav_camera->set_timestamp(1724814544805);
 
     mav_camera::Options options;
     options.preview_drm_output = false;
@@ -86,6 +83,12 @@ Camera::Result CameraImpl::prepare() {
     }
 
     _mav_camera->start_streaming(kStreamingUrl);
+
+    _mav_camera->subscribe_storage_information(
+        [&](mav_camera::Result result, mav_camera::StorageInformation storage_information) {
+            std::lock_guard<std::mutex> lock(_storage_information_mutex);
+            _current_storage_information = storage_information;
+        });
 
     // get all settings
     auto display_mode = get_camera_display_mode();
@@ -260,12 +263,45 @@ void CameraImpl::status_async(const Camera::StatusCallback &callback) {
 }
 
 Camera::Status CameraImpl::status() const {
-    // TODO just demo
-    _status.available_storage_mib = _available_storage_mib;
-    _status.total_storage_mib = _total_storage_mib;
-    _status.storage_id = 1;
-    _status.storage_status = Camera::Status::StorageStatus::Formatted;
-    _status.storage_type = Camera::Status::StorageType::Sd;
+    std::lock_guard<std::mutex> lock(_storage_information_mutex);
+    _status.available_storage_mib = _current_storage_information.available_storage_mib;
+    _status.total_storage_mib = _current_storage_information.total_storage_mib;
+    _status.storage_id = _current_storage_information.storage_id;
+    switch (_current_storage_information.storage_status) {
+        case mav_camera::StorageInformation::StorageStatus::Formatted:
+            _status.storage_status = Camera::Status::StorageStatus::Formatted;
+            break;
+        case mav_camera::StorageInformation::StorageStatus::Unformatted:
+            _status.storage_status = Camera::Status::StorageStatus::Unformatted;
+            break;
+        case mav_camera::StorageInformation::StorageStatus::NotAvailable:
+            _status.storage_status = Camera::Status::StorageStatus::NotAvailable;
+            break;
+        case mav_camera::StorageInformation::StorageStatus::NotSupported:
+            _status.storage_status = Camera::Status::StorageStatus::NotSupported;
+            break;
+    }
+
+    switch (_current_storage_information.storage_type) {
+        case mav_camera::StorageType::Hd:
+            _status.storage_type = Camera::Status::StorageType::Hd;
+            break;
+        case mav_camera::StorageType::Microsd:
+            _status.storage_type = Camera::Status::StorageType::Microsd;
+            break;
+        case mav_camera::StorageType::Other:
+            _status.storage_type = Camera::Status::StorageType::Other;
+            break;
+        case mav_camera::StorageType::Sd:
+            _status.storage_type = Camera::Status::StorageType::Sd;
+            break;
+        case mav_camera::StorageType::Unknown:
+            _status.storage_type = Camera::Status::StorageType::Unknown;
+            break;
+        case mav_camera::StorageType::UsbStick:
+            _status.storage_type = Camera::Status::StorageType::UsbStick;
+            break;
+    }
     if (_status.video_on) {
         auto current_time = std::chrono::steady_clock::now();
         _status.recording_time_s =
@@ -333,9 +369,9 @@ std::pair<Camera::Result, Camera::Setting> CameraImpl::get_setting(Camera::Setti
 }
 
 Camera::Result CameraImpl::format_storage(int32_t storage_id) {
-    _available_storage_mib = _total_storage_mib.load();
     base::LogDebug() << "call format storage " << storage_id;
-    return Camera::Result::Success;
+    auto result = _mav_camera->format_storage(storage_id);
+    return convert_camera_result_to_mav_result(result);
 }
 
 Camera::Result CameraImpl::select_camera(int32_t camera_id) {
@@ -469,6 +505,41 @@ std::string CameraImpl::get_whitebalance_mode() {
     }
     base::LogWarn() << "invalid white balance value " << value;
     return "0";
+}
+
+mav::Camera::Result CameraImpl::convert_camera_result_to_mav_result(
+    mav_camera::Result input_result) {
+    mav::Camera::Result output_result = mav::Camera::Result::Unknown;
+    switch (input_result) {
+        case mav_camera::Result::Success:
+            output_result = mav::Camera::Result::Success;
+            break;
+        case mav_camera::Result::Denied:
+            output_result = mav::Camera::Result::Denied;
+            break;
+        case mav_camera::Result::Busy:
+            output_result = mav::Camera::Result::Busy;
+            break;
+        case mav_camera::Result::Error:
+            output_result = mav::Camera::Result::Error;
+            break;
+        case mav_camera::Result::InProgress:
+            output_result = mav::Camera::Result::InProgress;
+            break;
+        case mav_camera::Result::NoSystem:
+            output_result = mav::Camera::Result::NoSystem;
+            break;
+        case mav_camera::Result::Timeout:
+            output_result = mav::Camera::Result::Timeout;
+            break;
+        case mav_camera::Result::Unknown:
+            output_result = mav::Camera::Result::Unknown;
+            break;
+        case mav_camera::Result::WrongArgument:
+            output_result = mav::Camera::Result::WrongArgument;
+            break;
+    }
+    return output_result;
 }
 
 }  // namespace mav
