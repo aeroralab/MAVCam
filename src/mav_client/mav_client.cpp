@@ -55,9 +55,15 @@ bool MavClient::start_runloop() {
     ftp_server.set_root_dir(_ftp_root_path);
     base::LogInfo() << "Launch ftp server with root path " << _ftp_root_path;
 
-    while (true) {
-        std::this_thread::sleep_for(std::chrono::seconds(1));
+    _running = true;
+    while (_running) {
+        std::this_thread::sleep_for(std::chrono::milliseconds(500));
     }
+    return true;
+}
+
+void MavClient::stop_runloop() {
+    _running = false;
 }
 
 void MavClient::subscribe_camera_operation(mavsdk::CameraServer &camera_server,
