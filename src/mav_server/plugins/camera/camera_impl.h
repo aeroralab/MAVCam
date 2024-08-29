@@ -267,6 +267,10 @@ private:
     */
     std::string get_whitebalance_mode();
     /**
+     * @brief get camera exposure value
+     */
+    std::string get_ev_value();
+    /**
      * @brief convert mav_camera::Result to mav::Camera::Result
      */
     mav::Camera::Result convert_camera_result_to_mav_result(mav_camera::Result input_result);

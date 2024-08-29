@@ -11,6 +11,7 @@ const std::string kCameraDisplayModeName = "CAM_DISPLAY_MODE";
 const std::string kCameraModeName = "CAM_MODE";
 const std::string kPhotoResolution = "CAM_PHOTO_RES";
 const std::string kWhitebalanceModeName = "CAM_WBMODE";
+const std::string kEVName = "CAM_EV";
 const std::string kStreamingUrl = "127.0.0.1:8554";
 
 const int32_t kPreviewWidth = 1920;
@@ -116,7 +117,8 @@ Camera::Result CameraImpl::prepare() {
     std::string wb_mode = get_whitebalance_mode();
     _settings.emplace_back(build_setting(kWhitebalanceModeName, wb_mode));
     _settings.emplace_back(build_setting("CAM_EXPMODE", "0"));
-    _settings.emplace_back(build_setting("CAM_EV", "0"));
+    std::string ev_value = get_ev_value();
+    _settings.emplace_back(build_setting(kEVName, ev_value));
     _settings.emplace_back(build_setting("CAM_ISO", "100"));
     _settings.emplace_back(build_setting("CAM_SHUTTERSPD", "0.01"));
     _settings.emplace_back(build_setting("CAM_VIDFMT", "1"));
@@ -377,7 +379,10 @@ Camera::Result CameraImpl::set_setting(Camera::Setting setting) {
         }
     } else if (setting.setting_id == kWhitebalanceModeName) {  // whitebalance mode
         set_success = set_whitebalance_mode(setting.option.option_id);
-    } else {  // other settings
+    } else if (setting.setting_id == kEVName) {  // exposure value
+        auto result = _mav_camera->set_exposure_value(std::stof(setting.option.option_id));
+        set_success = result == mav_camera::Result::Success;
+    } else {
     }
 
     if (set_success) {  // update current setting
@@ -552,6 +557,14 @@ std::string CameraImpl::get_whitebalance_mode() {
     }
     base::LogWarn() << "invalid white balance value " << value;
     return "0";
+}
+
+std::string CameraImpl::get_ev_value() {
+    auto [result, value] = _mav_camera->get_exposure_value();
+    if (result != mav_camera::Result::Success) {
+        return "0";
+    }
+    return std::to_string(value);
 }
 
 mav::Camera::Result CameraImpl::convert_camera_result_to_mav_result(
