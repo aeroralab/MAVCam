@@ -65,7 +65,8 @@ Camera::Result CameraImpl::prepare() {
         return Camera::Result::Error;
     }
 
-    _mav_camera->set_timestamp(1724814544805);
+    _mav_camera->set_timestamp(1724920934540);
+    _mav_camera->set_log_path("/data/camera/qcom_cam.log");
 
     mav_camera::Options options;
     options.preview_drm_output = false;
