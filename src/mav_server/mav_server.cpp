@@ -1,7 +1,5 @@
 #include "mav_server.h"
 
-#include <grpc++/grpc++.h>
-
 #include <chrono>
 #include <string>
 #include <thread>
@@ -27,13 +25,24 @@ bool MavServer::start_runloop() {
     builder.AddListeningPort(server_address, grpc::InsecureServerCredentials());
     builder.RegisterService(&service);
 
-    std::unique_ptr<grpc::Server> server{builder.BuildAndStart()};
+    _server = builder.BuildAndStart();
+    if (!_server) {
+        base::LogError() << "Failed to start server on " << server_address;
+        return false;
+    }
 
     // Run server
     base::LogInfo() << "Server listening on " << server_address;
-    server->Wait();
-
+    _running = true;
+    while (_running) {
+        std::this_thread::sleep_for(std::chrono::microseconds(500));
+    }
+    _server->Shutdown();
     return 0;
+}
+
+void MavServer::stop_runloop() {
+    _running = false;
 }
 
 }  // namespace mav

@@ -1,5 +1,7 @@
 #pragma once
 
+#include <grpc++/grpc++.h>
+
 namespace mav {
 
 class MavServer final {
@@ -9,8 +11,11 @@ public:
 public:
     bool init(int rpc_port);
     bool start_runloop();
+    void stop_runloop();
 private:
     int _rpc_port;
+    std::atomic<bool> _running{false};
+    std::unique_ptr<grpc::Server> _server;
 };
 
 }  // namespace mav
