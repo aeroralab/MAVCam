@@ -12,6 +12,9 @@ const std::string kCameraModeName = "CAM_MODE";
 const std::string kPhotoResolution = "CAM_PHOTO_RES";
 const std::string kWhitebalanceModeName = "CAM_WBMODE";
 const std::string kEVName = "CAM_EV";
+const std::string kISOName = "CAM_ISO";
+const std::string kShutterSpeedName = "CAM_SHUTTERSPD";
+
 const std::string kStreamingUrl = "127.0.0.1:8554";
 
 const int32_t kPreviewWidth = 1920;
@@ -119,8 +122,10 @@ Camera::Result CameraImpl::prepare() {
     _settings.emplace_back(build_setting("CAM_EXPMODE", "0"));
     std::string ev_value = get_ev_value();
     _settings.emplace_back(build_setting(kEVName, ev_value));
-    _settings.emplace_back(build_setting("CAM_ISO", "100"));
-    _settings.emplace_back(build_setting("CAM_SHUTTERSPD", "0.01"));
+    std::string iso_value = get_iso_value();
+    _settings.emplace_back(build_setting(kISOName, iso_value));
+    std::string shutter_speed_value = get_shutter_speed_value();
+    _settings.emplace_back(build_setting(kShutterSpeedName, shutter_speed_value));
     _settings.emplace_back(build_setting("CAM_VIDFMT", "1"));
     _settings.emplace_back(build_setting("CAM_VIDRES", "0"));
 
@@ -382,7 +387,12 @@ Camera::Result CameraImpl::set_setting(Camera::Setting setting) {
     } else if (setting.setting_id == kEVName) {  // exposure value
         auto result = _mav_camera->set_exposure_value(std::stof(setting.option.option_id));
         set_success = result == mav_camera::Result::Success;
-    } else {
+    } else if (setting.setting_id == kISOName) {
+        auto result = _mav_camera->set_iso(std::stoi(setting.option.option_id));
+        set_success = result == mav_camera::Result::Success;
+    } else if (setting.setting_id == kShutterSpeedName) {
+        auto result = _mav_camera->set_shutter_speed(setting.option.option_id);
+        set_success = result == mav_camera::Result::Success;
     }
 
     if (set_success) {  // update current setting
@@ -565,6 +575,22 @@ std::string CameraImpl::get_ev_value() {
         return "0";
     }
     return std::to_string(value);
+}
+
+std::string CameraImpl::get_iso_value() {
+    auto [result, value] = _mav_camera->get_iso();
+    if (result != mav_camera::Result::Success) {
+        return "100";
+    }
+    return std::to_string(value);;
+}
+
+std::string CameraImpl::get_shutter_speed_value() {
+    auto [result, value] = _mav_camera->get_shutter_speed();
+    if (result != mav_camera::Result::Success) {
+        return "1";
+    }
+    return value;
 }
 
 mav::Camera::Result CameraImpl::convert_camera_result_to_mav_result(

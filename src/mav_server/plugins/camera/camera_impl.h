@@ -271,6 +271,14 @@ private:
      */
     std::string get_ev_value();
     /**
+     * @brief get camera iso value
+     */
+    std::string get_iso_value();
+    /**
+     * @brief get shutter speed value
+     */
+    std::string get_shutter_speed_value();
+    /**
      * @brief convert mav_camera::Result to mav::Camera::Result
      */
     mav::Camera::Result convert_camera_result_to_mav_result(mav_camera::Result input_result);
