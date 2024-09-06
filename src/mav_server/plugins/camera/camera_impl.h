@@ -282,6 +282,10 @@ private:
      * @brief convert mav_camera::Result to mav::Camera::Result
      */
     mav::Camera::Result convert_camera_result_to_mav_result(mav_camera::Result input_result);
+    /**
+     * @brief stop video async
+     */
+    void stop_video_async();
 private:
     Camera::ModeCallback _camera_mode_callback;
     Camera::CaptureInfoCallback _capture_info_callback;

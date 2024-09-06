@@ -3,6 +3,7 @@
 #include <dlfcn.h>
 #include <unistd.h>
 
+#include <thread>
 #include "base/log.h"
 
 namespace mav {
@@ -69,7 +70,7 @@ Camera::Result CameraImpl::prepare() {
         return Camera::Result::Error;
     }
 
-    _mav_camera->set_timestamp(1724920934540);
+    _mav_camera->set_timestamp(1725524838897);
     _mav_camera->set_log_path("/data/camera/qcom_cam.log");
 
     mav_camera::Options options;
@@ -158,7 +159,8 @@ Camera::Result CameraImpl::start_video() {
 Camera::Result CameraImpl::stop_video() {
     base::LogDebug() << "call stop video";
     _status.video_on = false;
-    _mav_camera->stop_video();
+    std::thread stop_thread(&CameraImpl::stop_video_async, this);
+    stop_thread.detach();
     return Camera::Result::Success;
 }
 
@@ -626,6 +628,10 @@ mav::Camera::Result CameraImpl::convert_camera_result_to_mav_result(
             break;
     }
     return output_result;
+}
+
+void CameraImpl::stop_video_async() {
+    _mav_camera->stop_video();
 }
 
 }  // namespace mav
