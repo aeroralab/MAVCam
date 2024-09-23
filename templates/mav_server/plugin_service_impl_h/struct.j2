@@ -3,9 +3,9 @@
 {% endfor %}
 
 {% if not name.upper_camel_case.endswith('Result') -%}
-static std::unique_ptr<mavsdk::rpc::{{ plugin_name.lower_snake_case }}::{{ name.upper_camel_case }}> translateToRpc{{ name.upper_camel_case }}(const mav::{{ plugin_name.upper_camel_case }}::{{ name.upper_camel_case }} &{{ name.lower_snake_case }})
+static std::unique_ptr<mavcam::rpc::{{ plugin_name.lower_snake_case }}::{{ name.upper_camel_case }}> translateToRpc{{ name.upper_camel_case }}(const mav::{{ plugin_name.upper_camel_case }}::{{ name.upper_camel_case }} &{{ name.lower_snake_case }})
 {
-    auto rpc_obj = std::make_unique<mavsdk::rpc::{{ plugin_name.lower_snake_case }}::{{ name.upper_camel_case }}>();
+    auto rpc_obj = std::make_unique<mavcam::rpc::{{ plugin_name.lower_snake_case }}::{{ name.upper_camel_case }}>();
 
 {% for field in fields -%}
     {% if field.type_info.is_primitive %}
@@ -41,7 +41,7 @@ static std::unique_ptr<mavsdk::rpc::{{ plugin_name.lower_snake_case }}::{{ name.
     return rpc_obj;
 }
 
-static mav::{{ plugin_name.upper_camel_case }}::{{ name.upper_camel_case }} translateFromRpc{{ name.upper_camel_case }}(const mavsdk::rpc::{{ plugin_name.lower_snake_case }}::{{ name.upper_camel_case }}& {{ name.lower_snake_case }})
+static mav::{{ plugin_name.upper_camel_case }}::{{ name.upper_camel_case }} translateFromRpc{{ name.upper_camel_case }}(const mavcam::rpc::{{ plugin_name.lower_snake_case }}::{{ name.upper_camel_case }}& {{ name.lower_snake_case }})
 {
     mav::{{ plugin_name.upper_camel_case }}::{{ name.upper_camel_case }} obj;
 
@@ -57,7 +57,7 @@ static mav::{{ plugin_name.upper_camel_case }}::{{ name.upper_camel_case }} tran
     {% else %}
         {% if field.type_info.is_repeated %}
             for (const auto& elem : {{ name.lower_snake_case }}.{{ field.name.lower_snake_case }}()) {
-                obj.{{ field.name.lower_snake_case }}.push_back(translateFromRpc{{ field.type_info.inner_name }}(static_cast<mavsdk::rpc::{{ plugin_name.lower_snake_case }}::{% if field.parent_struct %}{{ field.parent_struct.name.upper_camel_case }}::{% endif %}{{ field.type_info.inner_name }}>(elem)));
+                obj.{{ field.name.lower_snake_case }}.push_back(translateFromRpc{{ field.type_info.inner_name }}(static_cast<mavcam::rpc::{{ plugin_name.lower_snake_case }}::{% if field.parent_struct %}{{ field.parent_struct.name.upper_camel_case }}::{% endif %}{{ field.type_info.inner_name }}>(elem)));
             }
         {% else %}
     obj.{{ field.name.lower_snake_case }} = translateFromRpc{% if field.parent_struct %}{{ field.parent_struct.name.upper_camel_case }}{% endif%}{{ field.type_info.name }}({{ name.lower_snake_case }}.{{ field.name.lower_snake_case }}());

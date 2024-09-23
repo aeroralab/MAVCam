@@ -115,10 +115,10 @@ void usage(const char *bin_name) {
               << "\t-u             : set the url on which the mavsdk server is running,"
               << " (default is " << default_connection << ")" << '\n'
               << "\t-l             : use local client" << '\n'
-              << "\t-r             : set the remote port," << " (default is " << default_rpc_port
-              << ")\n"
-              << "\t-f | --ftp_path: set the ftp root path," << " (default is " << default_ftp_path
-              << ")" << '\n'
+              << "\t-r             : set the remote port,"
+              << " (default is " << default_rpc_port << ")\n"
+              << "\t-f | --ftp_path: set the ftp root path,"
+              << " (default is " << default_ftp_path << ")" << '\n'
               << "\t--log_path     : store output log to file path, default is " << default_log_path
               << '\n';
 }

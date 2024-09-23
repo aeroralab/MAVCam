@@ -4,6 +4,7 @@
 #include <unistd.h>
 
 #include <thread>
+
 #include "base/log.h"
 
 namespace mav {
@@ -70,7 +71,7 @@ Camera::Result CameraImpl::prepare() {
         return Camera::Result::Error;
     }
 
-    _mav_camera->set_timestamp(1725524838897);
+    _mav_camera->set_timestamp(1727083216503);
     _mav_camera->set_log_path("/data/camera/qcom_cam.log");
 
     mav_camera::Options options;
@@ -105,8 +106,6 @@ Camera::Result CameraImpl::prepare() {
     } else {
         _settings.emplace_back(build_setting(kCameraModeName, "1"));
     }
-
-    _mav_camera->start_streaming(kStreamingUrl);
 
     _mav_camera->subscribe_storage_information(
         [&](mav_camera::Result result, mav_camera::StorageInformation storage_information) {
@@ -291,6 +290,10 @@ void CameraImpl::capture_info_async(const Camera::CaptureInfoCallback &callback)
     _capture_info_callback = callback;
 }
 
+Camera::CaptureInfo CameraImpl::capture_info() const {
+    return Camera::CaptureInfo();
+}
+
 void CameraImpl::status_async(const Camera::StatusCallback &callback) {
     // base::LogDebug() << "call status_async";
     callback(status());
@@ -350,6 +353,10 @@ Camera::Status CameraImpl::status() const {
 void CameraImpl::current_settings_async(const Camera::CurrentSettingsCallback &callback) {
     base::LogDebug() << "call current_settings_async";
     callback(_settings);
+}
+
+std::vector<Camera::Setting> CameraImpl::current_settings() const {
+    return _settings;
 }
 
 void CameraImpl::possible_setting_options_async(
@@ -584,7 +591,7 @@ std::string CameraImpl::get_iso_value() {
     if (result != mav_camera::Result::Success) {
         return "100";
     }
-    return std::to_string(value);;
+    return std::to_string(value);
 }
 
 std::string CameraImpl::get_shutter_speed_value() {

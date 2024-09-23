@@ -36,7 +36,7 @@
 #include "google/protobuf/extension_set.h"  // IWYU pragma: export
 #include "google/protobuf/generated_enum_reflection.h"
 #include "google/protobuf/unknown_field_set.h"
-#include "mavsdk_options.pb.h"
+#include "mavcam_options.pb.h"
 // @@protoc_insertion_point(includes)
 
 // Must be included last.
@@ -58,7 +58,7 @@ struct TableStruct_camera_2fcamera_2eproto {
 };
 extern const ::google::protobuf::internal::DescriptorTable
     descriptor_table_camera_2fcamera_2eproto;
-namespace mavsdk {
+namespace mavcam {
 namespace rpc {
 namespace camera {
 class CameraResult;
@@ -237,13 +237,13 @@ struct VideoStreamSettingsDefaultTypeInternal;
 extern VideoStreamSettingsDefaultTypeInternal _VideoStreamSettings_default_instance_;
 }  // namespace camera
 }  // namespace rpc
-}  // namespace mavsdk
+}  // namespace mavcam
 namespace google {
 namespace protobuf {
 }  // namespace protobuf
 }  // namespace google
 
-namespace mavsdk {
+namespace mavcam {
 namespace rpc {
 namespace camera {
 enum CameraResult_Result : int {
@@ -537,7 +537,7 @@ inline bool PhotosRange_Parse(absl::string_view name, PhotosRange* value) {
 // -------------------------------------------------------------------
 
 class VideoStreamSettings final :
-    public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:mavsdk.rpc.camera.VideoStreamSettings) */ {
+    public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:mavcam.rpc.camera.VideoStreamSettings) */ {
  public:
   inline VideoStreamSettings() : VideoStreamSettings(nullptr) {}
   ~VideoStreamSettings() override;
@@ -651,7 +651,7 @@ class VideoStreamSettings final :
   private:
   friend class ::google::protobuf::internal::AnyMetadata;
   static ::absl::string_view FullMessageName() {
-    return "mavsdk.rpc.camera.VideoStreamSettings";
+    return "mavcam.rpc.camera.VideoStreamSettings";
   }
   protected:
   explicit VideoStreamSettings(::google::protobuf::Arena* arena);
@@ -752,7 +752,7 @@ class VideoStreamSettings final :
   void _internal_set_horizontal_fov_deg(float value);
 
   public:
-  // @@protoc_insertion_point(class_scope:mavsdk.rpc.camera.VideoStreamSettings)
+  // @@protoc_insertion_point(class_scope:mavcam.rpc.camera.VideoStreamSettings)
  private:
   class _Internal;
 
@@ -790,7 +790,7 @@ class VideoStreamSettings final :
 };// -------------------------------------------------------------------
 
 class TakePhotoRequest final :
-    public ::google::protobuf::internal::ZeroFieldsBase /* @@protoc_insertion_point(class_definition:mavsdk.rpc.camera.TakePhotoRequest) */ {
+    public ::google::protobuf::internal::ZeroFieldsBase /* @@protoc_insertion_point(class_definition:mavcam.rpc.camera.TakePhotoRequest) */ {
  public:
   inline TakePhotoRequest() : TakePhotoRequest(nullptr) {}
   template<typename = void>
@@ -889,7 +889,7 @@ class TakePhotoRequest final :
   private:
   friend class ::google::protobuf::internal::AnyMetadata;
   static ::absl::string_view FullMessageName() {
-    return "mavsdk.rpc.camera.TakePhotoRequest";
+    return "mavcam.rpc.camera.TakePhotoRequest";
   }
   protected:
   explicit TakePhotoRequest(::google::protobuf::Arena* arena);
@@ -902,7 +902,7 @@ class TakePhotoRequest final :
 
   // accessors -------------------------------------------------------
 
-  // @@protoc_insertion_point(class_scope:mavsdk.rpc.camera.TakePhotoRequest)
+  // @@protoc_insertion_point(class_scope:mavcam.rpc.camera.TakePhotoRequest)
  private:
   class _Internal;
 
@@ -926,7 +926,7 @@ class TakePhotoRequest final :
 };// -------------------------------------------------------------------
 
 class SubscribeVideoStreamInfoRequest final :
-    public ::google::protobuf::internal::ZeroFieldsBase /* @@protoc_insertion_point(class_definition:mavsdk.rpc.camera.SubscribeVideoStreamInfoRequest) */ {
+    public ::google::protobuf::internal::ZeroFieldsBase /* @@protoc_insertion_point(class_definition:mavcam.rpc.camera.SubscribeVideoStreamInfoRequest) */ {
  public:
   inline SubscribeVideoStreamInfoRequest() : SubscribeVideoStreamInfoRequest(nullptr) {}
   template<typename = void>
@@ -1025,7 +1025,7 @@ class SubscribeVideoStreamInfoRequest final :
   private:
   friend class ::google::protobuf::internal::AnyMetadata;
   static ::absl::string_view FullMessageName() {
-    return "mavsdk.rpc.camera.SubscribeVideoStreamInfoRequest";
+    return "mavcam.rpc.camera.SubscribeVideoStreamInfoRequest";
   }
   protected:
   explicit SubscribeVideoStreamInfoRequest(::google::protobuf::Arena* arena);
@@ -1038,7 +1038,7 @@ class SubscribeVideoStreamInfoRequest final :
 
   // accessors -------------------------------------------------------
 
-  // @@protoc_insertion_point(class_scope:mavsdk.rpc.camera.SubscribeVideoStreamInfoRequest)
+  // @@protoc_insertion_point(class_scope:mavcam.rpc.camera.SubscribeVideoStreamInfoRequest)
  private:
   class _Internal;
 
@@ -1062,7 +1062,7 @@ class SubscribeVideoStreamInfoRequest final :
 };// -------------------------------------------------------------------
 
 class SubscribeStatusRequest final :
-    public ::google::protobuf::internal::ZeroFieldsBase /* @@protoc_insertion_point(class_definition:mavsdk.rpc.camera.SubscribeStatusRequest) */ {
+    public ::google::protobuf::internal::ZeroFieldsBase /* @@protoc_insertion_point(class_definition:mavcam.rpc.camera.SubscribeStatusRequest) */ {
  public:
   inline SubscribeStatusRequest() : SubscribeStatusRequest(nullptr) {}
   template<typename = void>
@@ -1161,7 +1161,7 @@ class SubscribeStatusRequest final :
   private:
   friend class ::google::protobuf::internal::AnyMetadata;
   static ::absl::string_view FullMessageName() {
-    return "mavsdk.rpc.camera.SubscribeStatusRequest";
+    return "mavcam.rpc.camera.SubscribeStatusRequest";
   }
   protected:
   explicit SubscribeStatusRequest(::google::protobuf::Arena* arena);
@@ -1174,7 +1174,7 @@ class SubscribeStatusRequest final :
 
   // accessors -------------------------------------------------------
 
-  // @@protoc_insertion_point(class_scope:mavsdk.rpc.camera.SubscribeStatusRequest)
+  // @@protoc_insertion_point(class_scope:mavcam.rpc.camera.SubscribeStatusRequest)
  private:
   class _Internal;
 
@@ -1198,7 +1198,7 @@ class SubscribeStatusRequest final :
 };// -------------------------------------------------------------------
 
 class SubscribePossibleSettingOptionsRequest final :
-    public ::google::protobuf::internal::ZeroFieldsBase /* @@protoc_insertion_point(class_definition:mavsdk.rpc.camera.SubscribePossibleSettingOptionsRequest) */ {
+    public ::google::protobuf::internal::ZeroFieldsBase /* @@protoc_insertion_point(class_definition:mavcam.rpc.camera.SubscribePossibleSettingOptionsRequest) */ {
  public:
   inline SubscribePossibleSettingOptionsRequest() : SubscribePossibleSettingOptionsRequest(nullptr) {}
   template<typename = void>
@@ -1297,7 +1297,7 @@ class SubscribePossibleSettingOptionsRequest final :
   private:
   friend class ::google::protobuf::internal::AnyMetadata;
   static ::absl::string_view FullMessageName() {
-    return "mavsdk.rpc.camera.SubscribePossibleSettingOptionsRequest";
+    return "mavcam.rpc.camera.SubscribePossibleSettingOptionsRequest";
   }
   protected:
   explicit SubscribePossibleSettingOptionsRequest(::google::protobuf::Arena* arena);
@@ -1310,7 +1310,7 @@ class SubscribePossibleSettingOptionsRequest final :
 
   // accessors -------------------------------------------------------
 
-  // @@protoc_insertion_point(class_scope:mavsdk.rpc.camera.SubscribePossibleSettingOptionsRequest)
+  // @@protoc_insertion_point(class_scope:mavcam.rpc.camera.SubscribePossibleSettingOptionsRequest)
  private:
   class _Internal;
 
@@ -1334,7 +1334,7 @@ class SubscribePossibleSettingOptionsRequest final :
 };// -------------------------------------------------------------------
 
 class SubscribeModeRequest final :
-    public ::google::protobuf::internal::ZeroFieldsBase /* @@protoc_insertion_point(class_definition:mavsdk.rpc.camera.SubscribeModeRequest) */ {
+    public ::google::protobuf::internal::ZeroFieldsBase /* @@protoc_insertion_point(class_definition:mavcam.rpc.camera.SubscribeModeRequest) */ {
  public:
   inline SubscribeModeRequest() : SubscribeModeRequest(nullptr) {}
   template<typename = void>
@@ -1433,7 +1433,7 @@ class SubscribeModeRequest final :
   private:
   friend class ::google::protobuf::internal::AnyMetadata;
   static ::absl::string_view FullMessageName() {
-    return "mavsdk.rpc.camera.SubscribeModeRequest";
+    return "mavcam.rpc.camera.SubscribeModeRequest";
   }
   protected:
   explicit SubscribeModeRequest(::google::protobuf::Arena* arena);
@@ -1446,7 +1446,7 @@ class SubscribeModeRequest final :
 
   // accessors -------------------------------------------------------
 
-  // @@protoc_insertion_point(class_scope:mavsdk.rpc.camera.SubscribeModeRequest)
+  // @@protoc_insertion_point(class_scope:mavcam.rpc.camera.SubscribeModeRequest)
  private:
   class _Internal;
 
@@ -1470,7 +1470,7 @@ class SubscribeModeRequest final :
 };// -------------------------------------------------------------------
 
 class SubscribeInformationRequest final :
-    public ::google::protobuf::internal::ZeroFieldsBase /* @@protoc_insertion_point(class_definition:mavsdk.rpc.camera.SubscribeInformationRequest) */ {
+    public ::google::protobuf::internal::ZeroFieldsBase /* @@protoc_insertion_point(class_definition:mavcam.rpc.camera.SubscribeInformationRequest) */ {
  public:
   inline SubscribeInformationRequest() : SubscribeInformationRequest(nullptr) {}
   template<typename = void>
@@ -1569,7 +1569,7 @@ class SubscribeInformationRequest final :
   private:
   friend class ::google::protobuf::internal::AnyMetadata;
   static ::absl::string_view FullMessageName() {
-    return "mavsdk.rpc.camera.SubscribeInformationRequest";
+    return "mavcam.rpc.camera.SubscribeInformationRequest";
   }
   protected:
   explicit SubscribeInformationRequest(::google::protobuf::Arena* arena);
@@ -1582,7 +1582,7 @@ class SubscribeInformationRequest final :
 
   // accessors -------------------------------------------------------
 
-  // @@protoc_insertion_point(class_scope:mavsdk.rpc.camera.SubscribeInformationRequest)
+  // @@protoc_insertion_point(class_scope:mavcam.rpc.camera.SubscribeInformationRequest)
  private:
   class _Internal;
 
@@ -1606,7 +1606,7 @@ class SubscribeInformationRequest final :
 };// -------------------------------------------------------------------
 
 class SubscribeCurrentSettingsRequest final :
-    public ::google::protobuf::internal::ZeroFieldsBase /* @@protoc_insertion_point(class_definition:mavsdk.rpc.camera.SubscribeCurrentSettingsRequest) */ {
+    public ::google::protobuf::internal::ZeroFieldsBase /* @@protoc_insertion_point(class_definition:mavcam.rpc.camera.SubscribeCurrentSettingsRequest) */ {
  public:
   inline SubscribeCurrentSettingsRequest() : SubscribeCurrentSettingsRequest(nullptr) {}
   template<typename = void>
@@ -1705,7 +1705,7 @@ class SubscribeCurrentSettingsRequest final :
   private:
   friend class ::google::protobuf::internal::AnyMetadata;
   static ::absl::string_view FullMessageName() {
-    return "mavsdk.rpc.camera.SubscribeCurrentSettingsRequest";
+    return "mavcam.rpc.camera.SubscribeCurrentSettingsRequest";
   }
   protected:
   explicit SubscribeCurrentSettingsRequest(::google::protobuf::Arena* arena);
@@ -1718,7 +1718,7 @@ class SubscribeCurrentSettingsRequest final :
 
   // accessors -------------------------------------------------------
 
-  // @@protoc_insertion_point(class_scope:mavsdk.rpc.camera.SubscribeCurrentSettingsRequest)
+  // @@protoc_insertion_point(class_scope:mavcam.rpc.camera.SubscribeCurrentSettingsRequest)
  private:
   class _Internal;
 
@@ -1742,7 +1742,7 @@ class SubscribeCurrentSettingsRequest final :
 };// -------------------------------------------------------------------
 
 class SubscribeCaptureInfoRequest final :
-    public ::google::protobuf::internal::ZeroFieldsBase /* @@protoc_insertion_point(class_definition:mavsdk.rpc.camera.SubscribeCaptureInfoRequest) */ {
+    public ::google::protobuf::internal::ZeroFieldsBase /* @@protoc_insertion_point(class_definition:mavcam.rpc.camera.SubscribeCaptureInfoRequest) */ {
  public:
   inline SubscribeCaptureInfoRequest() : SubscribeCaptureInfoRequest(nullptr) {}
   template<typename = void>
@@ -1841,7 +1841,7 @@ class SubscribeCaptureInfoRequest final :
   private:
   friend class ::google::protobuf::internal::AnyMetadata;
   static ::absl::string_view FullMessageName() {
-    return "mavsdk.rpc.camera.SubscribeCaptureInfoRequest";
+    return "mavcam.rpc.camera.SubscribeCaptureInfoRequest";
   }
   protected:
   explicit SubscribeCaptureInfoRequest(::google::protobuf::Arena* arena);
@@ -1854,7 +1854,7 @@ class SubscribeCaptureInfoRequest final :
 
   // accessors -------------------------------------------------------
 
-  // @@protoc_insertion_point(class_scope:mavsdk.rpc.camera.SubscribeCaptureInfoRequest)
+  // @@protoc_insertion_point(class_scope:mavcam.rpc.camera.SubscribeCaptureInfoRequest)
  private:
   class _Internal;
 
@@ -1878,7 +1878,7 @@ class SubscribeCaptureInfoRequest final :
 };// -------------------------------------------------------------------
 
 class StopVideoStreamingRequest final :
-    public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:mavsdk.rpc.camera.StopVideoStreamingRequest) */ {
+    public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:mavcam.rpc.camera.StopVideoStreamingRequest) */ {
  public:
   inline StopVideoStreamingRequest() : StopVideoStreamingRequest(nullptr) {}
   ~StopVideoStreamingRequest() override;
@@ -1992,7 +1992,7 @@ class StopVideoStreamingRequest final :
   private:
   friend class ::google::protobuf::internal::AnyMetadata;
   static ::absl::string_view FullMessageName() {
-    return "mavsdk.rpc.camera.StopVideoStreamingRequest";
+    return "mavcam.rpc.camera.StopVideoStreamingRequest";
   }
   protected:
   explicit StopVideoStreamingRequest(::google::protobuf::Arena* arena);
@@ -2021,7 +2021,7 @@ class StopVideoStreamingRequest final :
   void _internal_set_stream_id(::int32_t value);
 
   public:
-  // @@protoc_insertion_point(class_scope:mavsdk.rpc.camera.StopVideoStreamingRequest)
+  // @@protoc_insertion_point(class_scope:mavcam.rpc.camera.StopVideoStreamingRequest)
  private:
   class _Internal;
 
@@ -2053,7 +2053,7 @@ class StopVideoStreamingRequest final :
 };// -------------------------------------------------------------------
 
 class StopVideoRequest final :
-    public ::google::protobuf::internal::ZeroFieldsBase /* @@protoc_insertion_point(class_definition:mavsdk.rpc.camera.StopVideoRequest) */ {
+    public ::google::protobuf::internal::ZeroFieldsBase /* @@protoc_insertion_point(class_definition:mavcam.rpc.camera.StopVideoRequest) */ {
  public:
   inline StopVideoRequest() : StopVideoRequest(nullptr) {}
   template<typename = void>
@@ -2152,7 +2152,7 @@ class StopVideoRequest final :
   private:
   friend class ::google::protobuf::internal::AnyMetadata;
   static ::absl::string_view FullMessageName() {
-    return "mavsdk.rpc.camera.StopVideoRequest";
+    return "mavcam.rpc.camera.StopVideoRequest";
   }
   protected:
   explicit StopVideoRequest(::google::protobuf::Arena* arena);
@@ -2165,7 +2165,7 @@ class StopVideoRequest final :
 
   // accessors -------------------------------------------------------
 
-  // @@protoc_insertion_point(class_scope:mavsdk.rpc.camera.StopVideoRequest)
+  // @@protoc_insertion_point(class_scope:mavcam.rpc.camera.StopVideoRequest)
  private:
   class _Internal;
 
@@ -2189,7 +2189,7 @@ class StopVideoRequest final :
 };// -------------------------------------------------------------------
 
 class StopPhotoIntervalRequest final :
-    public ::google::protobuf::internal::ZeroFieldsBase /* @@protoc_insertion_point(class_definition:mavsdk.rpc.camera.StopPhotoIntervalRequest) */ {
+    public ::google::protobuf::internal::ZeroFieldsBase /* @@protoc_insertion_point(class_definition:mavcam.rpc.camera.StopPhotoIntervalRequest) */ {
  public:
   inline StopPhotoIntervalRequest() : StopPhotoIntervalRequest(nullptr) {}
   template<typename = void>
@@ -2288,7 +2288,7 @@ class StopPhotoIntervalRequest final :
   private:
   friend class ::google::protobuf::internal::AnyMetadata;
   static ::absl::string_view FullMessageName() {
-    return "mavsdk.rpc.camera.StopPhotoIntervalRequest";
+    return "mavcam.rpc.camera.StopPhotoIntervalRequest";
   }
   protected:
   explicit StopPhotoIntervalRequest(::google::protobuf::Arena* arena);
@@ -2301,7 +2301,7 @@ class StopPhotoIntervalRequest final :
 
   // accessors -------------------------------------------------------
 
-  // @@protoc_insertion_point(class_scope:mavsdk.rpc.camera.StopPhotoIntervalRequest)
+  // @@protoc_insertion_point(class_scope:mavcam.rpc.camera.StopPhotoIntervalRequest)
  private:
   class _Internal;
 
@@ -2325,7 +2325,7 @@ class StopPhotoIntervalRequest final :
 };// -------------------------------------------------------------------
 
 class Status final :
-    public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:mavsdk.rpc.camera.Status) */ {
+    public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:mavcam.rpc.camera.Status) */ {
  public:
   inline Status() : Status(nullptr) {}
   ~Status() override;
@@ -2439,7 +2439,7 @@ class Status final :
   private:
   friend class ::google::protobuf::internal::AnyMetadata;
   static ::absl::string_view FullMessageName() {
-    return "mavsdk.rpc.camera.Status";
+    return "mavcam.rpc.camera.Status";
   }
   protected:
   explicit Status(::google::protobuf::Arena* arena);
@@ -2589,14 +2589,14 @@ class Status final :
   void _internal_set_recording_time_s(float value);
 
   public:
-  // .mavsdk.rpc.camera.Status.StorageStatus storage_status = 8;
+  // .mavcam.rpc.camera.Status.StorageStatus storage_status = 8;
   void clear_storage_status() ;
-  ::mavsdk::rpc::camera::Status_StorageStatus storage_status() const;
-  void set_storage_status(::mavsdk::rpc::camera::Status_StorageStatus value);
+  ::mavcam::rpc::camera::Status_StorageStatus storage_status() const;
+  void set_storage_status(::mavcam::rpc::camera::Status_StorageStatus value);
 
   private:
-  ::mavsdk::rpc::camera::Status_StorageStatus _internal_storage_status() const;
-  void _internal_set_storage_status(::mavsdk::rpc::camera::Status_StorageStatus value);
+  ::mavcam::rpc::camera::Status_StorageStatus _internal_storage_status() const;
+  void _internal_set_storage_status(::mavcam::rpc::camera::Status_StorageStatus value);
 
   public:
   // uint32 storage_id = 9;
@@ -2609,17 +2609,17 @@ class Status final :
   void _internal_set_storage_id(::uint32_t value);
 
   public:
-  // .mavsdk.rpc.camera.Status.StorageType storage_type = 10;
+  // .mavcam.rpc.camera.Status.StorageType storage_type = 10;
   void clear_storage_type() ;
-  ::mavsdk::rpc::camera::Status_StorageType storage_type() const;
-  void set_storage_type(::mavsdk::rpc::camera::Status_StorageType value);
+  ::mavcam::rpc::camera::Status_StorageType storage_type() const;
+  void set_storage_type(::mavcam::rpc::camera::Status_StorageType value);
 
   private:
-  ::mavsdk::rpc::camera::Status_StorageType _internal_storage_type() const;
-  void _internal_set_storage_type(::mavsdk::rpc::camera::Status_StorageType value);
+  ::mavcam::rpc::camera::Status_StorageType _internal_storage_type() const;
+  void _internal_set_storage_type(::mavcam::rpc::camera::Status_StorageType value);
 
   public:
-  // @@protoc_insertion_point(class_scope:mavsdk.rpc.camera.Status)
+  // @@protoc_insertion_point(class_scope:mavcam.rpc.camera.Status)
  private:
   class _Internal;
 
@@ -2660,7 +2660,7 @@ class Status final :
 };// -------------------------------------------------------------------
 
 class StartVideoStreamingRequest final :
-    public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:mavsdk.rpc.camera.StartVideoStreamingRequest) */ {
+    public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:mavcam.rpc.camera.StartVideoStreamingRequest) */ {
  public:
   inline StartVideoStreamingRequest() : StartVideoStreamingRequest(nullptr) {}
   ~StartVideoStreamingRequest() override;
@@ -2774,7 +2774,7 @@ class StartVideoStreamingRequest final :
   private:
   friend class ::google::protobuf::internal::AnyMetadata;
   static ::absl::string_view FullMessageName() {
-    return "mavsdk.rpc.camera.StartVideoStreamingRequest";
+    return "mavcam.rpc.camera.StartVideoStreamingRequest";
   }
   protected:
   explicit StartVideoStreamingRequest(::google::protobuf::Arena* arena);
@@ -2803,7 +2803,7 @@ class StartVideoStreamingRequest final :
   void _internal_set_stream_id(::int32_t value);
 
   public:
-  // @@protoc_insertion_point(class_scope:mavsdk.rpc.camera.StartVideoStreamingRequest)
+  // @@protoc_insertion_point(class_scope:mavcam.rpc.camera.StartVideoStreamingRequest)
  private:
   class _Internal;
 
@@ -2835,7 +2835,7 @@ class StartVideoStreamingRequest final :
 };// -------------------------------------------------------------------
 
 class StartVideoRequest final :
-    public ::google::protobuf::internal::ZeroFieldsBase /* @@protoc_insertion_point(class_definition:mavsdk.rpc.camera.StartVideoRequest) */ {
+    public ::google::protobuf::internal::ZeroFieldsBase /* @@protoc_insertion_point(class_definition:mavcam.rpc.camera.StartVideoRequest) */ {
  public:
   inline StartVideoRequest() : StartVideoRequest(nullptr) {}
   template<typename = void>
@@ -2934,7 +2934,7 @@ class StartVideoRequest final :
   private:
   friend class ::google::protobuf::internal::AnyMetadata;
   static ::absl::string_view FullMessageName() {
-    return "mavsdk.rpc.camera.StartVideoRequest";
+    return "mavcam.rpc.camera.StartVideoRequest";
   }
   protected:
   explicit StartVideoRequest(::google::protobuf::Arena* arena);
@@ -2947,7 +2947,7 @@ class StartVideoRequest final :
 
   // accessors -------------------------------------------------------
 
-  // @@protoc_insertion_point(class_scope:mavsdk.rpc.camera.StartVideoRequest)
+  // @@protoc_insertion_point(class_scope:mavcam.rpc.camera.StartVideoRequest)
  private:
   class _Internal;
 
@@ -2971,7 +2971,7 @@ class StartVideoRequest final :
 };// -------------------------------------------------------------------
 
 class StartPhotoIntervalRequest final :
-    public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:mavsdk.rpc.camera.StartPhotoIntervalRequest) */ {
+    public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:mavcam.rpc.camera.StartPhotoIntervalRequest) */ {
  public:
   inline StartPhotoIntervalRequest() : StartPhotoIntervalRequest(nullptr) {}
   ~StartPhotoIntervalRequest() override;
@@ -3085,7 +3085,7 @@ class StartPhotoIntervalRequest final :
   private:
   friend class ::google::protobuf::internal::AnyMetadata;
   static ::absl::string_view FullMessageName() {
-    return "mavsdk.rpc.camera.StartPhotoIntervalRequest";
+    return "mavcam.rpc.camera.StartPhotoIntervalRequest";
   }
   protected:
   explicit StartPhotoIntervalRequest(::google::protobuf::Arena* arena);
@@ -3114,7 +3114,7 @@ class StartPhotoIntervalRequest final :
   void _internal_set_interval_s(float value);
 
   public:
-  // @@protoc_insertion_point(class_scope:mavsdk.rpc.camera.StartPhotoIntervalRequest)
+  // @@protoc_insertion_point(class_scope:mavcam.rpc.camera.StartPhotoIntervalRequest)
  private:
   class _Internal;
 
@@ -3146,7 +3146,7 @@ class StartPhotoIntervalRequest final :
 };// -------------------------------------------------------------------
 
 class SetModeRequest final :
-    public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:mavsdk.rpc.camera.SetModeRequest) */ {
+    public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:mavcam.rpc.camera.SetModeRequest) */ {
  public:
   inline SetModeRequest() : SetModeRequest(nullptr) {}
   ~SetModeRequest() override;
@@ -3260,7 +3260,7 @@ class SetModeRequest final :
   private:
   friend class ::google::protobuf::internal::AnyMetadata;
   static ::absl::string_view FullMessageName() {
-    return "mavsdk.rpc.camera.SetModeRequest";
+    return "mavcam.rpc.camera.SetModeRequest";
   }
   protected:
   explicit SetModeRequest(::google::protobuf::Arena* arena);
@@ -3279,17 +3279,17 @@ class SetModeRequest final :
   enum : int {
     kModeFieldNumber = 1,
   };
-  // .mavsdk.rpc.camera.Mode mode = 1;
+  // .mavcam.rpc.camera.Mode mode = 1;
   void clear_mode() ;
-  ::mavsdk::rpc::camera::Mode mode() const;
-  void set_mode(::mavsdk::rpc::camera::Mode value);
+  ::mavcam::rpc::camera::Mode mode() const;
+  void set_mode(::mavcam::rpc::camera::Mode value);
 
   private:
-  ::mavsdk::rpc::camera::Mode _internal_mode() const;
-  void _internal_set_mode(::mavsdk::rpc::camera::Mode value);
+  ::mavcam::rpc::camera::Mode _internal_mode() const;
+  void _internal_set_mode(::mavcam::rpc::camera::Mode value);
 
   public:
-  // @@protoc_insertion_point(class_scope:mavsdk.rpc.camera.SetModeRequest)
+  // @@protoc_insertion_point(class_scope:mavcam.rpc.camera.SetModeRequest)
  private:
   class _Internal;
 
@@ -3321,7 +3321,7 @@ class SetModeRequest final :
 };// -------------------------------------------------------------------
 
 class SetDefinitionDataRequest final :
-    public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:mavsdk.rpc.camera.SetDefinitionDataRequest) */ {
+    public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:mavcam.rpc.camera.SetDefinitionDataRequest) */ {
  public:
   inline SetDefinitionDataRequest() : SetDefinitionDataRequest(nullptr) {}
   ~SetDefinitionDataRequest() override;
@@ -3435,7 +3435,7 @@ class SetDefinitionDataRequest final :
   private:
   friend class ::google::protobuf::internal::AnyMetadata;
   static ::absl::string_view FullMessageName() {
-    return "mavsdk.rpc.camera.SetDefinitionDataRequest";
+    return "mavcam.rpc.camera.SetDefinitionDataRequest";
   }
   protected:
   explicit SetDefinitionDataRequest(::google::protobuf::Arena* arena);
@@ -3470,7 +3470,7 @@ class SetDefinitionDataRequest final :
   std::string* _internal_mutable_definition_data();
 
   public:
-  // @@protoc_insertion_point(class_scope:mavsdk.rpc.camera.SetDefinitionDataRequest)
+  // @@protoc_insertion_point(class_scope:mavcam.rpc.camera.SetDefinitionDataRequest)
  private:
   class _Internal;
 
@@ -3502,7 +3502,7 @@ class SetDefinitionDataRequest final :
 };// -------------------------------------------------------------------
 
 class SelectCameraRequest final :
-    public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:mavsdk.rpc.camera.SelectCameraRequest) */ {
+    public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:mavcam.rpc.camera.SelectCameraRequest) */ {
  public:
   inline SelectCameraRequest() : SelectCameraRequest(nullptr) {}
   ~SelectCameraRequest() override;
@@ -3616,7 +3616,7 @@ class SelectCameraRequest final :
   private:
   friend class ::google::protobuf::internal::AnyMetadata;
   static ::absl::string_view FullMessageName() {
-    return "mavsdk.rpc.camera.SelectCameraRequest";
+    return "mavcam.rpc.camera.SelectCameraRequest";
   }
   protected:
   explicit SelectCameraRequest(::google::protobuf::Arena* arena);
@@ -3645,7 +3645,7 @@ class SelectCameraRequest final :
   void _internal_set_camera_id(::int32_t value);
 
   public:
-  // @@protoc_insertion_point(class_scope:mavsdk.rpc.camera.SelectCameraRequest)
+  // @@protoc_insertion_point(class_scope:mavcam.rpc.camera.SelectCameraRequest)
  private:
   class _Internal;
 
@@ -3677,7 +3677,7 @@ class SelectCameraRequest final :
 };// -------------------------------------------------------------------
 
 class ResetSettingsRequest final :
-    public ::google::protobuf::internal::ZeroFieldsBase /* @@protoc_insertion_point(class_definition:mavsdk.rpc.camera.ResetSettingsRequest) */ {
+    public ::google::protobuf::internal::ZeroFieldsBase /* @@protoc_insertion_point(class_definition:mavcam.rpc.camera.ResetSettingsRequest) */ {
  public:
   inline ResetSettingsRequest() : ResetSettingsRequest(nullptr) {}
   template<typename = void>
@@ -3776,7 +3776,7 @@ class ResetSettingsRequest final :
   private:
   friend class ::google::protobuf::internal::AnyMetadata;
   static ::absl::string_view FullMessageName() {
-    return "mavsdk.rpc.camera.ResetSettingsRequest";
+    return "mavcam.rpc.camera.ResetSettingsRequest";
   }
   protected:
   explicit ResetSettingsRequest(::google::protobuf::Arena* arena);
@@ -3789,7 +3789,7 @@ class ResetSettingsRequest final :
 
   // accessors -------------------------------------------------------
 
-  // @@protoc_insertion_point(class_scope:mavsdk.rpc.camera.ResetSettingsRequest)
+  // @@protoc_insertion_point(class_scope:mavcam.rpc.camera.ResetSettingsRequest)
  private:
   class _Internal;
 
@@ -3813,7 +3813,7 @@ class ResetSettingsRequest final :
 };// -------------------------------------------------------------------
 
 class Quaternion final :
-    public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:mavsdk.rpc.camera.Quaternion) */ {
+    public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:mavcam.rpc.camera.Quaternion) */ {
  public:
   inline Quaternion() : Quaternion(nullptr) {}
   ~Quaternion() override;
@@ -3927,7 +3927,7 @@ class Quaternion final :
   private:
   friend class ::google::protobuf::internal::AnyMetadata;
   static ::absl::string_view FullMessageName() {
-    return "mavsdk.rpc.camera.Quaternion";
+    return "mavcam.rpc.camera.Quaternion";
   }
   protected:
   explicit Quaternion(::google::protobuf::Arena* arena);
@@ -3989,7 +3989,7 @@ class Quaternion final :
   void _internal_set_z(float value);
 
   public:
-  // @@protoc_insertion_point(class_scope:mavsdk.rpc.camera.Quaternion)
+  // @@protoc_insertion_point(class_scope:mavcam.rpc.camera.Quaternion)
  private:
   class _Internal;
 
@@ -4024,7 +4024,7 @@ class Quaternion final :
 };// -------------------------------------------------------------------
 
 class PrepareRequest final :
-    public ::google::protobuf::internal::ZeroFieldsBase /* @@protoc_insertion_point(class_definition:mavsdk.rpc.camera.PrepareRequest) */ {
+    public ::google::protobuf::internal::ZeroFieldsBase /* @@protoc_insertion_point(class_definition:mavcam.rpc.camera.PrepareRequest) */ {
  public:
   inline PrepareRequest() : PrepareRequest(nullptr) {}
   template<typename = void>
@@ -4123,7 +4123,7 @@ class PrepareRequest final :
   private:
   friend class ::google::protobuf::internal::AnyMetadata;
   static ::absl::string_view FullMessageName() {
-    return "mavsdk.rpc.camera.PrepareRequest";
+    return "mavcam.rpc.camera.PrepareRequest";
   }
   protected:
   explicit PrepareRequest(::google::protobuf::Arena* arena);
@@ -4136,7 +4136,7 @@ class PrepareRequest final :
 
   // accessors -------------------------------------------------------
 
-  // @@protoc_insertion_point(class_scope:mavsdk.rpc.camera.PrepareRequest)
+  // @@protoc_insertion_point(class_scope:mavcam.rpc.camera.PrepareRequest)
  private:
   class _Internal;
 
@@ -4160,7 +4160,7 @@ class PrepareRequest final :
 };// -------------------------------------------------------------------
 
 class Position final :
-    public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:mavsdk.rpc.camera.Position) */ {
+    public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:mavcam.rpc.camera.Position) */ {
  public:
   inline Position() : Position(nullptr) {}
   ~Position() override;
@@ -4274,7 +4274,7 @@ class Position final :
   private:
   friend class ::google::protobuf::internal::AnyMetadata;
   static ::absl::string_view FullMessageName() {
-    return "mavsdk.rpc.camera.Position";
+    return "mavcam.rpc.camera.Position";
   }
   protected:
   explicit Position(::google::protobuf::Arena* arena);
@@ -4336,7 +4336,7 @@ class Position final :
   void _internal_set_relative_altitude_m(float value);
 
   public:
-  // @@protoc_insertion_point(class_scope:mavsdk.rpc.camera.Position)
+  // @@protoc_insertion_point(class_scope:mavcam.rpc.camera.Position)
  private:
   class _Internal;
 
@@ -4371,7 +4371,7 @@ class Position final :
 };// -------------------------------------------------------------------
 
 class Option final :
-    public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:mavsdk.rpc.camera.Option) */ {
+    public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:mavcam.rpc.camera.Option) */ {
  public:
   inline Option() : Option(nullptr) {}
   ~Option() override;
@@ -4485,7 +4485,7 @@ class Option final :
   private:
   friend class ::google::protobuf::internal::AnyMetadata;
   static ::absl::string_view FullMessageName() {
-    return "mavsdk.rpc.camera.Option";
+    return "mavcam.rpc.camera.Option";
   }
   protected:
   explicit Option(::google::protobuf::Arena* arena);
@@ -4537,7 +4537,7 @@ class Option final :
   std::string* _internal_mutable_option_description();
 
   public:
-  // @@protoc_insertion_point(class_scope:mavsdk.rpc.camera.Option)
+  // @@protoc_insertion_point(class_scope:mavcam.rpc.camera.Option)
  private:
   class _Internal;
 
@@ -4570,7 +4570,7 @@ class Option final :
 };// -------------------------------------------------------------------
 
 class ModeResponse final :
-    public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:mavsdk.rpc.camera.ModeResponse) */ {
+    public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:mavcam.rpc.camera.ModeResponse) */ {
  public:
   inline ModeResponse() : ModeResponse(nullptr) {}
   ~ModeResponse() override;
@@ -4684,7 +4684,7 @@ class ModeResponse final :
   private:
   friend class ::google::protobuf::internal::AnyMetadata;
   static ::absl::string_view FullMessageName() {
-    return "mavsdk.rpc.camera.ModeResponse";
+    return "mavcam.rpc.camera.ModeResponse";
   }
   protected:
   explicit ModeResponse(::google::protobuf::Arena* arena);
@@ -4703,17 +4703,17 @@ class ModeResponse final :
   enum : int {
     kModeFieldNumber = 1,
   };
-  // .mavsdk.rpc.camera.Mode mode = 1;
+  // .mavcam.rpc.camera.Mode mode = 1;
   void clear_mode() ;
-  ::mavsdk::rpc::camera::Mode mode() const;
-  void set_mode(::mavsdk::rpc::camera::Mode value);
+  ::mavcam::rpc::camera::Mode mode() const;
+  void set_mode(::mavcam::rpc::camera::Mode value);
 
   private:
-  ::mavsdk::rpc::camera::Mode _internal_mode() const;
-  void _internal_set_mode(::mavsdk::rpc::camera::Mode value);
+  ::mavcam::rpc::camera::Mode _internal_mode() const;
+  void _internal_set_mode(::mavcam::rpc::camera::Mode value);
 
   public:
-  // @@protoc_insertion_point(class_scope:mavsdk.rpc.camera.ModeResponse)
+  // @@protoc_insertion_point(class_scope:mavcam.rpc.camera.ModeResponse)
  private:
   class _Internal;
 
@@ -4745,7 +4745,7 @@ class ModeResponse final :
 };// -------------------------------------------------------------------
 
 class ListPhotosRequest final :
-    public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:mavsdk.rpc.camera.ListPhotosRequest) */ {
+    public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:mavcam.rpc.camera.ListPhotosRequest) */ {
  public:
   inline ListPhotosRequest() : ListPhotosRequest(nullptr) {}
   ~ListPhotosRequest() override;
@@ -4859,7 +4859,7 @@ class ListPhotosRequest final :
   private:
   friend class ::google::protobuf::internal::AnyMetadata;
   static ::absl::string_view FullMessageName() {
-    return "mavsdk.rpc.camera.ListPhotosRequest";
+    return "mavcam.rpc.camera.ListPhotosRequest";
   }
   protected:
   explicit ListPhotosRequest(::google::protobuf::Arena* arena);
@@ -4878,17 +4878,17 @@ class ListPhotosRequest final :
   enum : int {
     kPhotosRangeFieldNumber = 1,
   };
-  // .mavsdk.rpc.camera.PhotosRange photos_range = 1;
+  // .mavcam.rpc.camera.PhotosRange photos_range = 1;
   void clear_photos_range() ;
-  ::mavsdk::rpc::camera::PhotosRange photos_range() const;
-  void set_photos_range(::mavsdk::rpc::camera::PhotosRange value);
+  ::mavcam::rpc::camera::PhotosRange photos_range() const;
+  void set_photos_range(::mavcam::rpc::camera::PhotosRange value);
 
   private:
-  ::mavsdk::rpc::camera::PhotosRange _internal_photos_range() const;
-  void _internal_set_photos_range(::mavsdk::rpc::camera::PhotosRange value);
+  ::mavcam::rpc::camera::PhotosRange _internal_photos_range() const;
+  void _internal_set_photos_range(::mavcam::rpc::camera::PhotosRange value);
 
   public:
-  // @@protoc_insertion_point(class_scope:mavsdk.rpc.camera.ListPhotosRequest)
+  // @@protoc_insertion_point(class_scope:mavcam.rpc.camera.ListPhotosRequest)
  private:
   class _Internal;
 
@@ -4920,7 +4920,7 @@ class ListPhotosRequest final :
 };// -------------------------------------------------------------------
 
 class Information final :
-    public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:mavsdk.rpc.camera.Information) */ {
+    public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:mavcam.rpc.camera.Information) */ {
  public:
   inline Information() : Information(nullptr) {}
   ~Information() override;
@@ -5034,7 +5034,7 @@ class Information final :
   private:
   friend class ::google::protobuf::internal::AnyMetadata;
   static ::absl::string_view FullMessageName() {
-    return "mavsdk.rpc.camera.Information";
+    return "mavcam.rpc.camera.Information";
   }
   protected:
   explicit Information(::google::protobuf::Arena* arena);
@@ -5094,7 +5094,7 @@ class Information final :
     kLensIdFieldNumber = 9,
     kDefinitionFileVersionFieldNumber = 10,
   };
-  // repeated .mavsdk.rpc.camera.Information.CameraCapFlags camera_cap_flags = 12;
+  // repeated .mavcam.rpc.camera.Information.CameraCapFlags camera_cap_flags = 12;
   int camera_cap_flags_size() const;
   private:
   int _internal_camera_cap_flags_size() const;
@@ -5102,9 +5102,9 @@ class Information final :
   public:
   void clear_camera_cap_flags() ;
   public:
-  ::mavsdk::rpc::camera::Information_CameraCapFlags camera_cap_flags(int index) const;
-  void set_camera_cap_flags(int index, ::mavsdk::rpc::camera::Information_CameraCapFlags value);
-  void add_camera_cap_flags(::mavsdk::rpc::camera::Information_CameraCapFlags value);
+  ::mavcam::rpc::camera::Information_CameraCapFlags camera_cap_flags(int index) const;
+  void set_camera_cap_flags(int index, ::mavcam::rpc::camera::Information_CameraCapFlags value);
+  void add_camera_cap_flags(::mavcam::rpc::camera::Information_CameraCapFlags value);
   const ::google::protobuf::RepeatedField<int>& camera_cap_flags() const;
   ::google::protobuf::RepeatedField<int>* mutable_camera_cap_flags();
 
@@ -5247,7 +5247,7 @@ class Information final :
   void _internal_set_definition_file_version(::uint32_t value);
 
   public:
-  // @@protoc_insertion_point(class_scope:mavsdk.rpc.camera.Information)
+  // @@protoc_insertion_point(class_scope:mavcam.rpc.camera.Information)
  private:
   class _Internal;
 
@@ -5291,7 +5291,7 @@ class Information final :
 };// -------------------------------------------------------------------
 
 class FormatStorageRequest final :
-    public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:mavsdk.rpc.camera.FormatStorageRequest) */ {
+    public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:mavcam.rpc.camera.FormatStorageRequest) */ {
  public:
   inline FormatStorageRequest() : FormatStorageRequest(nullptr) {}
   ~FormatStorageRequest() override;
@@ -5405,7 +5405,7 @@ class FormatStorageRequest final :
   private:
   friend class ::google::protobuf::internal::AnyMetadata;
   static ::absl::string_view FullMessageName() {
-    return "mavsdk.rpc.camera.FormatStorageRequest";
+    return "mavcam.rpc.camera.FormatStorageRequest";
   }
   protected:
   explicit FormatStorageRequest(::google::protobuf::Arena* arena);
@@ -5434,7 +5434,7 @@ class FormatStorageRequest final :
   void _internal_set_storage_id(::int32_t value);
 
   public:
-  // @@protoc_insertion_point(class_scope:mavsdk.rpc.camera.FormatStorageRequest)
+  // @@protoc_insertion_point(class_scope:mavcam.rpc.camera.FormatStorageRequest)
  private:
   class _Internal;
 
@@ -5466,7 +5466,7 @@ class FormatStorageRequest final :
 };// -------------------------------------------------------------------
 
 class EulerAngle final :
-    public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:mavsdk.rpc.camera.EulerAngle) */ {
+    public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:mavcam.rpc.camera.EulerAngle) */ {
  public:
   inline EulerAngle() : EulerAngle(nullptr) {}
   ~EulerAngle() override;
@@ -5580,7 +5580,7 @@ class EulerAngle final :
   private:
   friend class ::google::protobuf::internal::AnyMetadata;
   static ::absl::string_view FullMessageName() {
-    return "mavsdk.rpc.camera.EulerAngle";
+    return "mavcam.rpc.camera.EulerAngle";
   }
   protected:
   explicit EulerAngle(::google::protobuf::Arena* arena);
@@ -5631,7 +5631,7 @@ class EulerAngle final :
   void _internal_set_yaw_deg(float value);
 
   public:
-  // @@protoc_insertion_point(class_scope:mavsdk.rpc.camera.EulerAngle)
+  // @@protoc_insertion_point(class_scope:mavcam.rpc.camera.EulerAngle)
  private:
   class _Internal;
 
@@ -5665,7 +5665,7 @@ class EulerAngle final :
 };// -------------------------------------------------------------------
 
 class CameraResult final :
-    public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:mavsdk.rpc.camera.CameraResult) */ {
+    public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:mavcam.rpc.camera.CameraResult) */ {
  public:
   inline CameraResult() : CameraResult(nullptr) {}
   ~CameraResult() override;
@@ -5779,7 +5779,7 @@ class CameraResult final :
   private:
   friend class ::google::protobuf::internal::AnyMetadata;
   static ::absl::string_view FullMessageName() {
-    return "mavsdk.rpc.camera.CameraResult";
+    return "mavcam.rpc.camera.CameraResult";
   }
   protected:
   explicit CameraResult(::google::protobuf::Arena* arena);
@@ -5843,17 +5843,17 @@ class CameraResult final :
   std::string* _internal_mutable_result_str();
 
   public:
-  // .mavsdk.rpc.camera.CameraResult.Result result = 1;
+  // .mavcam.rpc.camera.CameraResult.Result result = 1;
   void clear_result() ;
-  ::mavsdk::rpc::camera::CameraResult_Result result() const;
-  void set_result(::mavsdk::rpc::camera::CameraResult_Result value);
+  ::mavcam::rpc::camera::CameraResult_Result result() const;
+  void set_result(::mavcam::rpc::camera::CameraResult_Result value);
 
   private:
-  ::mavsdk::rpc::camera::CameraResult_Result _internal_result() const;
-  void _internal_set_result(::mavsdk::rpc::camera::CameraResult_Result value);
+  ::mavcam::rpc::camera::CameraResult_Result _internal_result() const;
+  void _internal_set_result(::mavcam::rpc::camera::CameraResult_Result value);
 
   public:
-  // @@protoc_insertion_point(class_scope:mavsdk.rpc.camera.CameraResult)
+  // @@protoc_insertion_point(class_scope:mavcam.rpc.camera.CameraResult)
  private:
   class _Internal;
 
@@ -5886,7 +5886,7 @@ class CameraResult final :
 };// -------------------------------------------------------------------
 
 class VideoStreamInfo final :
-    public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:mavsdk.rpc.camera.VideoStreamInfo) */ {
+    public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:mavcam.rpc.camera.VideoStreamInfo) */ {
  public:
   inline VideoStreamInfo() : VideoStreamInfo(nullptr) {}
   ~VideoStreamInfo() override;
@@ -6000,7 +6000,7 @@ class VideoStreamInfo final :
   private:
   friend class ::google::protobuf::internal::AnyMetadata;
   static ::absl::string_view FullMessageName() {
-    return "mavsdk.rpc.camera.VideoStreamInfo";
+    return "mavcam.rpc.camera.VideoStreamInfo";
   }
   protected:
   explicit VideoStreamInfo(::google::protobuf::Arena* arena);
@@ -6063,19 +6063,19 @@ class VideoStreamInfo final :
     kStatusFieldNumber = 3,
     kSpectrumFieldNumber = 4,
   };
-  // .mavsdk.rpc.camera.VideoStreamSettings settings = 2;
+  // .mavcam.rpc.camera.VideoStreamSettings settings = 2;
   bool has_settings() const;
   void clear_settings() ;
-  const ::mavsdk::rpc::camera::VideoStreamSettings& settings() const;
-  PROTOBUF_NODISCARD ::mavsdk::rpc::camera::VideoStreamSettings* release_settings();
-  ::mavsdk::rpc::camera::VideoStreamSettings* mutable_settings();
-  void set_allocated_settings(::mavsdk::rpc::camera::VideoStreamSettings* value);
-  void unsafe_arena_set_allocated_settings(::mavsdk::rpc::camera::VideoStreamSettings* value);
-  ::mavsdk::rpc::camera::VideoStreamSettings* unsafe_arena_release_settings();
+  const ::mavcam::rpc::camera::VideoStreamSettings& settings() const;
+  PROTOBUF_NODISCARD ::mavcam::rpc::camera::VideoStreamSettings* release_settings();
+  ::mavcam::rpc::camera::VideoStreamSettings* mutable_settings();
+  void set_allocated_settings(::mavcam::rpc::camera::VideoStreamSettings* value);
+  void unsafe_arena_set_allocated_settings(::mavcam::rpc::camera::VideoStreamSettings* value);
+  ::mavcam::rpc::camera::VideoStreamSettings* unsafe_arena_release_settings();
 
   private:
-  const ::mavsdk::rpc::camera::VideoStreamSettings& _internal_settings() const;
-  ::mavsdk::rpc::camera::VideoStreamSettings* _internal_mutable_settings();
+  const ::mavcam::rpc::camera::VideoStreamSettings& _internal_settings() const;
+  ::mavcam::rpc::camera::VideoStreamSettings* _internal_mutable_settings();
 
   public:
   // int32 stream_id = 1;
@@ -6088,27 +6088,27 @@ class VideoStreamInfo final :
   void _internal_set_stream_id(::int32_t value);
 
   public:
-  // .mavsdk.rpc.camera.VideoStreamInfo.VideoStreamStatus status = 3;
+  // .mavcam.rpc.camera.VideoStreamInfo.VideoStreamStatus status = 3;
   void clear_status() ;
-  ::mavsdk::rpc::camera::VideoStreamInfo_VideoStreamStatus status() const;
-  void set_status(::mavsdk::rpc::camera::VideoStreamInfo_VideoStreamStatus value);
+  ::mavcam::rpc::camera::VideoStreamInfo_VideoStreamStatus status() const;
+  void set_status(::mavcam::rpc::camera::VideoStreamInfo_VideoStreamStatus value);
 
   private:
-  ::mavsdk::rpc::camera::VideoStreamInfo_VideoStreamStatus _internal_status() const;
-  void _internal_set_status(::mavsdk::rpc::camera::VideoStreamInfo_VideoStreamStatus value);
+  ::mavcam::rpc::camera::VideoStreamInfo_VideoStreamStatus _internal_status() const;
+  void _internal_set_status(::mavcam::rpc::camera::VideoStreamInfo_VideoStreamStatus value);
 
   public:
-  // .mavsdk.rpc.camera.VideoStreamInfo.VideoStreamSpectrum spectrum = 4;
+  // .mavcam.rpc.camera.VideoStreamInfo.VideoStreamSpectrum spectrum = 4;
   void clear_spectrum() ;
-  ::mavsdk::rpc::camera::VideoStreamInfo_VideoStreamSpectrum spectrum() const;
-  void set_spectrum(::mavsdk::rpc::camera::VideoStreamInfo_VideoStreamSpectrum value);
+  ::mavcam::rpc::camera::VideoStreamInfo_VideoStreamSpectrum spectrum() const;
+  void set_spectrum(::mavcam::rpc::camera::VideoStreamInfo_VideoStreamSpectrum value);
 
   private:
-  ::mavsdk::rpc::camera::VideoStreamInfo_VideoStreamSpectrum _internal_spectrum() const;
-  void _internal_set_spectrum(::mavsdk::rpc::camera::VideoStreamInfo_VideoStreamSpectrum value);
+  ::mavcam::rpc::camera::VideoStreamInfo_VideoStreamSpectrum _internal_spectrum() const;
+  void _internal_set_spectrum(::mavcam::rpc::camera::VideoStreamInfo_VideoStreamSpectrum value);
 
   public:
-  // @@protoc_insertion_point(class_scope:mavsdk.rpc.camera.VideoStreamInfo)
+  // @@protoc_insertion_point(class_scope:mavcam.rpc.camera.VideoStreamInfo)
  private:
   class _Internal;
 
@@ -6133,7 +6133,7 @@ class VideoStreamInfo final :
                               ::google::protobuf::Arena* arena, const Impl_& from);
     ::google::protobuf::internal::HasBits<1> _has_bits_;
     mutable ::google::protobuf::internal::CachedSize _cached_size_;
-    ::mavsdk::rpc::camera::VideoStreamSettings* settings_;
+    ::mavcam::rpc::camera::VideoStreamSettings* settings_;
     ::int32_t stream_id_;
     int status_;
     int spectrum_;
@@ -6144,7 +6144,7 @@ class VideoStreamInfo final :
 };// -------------------------------------------------------------------
 
 class TakePhotoResponse final :
-    public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:mavsdk.rpc.camera.TakePhotoResponse) */ {
+    public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:mavcam.rpc.camera.TakePhotoResponse) */ {
  public:
   inline TakePhotoResponse() : TakePhotoResponse(nullptr) {}
   ~TakePhotoResponse() override;
@@ -6258,7 +6258,7 @@ class TakePhotoResponse final :
   private:
   friend class ::google::protobuf::internal::AnyMetadata;
   static ::absl::string_view FullMessageName() {
-    return "mavsdk.rpc.camera.TakePhotoResponse";
+    return "mavcam.rpc.camera.TakePhotoResponse";
   }
   protected:
   explicit TakePhotoResponse(::google::protobuf::Arena* arena);
@@ -6277,22 +6277,22 @@ class TakePhotoResponse final :
   enum : int {
     kCameraResultFieldNumber = 1,
   };
-  // .mavsdk.rpc.camera.CameraResult camera_result = 1;
+  // .mavcam.rpc.camera.CameraResult camera_result = 1;
   bool has_camera_result() const;
   void clear_camera_result() ;
-  const ::mavsdk::rpc::camera::CameraResult& camera_result() const;
-  PROTOBUF_NODISCARD ::mavsdk::rpc::camera::CameraResult* release_camera_result();
-  ::mavsdk::rpc::camera::CameraResult* mutable_camera_result();
-  void set_allocated_camera_result(::mavsdk::rpc::camera::CameraResult* value);
-  void unsafe_arena_set_allocated_camera_result(::mavsdk::rpc::camera::CameraResult* value);
-  ::mavsdk::rpc::camera::CameraResult* unsafe_arena_release_camera_result();
+  const ::mavcam::rpc::camera::CameraResult& camera_result() const;
+  PROTOBUF_NODISCARD ::mavcam::rpc::camera::CameraResult* release_camera_result();
+  ::mavcam::rpc::camera::CameraResult* mutable_camera_result();
+  void set_allocated_camera_result(::mavcam::rpc::camera::CameraResult* value);
+  void unsafe_arena_set_allocated_camera_result(::mavcam::rpc::camera::CameraResult* value);
+  ::mavcam::rpc::camera::CameraResult* unsafe_arena_release_camera_result();
 
   private:
-  const ::mavsdk::rpc::camera::CameraResult& _internal_camera_result() const;
-  ::mavsdk::rpc::camera::CameraResult* _internal_mutable_camera_result();
+  const ::mavcam::rpc::camera::CameraResult& _internal_camera_result() const;
+  ::mavcam::rpc::camera::CameraResult* _internal_mutable_camera_result();
 
   public:
-  // @@protoc_insertion_point(class_scope:mavsdk.rpc.camera.TakePhotoResponse)
+  // @@protoc_insertion_point(class_scope:mavcam.rpc.camera.TakePhotoResponse)
  private:
   class _Internal;
 
@@ -6317,7 +6317,7 @@ class TakePhotoResponse final :
                               ::google::protobuf::Arena* arena, const Impl_& from);
     ::google::protobuf::internal::HasBits<1> _has_bits_;
     mutable ::google::protobuf::internal::CachedSize _cached_size_;
-    ::mavsdk::rpc::camera::CameraResult* camera_result_;
+    ::mavcam::rpc::camera::CameraResult* camera_result_;
     PROTOBUF_TSAN_DECLARE_MEMBER
   };
   union { Impl_ _impl_; };
@@ -6325,7 +6325,7 @@ class TakePhotoResponse final :
 };// -------------------------------------------------------------------
 
 class StopVideoStreamingResponse final :
-    public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:mavsdk.rpc.camera.StopVideoStreamingResponse) */ {
+    public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:mavcam.rpc.camera.StopVideoStreamingResponse) */ {
  public:
   inline StopVideoStreamingResponse() : StopVideoStreamingResponse(nullptr) {}
   ~StopVideoStreamingResponse() override;
@@ -6439,7 +6439,7 @@ class StopVideoStreamingResponse final :
   private:
   friend class ::google::protobuf::internal::AnyMetadata;
   static ::absl::string_view FullMessageName() {
-    return "mavsdk.rpc.camera.StopVideoStreamingResponse";
+    return "mavcam.rpc.camera.StopVideoStreamingResponse";
   }
   protected:
   explicit StopVideoStreamingResponse(::google::protobuf::Arena* arena);
@@ -6458,22 +6458,22 @@ class StopVideoStreamingResponse final :
   enum : int {
     kCameraResultFieldNumber = 1,
   };
-  // .mavsdk.rpc.camera.CameraResult camera_result = 1;
+  // .mavcam.rpc.camera.CameraResult camera_result = 1;
   bool has_camera_result() const;
   void clear_camera_result() ;
-  const ::mavsdk::rpc::camera::CameraResult& camera_result() const;
-  PROTOBUF_NODISCARD ::mavsdk::rpc::camera::CameraResult* release_camera_result();
-  ::mavsdk::rpc::camera::CameraResult* mutable_camera_result();
-  void set_allocated_camera_result(::mavsdk::rpc::camera::CameraResult* value);
-  void unsafe_arena_set_allocated_camera_result(::mavsdk::rpc::camera::CameraResult* value);
-  ::mavsdk::rpc::camera::CameraResult* unsafe_arena_release_camera_result();
+  const ::mavcam::rpc::camera::CameraResult& camera_result() const;
+  PROTOBUF_NODISCARD ::mavcam::rpc::camera::CameraResult* release_camera_result();
+  ::mavcam::rpc::camera::CameraResult* mutable_camera_result();
+  void set_allocated_camera_result(::mavcam::rpc::camera::CameraResult* value);
+  void unsafe_arena_set_allocated_camera_result(::mavcam::rpc::camera::CameraResult* value);
+  ::mavcam::rpc::camera::CameraResult* unsafe_arena_release_camera_result();
 
   private:
-  const ::mavsdk::rpc::camera::CameraResult& _internal_camera_result() const;
-  ::mavsdk::rpc::camera::CameraResult* _internal_mutable_camera_result();
+  const ::mavcam::rpc::camera::CameraResult& _internal_camera_result() const;
+  ::mavcam::rpc::camera::CameraResult* _internal_mutable_camera_result();
 
   public:
-  // @@protoc_insertion_point(class_scope:mavsdk.rpc.camera.StopVideoStreamingResponse)
+  // @@protoc_insertion_point(class_scope:mavcam.rpc.camera.StopVideoStreamingResponse)
  private:
   class _Internal;
 
@@ -6498,7 +6498,7 @@ class StopVideoStreamingResponse final :
                               ::google::protobuf::Arena* arena, const Impl_& from);
     ::google::protobuf::internal::HasBits<1> _has_bits_;
     mutable ::google::protobuf::internal::CachedSize _cached_size_;
-    ::mavsdk::rpc::camera::CameraResult* camera_result_;
+    ::mavcam::rpc::camera::CameraResult* camera_result_;
     PROTOBUF_TSAN_DECLARE_MEMBER
   };
   union { Impl_ _impl_; };
@@ -6506,7 +6506,7 @@ class StopVideoStreamingResponse final :
 };// -------------------------------------------------------------------
 
 class StopVideoResponse final :
-    public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:mavsdk.rpc.camera.StopVideoResponse) */ {
+    public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:mavcam.rpc.camera.StopVideoResponse) */ {
  public:
   inline StopVideoResponse() : StopVideoResponse(nullptr) {}
   ~StopVideoResponse() override;
@@ -6620,7 +6620,7 @@ class StopVideoResponse final :
   private:
   friend class ::google::protobuf::internal::AnyMetadata;
   static ::absl::string_view FullMessageName() {
-    return "mavsdk.rpc.camera.StopVideoResponse";
+    return "mavcam.rpc.camera.StopVideoResponse";
   }
   protected:
   explicit StopVideoResponse(::google::protobuf::Arena* arena);
@@ -6639,22 +6639,22 @@ class StopVideoResponse final :
   enum : int {
     kCameraResultFieldNumber = 1,
   };
-  // .mavsdk.rpc.camera.CameraResult camera_result = 1;
+  // .mavcam.rpc.camera.CameraResult camera_result = 1;
   bool has_camera_result() const;
   void clear_camera_result() ;
-  const ::mavsdk::rpc::camera::CameraResult& camera_result() const;
-  PROTOBUF_NODISCARD ::mavsdk::rpc::camera::CameraResult* release_camera_result();
-  ::mavsdk::rpc::camera::CameraResult* mutable_camera_result();
-  void set_allocated_camera_result(::mavsdk::rpc::camera::CameraResult* value);
-  void unsafe_arena_set_allocated_camera_result(::mavsdk::rpc::camera::CameraResult* value);
-  ::mavsdk::rpc::camera::CameraResult* unsafe_arena_release_camera_result();
+  const ::mavcam::rpc::camera::CameraResult& camera_result() const;
+  PROTOBUF_NODISCARD ::mavcam::rpc::camera::CameraResult* release_camera_result();
+  ::mavcam::rpc::camera::CameraResult* mutable_camera_result();
+  void set_allocated_camera_result(::mavcam::rpc::camera::CameraResult* value);
+  void unsafe_arena_set_allocated_camera_result(::mavcam::rpc::camera::CameraResult* value);
+  ::mavcam::rpc::camera::CameraResult* unsafe_arena_release_camera_result();
 
   private:
-  const ::mavsdk::rpc::camera::CameraResult& _internal_camera_result() const;
-  ::mavsdk::rpc::camera::CameraResult* _internal_mutable_camera_result();
+  const ::mavcam::rpc::camera::CameraResult& _internal_camera_result() const;
+  ::mavcam::rpc::camera::CameraResult* _internal_mutable_camera_result();
 
   public:
-  // @@protoc_insertion_point(class_scope:mavsdk.rpc.camera.StopVideoResponse)
+  // @@protoc_insertion_point(class_scope:mavcam.rpc.camera.StopVideoResponse)
  private:
   class _Internal;
 
@@ -6679,7 +6679,7 @@ class StopVideoResponse final :
                               ::google::protobuf::Arena* arena, const Impl_& from);
     ::google::protobuf::internal::HasBits<1> _has_bits_;
     mutable ::google::protobuf::internal::CachedSize _cached_size_;
-    ::mavsdk::rpc::camera::CameraResult* camera_result_;
+    ::mavcam::rpc::camera::CameraResult* camera_result_;
     PROTOBUF_TSAN_DECLARE_MEMBER
   };
   union { Impl_ _impl_; };
@@ -6687,7 +6687,7 @@ class StopVideoResponse final :
 };// -------------------------------------------------------------------
 
 class StopPhotoIntervalResponse final :
-    public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:mavsdk.rpc.camera.StopPhotoIntervalResponse) */ {
+    public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:mavcam.rpc.camera.StopPhotoIntervalResponse) */ {
  public:
   inline StopPhotoIntervalResponse() : StopPhotoIntervalResponse(nullptr) {}
   ~StopPhotoIntervalResponse() override;
@@ -6801,7 +6801,7 @@ class StopPhotoIntervalResponse final :
   private:
   friend class ::google::protobuf::internal::AnyMetadata;
   static ::absl::string_view FullMessageName() {
-    return "mavsdk.rpc.camera.StopPhotoIntervalResponse";
+    return "mavcam.rpc.camera.StopPhotoIntervalResponse";
   }
   protected:
   explicit StopPhotoIntervalResponse(::google::protobuf::Arena* arena);
@@ -6820,22 +6820,22 @@ class StopPhotoIntervalResponse final :
   enum : int {
     kCameraResultFieldNumber = 1,
   };
-  // .mavsdk.rpc.camera.CameraResult camera_result = 1;
+  // .mavcam.rpc.camera.CameraResult camera_result = 1;
   bool has_camera_result() const;
   void clear_camera_result() ;
-  const ::mavsdk::rpc::camera::CameraResult& camera_result() const;
-  PROTOBUF_NODISCARD ::mavsdk::rpc::camera::CameraResult* release_camera_result();
-  ::mavsdk::rpc::camera::CameraResult* mutable_camera_result();
-  void set_allocated_camera_result(::mavsdk::rpc::camera::CameraResult* value);
-  void unsafe_arena_set_allocated_camera_result(::mavsdk::rpc::camera::CameraResult* value);
-  ::mavsdk::rpc::camera::CameraResult* unsafe_arena_release_camera_result();
+  const ::mavcam::rpc::camera::CameraResult& camera_result() const;
+  PROTOBUF_NODISCARD ::mavcam::rpc::camera::CameraResult* release_camera_result();
+  ::mavcam::rpc::camera::CameraResult* mutable_camera_result();
+  void set_allocated_camera_result(::mavcam::rpc::camera::CameraResult* value);
+  void unsafe_arena_set_allocated_camera_result(::mavcam::rpc::camera::CameraResult* value);
+  ::mavcam::rpc::camera::CameraResult* unsafe_arena_release_camera_result();
 
   private:
-  const ::mavsdk::rpc::camera::CameraResult& _internal_camera_result() const;
-  ::mavsdk::rpc::camera::CameraResult* _internal_mutable_camera_result();
+  const ::mavcam::rpc::camera::CameraResult& _internal_camera_result() const;
+  ::mavcam::rpc::camera::CameraResult* _internal_mutable_camera_result();
 
   public:
-  // @@protoc_insertion_point(class_scope:mavsdk.rpc.camera.StopPhotoIntervalResponse)
+  // @@protoc_insertion_point(class_scope:mavcam.rpc.camera.StopPhotoIntervalResponse)
  private:
   class _Internal;
 
@@ -6860,7 +6860,7 @@ class StopPhotoIntervalResponse final :
                               ::google::protobuf::Arena* arena, const Impl_& from);
     ::google::protobuf::internal::HasBits<1> _has_bits_;
     mutable ::google::protobuf::internal::CachedSize _cached_size_;
-    ::mavsdk::rpc::camera::CameraResult* camera_result_;
+    ::mavcam::rpc::camera::CameraResult* camera_result_;
     PROTOBUF_TSAN_DECLARE_MEMBER
   };
   union { Impl_ _impl_; };
@@ -6868,7 +6868,7 @@ class StopPhotoIntervalResponse final :
 };// -------------------------------------------------------------------
 
 class StatusResponse final :
-    public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:mavsdk.rpc.camera.StatusResponse) */ {
+    public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:mavcam.rpc.camera.StatusResponse) */ {
  public:
   inline StatusResponse() : StatusResponse(nullptr) {}
   ~StatusResponse() override;
@@ -6982,7 +6982,7 @@ class StatusResponse final :
   private:
   friend class ::google::protobuf::internal::AnyMetadata;
   static ::absl::string_view FullMessageName() {
-    return "mavsdk.rpc.camera.StatusResponse";
+    return "mavcam.rpc.camera.StatusResponse";
   }
   protected:
   explicit StatusResponse(::google::protobuf::Arena* arena);
@@ -7001,22 +7001,22 @@ class StatusResponse final :
   enum : int {
     kCameraStatusFieldNumber = 1,
   };
-  // .mavsdk.rpc.camera.Status camera_status = 1;
+  // .mavcam.rpc.camera.Status camera_status = 1;
   bool has_camera_status() const;
   void clear_camera_status() ;
-  const ::mavsdk::rpc::camera::Status& camera_status() const;
-  PROTOBUF_NODISCARD ::mavsdk::rpc::camera::Status* release_camera_status();
-  ::mavsdk::rpc::camera::Status* mutable_camera_status();
-  void set_allocated_camera_status(::mavsdk::rpc::camera::Status* value);
-  void unsafe_arena_set_allocated_camera_status(::mavsdk::rpc::camera::Status* value);
-  ::mavsdk::rpc::camera::Status* unsafe_arena_release_camera_status();
+  const ::mavcam::rpc::camera::Status& camera_status() const;
+  PROTOBUF_NODISCARD ::mavcam::rpc::camera::Status* release_camera_status();
+  ::mavcam::rpc::camera::Status* mutable_camera_status();
+  void set_allocated_camera_status(::mavcam::rpc::camera::Status* value);
+  void unsafe_arena_set_allocated_camera_status(::mavcam::rpc::camera::Status* value);
+  ::mavcam::rpc::camera::Status* unsafe_arena_release_camera_status();
 
   private:
-  const ::mavsdk::rpc::camera::Status& _internal_camera_status() const;
-  ::mavsdk::rpc::camera::Status* _internal_mutable_camera_status();
+  const ::mavcam::rpc::camera::Status& _internal_camera_status() const;
+  ::mavcam::rpc::camera::Status* _internal_mutable_camera_status();
 
   public:
-  // @@protoc_insertion_point(class_scope:mavsdk.rpc.camera.StatusResponse)
+  // @@protoc_insertion_point(class_scope:mavcam.rpc.camera.StatusResponse)
  private:
   class _Internal;
 
@@ -7041,7 +7041,7 @@ class StatusResponse final :
                               ::google::protobuf::Arena* arena, const Impl_& from);
     ::google::protobuf::internal::HasBits<1> _has_bits_;
     mutable ::google::protobuf::internal::CachedSize _cached_size_;
-    ::mavsdk::rpc::camera::Status* camera_status_;
+    ::mavcam::rpc::camera::Status* camera_status_;
     PROTOBUF_TSAN_DECLARE_MEMBER
   };
   union { Impl_ _impl_; };
@@ -7049,7 +7049,7 @@ class StatusResponse final :
 };// -------------------------------------------------------------------
 
 class StartVideoStreamingResponse final :
-    public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:mavsdk.rpc.camera.StartVideoStreamingResponse) */ {
+    public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:mavcam.rpc.camera.StartVideoStreamingResponse) */ {
  public:
   inline StartVideoStreamingResponse() : StartVideoStreamingResponse(nullptr) {}
   ~StartVideoStreamingResponse() override;
@@ -7163,7 +7163,7 @@ class StartVideoStreamingResponse final :
   private:
   friend class ::google::protobuf::internal::AnyMetadata;
   static ::absl::string_view FullMessageName() {
-    return "mavsdk.rpc.camera.StartVideoStreamingResponse";
+    return "mavcam.rpc.camera.StartVideoStreamingResponse";
   }
   protected:
   explicit StartVideoStreamingResponse(::google::protobuf::Arena* arena);
@@ -7182,22 +7182,22 @@ class StartVideoStreamingResponse final :
   enum : int {
     kCameraResultFieldNumber = 1,
   };
-  // .mavsdk.rpc.camera.CameraResult camera_result = 1;
+  // .mavcam.rpc.camera.CameraResult camera_result = 1;
   bool has_camera_result() const;
   void clear_camera_result() ;
-  const ::mavsdk::rpc::camera::CameraResult& camera_result() const;
-  PROTOBUF_NODISCARD ::mavsdk::rpc::camera::CameraResult* release_camera_result();
-  ::mavsdk::rpc::camera::CameraResult* mutable_camera_result();
-  void set_allocated_camera_result(::mavsdk::rpc::camera::CameraResult* value);
-  void unsafe_arena_set_allocated_camera_result(::mavsdk::rpc::camera::CameraResult* value);
-  ::mavsdk::rpc::camera::CameraResult* unsafe_arena_release_camera_result();
+  const ::mavcam::rpc::camera::CameraResult& camera_result() const;
+  PROTOBUF_NODISCARD ::mavcam::rpc::camera::CameraResult* release_camera_result();
+  ::mavcam::rpc::camera::CameraResult* mutable_camera_result();
+  void set_allocated_camera_result(::mavcam::rpc::camera::CameraResult* value);
+  void unsafe_arena_set_allocated_camera_result(::mavcam::rpc::camera::CameraResult* value);
+  ::mavcam::rpc::camera::CameraResult* unsafe_arena_release_camera_result();
 
   private:
-  const ::mavsdk::rpc::camera::CameraResult& _internal_camera_result() const;
-  ::mavsdk::rpc::camera::CameraResult* _internal_mutable_camera_result();
+  const ::mavcam::rpc::camera::CameraResult& _internal_camera_result() const;
+  ::mavcam::rpc::camera::CameraResult* _internal_mutable_camera_result();
 
   public:
-  // @@protoc_insertion_point(class_scope:mavsdk.rpc.camera.StartVideoStreamingResponse)
+  // @@protoc_insertion_point(class_scope:mavcam.rpc.camera.StartVideoStreamingResponse)
  private:
   class _Internal;
 
@@ -7222,7 +7222,7 @@ class StartVideoStreamingResponse final :
                               ::google::protobuf::Arena* arena, const Impl_& from);
     ::google::protobuf::internal::HasBits<1> _has_bits_;
     mutable ::google::protobuf::internal::CachedSize _cached_size_;
-    ::mavsdk::rpc::camera::CameraResult* camera_result_;
+    ::mavcam::rpc::camera::CameraResult* camera_result_;
     PROTOBUF_TSAN_DECLARE_MEMBER
   };
   union { Impl_ _impl_; };
@@ -7230,7 +7230,7 @@ class StartVideoStreamingResponse final :
 };// -------------------------------------------------------------------
 
 class StartVideoResponse final :
-    public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:mavsdk.rpc.camera.StartVideoResponse) */ {
+    public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:mavcam.rpc.camera.StartVideoResponse) */ {
  public:
   inline StartVideoResponse() : StartVideoResponse(nullptr) {}
   ~StartVideoResponse() override;
@@ -7344,7 +7344,7 @@ class StartVideoResponse final :
   private:
   friend class ::google::protobuf::internal::AnyMetadata;
   static ::absl::string_view FullMessageName() {
-    return "mavsdk.rpc.camera.StartVideoResponse";
+    return "mavcam.rpc.camera.StartVideoResponse";
   }
   protected:
   explicit StartVideoResponse(::google::protobuf::Arena* arena);
@@ -7363,22 +7363,22 @@ class StartVideoResponse final :
   enum : int {
     kCameraResultFieldNumber = 1,
   };
-  // .mavsdk.rpc.camera.CameraResult camera_result = 1;
+  // .mavcam.rpc.camera.CameraResult camera_result = 1;
   bool has_camera_result() const;
   void clear_camera_result() ;
-  const ::mavsdk::rpc::camera::CameraResult& camera_result() const;
-  PROTOBUF_NODISCARD ::mavsdk::rpc::camera::CameraResult* release_camera_result();
-  ::mavsdk::rpc::camera::CameraResult* mutable_camera_result();
-  void set_allocated_camera_result(::mavsdk::rpc::camera::CameraResult* value);
-  void unsafe_arena_set_allocated_camera_result(::mavsdk::rpc::camera::CameraResult* value);
-  ::mavsdk::rpc::camera::CameraResult* unsafe_arena_release_camera_result();
+  const ::mavcam::rpc::camera::CameraResult& camera_result() const;
+  PROTOBUF_NODISCARD ::mavcam::rpc::camera::CameraResult* release_camera_result();
+  ::mavcam::rpc::camera::CameraResult* mutable_camera_result();
+  void set_allocated_camera_result(::mavcam::rpc::camera::CameraResult* value);
+  void unsafe_arena_set_allocated_camera_result(::mavcam::rpc::camera::CameraResult* value);
+  ::mavcam::rpc::camera::CameraResult* unsafe_arena_release_camera_result();
 
   private:
-  const ::mavsdk::rpc::camera::CameraResult& _internal_camera_result() const;
-  ::mavsdk::rpc::camera::CameraResult* _internal_mutable_camera_result();
+  const ::mavcam::rpc::camera::CameraResult& _internal_camera_result() const;
+  ::mavcam::rpc::camera::CameraResult* _internal_mutable_camera_result();
 
   public:
-  // @@protoc_insertion_point(class_scope:mavsdk.rpc.camera.StartVideoResponse)
+  // @@protoc_insertion_point(class_scope:mavcam.rpc.camera.StartVideoResponse)
  private:
   class _Internal;
 
@@ -7403,7 +7403,7 @@ class StartVideoResponse final :
                               ::google::protobuf::Arena* arena, const Impl_& from);
     ::google::protobuf::internal::HasBits<1> _has_bits_;
     mutable ::google::protobuf::internal::CachedSize _cached_size_;
-    ::mavsdk::rpc::camera::CameraResult* camera_result_;
+    ::mavcam::rpc::camera::CameraResult* camera_result_;
     PROTOBUF_TSAN_DECLARE_MEMBER
   };
   union { Impl_ _impl_; };
@@ -7411,7 +7411,7 @@ class StartVideoResponse final :
 };// -------------------------------------------------------------------
 
 class StartPhotoIntervalResponse final :
-    public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:mavsdk.rpc.camera.StartPhotoIntervalResponse) */ {
+    public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:mavcam.rpc.camera.StartPhotoIntervalResponse) */ {
  public:
   inline StartPhotoIntervalResponse() : StartPhotoIntervalResponse(nullptr) {}
   ~StartPhotoIntervalResponse() override;
@@ -7525,7 +7525,7 @@ class StartPhotoIntervalResponse final :
   private:
   friend class ::google::protobuf::internal::AnyMetadata;
   static ::absl::string_view FullMessageName() {
-    return "mavsdk.rpc.camera.StartPhotoIntervalResponse";
+    return "mavcam.rpc.camera.StartPhotoIntervalResponse";
   }
   protected:
   explicit StartPhotoIntervalResponse(::google::protobuf::Arena* arena);
@@ -7544,22 +7544,22 @@ class StartPhotoIntervalResponse final :
   enum : int {
     kCameraResultFieldNumber = 1,
   };
-  // .mavsdk.rpc.camera.CameraResult camera_result = 1;
+  // .mavcam.rpc.camera.CameraResult camera_result = 1;
   bool has_camera_result() const;
   void clear_camera_result() ;
-  const ::mavsdk::rpc::camera::CameraResult& camera_result() const;
-  PROTOBUF_NODISCARD ::mavsdk::rpc::camera::CameraResult* release_camera_result();
-  ::mavsdk::rpc::camera::CameraResult* mutable_camera_result();
-  void set_allocated_camera_result(::mavsdk::rpc::camera::CameraResult* value);
-  void unsafe_arena_set_allocated_camera_result(::mavsdk::rpc::camera::CameraResult* value);
-  ::mavsdk::rpc::camera::CameraResult* unsafe_arena_release_camera_result();
+  const ::mavcam::rpc::camera::CameraResult& camera_result() const;
+  PROTOBUF_NODISCARD ::mavcam::rpc::camera::CameraResult* release_camera_result();
+  ::mavcam::rpc::camera::CameraResult* mutable_camera_result();
+  void set_allocated_camera_result(::mavcam::rpc::camera::CameraResult* value);
+  void unsafe_arena_set_allocated_camera_result(::mavcam::rpc::camera::CameraResult* value);
+  ::mavcam::rpc::camera::CameraResult* unsafe_arena_release_camera_result();
 
   private:
-  const ::mavsdk::rpc::camera::CameraResult& _internal_camera_result() const;
-  ::mavsdk::rpc::camera::CameraResult* _internal_mutable_camera_result();
+  const ::mavcam::rpc::camera::CameraResult& _internal_camera_result() const;
+  ::mavcam::rpc::camera::CameraResult* _internal_mutable_camera_result();
 
   public:
-  // @@protoc_insertion_point(class_scope:mavsdk.rpc.camera.StartPhotoIntervalResponse)
+  // @@protoc_insertion_point(class_scope:mavcam.rpc.camera.StartPhotoIntervalResponse)
  private:
   class _Internal;
 
@@ -7584,7 +7584,7 @@ class StartPhotoIntervalResponse final :
                               ::google::protobuf::Arena* arena, const Impl_& from);
     ::google::protobuf::internal::HasBits<1> _has_bits_;
     mutable ::google::protobuf::internal::CachedSize _cached_size_;
-    ::mavsdk::rpc::camera::CameraResult* camera_result_;
+    ::mavcam::rpc::camera::CameraResult* camera_result_;
     PROTOBUF_TSAN_DECLARE_MEMBER
   };
   union { Impl_ _impl_; };
@@ -7592,7 +7592,7 @@ class StartPhotoIntervalResponse final :
 };// -------------------------------------------------------------------
 
 class SettingOptions final :
-    public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:mavsdk.rpc.camera.SettingOptions) */ {
+    public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:mavcam.rpc.camera.SettingOptions) */ {
  public:
   inline SettingOptions() : SettingOptions(nullptr) {}
   ~SettingOptions() override;
@@ -7706,7 +7706,7 @@ class SettingOptions final :
   private:
   friend class ::google::protobuf::internal::AnyMetadata;
   static ::absl::string_view FullMessageName() {
-    return "mavsdk.rpc.camera.SettingOptions";
+    return "mavcam.rpc.camera.SettingOptions";
   }
   protected:
   explicit SettingOptions(::google::protobuf::Arena* arena);
@@ -7728,23 +7728,23 @@ class SettingOptions final :
     kSettingDescriptionFieldNumber = 2,
     kIsRangeFieldNumber = 4,
   };
-  // repeated .mavsdk.rpc.camera.Option options = 3;
+  // repeated .mavcam.rpc.camera.Option options = 3;
   int options_size() const;
   private:
   int _internal_options_size() const;
 
   public:
   void clear_options() ;
-  ::mavsdk::rpc::camera::Option* mutable_options(int index);
-  ::google::protobuf::RepeatedPtrField< ::mavsdk::rpc::camera::Option >*
+  ::mavcam::rpc::camera::Option* mutable_options(int index);
+  ::google::protobuf::RepeatedPtrField< ::mavcam::rpc::camera::Option >*
       mutable_options();
   private:
-  const ::google::protobuf::RepeatedPtrField<::mavsdk::rpc::camera::Option>& _internal_options() const;
-  ::google::protobuf::RepeatedPtrField<::mavsdk::rpc::camera::Option>* _internal_mutable_options();
+  const ::google::protobuf::RepeatedPtrField<::mavcam::rpc::camera::Option>& _internal_options() const;
+  ::google::protobuf::RepeatedPtrField<::mavcam::rpc::camera::Option>* _internal_mutable_options();
   public:
-  const ::mavsdk::rpc::camera::Option& options(int index) const;
-  ::mavsdk::rpc::camera::Option* add_options();
-  const ::google::protobuf::RepeatedPtrField< ::mavsdk::rpc::camera::Option >&
+  const ::mavcam::rpc::camera::Option& options(int index) const;
+  ::mavcam::rpc::camera::Option* add_options();
+  const ::google::protobuf::RepeatedPtrField< ::mavcam::rpc::camera::Option >&
       options() const;
   // string setting_id = 1;
   void clear_setting_id() ;
@@ -7788,7 +7788,7 @@ class SettingOptions final :
   void _internal_set_is_range(bool value);
 
   public:
-  // @@protoc_insertion_point(class_scope:mavsdk.rpc.camera.SettingOptions)
+  // @@protoc_insertion_point(class_scope:mavcam.rpc.camera.SettingOptions)
  private:
   class _Internal;
 
@@ -7811,7 +7811,7 @@ class SettingOptions final :
                               ::google::protobuf::Arena* arena);
         inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
                               ::google::protobuf::Arena* arena, const Impl_& from);
-    ::google::protobuf::RepeatedPtrField< ::mavsdk::rpc::camera::Option > options_;
+    ::google::protobuf::RepeatedPtrField< ::mavcam::rpc::camera::Option > options_;
     ::google::protobuf::internal::ArenaStringPtr setting_id_;
     ::google::protobuf::internal::ArenaStringPtr setting_description_;
     bool is_range_;
@@ -7823,7 +7823,7 @@ class SettingOptions final :
 };// -------------------------------------------------------------------
 
 class Setting final :
-    public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:mavsdk.rpc.camera.Setting) */ {
+    public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:mavcam.rpc.camera.Setting) */ {
  public:
   inline Setting() : Setting(nullptr) {}
   ~Setting() override;
@@ -7937,7 +7937,7 @@ class Setting final :
   private:
   friend class ::google::protobuf::internal::AnyMetadata;
   static ::absl::string_view FullMessageName() {
-    return "mavsdk.rpc.camera.Setting";
+    return "mavcam.rpc.camera.Setting";
   }
   protected:
   explicit Setting(::google::protobuf::Arena* arena);
@@ -7991,19 +7991,19 @@ class Setting final :
   std::string* _internal_mutable_setting_description();
 
   public:
-  // .mavsdk.rpc.camera.Option option = 3;
+  // .mavcam.rpc.camera.Option option = 3;
   bool has_option() const;
   void clear_option() ;
-  const ::mavsdk::rpc::camera::Option& option() const;
-  PROTOBUF_NODISCARD ::mavsdk::rpc::camera::Option* release_option();
-  ::mavsdk::rpc::camera::Option* mutable_option();
-  void set_allocated_option(::mavsdk::rpc::camera::Option* value);
-  void unsafe_arena_set_allocated_option(::mavsdk::rpc::camera::Option* value);
-  ::mavsdk::rpc::camera::Option* unsafe_arena_release_option();
+  const ::mavcam::rpc::camera::Option& option() const;
+  PROTOBUF_NODISCARD ::mavcam::rpc::camera::Option* release_option();
+  ::mavcam::rpc::camera::Option* mutable_option();
+  void set_allocated_option(::mavcam::rpc::camera::Option* value);
+  void unsafe_arena_set_allocated_option(::mavcam::rpc::camera::Option* value);
+  ::mavcam::rpc::camera::Option* unsafe_arena_release_option();
 
   private:
-  const ::mavsdk::rpc::camera::Option& _internal_option() const;
-  ::mavsdk::rpc::camera::Option* _internal_mutable_option();
+  const ::mavcam::rpc::camera::Option& _internal_option() const;
+  ::mavcam::rpc::camera::Option* _internal_mutable_option();
 
   public:
   // bool is_range = 4;
@@ -8016,7 +8016,7 @@ class Setting final :
   void _internal_set_is_range(bool value);
 
   public:
-  // @@protoc_insertion_point(class_scope:mavsdk.rpc.camera.Setting)
+  // @@protoc_insertion_point(class_scope:mavcam.rpc.camera.Setting)
  private:
   class _Internal;
 
@@ -8043,7 +8043,7 @@ class Setting final :
     mutable ::google::protobuf::internal::CachedSize _cached_size_;
     ::google::protobuf::internal::ArenaStringPtr setting_id_;
     ::google::protobuf::internal::ArenaStringPtr setting_description_;
-    ::mavsdk::rpc::camera::Option* option_;
+    ::mavcam::rpc::camera::Option* option_;
     bool is_range_;
     PROTOBUF_TSAN_DECLARE_MEMBER
   };
@@ -8052,7 +8052,7 @@ class Setting final :
 };// -------------------------------------------------------------------
 
 class SetSettingResponse final :
-    public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:mavsdk.rpc.camera.SetSettingResponse) */ {
+    public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:mavcam.rpc.camera.SetSettingResponse) */ {
  public:
   inline SetSettingResponse() : SetSettingResponse(nullptr) {}
   ~SetSettingResponse() override;
@@ -8166,7 +8166,7 @@ class SetSettingResponse final :
   private:
   friend class ::google::protobuf::internal::AnyMetadata;
   static ::absl::string_view FullMessageName() {
-    return "mavsdk.rpc.camera.SetSettingResponse";
+    return "mavcam.rpc.camera.SetSettingResponse";
   }
   protected:
   explicit SetSettingResponse(::google::protobuf::Arena* arena);
@@ -8185,22 +8185,22 @@ class SetSettingResponse final :
   enum : int {
     kCameraResultFieldNumber = 1,
   };
-  // .mavsdk.rpc.camera.CameraResult camera_result = 1;
+  // .mavcam.rpc.camera.CameraResult camera_result = 1;
   bool has_camera_result() const;
   void clear_camera_result() ;
-  const ::mavsdk::rpc::camera::CameraResult& camera_result() const;
-  PROTOBUF_NODISCARD ::mavsdk::rpc::camera::CameraResult* release_camera_result();
-  ::mavsdk::rpc::camera::CameraResult* mutable_camera_result();
-  void set_allocated_camera_result(::mavsdk::rpc::camera::CameraResult* value);
-  void unsafe_arena_set_allocated_camera_result(::mavsdk::rpc::camera::CameraResult* value);
-  ::mavsdk::rpc::camera::CameraResult* unsafe_arena_release_camera_result();
+  const ::mavcam::rpc::camera::CameraResult& camera_result() const;
+  PROTOBUF_NODISCARD ::mavcam::rpc::camera::CameraResult* release_camera_result();
+  ::mavcam::rpc::camera::CameraResult* mutable_camera_result();
+  void set_allocated_camera_result(::mavcam::rpc::camera::CameraResult* value);
+  void unsafe_arena_set_allocated_camera_result(::mavcam::rpc::camera::CameraResult* value);
+  ::mavcam::rpc::camera::CameraResult* unsafe_arena_release_camera_result();
 
   private:
-  const ::mavsdk::rpc::camera::CameraResult& _internal_camera_result() const;
-  ::mavsdk::rpc::camera::CameraResult* _internal_mutable_camera_result();
+  const ::mavcam::rpc::camera::CameraResult& _internal_camera_result() const;
+  ::mavcam::rpc::camera::CameraResult* _internal_mutable_camera_result();
 
   public:
-  // @@protoc_insertion_point(class_scope:mavsdk.rpc.camera.SetSettingResponse)
+  // @@protoc_insertion_point(class_scope:mavcam.rpc.camera.SetSettingResponse)
  private:
   class _Internal;
 
@@ -8225,7 +8225,7 @@ class SetSettingResponse final :
                               ::google::protobuf::Arena* arena, const Impl_& from);
     ::google::protobuf::internal::HasBits<1> _has_bits_;
     mutable ::google::protobuf::internal::CachedSize _cached_size_;
-    ::mavsdk::rpc::camera::CameraResult* camera_result_;
+    ::mavcam::rpc::camera::CameraResult* camera_result_;
     PROTOBUF_TSAN_DECLARE_MEMBER
   };
   union { Impl_ _impl_; };
@@ -8233,7 +8233,7 @@ class SetSettingResponse final :
 };// -------------------------------------------------------------------
 
 class SetModeResponse final :
-    public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:mavsdk.rpc.camera.SetModeResponse) */ {
+    public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:mavcam.rpc.camera.SetModeResponse) */ {
  public:
   inline SetModeResponse() : SetModeResponse(nullptr) {}
   ~SetModeResponse() override;
@@ -8347,7 +8347,7 @@ class SetModeResponse final :
   private:
   friend class ::google::protobuf::internal::AnyMetadata;
   static ::absl::string_view FullMessageName() {
-    return "mavsdk.rpc.camera.SetModeResponse";
+    return "mavcam.rpc.camera.SetModeResponse";
   }
   protected:
   explicit SetModeResponse(::google::protobuf::Arena* arena);
@@ -8366,22 +8366,22 @@ class SetModeResponse final :
   enum : int {
     kCameraResultFieldNumber = 1,
   };
-  // .mavsdk.rpc.camera.CameraResult camera_result = 1;
+  // .mavcam.rpc.camera.CameraResult camera_result = 1;
   bool has_camera_result() const;
   void clear_camera_result() ;
-  const ::mavsdk::rpc::camera::CameraResult& camera_result() const;
-  PROTOBUF_NODISCARD ::mavsdk::rpc::camera::CameraResult* release_camera_result();
-  ::mavsdk::rpc::camera::CameraResult* mutable_camera_result();
-  void set_allocated_camera_result(::mavsdk::rpc::camera::CameraResult* value);
-  void unsafe_arena_set_allocated_camera_result(::mavsdk::rpc::camera::CameraResult* value);
-  ::mavsdk::rpc::camera::CameraResult* unsafe_arena_release_camera_result();
+  const ::mavcam::rpc::camera::CameraResult& camera_result() const;
+  PROTOBUF_NODISCARD ::mavcam::rpc::camera::CameraResult* release_camera_result();
+  ::mavcam::rpc::camera::CameraResult* mutable_camera_result();
+  void set_allocated_camera_result(::mavcam::rpc::camera::CameraResult* value);
+  void unsafe_arena_set_allocated_camera_result(::mavcam::rpc::camera::CameraResult* value);
+  ::mavcam::rpc::camera::CameraResult* unsafe_arena_release_camera_result();
 
   private:
-  const ::mavsdk::rpc::camera::CameraResult& _internal_camera_result() const;
-  ::mavsdk::rpc::camera::CameraResult* _internal_mutable_camera_result();
+  const ::mavcam::rpc::camera::CameraResult& _internal_camera_result() const;
+  ::mavcam::rpc::camera::CameraResult* _internal_mutable_camera_result();
 
   public:
-  // @@protoc_insertion_point(class_scope:mavsdk.rpc.camera.SetModeResponse)
+  // @@protoc_insertion_point(class_scope:mavcam.rpc.camera.SetModeResponse)
  private:
   class _Internal;
 
@@ -8406,7 +8406,7 @@ class SetModeResponse final :
                               ::google::protobuf::Arena* arena, const Impl_& from);
     ::google::protobuf::internal::HasBits<1> _has_bits_;
     mutable ::google::protobuf::internal::CachedSize _cached_size_;
-    ::mavsdk::rpc::camera::CameraResult* camera_result_;
+    ::mavcam::rpc::camera::CameraResult* camera_result_;
     PROTOBUF_TSAN_DECLARE_MEMBER
   };
   union { Impl_ _impl_; };
@@ -8414,7 +8414,7 @@ class SetModeResponse final :
 };// -------------------------------------------------------------------
 
 class SetDefinitionDataResponse final :
-    public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:mavsdk.rpc.camera.SetDefinitionDataResponse) */ {
+    public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:mavcam.rpc.camera.SetDefinitionDataResponse) */ {
  public:
   inline SetDefinitionDataResponse() : SetDefinitionDataResponse(nullptr) {}
   ~SetDefinitionDataResponse() override;
@@ -8528,7 +8528,7 @@ class SetDefinitionDataResponse final :
   private:
   friend class ::google::protobuf::internal::AnyMetadata;
   static ::absl::string_view FullMessageName() {
-    return "mavsdk.rpc.camera.SetDefinitionDataResponse";
+    return "mavcam.rpc.camera.SetDefinitionDataResponse";
   }
   protected:
   explicit SetDefinitionDataResponse(::google::protobuf::Arena* arena);
@@ -8547,22 +8547,22 @@ class SetDefinitionDataResponse final :
   enum : int {
     kCameraResultFieldNumber = 1,
   };
-  // .mavsdk.rpc.camera.CameraResult camera_result = 1;
+  // .mavcam.rpc.camera.CameraResult camera_result = 1;
   bool has_camera_result() const;
   void clear_camera_result() ;
-  const ::mavsdk::rpc::camera::CameraResult& camera_result() const;
-  PROTOBUF_NODISCARD ::mavsdk::rpc::camera::CameraResult* release_camera_result();
-  ::mavsdk::rpc::camera::CameraResult* mutable_camera_result();
-  void set_allocated_camera_result(::mavsdk::rpc::camera::CameraResult* value);
-  void unsafe_arena_set_allocated_camera_result(::mavsdk::rpc::camera::CameraResult* value);
-  ::mavsdk::rpc::camera::CameraResult* unsafe_arena_release_camera_result();
+  const ::mavcam::rpc::camera::CameraResult& camera_result() const;
+  PROTOBUF_NODISCARD ::mavcam::rpc::camera::CameraResult* release_camera_result();
+  ::mavcam::rpc::camera::CameraResult* mutable_camera_result();
+  void set_allocated_camera_result(::mavcam::rpc::camera::CameraResult* value);
+  void unsafe_arena_set_allocated_camera_result(::mavcam::rpc::camera::CameraResult* value);
+  ::mavcam::rpc::camera::CameraResult* unsafe_arena_release_camera_result();
 
   private:
-  const ::mavsdk::rpc::camera::CameraResult& _internal_camera_result() const;
-  ::mavsdk::rpc::camera::CameraResult* _internal_mutable_camera_result();
+  const ::mavcam::rpc::camera::CameraResult& _internal_camera_result() const;
+  ::mavcam::rpc::camera::CameraResult* _internal_mutable_camera_result();
 
   public:
-  // @@protoc_insertion_point(class_scope:mavsdk.rpc.camera.SetDefinitionDataResponse)
+  // @@protoc_insertion_point(class_scope:mavcam.rpc.camera.SetDefinitionDataResponse)
  private:
   class _Internal;
 
@@ -8587,7 +8587,7 @@ class SetDefinitionDataResponse final :
                               ::google::protobuf::Arena* arena, const Impl_& from);
     ::google::protobuf::internal::HasBits<1> _has_bits_;
     mutable ::google::protobuf::internal::CachedSize _cached_size_;
-    ::mavsdk::rpc::camera::CameraResult* camera_result_;
+    ::mavcam::rpc::camera::CameraResult* camera_result_;
     PROTOBUF_TSAN_DECLARE_MEMBER
   };
   union { Impl_ _impl_; };
@@ -8595,7 +8595,7 @@ class SetDefinitionDataResponse final :
 };// -------------------------------------------------------------------
 
 class SelectCameraResponse final :
-    public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:mavsdk.rpc.camera.SelectCameraResponse) */ {
+    public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:mavcam.rpc.camera.SelectCameraResponse) */ {
  public:
   inline SelectCameraResponse() : SelectCameraResponse(nullptr) {}
   ~SelectCameraResponse() override;
@@ -8709,7 +8709,7 @@ class SelectCameraResponse final :
   private:
   friend class ::google::protobuf::internal::AnyMetadata;
   static ::absl::string_view FullMessageName() {
-    return "mavsdk.rpc.camera.SelectCameraResponse";
+    return "mavcam.rpc.camera.SelectCameraResponse";
   }
   protected:
   explicit SelectCameraResponse(::google::protobuf::Arena* arena);
@@ -8728,22 +8728,22 @@ class SelectCameraResponse final :
   enum : int {
     kCameraResultFieldNumber = 1,
   };
-  // .mavsdk.rpc.camera.CameraResult camera_result = 1;
+  // .mavcam.rpc.camera.CameraResult camera_result = 1;
   bool has_camera_result() const;
   void clear_camera_result() ;
-  const ::mavsdk::rpc::camera::CameraResult& camera_result() const;
-  PROTOBUF_NODISCARD ::mavsdk::rpc::camera::CameraResult* release_camera_result();
-  ::mavsdk::rpc::camera::CameraResult* mutable_camera_result();
-  void set_allocated_camera_result(::mavsdk::rpc::camera::CameraResult* value);
-  void unsafe_arena_set_allocated_camera_result(::mavsdk::rpc::camera::CameraResult* value);
-  ::mavsdk::rpc::camera::CameraResult* unsafe_arena_release_camera_result();
+  const ::mavcam::rpc::camera::CameraResult& camera_result() const;
+  PROTOBUF_NODISCARD ::mavcam::rpc::camera::CameraResult* release_camera_result();
+  ::mavcam::rpc::camera::CameraResult* mutable_camera_result();
+  void set_allocated_camera_result(::mavcam::rpc::camera::CameraResult* value);
+  void unsafe_arena_set_allocated_camera_result(::mavcam::rpc::camera::CameraResult* value);
+  ::mavcam::rpc::camera::CameraResult* unsafe_arena_release_camera_result();
 
   private:
-  const ::mavsdk::rpc::camera::CameraResult& _internal_camera_result() const;
-  ::mavsdk::rpc::camera::CameraResult* _internal_mutable_camera_result();
+  const ::mavcam::rpc::camera::CameraResult& _internal_camera_result() const;
+  ::mavcam::rpc::camera::CameraResult* _internal_mutable_camera_result();
 
   public:
-  // @@protoc_insertion_point(class_scope:mavsdk.rpc.camera.SelectCameraResponse)
+  // @@protoc_insertion_point(class_scope:mavcam.rpc.camera.SelectCameraResponse)
  private:
   class _Internal;
 
@@ -8768,7 +8768,7 @@ class SelectCameraResponse final :
                               ::google::protobuf::Arena* arena, const Impl_& from);
     ::google::protobuf::internal::HasBits<1> _has_bits_;
     mutable ::google::protobuf::internal::CachedSize _cached_size_;
-    ::mavsdk::rpc::camera::CameraResult* camera_result_;
+    ::mavcam::rpc::camera::CameraResult* camera_result_;
     PROTOBUF_TSAN_DECLARE_MEMBER
   };
   union { Impl_ _impl_; };
@@ -8776,7 +8776,7 @@ class SelectCameraResponse final :
 };// -------------------------------------------------------------------
 
 class ResetSettingsResponse final :
-    public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:mavsdk.rpc.camera.ResetSettingsResponse) */ {
+    public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:mavcam.rpc.camera.ResetSettingsResponse) */ {
  public:
   inline ResetSettingsResponse() : ResetSettingsResponse(nullptr) {}
   ~ResetSettingsResponse() override;
@@ -8890,7 +8890,7 @@ class ResetSettingsResponse final :
   private:
   friend class ::google::protobuf::internal::AnyMetadata;
   static ::absl::string_view FullMessageName() {
-    return "mavsdk.rpc.camera.ResetSettingsResponse";
+    return "mavcam.rpc.camera.ResetSettingsResponse";
   }
   protected:
   explicit ResetSettingsResponse(::google::protobuf::Arena* arena);
@@ -8909,22 +8909,22 @@ class ResetSettingsResponse final :
   enum : int {
     kCameraResultFieldNumber = 1,
   };
-  // .mavsdk.rpc.camera.CameraResult camera_result = 1;
+  // .mavcam.rpc.camera.CameraResult camera_result = 1;
   bool has_camera_result() const;
   void clear_camera_result() ;
-  const ::mavsdk::rpc::camera::CameraResult& camera_result() const;
-  PROTOBUF_NODISCARD ::mavsdk::rpc::camera::CameraResult* release_camera_result();
-  ::mavsdk::rpc::camera::CameraResult* mutable_camera_result();
-  void set_allocated_camera_result(::mavsdk::rpc::camera::CameraResult* value);
-  void unsafe_arena_set_allocated_camera_result(::mavsdk::rpc::camera::CameraResult* value);
-  ::mavsdk::rpc::camera::CameraResult* unsafe_arena_release_camera_result();
+  const ::mavcam::rpc::camera::CameraResult& camera_result() const;
+  PROTOBUF_NODISCARD ::mavcam::rpc::camera::CameraResult* release_camera_result();
+  ::mavcam::rpc::camera::CameraResult* mutable_camera_result();
+  void set_allocated_camera_result(::mavcam::rpc::camera::CameraResult* value);
+  void unsafe_arena_set_allocated_camera_result(::mavcam::rpc::camera::CameraResult* value);
+  ::mavcam::rpc::camera::CameraResult* unsafe_arena_release_camera_result();
 
   private:
-  const ::mavsdk::rpc::camera::CameraResult& _internal_camera_result() const;
-  ::mavsdk::rpc::camera::CameraResult* _internal_mutable_camera_result();
+  const ::mavcam::rpc::camera::CameraResult& _internal_camera_result() const;
+  ::mavcam::rpc::camera::CameraResult* _internal_mutable_camera_result();
 
   public:
-  // @@protoc_insertion_point(class_scope:mavsdk.rpc.camera.ResetSettingsResponse)
+  // @@protoc_insertion_point(class_scope:mavcam.rpc.camera.ResetSettingsResponse)
  private:
   class _Internal;
 
@@ -8949,7 +8949,7 @@ class ResetSettingsResponse final :
                               ::google::protobuf::Arena* arena, const Impl_& from);
     ::google::protobuf::internal::HasBits<1> _has_bits_;
     mutable ::google::protobuf::internal::CachedSize _cached_size_;
-    ::mavsdk::rpc::camera::CameraResult* camera_result_;
+    ::mavcam::rpc::camera::CameraResult* camera_result_;
     PROTOBUF_TSAN_DECLARE_MEMBER
   };
   union { Impl_ _impl_; };
@@ -8957,7 +8957,7 @@ class ResetSettingsResponse final :
 };// -------------------------------------------------------------------
 
 class PrepareResponse final :
-    public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:mavsdk.rpc.camera.PrepareResponse) */ {
+    public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:mavcam.rpc.camera.PrepareResponse) */ {
  public:
   inline PrepareResponse() : PrepareResponse(nullptr) {}
   ~PrepareResponse() override;
@@ -9071,7 +9071,7 @@ class PrepareResponse final :
   private:
   friend class ::google::protobuf::internal::AnyMetadata;
   static ::absl::string_view FullMessageName() {
-    return "mavsdk.rpc.camera.PrepareResponse";
+    return "mavcam.rpc.camera.PrepareResponse";
   }
   protected:
   explicit PrepareResponse(::google::protobuf::Arena* arena);
@@ -9090,22 +9090,22 @@ class PrepareResponse final :
   enum : int {
     kCameraResultFieldNumber = 1,
   };
-  // .mavsdk.rpc.camera.CameraResult camera_result = 1;
+  // .mavcam.rpc.camera.CameraResult camera_result = 1;
   bool has_camera_result() const;
   void clear_camera_result() ;
-  const ::mavsdk::rpc::camera::CameraResult& camera_result() const;
-  PROTOBUF_NODISCARD ::mavsdk::rpc::camera::CameraResult* release_camera_result();
-  ::mavsdk::rpc::camera::CameraResult* mutable_camera_result();
-  void set_allocated_camera_result(::mavsdk::rpc::camera::CameraResult* value);
-  void unsafe_arena_set_allocated_camera_result(::mavsdk::rpc::camera::CameraResult* value);
-  ::mavsdk::rpc::camera::CameraResult* unsafe_arena_release_camera_result();
+  const ::mavcam::rpc::camera::CameraResult& camera_result() const;
+  PROTOBUF_NODISCARD ::mavcam::rpc::camera::CameraResult* release_camera_result();
+  ::mavcam::rpc::camera::CameraResult* mutable_camera_result();
+  void set_allocated_camera_result(::mavcam::rpc::camera::CameraResult* value);
+  void unsafe_arena_set_allocated_camera_result(::mavcam::rpc::camera::CameraResult* value);
+  ::mavcam::rpc::camera::CameraResult* unsafe_arena_release_camera_result();
 
   private:
-  const ::mavsdk::rpc::camera::CameraResult& _internal_camera_result() const;
-  ::mavsdk::rpc::camera::CameraResult* _internal_mutable_camera_result();
+  const ::mavcam::rpc::camera::CameraResult& _internal_camera_result() const;
+  ::mavcam::rpc::camera::CameraResult* _internal_mutable_camera_result();
 
   public:
-  // @@protoc_insertion_point(class_scope:mavsdk.rpc.camera.PrepareResponse)
+  // @@protoc_insertion_point(class_scope:mavcam.rpc.camera.PrepareResponse)
  private:
   class _Internal;
 
@@ -9130,7 +9130,7 @@ class PrepareResponse final :
                               ::google::protobuf::Arena* arena, const Impl_& from);
     ::google::protobuf::internal::HasBits<1> _has_bits_;
     mutable ::google::protobuf::internal::CachedSize _cached_size_;
-    ::mavsdk::rpc::camera::CameraResult* camera_result_;
+    ::mavcam::rpc::camera::CameraResult* camera_result_;
     PROTOBUF_TSAN_DECLARE_MEMBER
   };
   union { Impl_ _impl_; };
@@ -9138,7 +9138,7 @@ class PrepareResponse final :
 };// -------------------------------------------------------------------
 
 class InformationResponse final :
-    public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:mavsdk.rpc.camera.InformationResponse) */ {
+    public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:mavcam.rpc.camera.InformationResponse) */ {
  public:
   inline InformationResponse() : InformationResponse(nullptr) {}
   ~InformationResponse() override;
@@ -9252,7 +9252,7 @@ class InformationResponse final :
   private:
   friend class ::google::protobuf::internal::AnyMetadata;
   static ::absl::string_view FullMessageName() {
-    return "mavsdk.rpc.camera.InformationResponse";
+    return "mavcam.rpc.camera.InformationResponse";
   }
   protected:
   explicit InformationResponse(::google::protobuf::Arena* arena);
@@ -9271,22 +9271,22 @@ class InformationResponse final :
   enum : int {
     kInformationFieldNumber = 1,
   };
-  // .mavsdk.rpc.camera.Information information = 1;
+  // .mavcam.rpc.camera.Information information = 1;
   bool has_information() const;
   void clear_information() ;
-  const ::mavsdk::rpc::camera::Information& information() const;
-  PROTOBUF_NODISCARD ::mavsdk::rpc::camera::Information* release_information();
-  ::mavsdk::rpc::camera::Information* mutable_information();
-  void set_allocated_information(::mavsdk::rpc::camera::Information* value);
-  void unsafe_arena_set_allocated_information(::mavsdk::rpc::camera::Information* value);
-  ::mavsdk::rpc::camera::Information* unsafe_arena_release_information();
+  const ::mavcam::rpc::camera::Information& information() const;
+  PROTOBUF_NODISCARD ::mavcam::rpc::camera::Information* release_information();
+  ::mavcam::rpc::camera::Information* mutable_information();
+  void set_allocated_information(::mavcam::rpc::camera::Information* value);
+  void unsafe_arena_set_allocated_information(::mavcam::rpc::camera::Information* value);
+  ::mavcam::rpc::camera::Information* unsafe_arena_release_information();
 
   private:
-  const ::mavsdk::rpc::camera::Information& _internal_information() const;
-  ::mavsdk::rpc::camera::Information* _internal_mutable_information();
+  const ::mavcam::rpc::camera::Information& _internal_information() const;
+  ::mavcam::rpc::camera::Information* _internal_mutable_information();
 
   public:
-  // @@protoc_insertion_point(class_scope:mavsdk.rpc.camera.InformationResponse)
+  // @@protoc_insertion_point(class_scope:mavcam.rpc.camera.InformationResponse)
  private:
   class _Internal;
 
@@ -9311,7 +9311,7 @@ class InformationResponse final :
                               ::google::protobuf::Arena* arena, const Impl_& from);
     ::google::protobuf::internal::HasBits<1> _has_bits_;
     mutable ::google::protobuf::internal::CachedSize _cached_size_;
-    ::mavsdk::rpc::camera::Information* information_;
+    ::mavcam::rpc::camera::Information* information_;
     PROTOBUF_TSAN_DECLARE_MEMBER
   };
   union { Impl_ _impl_; };
@@ -9319,7 +9319,7 @@ class InformationResponse final :
 };// -------------------------------------------------------------------
 
 class FormatStorageResponse final :
-    public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:mavsdk.rpc.camera.FormatStorageResponse) */ {
+    public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:mavcam.rpc.camera.FormatStorageResponse) */ {
  public:
   inline FormatStorageResponse() : FormatStorageResponse(nullptr) {}
   ~FormatStorageResponse() override;
@@ -9433,7 +9433,7 @@ class FormatStorageResponse final :
   private:
   friend class ::google::protobuf::internal::AnyMetadata;
   static ::absl::string_view FullMessageName() {
-    return "mavsdk.rpc.camera.FormatStorageResponse";
+    return "mavcam.rpc.camera.FormatStorageResponse";
   }
   protected:
   explicit FormatStorageResponse(::google::protobuf::Arena* arena);
@@ -9452,22 +9452,22 @@ class FormatStorageResponse final :
   enum : int {
     kCameraResultFieldNumber = 1,
   };
-  // .mavsdk.rpc.camera.CameraResult camera_result = 1;
+  // .mavcam.rpc.camera.CameraResult camera_result = 1;
   bool has_camera_result() const;
   void clear_camera_result() ;
-  const ::mavsdk::rpc::camera::CameraResult& camera_result() const;
-  PROTOBUF_NODISCARD ::mavsdk::rpc::camera::CameraResult* release_camera_result();
-  ::mavsdk::rpc::camera::CameraResult* mutable_camera_result();
-  void set_allocated_camera_result(::mavsdk::rpc::camera::CameraResult* value);
-  void unsafe_arena_set_allocated_camera_result(::mavsdk::rpc::camera::CameraResult* value);
-  ::mavsdk::rpc::camera::CameraResult* unsafe_arena_release_camera_result();
+  const ::mavcam::rpc::camera::CameraResult& camera_result() const;
+  PROTOBUF_NODISCARD ::mavcam::rpc::camera::CameraResult* release_camera_result();
+  ::mavcam::rpc::camera::CameraResult* mutable_camera_result();
+  void set_allocated_camera_result(::mavcam::rpc::camera::CameraResult* value);
+  void unsafe_arena_set_allocated_camera_result(::mavcam::rpc::camera::CameraResult* value);
+  ::mavcam::rpc::camera::CameraResult* unsafe_arena_release_camera_result();
 
   private:
-  const ::mavsdk::rpc::camera::CameraResult& _internal_camera_result() const;
-  ::mavsdk::rpc::camera::CameraResult* _internal_mutable_camera_result();
+  const ::mavcam::rpc::camera::CameraResult& _internal_camera_result() const;
+  ::mavcam::rpc::camera::CameraResult* _internal_mutable_camera_result();
 
   public:
-  // @@protoc_insertion_point(class_scope:mavsdk.rpc.camera.FormatStorageResponse)
+  // @@protoc_insertion_point(class_scope:mavcam.rpc.camera.FormatStorageResponse)
  private:
   class _Internal;
 
@@ -9492,7 +9492,7 @@ class FormatStorageResponse final :
                               ::google::protobuf::Arena* arena, const Impl_& from);
     ::google::protobuf::internal::HasBits<1> _has_bits_;
     mutable ::google::protobuf::internal::CachedSize _cached_size_;
-    ::mavsdk::rpc::camera::CameraResult* camera_result_;
+    ::mavcam::rpc::camera::CameraResult* camera_result_;
     PROTOBUF_TSAN_DECLARE_MEMBER
   };
   union { Impl_ _impl_; };
@@ -9500,7 +9500,7 @@ class FormatStorageResponse final :
 };// -------------------------------------------------------------------
 
 class CaptureInfo final :
-    public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:mavsdk.rpc.camera.CaptureInfo) */ {
+    public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:mavcam.rpc.camera.CaptureInfo) */ {
  public:
   inline CaptureInfo() : CaptureInfo(nullptr) {}
   ~CaptureInfo() override;
@@ -9614,7 +9614,7 @@ class CaptureInfo final :
   private:
   friend class ::google::protobuf::internal::AnyMetadata;
   static ::absl::string_view FullMessageName() {
-    return "mavsdk.rpc.camera.CaptureInfo";
+    return "mavcam.rpc.camera.CaptureInfo";
   }
   protected:
   explicit CaptureInfo(::google::protobuf::Arena* arena);
@@ -9655,49 +9655,49 @@ class CaptureInfo final :
   std::string* _internal_mutable_file_url();
 
   public:
-  // .mavsdk.rpc.camera.Position position = 1;
+  // .mavcam.rpc.camera.Position position = 1;
   bool has_position() const;
   void clear_position() ;
-  const ::mavsdk::rpc::camera::Position& position() const;
-  PROTOBUF_NODISCARD ::mavsdk::rpc::camera::Position* release_position();
-  ::mavsdk::rpc::camera::Position* mutable_position();
-  void set_allocated_position(::mavsdk::rpc::camera::Position* value);
-  void unsafe_arena_set_allocated_position(::mavsdk::rpc::camera::Position* value);
-  ::mavsdk::rpc::camera::Position* unsafe_arena_release_position();
+  const ::mavcam::rpc::camera::Position& position() const;
+  PROTOBUF_NODISCARD ::mavcam::rpc::camera::Position* release_position();
+  ::mavcam::rpc::camera::Position* mutable_position();
+  void set_allocated_position(::mavcam::rpc::camera::Position* value);
+  void unsafe_arena_set_allocated_position(::mavcam::rpc::camera::Position* value);
+  ::mavcam::rpc::camera::Position* unsafe_arena_release_position();
 
   private:
-  const ::mavsdk::rpc::camera::Position& _internal_position() const;
-  ::mavsdk::rpc::camera::Position* _internal_mutable_position();
+  const ::mavcam::rpc::camera::Position& _internal_position() const;
+  ::mavcam::rpc::camera::Position* _internal_mutable_position();
 
   public:
-  // .mavsdk.rpc.camera.Quaternion attitude_quaternion = 2;
+  // .mavcam.rpc.camera.Quaternion attitude_quaternion = 2;
   bool has_attitude_quaternion() const;
   void clear_attitude_quaternion() ;
-  const ::mavsdk::rpc::camera::Quaternion& attitude_quaternion() const;
-  PROTOBUF_NODISCARD ::mavsdk::rpc::camera::Quaternion* release_attitude_quaternion();
-  ::mavsdk::rpc::camera::Quaternion* mutable_attitude_quaternion();
-  void set_allocated_attitude_quaternion(::mavsdk::rpc::camera::Quaternion* value);
-  void unsafe_arena_set_allocated_attitude_quaternion(::mavsdk::rpc::camera::Quaternion* value);
-  ::mavsdk::rpc::camera::Quaternion* unsafe_arena_release_attitude_quaternion();
+  const ::mavcam::rpc::camera::Quaternion& attitude_quaternion() const;
+  PROTOBUF_NODISCARD ::mavcam::rpc::camera::Quaternion* release_attitude_quaternion();
+  ::mavcam::rpc::camera::Quaternion* mutable_attitude_quaternion();
+  void set_allocated_attitude_quaternion(::mavcam::rpc::camera::Quaternion* value);
+  void unsafe_arena_set_allocated_attitude_quaternion(::mavcam::rpc::camera::Quaternion* value);
+  ::mavcam::rpc::camera::Quaternion* unsafe_arena_release_attitude_quaternion();
 
   private:
-  const ::mavsdk::rpc::camera::Quaternion& _internal_attitude_quaternion() const;
-  ::mavsdk::rpc::camera::Quaternion* _internal_mutable_attitude_quaternion();
+  const ::mavcam::rpc::camera::Quaternion& _internal_attitude_quaternion() const;
+  ::mavcam::rpc::camera::Quaternion* _internal_mutable_attitude_quaternion();
 
   public:
-  // .mavsdk.rpc.camera.EulerAngle attitude_euler_angle = 3;
+  // .mavcam.rpc.camera.EulerAngle attitude_euler_angle = 3;
   bool has_attitude_euler_angle() const;
   void clear_attitude_euler_angle() ;
-  const ::mavsdk::rpc::camera::EulerAngle& attitude_euler_angle() const;
-  PROTOBUF_NODISCARD ::mavsdk::rpc::camera::EulerAngle* release_attitude_euler_angle();
-  ::mavsdk::rpc::camera::EulerAngle* mutable_attitude_euler_angle();
-  void set_allocated_attitude_euler_angle(::mavsdk::rpc::camera::EulerAngle* value);
-  void unsafe_arena_set_allocated_attitude_euler_angle(::mavsdk::rpc::camera::EulerAngle* value);
-  ::mavsdk::rpc::camera::EulerAngle* unsafe_arena_release_attitude_euler_angle();
+  const ::mavcam::rpc::camera::EulerAngle& attitude_euler_angle() const;
+  PROTOBUF_NODISCARD ::mavcam::rpc::camera::EulerAngle* release_attitude_euler_angle();
+  ::mavcam::rpc::camera::EulerAngle* mutable_attitude_euler_angle();
+  void set_allocated_attitude_euler_angle(::mavcam::rpc::camera::EulerAngle* value);
+  void unsafe_arena_set_allocated_attitude_euler_angle(::mavcam::rpc::camera::EulerAngle* value);
+  ::mavcam::rpc::camera::EulerAngle* unsafe_arena_release_attitude_euler_angle();
 
   private:
-  const ::mavsdk::rpc::camera::EulerAngle& _internal_attitude_euler_angle() const;
-  ::mavsdk::rpc::camera::EulerAngle* _internal_mutable_attitude_euler_angle();
+  const ::mavcam::rpc::camera::EulerAngle& _internal_attitude_euler_angle() const;
+  ::mavcam::rpc::camera::EulerAngle* _internal_mutable_attitude_euler_angle();
 
   public:
   // uint64 time_utc_us = 4;
@@ -9730,7 +9730,7 @@ class CaptureInfo final :
   void _internal_set_index(::int32_t value);
 
   public:
-  // @@protoc_insertion_point(class_scope:mavsdk.rpc.camera.CaptureInfo)
+  // @@protoc_insertion_point(class_scope:mavcam.rpc.camera.CaptureInfo)
  private:
   class _Internal;
 
@@ -9756,9 +9756,9 @@ class CaptureInfo final :
     ::google::protobuf::internal::HasBits<1> _has_bits_;
     mutable ::google::protobuf::internal::CachedSize _cached_size_;
     ::google::protobuf::internal::ArenaStringPtr file_url_;
-    ::mavsdk::rpc::camera::Position* position_;
-    ::mavsdk::rpc::camera::Quaternion* attitude_quaternion_;
-    ::mavsdk::rpc::camera::EulerAngle* attitude_euler_angle_;
+    ::mavcam::rpc::camera::Position* position_;
+    ::mavcam::rpc::camera::Quaternion* attitude_quaternion_;
+    ::mavcam::rpc::camera::EulerAngle* attitude_euler_angle_;
     ::uint64_t time_utc_us_;
     bool is_success_;
     ::int32_t index_;
@@ -9769,7 +9769,7 @@ class CaptureInfo final :
 };// -------------------------------------------------------------------
 
 class VideoStreamInfoResponse final :
-    public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:mavsdk.rpc.camera.VideoStreamInfoResponse) */ {
+    public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:mavcam.rpc.camera.VideoStreamInfoResponse) */ {
  public:
   inline VideoStreamInfoResponse() : VideoStreamInfoResponse(nullptr) {}
   ~VideoStreamInfoResponse() override;
@@ -9883,7 +9883,7 @@ class VideoStreamInfoResponse final :
   private:
   friend class ::google::protobuf::internal::AnyMetadata;
   static ::absl::string_view FullMessageName() {
-    return "mavsdk.rpc.camera.VideoStreamInfoResponse";
+    return "mavcam.rpc.camera.VideoStreamInfoResponse";
   }
   protected:
   explicit VideoStreamInfoResponse(::google::protobuf::Arena* arena);
@@ -9902,25 +9902,25 @@ class VideoStreamInfoResponse final :
   enum : int {
     kVideoStreamInfosFieldNumber = 1,
   };
-  // repeated .mavsdk.rpc.camera.VideoStreamInfo video_stream_infos = 1;
+  // repeated .mavcam.rpc.camera.VideoStreamInfo video_stream_infos = 1;
   int video_stream_infos_size() const;
   private:
   int _internal_video_stream_infos_size() const;
 
   public:
   void clear_video_stream_infos() ;
-  ::mavsdk::rpc::camera::VideoStreamInfo* mutable_video_stream_infos(int index);
-  ::google::protobuf::RepeatedPtrField< ::mavsdk::rpc::camera::VideoStreamInfo >*
+  ::mavcam::rpc::camera::VideoStreamInfo* mutable_video_stream_infos(int index);
+  ::google::protobuf::RepeatedPtrField< ::mavcam::rpc::camera::VideoStreamInfo >*
       mutable_video_stream_infos();
   private:
-  const ::google::protobuf::RepeatedPtrField<::mavsdk::rpc::camera::VideoStreamInfo>& _internal_video_stream_infos() const;
-  ::google::protobuf::RepeatedPtrField<::mavsdk::rpc::camera::VideoStreamInfo>* _internal_mutable_video_stream_infos();
+  const ::google::protobuf::RepeatedPtrField<::mavcam::rpc::camera::VideoStreamInfo>& _internal_video_stream_infos() const;
+  ::google::protobuf::RepeatedPtrField<::mavcam::rpc::camera::VideoStreamInfo>* _internal_mutable_video_stream_infos();
   public:
-  const ::mavsdk::rpc::camera::VideoStreamInfo& video_stream_infos(int index) const;
-  ::mavsdk::rpc::camera::VideoStreamInfo* add_video_stream_infos();
-  const ::google::protobuf::RepeatedPtrField< ::mavsdk::rpc::camera::VideoStreamInfo >&
+  const ::mavcam::rpc::camera::VideoStreamInfo& video_stream_infos(int index) const;
+  ::mavcam::rpc::camera::VideoStreamInfo* add_video_stream_infos();
+  const ::google::protobuf::RepeatedPtrField< ::mavcam::rpc::camera::VideoStreamInfo >&
       video_stream_infos() const;
-  // @@protoc_insertion_point(class_scope:mavsdk.rpc.camera.VideoStreamInfoResponse)
+  // @@protoc_insertion_point(class_scope:mavcam.rpc.camera.VideoStreamInfoResponse)
  private:
   class _Internal;
 
@@ -9943,7 +9943,7 @@ class VideoStreamInfoResponse final :
                               ::google::protobuf::Arena* arena);
         inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
                               ::google::protobuf::Arena* arena, const Impl_& from);
-    ::google::protobuf::RepeatedPtrField< ::mavsdk::rpc::camera::VideoStreamInfo > video_stream_infos_;
+    ::google::protobuf::RepeatedPtrField< ::mavcam::rpc::camera::VideoStreamInfo > video_stream_infos_;
     mutable ::google::protobuf::internal::CachedSize _cached_size_;
     PROTOBUF_TSAN_DECLARE_MEMBER
   };
@@ -9952,7 +9952,7 @@ class VideoStreamInfoResponse final :
 };// -------------------------------------------------------------------
 
 class SetSettingRequest final :
-    public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:mavsdk.rpc.camera.SetSettingRequest) */ {
+    public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:mavcam.rpc.camera.SetSettingRequest) */ {
  public:
   inline SetSettingRequest() : SetSettingRequest(nullptr) {}
   ~SetSettingRequest() override;
@@ -10066,7 +10066,7 @@ class SetSettingRequest final :
   private:
   friend class ::google::protobuf::internal::AnyMetadata;
   static ::absl::string_view FullMessageName() {
-    return "mavsdk.rpc.camera.SetSettingRequest";
+    return "mavcam.rpc.camera.SetSettingRequest";
   }
   protected:
   explicit SetSettingRequest(::google::protobuf::Arena* arena);
@@ -10085,22 +10085,22 @@ class SetSettingRequest final :
   enum : int {
     kSettingFieldNumber = 1,
   };
-  // .mavsdk.rpc.camera.Setting setting = 1;
+  // .mavcam.rpc.camera.Setting setting = 1;
   bool has_setting() const;
   void clear_setting() ;
-  const ::mavsdk::rpc::camera::Setting& setting() const;
-  PROTOBUF_NODISCARD ::mavsdk::rpc::camera::Setting* release_setting();
-  ::mavsdk::rpc::camera::Setting* mutable_setting();
-  void set_allocated_setting(::mavsdk::rpc::camera::Setting* value);
-  void unsafe_arena_set_allocated_setting(::mavsdk::rpc::camera::Setting* value);
-  ::mavsdk::rpc::camera::Setting* unsafe_arena_release_setting();
+  const ::mavcam::rpc::camera::Setting& setting() const;
+  PROTOBUF_NODISCARD ::mavcam::rpc::camera::Setting* release_setting();
+  ::mavcam::rpc::camera::Setting* mutable_setting();
+  void set_allocated_setting(::mavcam::rpc::camera::Setting* value);
+  void unsafe_arena_set_allocated_setting(::mavcam::rpc::camera::Setting* value);
+  ::mavcam::rpc::camera::Setting* unsafe_arena_release_setting();
 
   private:
-  const ::mavsdk::rpc::camera::Setting& _internal_setting() const;
-  ::mavsdk::rpc::camera::Setting* _internal_mutable_setting();
+  const ::mavcam::rpc::camera::Setting& _internal_setting() const;
+  ::mavcam::rpc::camera::Setting* _internal_mutable_setting();
 
   public:
-  // @@protoc_insertion_point(class_scope:mavsdk.rpc.camera.SetSettingRequest)
+  // @@protoc_insertion_point(class_scope:mavcam.rpc.camera.SetSettingRequest)
  private:
   class _Internal;
 
@@ -10125,7 +10125,7 @@ class SetSettingRequest final :
                               ::google::protobuf::Arena* arena, const Impl_& from);
     ::google::protobuf::internal::HasBits<1> _has_bits_;
     mutable ::google::protobuf::internal::CachedSize _cached_size_;
-    ::mavsdk::rpc::camera::Setting* setting_;
+    ::mavcam::rpc::camera::Setting* setting_;
     PROTOBUF_TSAN_DECLARE_MEMBER
   };
   union { Impl_ _impl_; };
@@ -10133,7 +10133,7 @@ class SetSettingRequest final :
 };// -------------------------------------------------------------------
 
 class PossibleSettingOptionsResponse final :
-    public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:mavsdk.rpc.camera.PossibleSettingOptionsResponse) */ {
+    public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:mavcam.rpc.camera.PossibleSettingOptionsResponse) */ {
  public:
   inline PossibleSettingOptionsResponse() : PossibleSettingOptionsResponse(nullptr) {}
   ~PossibleSettingOptionsResponse() override;
@@ -10247,7 +10247,7 @@ class PossibleSettingOptionsResponse final :
   private:
   friend class ::google::protobuf::internal::AnyMetadata;
   static ::absl::string_view FullMessageName() {
-    return "mavsdk.rpc.camera.PossibleSettingOptionsResponse";
+    return "mavcam.rpc.camera.PossibleSettingOptionsResponse";
   }
   protected:
   explicit PossibleSettingOptionsResponse(::google::protobuf::Arena* arena);
@@ -10266,25 +10266,25 @@ class PossibleSettingOptionsResponse final :
   enum : int {
     kSettingOptionsFieldNumber = 1,
   };
-  // repeated .mavsdk.rpc.camera.SettingOptions setting_options = 1;
+  // repeated .mavcam.rpc.camera.SettingOptions setting_options = 1;
   int setting_options_size() const;
   private:
   int _internal_setting_options_size() const;
 
   public:
   void clear_setting_options() ;
-  ::mavsdk::rpc::camera::SettingOptions* mutable_setting_options(int index);
-  ::google::protobuf::RepeatedPtrField< ::mavsdk::rpc::camera::SettingOptions >*
+  ::mavcam::rpc::camera::SettingOptions* mutable_setting_options(int index);
+  ::google::protobuf::RepeatedPtrField< ::mavcam::rpc::camera::SettingOptions >*
       mutable_setting_options();
   private:
-  const ::google::protobuf::RepeatedPtrField<::mavsdk::rpc::camera::SettingOptions>& _internal_setting_options() const;
-  ::google::protobuf::RepeatedPtrField<::mavsdk::rpc::camera::SettingOptions>* _internal_mutable_setting_options();
+  const ::google::protobuf::RepeatedPtrField<::mavcam::rpc::camera::SettingOptions>& _internal_setting_options() const;
+  ::google::protobuf::RepeatedPtrField<::mavcam::rpc::camera::SettingOptions>* _internal_mutable_setting_options();
   public:
-  const ::mavsdk::rpc::camera::SettingOptions& setting_options(int index) const;
-  ::mavsdk::rpc::camera::SettingOptions* add_setting_options();
-  const ::google::protobuf::RepeatedPtrField< ::mavsdk::rpc::camera::SettingOptions >&
+  const ::mavcam::rpc::camera::SettingOptions& setting_options(int index) const;
+  ::mavcam::rpc::camera::SettingOptions* add_setting_options();
+  const ::google::protobuf::RepeatedPtrField< ::mavcam::rpc::camera::SettingOptions >&
       setting_options() const;
-  // @@protoc_insertion_point(class_scope:mavsdk.rpc.camera.PossibleSettingOptionsResponse)
+  // @@protoc_insertion_point(class_scope:mavcam.rpc.camera.PossibleSettingOptionsResponse)
  private:
   class _Internal;
 
@@ -10307,7 +10307,7 @@ class PossibleSettingOptionsResponse final :
                               ::google::protobuf::Arena* arena);
         inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
                               ::google::protobuf::Arena* arena, const Impl_& from);
-    ::google::protobuf::RepeatedPtrField< ::mavsdk::rpc::camera::SettingOptions > setting_options_;
+    ::google::protobuf::RepeatedPtrField< ::mavcam::rpc::camera::SettingOptions > setting_options_;
     mutable ::google::protobuf::internal::CachedSize _cached_size_;
     PROTOBUF_TSAN_DECLARE_MEMBER
   };
@@ -10316,7 +10316,7 @@ class PossibleSettingOptionsResponse final :
 };// -------------------------------------------------------------------
 
 class ListPhotosResponse final :
-    public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:mavsdk.rpc.camera.ListPhotosResponse) */ {
+    public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:mavcam.rpc.camera.ListPhotosResponse) */ {
  public:
   inline ListPhotosResponse() : ListPhotosResponse(nullptr) {}
   ~ListPhotosResponse() override;
@@ -10430,7 +10430,7 @@ class ListPhotosResponse final :
   private:
   friend class ::google::protobuf::internal::AnyMetadata;
   static ::absl::string_view FullMessageName() {
-    return "mavsdk.rpc.camera.ListPhotosResponse";
+    return "mavcam.rpc.camera.ListPhotosResponse";
   }
   protected:
   explicit ListPhotosResponse(::google::protobuf::Arena* arena);
@@ -10450,40 +10450,40 @@ class ListPhotosResponse final :
     kCaptureInfosFieldNumber = 2,
     kCameraResultFieldNumber = 1,
   };
-  // repeated .mavsdk.rpc.camera.CaptureInfo capture_infos = 2;
+  // repeated .mavcam.rpc.camera.CaptureInfo capture_infos = 2;
   int capture_infos_size() const;
   private:
   int _internal_capture_infos_size() const;
 
   public:
   void clear_capture_infos() ;
-  ::mavsdk::rpc::camera::CaptureInfo* mutable_capture_infos(int index);
-  ::google::protobuf::RepeatedPtrField< ::mavsdk::rpc::camera::CaptureInfo >*
+  ::mavcam::rpc::camera::CaptureInfo* mutable_capture_infos(int index);
+  ::google::protobuf::RepeatedPtrField< ::mavcam::rpc::camera::CaptureInfo >*
       mutable_capture_infos();
   private:
-  const ::google::protobuf::RepeatedPtrField<::mavsdk::rpc::camera::CaptureInfo>& _internal_capture_infos() const;
-  ::google::protobuf::RepeatedPtrField<::mavsdk::rpc::camera::CaptureInfo>* _internal_mutable_capture_infos();
+  const ::google::protobuf::RepeatedPtrField<::mavcam::rpc::camera::CaptureInfo>& _internal_capture_infos() const;
+  ::google::protobuf::RepeatedPtrField<::mavcam::rpc::camera::CaptureInfo>* _internal_mutable_capture_infos();
   public:
-  const ::mavsdk::rpc::camera::CaptureInfo& capture_infos(int index) const;
-  ::mavsdk::rpc::camera::CaptureInfo* add_capture_infos();
-  const ::google::protobuf::RepeatedPtrField< ::mavsdk::rpc::camera::CaptureInfo >&
+  const ::mavcam::rpc::camera::CaptureInfo& capture_infos(int index) const;
+  ::mavcam::rpc::camera::CaptureInfo* add_capture_infos();
+  const ::google::protobuf::RepeatedPtrField< ::mavcam::rpc::camera::CaptureInfo >&
       capture_infos() const;
-  // .mavsdk.rpc.camera.CameraResult camera_result = 1;
+  // .mavcam.rpc.camera.CameraResult camera_result = 1;
   bool has_camera_result() const;
   void clear_camera_result() ;
-  const ::mavsdk::rpc::camera::CameraResult& camera_result() const;
-  PROTOBUF_NODISCARD ::mavsdk::rpc::camera::CameraResult* release_camera_result();
-  ::mavsdk::rpc::camera::CameraResult* mutable_camera_result();
-  void set_allocated_camera_result(::mavsdk::rpc::camera::CameraResult* value);
-  void unsafe_arena_set_allocated_camera_result(::mavsdk::rpc::camera::CameraResult* value);
-  ::mavsdk::rpc::camera::CameraResult* unsafe_arena_release_camera_result();
+  const ::mavcam::rpc::camera::CameraResult& camera_result() const;
+  PROTOBUF_NODISCARD ::mavcam::rpc::camera::CameraResult* release_camera_result();
+  ::mavcam::rpc::camera::CameraResult* mutable_camera_result();
+  void set_allocated_camera_result(::mavcam::rpc::camera::CameraResult* value);
+  void unsafe_arena_set_allocated_camera_result(::mavcam::rpc::camera::CameraResult* value);
+  ::mavcam::rpc::camera::CameraResult* unsafe_arena_release_camera_result();
 
   private:
-  const ::mavsdk::rpc::camera::CameraResult& _internal_camera_result() const;
-  ::mavsdk::rpc::camera::CameraResult* _internal_mutable_camera_result();
+  const ::mavcam::rpc::camera::CameraResult& _internal_camera_result() const;
+  ::mavcam::rpc::camera::CameraResult* _internal_mutable_camera_result();
 
   public:
-  // @@protoc_insertion_point(class_scope:mavsdk.rpc.camera.ListPhotosResponse)
+  // @@protoc_insertion_point(class_scope:mavcam.rpc.camera.ListPhotosResponse)
  private:
   class _Internal;
 
@@ -10508,8 +10508,8 @@ class ListPhotosResponse final :
                               ::google::protobuf::Arena* arena, const Impl_& from);
     ::google::protobuf::internal::HasBits<1> _has_bits_;
     mutable ::google::protobuf::internal::CachedSize _cached_size_;
-    ::google::protobuf::RepeatedPtrField< ::mavsdk::rpc::camera::CaptureInfo > capture_infos_;
-    ::mavsdk::rpc::camera::CameraResult* camera_result_;
+    ::google::protobuf::RepeatedPtrField< ::mavcam::rpc::camera::CaptureInfo > capture_infos_;
+    ::mavcam::rpc::camera::CameraResult* camera_result_;
     PROTOBUF_TSAN_DECLARE_MEMBER
   };
   union { Impl_ _impl_; };
@@ -10517,7 +10517,7 @@ class ListPhotosResponse final :
 };// -------------------------------------------------------------------
 
 class GetSettingResponse final :
-    public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:mavsdk.rpc.camera.GetSettingResponse) */ {
+    public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:mavcam.rpc.camera.GetSettingResponse) */ {
  public:
   inline GetSettingResponse() : GetSettingResponse(nullptr) {}
   ~GetSettingResponse() override;
@@ -10631,7 +10631,7 @@ class GetSettingResponse final :
   private:
   friend class ::google::protobuf::internal::AnyMetadata;
   static ::absl::string_view FullMessageName() {
-    return "mavsdk.rpc.camera.GetSettingResponse";
+    return "mavcam.rpc.camera.GetSettingResponse";
   }
   protected:
   explicit GetSettingResponse(::google::protobuf::Arena* arena);
@@ -10651,37 +10651,37 @@ class GetSettingResponse final :
     kCameraResultFieldNumber = 1,
     kSettingFieldNumber = 2,
   };
-  // .mavsdk.rpc.camera.CameraResult camera_result = 1;
+  // .mavcam.rpc.camera.CameraResult camera_result = 1;
   bool has_camera_result() const;
   void clear_camera_result() ;
-  const ::mavsdk::rpc::camera::CameraResult& camera_result() const;
-  PROTOBUF_NODISCARD ::mavsdk::rpc::camera::CameraResult* release_camera_result();
-  ::mavsdk::rpc::camera::CameraResult* mutable_camera_result();
-  void set_allocated_camera_result(::mavsdk::rpc::camera::CameraResult* value);
-  void unsafe_arena_set_allocated_camera_result(::mavsdk::rpc::camera::CameraResult* value);
-  ::mavsdk::rpc::camera::CameraResult* unsafe_arena_release_camera_result();
+  const ::mavcam::rpc::camera::CameraResult& camera_result() const;
+  PROTOBUF_NODISCARD ::mavcam::rpc::camera::CameraResult* release_camera_result();
+  ::mavcam::rpc::camera::CameraResult* mutable_camera_result();
+  void set_allocated_camera_result(::mavcam::rpc::camera::CameraResult* value);
+  void unsafe_arena_set_allocated_camera_result(::mavcam::rpc::camera::CameraResult* value);
+  ::mavcam::rpc::camera::CameraResult* unsafe_arena_release_camera_result();
 
   private:
-  const ::mavsdk::rpc::camera::CameraResult& _internal_camera_result() const;
-  ::mavsdk::rpc::camera::CameraResult* _internal_mutable_camera_result();
+  const ::mavcam::rpc::camera::CameraResult& _internal_camera_result() const;
+  ::mavcam::rpc::camera::CameraResult* _internal_mutable_camera_result();
 
   public:
-  // .mavsdk.rpc.camera.Setting setting = 2;
+  // .mavcam.rpc.camera.Setting setting = 2;
   bool has_setting() const;
   void clear_setting() ;
-  const ::mavsdk::rpc::camera::Setting& setting() const;
-  PROTOBUF_NODISCARD ::mavsdk::rpc::camera::Setting* release_setting();
-  ::mavsdk::rpc::camera::Setting* mutable_setting();
-  void set_allocated_setting(::mavsdk::rpc::camera::Setting* value);
-  void unsafe_arena_set_allocated_setting(::mavsdk::rpc::camera::Setting* value);
-  ::mavsdk::rpc::camera::Setting* unsafe_arena_release_setting();
+  const ::mavcam::rpc::camera::Setting& setting() const;
+  PROTOBUF_NODISCARD ::mavcam::rpc::camera::Setting* release_setting();
+  ::mavcam::rpc::camera::Setting* mutable_setting();
+  void set_allocated_setting(::mavcam::rpc::camera::Setting* value);
+  void unsafe_arena_set_allocated_setting(::mavcam::rpc::camera::Setting* value);
+  ::mavcam::rpc::camera::Setting* unsafe_arena_release_setting();
 
   private:
-  const ::mavsdk::rpc::camera::Setting& _internal_setting() const;
-  ::mavsdk::rpc::camera::Setting* _internal_mutable_setting();
+  const ::mavcam::rpc::camera::Setting& _internal_setting() const;
+  ::mavcam::rpc::camera::Setting* _internal_mutable_setting();
 
   public:
-  // @@protoc_insertion_point(class_scope:mavsdk.rpc.camera.GetSettingResponse)
+  // @@protoc_insertion_point(class_scope:mavcam.rpc.camera.GetSettingResponse)
  private:
   class _Internal;
 
@@ -10706,8 +10706,8 @@ class GetSettingResponse final :
                               ::google::protobuf::Arena* arena, const Impl_& from);
     ::google::protobuf::internal::HasBits<1> _has_bits_;
     mutable ::google::protobuf::internal::CachedSize _cached_size_;
-    ::mavsdk::rpc::camera::CameraResult* camera_result_;
-    ::mavsdk::rpc::camera::Setting* setting_;
+    ::mavcam::rpc::camera::CameraResult* camera_result_;
+    ::mavcam::rpc::camera::Setting* setting_;
     PROTOBUF_TSAN_DECLARE_MEMBER
   };
   union { Impl_ _impl_; };
@@ -10715,7 +10715,7 @@ class GetSettingResponse final :
 };// -------------------------------------------------------------------
 
 class GetSettingRequest final :
-    public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:mavsdk.rpc.camera.GetSettingRequest) */ {
+    public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:mavcam.rpc.camera.GetSettingRequest) */ {
  public:
   inline GetSettingRequest() : GetSettingRequest(nullptr) {}
   ~GetSettingRequest() override;
@@ -10829,7 +10829,7 @@ class GetSettingRequest final :
   private:
   friend class ::google::protobuf::internal::AnyMetadata;
   static ::absl::string_view FullMessageName() {
-    return "mavsdk.rpc.camera.GetSettingRequest";
+    return "mavcam.rpc.camera.GetSettingRequest";
   }
   protected:
   explicit GetSettingRequest(::google::protobuf::Arena* arena);
@@ -10848,22 +10848,22 @@ class GetSettingRequest final :
   enum : int {
     kSettingFieldNumber = 1,
   };
-  // .mavsdk.rpc.camera.Setting setting = 1;
+  // .mavcam.rpc.camera.Setting setting = 1;
   bool has_setting() const;
   void clear_setting() ;
-  const ::mavsdk::rpc::camera::Setting& setting() const;
-  PROTOBUF_NODISCARD ::mavsdk::rpc::camera::Setting* release_setting();
-  ::mavsdk::rpc::camera::Setting* mutable_setting();
-  void set_allocated_setting(::mavsdk::rpc::camera::Setting* value);
-  void unsafe_arena_set_allocated_setting(::mavsdk::rpc::camera::Setting* value);
-  ::mavsdk::rpc::camera::Setting* unsafe_arena_release_setting();
+  const ::mavcam::rpc::camera::Setting& setting() const;
+  PROTOBUF_NODISCARD ::mavcam::rpc::camera::Setting* release_setting();
+  ::mavcam::rpc::camera::Setting* mutable_setting();
+  void set_allocated_setting(::mavcam::rpc::camera::Setting* value);
+  void unsafe_arena_set_allocated_setting(::mavcam::rpc::camera::Setting* value);
+  ::mavcam::rpc::camera::Setting* unsafe_arena_release_setting();
 
   private:
-  const ::mavsdk::rpc::camera::Setting& _internal_setting() const;
-  ::mavsdk::rpc::camera::Setting* _internal_mutable_setting();
+  const ::mavcam::rpc::camera::Setting& _internal_setting() const;
+  ::mavcam::rpc::camera::Setting* _internal_mutable_setting();
 
   public:
-  // @@protoc_insertion_point(class_scope:mavsdk.rpc.camera.GetSettingRequest)
+  // @@protoc_insertion_point(class_scope:mavcam.rpc.camera.GetSettingRequest)
  private:
   class _Internal;
 
@@ -10888,7 +10888,7 @@ class GetSettingRequest final :
                               ::google::protobuf::Arena* arena, const Impl_& from);
     ::google::protobuf::internal::HasBits<1> _has_bits_;
     mutable ::google::protobuf::internal::CachedSize _cached_size_;
-    ::mavsdk::rpc::camera::Setting* setting_;
+    ::mavcam::rpc::camera::Setting* setting_;
     PROTOBUF_TSAN_DECLARE_MEMBER
   };
   union { Impl_ _impl_; };
@@ -10896,7 +10896,7 @@ class GetSettingRequest final :
 };// -------------------------------------------------------------------
 
 class CurrentSettingsResponse final :
-    public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:mavsdk.rpc.camera.CurrentSettingsResponse) */ {
+    public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:mavcam.rpc.camera.CurrentSettingsResponse) */ {
  public:
   inline CurrentSettingsResponse() : CurrentSettingsResponse(nullptr) {}
   ~CurrentSettingsResponse() override;
@@ -11010,7 +11010,7 @@ class CurrentSettingsResponse final :
   private:
   friend class ::google::protobuf::internal::AnyMetadata;
   static ::absl::string_view FullMessageName() {
-    return "mavsdk.rpc.camera.CurrentSettingsResponse";
+    return "mavcam.rpc.camera.CurrentSettingsResponse";
   }
   protected:
   explicit CurrentSettingsResponse(::google::protobuf::Arena* arena);
@@ -11029,25 +11029,25 @@ class CurrentSettingsResponse final :
   enum : int {
     kCurrentSettingsFieldNumber = 1,
   };
-  // repeated .mavsdk.rpc.camera.Setting current_settings = 1;
+  // repeated .mavcam.rpc.camera.Setting current_settings = 1;
   int current_settings_size() const;
   private:
   int _internal_current_settings_size() const;
 
   public:
   void clear_current_settings() ;
-  ::mavsdk::rpc::camera::Setting* mutable_current_settings(int index);
-  ::google::protobuf::RepeatedPtrField< ::mavsdk::rpc::camera::Setting >*
+  ::mavcam::rpc::camera::Setting* mutable_current_settings(int index);
+  ::google::protobuf::RepeatedPtrField< ::mavcam::rpc::camera::Setting >*
       mutable_current_settings();
   private:
-  const ::google::protobuf::RepeatedPtrField<::mavsdk::rpc::camera::Setting>& _internal_current_settings() const;
-  ::google::protobuf::RepeatedPtrField<::mavsdk::rpc::camera::Setting>* _internal_mutable_current_settings();
+  const ::google::protobuf::RepeatedPtrField<::mavcam::rpc::camera::Setting>& _internal_current_settings() const;
+  ::google::protobuf::RepeatedPtrField<::mavcam::rpc::camera::Setting>* _internal_mutable_current_settings();
   public:
-  const ::mavsdk::rpc::camera::Setting& current_settings(int index) const;
-  ::mavsdk::rpc::camera::Setting* add_current_settings();
-  const ::google::protobuf::RepeatedPtrField< ::mavsdk::rpc::camera::Setting >&
+  const ::mavcam::rpc::camera::Setting& current_settings(int index) const;
+  ::mavcam::rpc::camera::Setting* add_current_settings();
+  const ::google::protobuf::RepeatedPtrField< ::mavcam::rpc::camera::Setting >&
       current_settings() const;
-  // @@protoc_insertion_point(class_scope:mavsdk.rpc.camera.CurrentSettingsResponse)
+  // @@protoc_insertion_point(class_scope:mavcam.rpc.camera.CurrentSettingsResponse)
  private:
   class _Internal;
 
@@ -11070,7 +11070,7 @@ class CurrentSettingsResponse final :
                               ::google::protobuf::Arena* arena);
         inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
                               ::google::protobuf::Arena* arena, const Impl_& from);
-    ::google::protobuf::RepeatedPtrField< ::mavsdk::rpc::camera::Setting > current_settings_;
+    ::google::protobuf::RepeatedPtrField< ::mavcam::rpc::camera::Setting > current_settings_;
     mutable ::google::protobuf::internal::CachedSize _cached_size_;
     PROTOBUF_TSAN_DECLARE_MEMBER
   };
@@ -11079,7 +11079,7 @@ class CurrentSettingsResponse final :
 };// -------------------------------------------------------------------
 
 class CaptureInfoResponse final :
-    public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:mavsdk.rpc.camera.CaptureInfoResponse) */ {
+    public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:mavcam.rpc.camera.CaptureInfoResponse) */ {
  public:
   inline CaptureInfoResponse() : CaptureInfoResponse(nullptr) {}
   ~CaptureInfoResponse() override;
@@ -11193,7 +11193,7 @@ class CaptureInfoResponse final :
   private:
   friend class ::google::protobuf::internal::AnyMetadata;
   static ::absl::string_view FullMessageName() {
-    return "mavsdk.rpc.camera.CaptureInfoResponse";
+    return "mavcam.rpc.camera.CaptureInfoResponse";
   }
   protected:
   explicit CaptureInfoResponse(::google::protobuf::Arena* arena);
@@ -11212,22 +11212,22 @@ class CaptureInfoResponse final :
   enum : int {
     kCaptureInfoFieldNumber = 1,
   };
-  // .mavsdk.rpc.camera.CaptureInfo capture_info = 1;
+  // .mavcam.rpc.camera.CaptureInfo capture_info = 1;
   bool has_capture_info() const;
   void clear_capture_info() ;
-  const ::mavsdk::rpc::camera::CaptureInfo& capture_info() const;
-  PROTOBUF_NODISCARD ::mavsdk::rpc::camera::CaptureInfo* release_capture_info();
-  ::mavsdk::rpc::camera::CaptureInfo* mutable_capture_info();
-  void set_allocated_capture_info(::mavsdk::rpc::camera::CaptureInfo* value);
-  void unsafe_arena_set_allocated_capture_info(::mavsdk::rpc::camera::CaptureInfo* value);
-  ::mavsdk::rpc::camera::CaptureInfo* unsafe_arena_release_capture_info();
+  const ::mavcam::rpc::camera::CaptureInfo& capture_info() const;
+  PROTOBUF_NODISCARD ::mavcam::rpc::camera::CaptureInfo* release_capture_info();
+  ::mavcam::rpc::camera::CaptureInfo* mutable_capture_info();
+  void set_allocated_capture_info(::mavcam::rpc::camera::CaptureInfo* value);
+  void unsafe_arena_set_allocated_capture_info(::mavcam::rpc::camera::CaptureInfo* value);
+  ::mavcam::rpc::camera::CaptureInfo* unsafe_arena_release_capture_info();
 
   private:
-  const ::mavsdk::rpc::camera::CaptureInfo& _internal_capture_info() const;
-  ::mavsdk::rpc::camera::CaptureInfo* _internal_mutable_capture_info();
+  const ::mavcam::rpc::camera::CaptureInfo& _internal_capture_info() const;
+  ::mavcam::rpc::camera::CaptureInfo* _internal_mutable_capture_info();
 
   public:
-  // @@protoc_insertion_point(class_scope:mavsdk.rpc.camera.CaptureInfoResponse)
+  // @@protoc_insertion_point(class_scope:mavcam.rpc.camera.CaptureInfoResponse)
  private:
   class _Internal;
 
@@ -11252,7 +11252,7 @@ class CaptureInfoResponse final :
                               ::google::protobuf::Arena* arena, const Impl_& from);
     ::google::protobuf::internal::HasBits<1> _has_bits_;
     mutable ::google::protobuf::internal::CachedSize _cached_size_;
-    ::mavsdk::rpc::camera::CaptureInfo* capture_info_;
+    ::mavcam::rpc::camera::CaptureInfo* capture_info_;
     PROTOBUF_TSAN_DECLARE_MEMBER
   };
   union { Impl_ _impl_; };
@@ -11279,7 +11279,7 @@ class CaptureInfoResponse final :
 
 // PrepareResponse
 
-// .mavsdk.rpc.camera.CameraResult camera_result = 1;
+// .mavcam.rpc.camera.CameraResult camera_result = 1;
 inline bool PrepareResponse::has_camera_result() const {
   bool value = (_impl_._has_bits_[0] & 0x00000001u) != 0;
   PROTOBUF_ASSUME(!value || _impl_.camera_result_ != nullptr);
@@ -11290,33 +11290,33 @@ inline void PrepareResponse::clear_camera_result() {
   if (_impl_.camera_result_ != nullptr) _impl_.camera_result_->Clear();
   _impl_._has_bits_[0] &= ~0x00000001u;
 }
-inline const ::mavsdk::rpc::camera::CameraResult& PrepareResponse::_internal_camera_result() const {
+inline const ::mavcam::rpc::camera::CameraResult& PrepareResponse::_internal_camera_result() const {
   PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
-  const ::mavsdk::rpc::camera::CameraResult* p = _impl_.camera_result_;
-  return p != nullptr ? *p : reinterpret_cast<const ::mavsdk::rpc::camera::CameraResult&>(::mavsdk::rpc::camera::_CameraResult_default_instance_);
+  const ::mavcam::rpc::camera::CameraResult* p = _impl_.camera_result_;
+  return p != nullptr ? *p : reinterpret_cast<const ::mavcam::rpc::camera::CameraResult&>(::mavcam::rpc::camera::_CameraResult_default_instance_);
 }
-inline const ::mavsdk::rpc::camera::CameraResult& PrepareResponse::camera_result() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_get:mavsdk.rpc.camera.PrepareResponse.camera_result)
+inline const ::mavcam::rpc::camera::CameraResult& PrepareResponse::camera_result() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:mavcam.rpc.camera.PrepareResponse.camera_result)
   return _internal_camera_result();
 }
-inline void PrepareResponse::unsafe_arena_set_allocated_camera_result(::mavsdk::rpc::camera::CameraResult* value) {
+inline void PrepareResponse::unsafe_arena_set_allocated_camera_result(::mavcam::rpc::camera::CameraResult* value) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   if (GetArena() == nullptr) {
     delete reinterpret_cast<::google::protobuf::MessageLite*>(_impl_.camera_result_);
   }
-  _impl_.camera_result_ = reinterpret_cast<::mavsdk::rpc::camera::CameraResult*>(value);
+  _impl_.camera_result_ = reinterpret_cast<::mavcam::rpc::camera::CameraResult*>(value);
   if (value != nullptr) {
     _impl_._has_bits_[0] |= 0x00000001u;
   } else {
     _impl_._has_bits_[0] &= ~0x00000001u;
   }
-  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:mavsdk.rpc.camera.PrepareResponse.camera_result)
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:mavcam.rpc.camera.PrepareResponse.camera_result)
 }
-inline ::mavsdk::rpc::camera::CameraResult* PrepareResponse::release_camera_result() {
+inline ::mavcam::rpc::camera::CameraResult* PrepareResponse::release_camera_result() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
 
   _impl_._has_bits_[0] &= ~0x00000001u;
-  ::mavsdk::rpc::camera::CameraResult* released = _impl_.camera_result_;
+  ::mavcam::rpc::camera::CameraResult* released = _impl_.camera_result_;
   _impl_.camera_result_ = nullptr;
 #ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
   auto* old = reinterpret_cast<::google::protobuf::MessageLite*>(released);
@@ -11331,38 +11331,38 @@ inline ::mavsdk::rpc::camera::CameraResult* PrepareResponse::release_camera_resu
 #endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
   return released;
 }
-inline ::mavsdk::rpc::camera::CameraResult* PrepareResponse::unsafe_arena_release_camera_result() {
+inline ::mavcam::rpc::camera::CameraResult* PrepareResponse::unsafe_arena_release_camera_result() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  // @@protoc_insertion_point(field_release:mavsdk.rpc.camera.PrepareResponse.camera_result)
+  // @@protoc_insertion_point(field_release:mavcam.rpc.camera.PrepareResponse.camera_result)
 
   _impl_._has_bits_[0] &= ~0x00000001u;
-  ::mavsdk::rpc::camera::CameraResult* temp = _impl_.camera_result_;
+  ::mavcam::rpc::camera::CameraResult* temp = _impl_.camera_result_;
   _impl_.camera_result_ = nullptr;
   return temp;
 }
-inline ::mavsdk::rpc::camera::CameraResult* PrepareResponse::_internal_mutable_camera_result() {
+inline ::mavcam::rpc::camera::CameraResult* PrepareResponse::_internal_mutable_camera_result() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   _impl_._has_bits_[0] |= 0x00000001u;
   if (_impl_.camera_result_ == nullptr) {
-    auto* p = CreateMaybeMessage<::mavsdk::rpc::camera::CameraResult>(GetArena());
-    _impl_.camera_result_ = reinterpret_cast<::mavsdk::rpc::camera::CameraResult*>(p);
+    auto* p = CreateMaybeMessage<::mavcam::rpc::camera::CameraResult>(GetArena());
+    _impl_.camera_result_ = reinterpret_cast<::mavcam::rpc::camera::CameraResult*>(p);
   }
   return _impl_.camera_result_;
 }
-inline ::mavsdk::rpc::camera::CameraResult* PrepareResponse::mutable_camera_result() ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  ::mavsdk::rpc::camera::CameraResult* _msg = _internal_mutable_camera_result();
-  // @@protoc_insertion_point(field_mutable:mavsdk.rpc.camera.PrepareResponse.camera_result)
+inline ::mavcam::rpc::camera::CameraResult* PrepareResponse::mutable_camera_result() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  ::mavcam::rpc::camera::CameraResult* _msg = _internal_mutable_camera_result();
+  // @@protoc_insertion_point(field_mutable:mavcam.rpc.camera.PrepareResponse.camera_result)
   return _msg;
 }
-inline void PrepareResponse::set_allocated_camera_result(::mavsdk::rpc::camera::CameraResult* value) {
+inline void PrepareResponse::set_allocated_camera_result(::mavcam::rpc::camera::CameraResult* value) {
   ::google::protobuf::Arena* message_arena = GetArena();
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   if (message_arena == nullptr) {
-    delete reinterpret_cast<::mavsdk::rpc::camera::CameraResult*>(_impl_.camera_result_);
+    delete reinterpret_cast<::mavcam::rpc::camera::CameraResult*>(_impl_.camera_result_);
   }
 
   if (value != nullptr) {
-    ::google::protobuf::Arena* submessage_arena = reinterpret_cast<::mavsdk::rpc::camera::CameraResult*>(value)->GetArena();
+    ::google::protobuf::Arena* submessage_arena = reinterpret_cast<::mavcam::rpc::camera::CameraResult*>(value)->GetArena();
     if (message_arena != submessage_arena) {
       value = ::google::protobuf::internal::GetOwnedMessage(message_arena, value, submessage_arena);
     }
@@ -11371,8 +11371,8 @@ inline void PrepareResponse::set_allocated_camera_result(::mavsdk::rpc::camera::
     _impl_._has_bits_[0] &= ~0x00000001u;
   }
 
-  _impl_.camera_result_ = reinterpret_cast<::mavsdk::rpc::camera::CameraResult*>(value);
-  // @@protoc_insertion_point(field_set_allocated:mavsdk.rpc.camera.PrepareResponse.camera_result)
+  _impl_.camera_result_ = reinterpret_cast<::mavcam::rpc::camera::CameraResult*>(value);
+  // @@protoc_insertion_point(field_set_allocated:mavcam.rpc.camera.PrepareResponse.camera_result)
 }
 
 // -------------------------------------------------------------------
@@ -11383,7 +11383,7 @@ inline void PrepareResponse::set_allocated_camera_result(::mavsdk::rpc::camera::
 
 // TakePhotoResponse
 
-// .mavsdk.rpc.camera.CameraResult camera_result = 1;
+// .mavcam.rpc.camera.CameraResult camera_result = 1;
 inline bool TakePhotoResponse::has_camera_result() const {
   bool value = (_impl_._has_bits_[0] & 0x00000001u) != 0;
   PROTOBUF_ASSUME(!value || _impl_.camera_result_ != nullptr);
@@ -11394,33 +11394,33 @@ inline void TakePhotoResponse::clear_camera_result() {
   if (_impl_.camera_result_ != nullptr) _impl_.camera_result_->Clear();
   _impl_._has_bits_[0] &= ~0x00000001u;
 }
-inline const ::mavsdk::rpc::camera::CameraResult& TakePhotoResponse::_internal_camera_result() const {
+inline const ::mavcam::rpc::camera::CameraResult& TakePhotoResponse::_internal_camera_result() const {
   PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
-  const ::mavsdk::rpc::camera::CameraResult* p = _impl_.camera_result_;
-  return p != nullptr ? *p : reinterpret_cast<const ::mavsdk::rpc::camera::CameraResult&>(::mavsdk::rpc::camera::_CameraResult_default_instance_);
+  const ::mavcam::rpc::camera::CameraResult* p = _impl_.camera_result_;
+  return p != nullptr ? *p : reinterpret_cast<const ::mavcam::rpc::camera::CameraResult&>(::mavcam::rpc::camera::_CameraResult_default_instance_);
 }
-inline const ::mavsdk::rpc::camera::CameraResult& TakePhotoResponse::camera_result() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_get:mavsdk.rpc.camera.TakePhotoResponse.camera_result)
+inline const ::mavcam::rpc::camera::CameraResult& TakePhotoResponse::camera_result() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:mavcam.rpc.camera.TakePhotoResponse.camera_result)
   return _internal_camera_result();
 }
-inline void TakePhotoResponse::unsafe_arena_set_allocated_camera_result(::mavsdk::rpc::camera::CameraResult* value) {
+inline void TakePhotoResponse::unsafe_arena_set_allocated_camera_result(::mavcam::rpc::camera::CameraResult* value) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   if (GetArena() == nullptr) {
     delete reinterpret_cast<::google::protobuf::MessageLite*>(_impl_.camera_result_);
   }
-  _impl_.camera_result_ = reinterpret_cast<::mavsdk::rpc::camera::CameraResult*>(value);
+  _impl_.camera_result_ = reinterpret_cast<::mavcam::rpc::camera::CameraResult*>(value);
   if (value != nullptr) {
     _impl_._has_bits_[0] |= 0x00000001u;
   } else {
     _impl_._has_bits_[0] &= ~0x00000001u;
   }
-  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:mavsdk.rpc.camera.TakePhotoResponse.camera_result)
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:mavcam.rpc.camera.TakePhotoResponse.camera_result)
 }
-inline ::mavsdk::rpc::camera::CameraResult* TakePhotoResponse::release_camera_result() {
+inline ::mavcam::rpc::camera::CameraResult* TakePhotoResponse::release_camera_result() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
 
   _impl_._has_bits_[0] &= ~0x00000001u;
-  ::mavsdk::rpc::camera::CameraResult* released = _impl_.camera_result_;
+  ::mavcam::rpc::camera::CameraResult* released = _impl_.camera_result_;
   _impl_.camera_result_ = nullptr;
 #ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
   auto* old = reinterpret_cast<::google::protobuf::MessageLite*>(released);
@@ -11435,38 +11435,38 @@ inline ::mavsdk::rpc::camera::CameraResult* TakePhotoResponse::release_camera_re
 #endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
   return released;
 }
-inline ::mavsdk::rpc::camera::CameraResult* TakePhotoResponse::unsafe_arena_release_camera_result() {
+inline ::mavcam::rpc::camera::CameraResult* TakePhotoResponse::unsafe_arena_release_camera_result() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  // @@protoc_insertion_point(field_release:mavsdk.rpc.camera.TakePhotoResponse.camera_result)
+  // @@protoc_insertion_point(field_release:mavcam.rpc.camera.TakePhotoResponse.camera_result)
 
   _impl_._has_bits_[0] &= ~0x00000001u;
-  ::mavsdk::rpc::camera::CameraResult* temp = _impl_.camera_result_;
+  ::mavcam::rpc::camera::CameraResult* temp = _impl_.camera_result_;
   _impl_.camera_result_ = nullptr;
   return temp;
 }
-inline ::mavsdk::rpc::camera::CameraResult* TakePhotoResponse::_internal_mutable_camera_result() {
+inline ::mavcam::rpc::camera::CameraResult* TakePhotoResponse::_internal_mutable_camera_result() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   _impl_._has_bits_[0] |= 0x00000001u;
   if (_impl_.camera_result_ == nullptr) {
-    auto* p = CreateMaybeMessage<::mavsdk::rpc::camera::CameraResult>(GetArena());
-    _impl_.camera_result_ = reinterpret_cast<::mavsdk::rpc::camera::CameraResult*>(p);
+    auto* p = CreateMaybeMessage<::mavcam::rpc::camera::CameraResult>(GetArena());
+    _impl_.camera_result_ = reinterpret_cast<::mavcam::rpc::camera::CameraResult*>(p);
   }
   return _impl_.camera_result_;
 }
-inline ::mavsdk::rpc::camera::CameraResult* TakePhotoResponse::mutable_camera_result() ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  ::mavsdk::rpc::camera::CameraResult* _msg = _internal_mutable_camera_result();
-  // @@protoc_insertion_point(field_mutable:mavsdk.rpc.camera.TakePhotoResponse.camera_result)
+inline ::mavcam::rpc::camera::CameraResult* TakePhotoResponse::mutable_camera_result() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  ::mavcam::rpc::camera::CameraResult* _msg = _internal_mutable_camera_result();
+  // @@protoc_insertion_point(field_mutable:mavcam.rpc.camera.TakePhotoResponse.camera_result)
   return _msg;
 }
-inline void TakePhotoResponse::set_allocated_camera_result(::mavsdk::rpc::camera::CameraResult* value) {
+inline void TakePhotoResponse::set_allocated_camera_result(::mavcam::rpc::camera::CameraResult* value) {
   ::google::protobuf::Arena* message_arena = GetArena();
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   if (message_arena == nullptr) {
-    delete reinterpret_cast<::mavsdk::rpc::camera::CameraResult*>(_impl_.camera_result_);
+    delete reinterpret_cast<::mavcam::rpc::camera::CameraResult*>(_impl_.camera_result_);
   }
 
   if (value != nullptr) {
-    ::google::protobuf::Arena* submessage_arena = reinterpret_cast<::mavsdk::rpc::camera::CameraResult*>(value)->GetArena();
+    ::google::protobuf::Arena* submessage_arena = reinterpret_cast<::mavcam::rpc::camera::CameraResult*>(value)->GetArena();
     if (message_arena != submessage_arena) {
       value = ::google::protobuf::internal::GetOwnedMessage(message_arena, value, submessage_arena);
     }
@@ -11475,8 +11475,8 @@ inline void TakePhotoResponse::set_allocated_camera_result(::mavsdk::rpc::camera
     _impl_._has_bits_[0] &= ~0x00000001u;
   }
 
-  _impl_.camera_result_ = reinterpret_cast<::mavsdk::rpc::camera::CameraResult*>(value);
-  // @@protoc_insertion_point(field_set_allocated:mavsdk.rpc.camera.TakePhotoResponse.camera_result)
+  _impl_.camera_result_ = reinterpret_cast<::mavcam::rpc::camera::CameraResult*>(value);
+  // @@protoc_insertion_point(field_set_allocated:mavcam.rpc.camera.TakePhotoResponse.camera_result)
 }
 
 // -------------------------------------------------------------------
@@ -11489,12 +11489,12 @@ inline void StartPhotoIntervalRequest::clear_interval_s() {
   _impl_.interval_s_ = 0;
 }
 inline float StartPhotoIntervalRequest::interval_s() const {
-  // @@protoc_insertion_point(field_get:mavsdk.rpc.camera.StartPhotoIntervalRequest.interval_s)
+  // @@protoc_insertion_point(field_get:mavcam.rpc.camera.StartPhotoIntervalRequest.interval_s)
   return _internal_interval_s();
 }
 inline void StartPhotoIntervalRequest::set_interval_s(float value) {
   _internal_set_interval_s(value);
-  // @@protoc_insertion_point(field_set:mavsdk.rpc.camera.StartPhotoIntervalRequest.interval_s)
+  // @@protoc_insertion_point(field_set:mavcam.rpc.camera.StartPhotoIntervalRequest.interval_s)
 }
 inline float StartPhotoIntervalRequest::_internal_interval_s() const {
   PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
@@ -11510,7 +11510,7 @@ inline void StartPhotoIntervalRequest::_internal_set_interval_s(float value) {
 
 // StartPhotoIntervalResponse
 
-// .mavsdk.rpc.camera.CameraResult camera_result = 1;
+// .mavcam.rpc.camera.CameraResult camera_result = 1;
 inline bool StartPhotoIntervalResponse::has_camera_result() const {
   bool value = (_impl_._has_bits_[0] & 0x00000001u) != 0;
   PROTOBUF_ASSUME(!value || _impl_.camera_result_ != nullptr);
@@ -11521,33 +11521,33 @@ inline void StartPhotoIntervalResponse::clear_camera_result() {
   if (_impl_.camera_result_ != nullptr) _impl_.camera_result_->Clear();
   _impl_._has_bits_[0] &= ~0x00000001u;
 }
-inline const ::mavsdk::rpc::camera::CameraResult& StartPhotoIntervalResponse::_internal_camera_result() const {
+inline const ::mavcam::rpc::camera::CameraResult& StartPhotoIntervalResponse::_internal_camera_result() const {
   PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
-  const ::mavsdk::rpc::camera::CameraResult* p = _impl_.camera_result_;
-  return p != nullptr ? *p : reinterpret_cast<const ::mavsdk::rpc::camera::CameraResult&>(::mavsdk::rpc::camera::_CameraResult_default_instance_);
+  const ::mavcam::rpc::camera::CameraResult* p = _impl_.camera_result_;
+  return p != nullptr ? *p : reinterpret_cast<const ::mavcam::rpc::camera::CameraResult&>(::mavcam::rpc::camera::_CameraResult_default_instance_);
 }
-inline const ::mavsdk::rpc::camera::CameraResult& StartPhotoIntervalResponse::camera_result() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_get:mavsdk.rpc.camera.StartPhotoIntervalResponse.camera_result)
+inline const ::mavcam::rpc::camera::CameraResult& StartPhotoIntervalResponse::camera_result() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:mavcam.rpc.camera.StartPhotoIntervalResponse.camera_result)
   return _internal_camera_result();
 }
-inline void StartPhotoIntervalResponse::unsafe_arena_set_allocated_camera_result(::mavsdk::rpc::camera::CameraResult* value) {
+inline void StartPhotoIntervalResponse::unsafe_arena_set_allocated_camera_result(::mavcam::rpc::camera::CameraResult* value) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   if (GetArena() == nullptr) {
     delete reinterpret_cast<::google::protobuf::MessageLite*>(_impl_.camera_result_);
   }
-  _impl_.camera_result_ = reinterpret_cast<::mavsdk::rpc::camera::CameraResult*>(value);
+  _impl_.camera_result_ = reinterpret_cast<::mavcam::rpc::camera::CameraResult*>(value);
   if (value != nullptr) {
     _impl_._has_bits_[0] |= 0x00000001u;
   } else {
     _impl_._has_bits_[0] &= ~0x00000001u;
   }
-  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:mavsdk.rpc.camera.StartPhotoIntervalResponse.camera_result)
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:mavcam.rpc.camera.StartPhotoIntervalResponse.camera_result)
 }
-inline ::mavsdk::rpc::camera::CameraResult* StartPhotoIntervalResponse::release_camera_result() {
+inline ::mavcam::rpc::camera::CameraResult* StartPhotoIntervalResponse::release_camera_result() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
 
   _impl_._has_bits_[0] &= ~0x00000001u;
-  ::mavsdk::rpc::camera::CameraResult* released = _impl_.camera_result_;
+  ::mavcam::rpc::camera::CameraResult* released = _impl_.camera_result_;
   _impl_.camera_result_ = nullptr;
 #ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
   auto* old = reinterpret_cast<::google::protobuf::MessageLite*>(released);
@@ -11562,38 +11562,38 @@ inline ::mavsdk::rpc::camera::CameraResult* StartPhotoIntervalResponse::release_
 #endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
   return released;
 }
-inline ::mavsdk::rpc::camera::CameraResult* StartPhotoIntervalResponse::unsafe_arena_release_camera_result() {
+inline ::mavcam::rpc::camera::CameraResult* StartPhotoIntervalResponse::unsafe_arena_release_camera_result() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  // @@protoc_insertion_point(field_release:mavsdk.rpc.camera.StartPhotoIntervalResponse.camera_result)
+  // @@protoc_insertion_point(field_release:mavcam.rpc.camera.StartPhotoIntervalResponse.camera_result)
 
   _impl_._has_bits_[0] &= ~0x00000001u;
-  ::mavsdk::rpc::camera::CameraResult* temp = _impl_.camera_result_;
+  ::mavcam::rpc::camera::CameraResult* temp = _impl_.camera_result_;
   _impl_.camera_result_ = nullptr;
   return temp;
 }
-inline ::mavsdk::rpc::camera::CameraResult* StartPhotoIntervalResponse::_internal_mutable_camera_result() {
+inline ::mavcam::rpc::camera::CameraResult* StartPhotoIntervalResponse::_internal_mutable_camera_result() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   _impl_._has_bits_[0] |= 0x00000001u;
   if (_impl_.camera_result_ == nullptr) {
-    auto* p = CreateMaybeMessage<::mavsdk::rpc::camera::CameraResult>(GetArena());
-    _impl_.camera_result_ = reinterpret_cast<::mavsdk::rpc::camera::CameraResult*>(p);
+    auto* p = CreateMaybeMessage<::mavcam::rpc::camera::CameraResult>(GetArena());
+    _impl_.camera_result_ = reinterpret_cast<::mavcam::rpc::camera::CameraResult*>(p);
   }
   return _impl_.camera_result_;
 }
-inline ::mavsdk::rpc::camera::CameraResult* StartPhotoIntervalResponse::mutable_camera_result() ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  ::mavsdk::rpc::camera::CameraResult* _msg = _internal_mutable_camera_result();
-  // @@protoc_insertion_point(field_mutable:mavsdk.rpc.camera.StartPhotoIntervalResponse.camera_result)
+inline ::mavcam::rpc::camera::CameraResult* StartPhotoIntervalResponse::mutable_camera_result() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  ::mavcam::rpc::camera::CameraResult* _msg = _internal_mutable_camera_result();
+  // @@protoc_insertion_point(field_mutable:mavcam.rpc.camera.StartPhotoIntervalResponse.camera_result)
   return _msg;
 }
-inline void StartPhotoIntervalResponse::set_allocated_camera_result(::mavsdk::rpc::camera::CameraResult* value) {
+inline void StartPhotoIntervalResponse::set_allocated_camera_result(::mavcam::rpc::camera::CameraResult* value) {
   ::google::protobuf::Arena* message_arena = GetArena();
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   if (message_arena == nullptr) {
-    delete reinterpret_cast<::mavsdk::rpc::camera::CameraResult*>(_impl_.camera_result_);
+    delete reinterpret_cast<::mavcam::rpc::camera::CameraResult*>(_impl_.camera_result_);
   }
 
   if (value != nullptr) {
-    ::google::protobuf::Arena* submessage_arena = reinterpret_cast<::mavsdk::rpc::camera::CameraResult*>(value)->GetArena();
+    ::google::protobuf::Arena* submessage_arena = reinterpret_cast<::mavcam::rpc::camera::CameraResult*>(value)->GetArena();
     if (message_arena != submessage_arena) {
       value = ::google::protobuf::internal::GetOwnedMessage(message_arena, value, submessage_arena);
     }
@@ -11602,8 +11602,8 @@ inline void StartPhotoIntervalResponse::set_allocated_camera_result(::mavsdk::rp
     _impl_._has_bits_[0] &= ~0x00000001u;
   }
 
-  _impl_.camera_result_ = reinterpret_cast<::mavsdk::rpc::camera::CameraResult*>(value);
-  // @@protoc_insertion_point(field_set_allocated:mavsdk.rpc.camera.StartPhotoIntervalResponse.camera_result)
+  _impl_.camera_result_ = reinterpret_cast<::mavcam::rpc::camera::CameraResult*>(value);
+  // @@protoc_insertion_point(field_set_allocated:mavcam.rpc.camera.StartPhotoIntervalResponse.camera_result)
 }
 
 // -------------------------------------------------------------------
@@ -11614,7 +11614,7 @@ inline void StartPhotoIntervalResponse::set_allocated_camera_result(::mavsdk::rp
 
 // StopPhotoIntervalResponse
 
-// .mavsdk.rpc.camera.CameraResult camera_result = 1;
+// .mavcam.rpc.camera.CameraResult camera_result = 1;
 inline bool StopPhotoIntervalResponse::has_camera_result() const {
   bool value = (_impl_._has_bits_[0] & 0x00000001u) != 0;
   PROTOBUF_ASSUME(!value || _impl_.camera_result_ != nullptr);
@@ -11625,33 +11625,33 @@ inline void StopPhotoIntervalResponse::clear_camera_result() {
   if (_impl_.camera_result_ != nullptr) _impl_.camera_result_->Clear();
   _impl_._has_bits_[0] &= ~0x00000001u;
 }
-inline const ::mavsdk::rpc::camera::CameraResult& StopPhotoIntervalResponse::_internal_camera_result() const {
+inline const ::mavcam::rpc::camera::CameraResult& StopPhotoIntervalResponse::_internal_camera_result() const {
   PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
-  const ::mavsdk::rpc::camera::CameraResult* p = _impl_.camera_result_;
-  return p != nullptr ? *p : reinterpret_cast<const ::mavsdk::rpc::camera::CameraResult&>(::mavsdk::rpc::camera::_CameraResult_default_instance_);
+  const ::mavcam::rpc::camera::CameraResult* p = _impl_.camera_result_;
+  return p != nullptr ? *p : reinterpret_cast<const ::mavcam::rpc::camera::CameraResult&>(::mavcam::rpc::camera::_CameraResult_default_instance_);
 }
-inline const ::mavsdk::rpc::camera::CameraResult& StopPhotoIntervalResponse::camera_result() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_get:mavsdk.rpc.camera.StopPhotoIntervalResponse.camera_result)
+inline const ::mavcam::rpc::camera::CameraResult& StopPhotoIntervalResponse::camera_result() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:mavcam.rpc.camera.StopPhotoIntervalResponse.camera_result)
   return _internal_camera_result();
 }
-inline void StopPhotoIntervalResponse::unsafe_arena_set_allocated_camera_result(::mavsdk::rpc::camera::CameraResult* value) {
+inline void StopPhotoIntervalResponse::unsafe_arena_set_allocated_camera_result(::mavcam::rpc::camera::CameraResult* value) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   if (GetArena() == nullptr) {
     delete reinterpret_cast<::google::protobuf::MessageLite*>(_impl_.camera_result_);
   }
-  _impl_.camera_result_ = reinterpret_cast<::mavsdk::rpc::camera::CameraResult*>(value);
+  _impl_.camera_result_ = reinterpret_cast<::mavcam::rpc::camera::CameraResult*>(value);
   if (value != nullptr) {
     _impl_._has_bits_[0] |= 0x00000001u;
   } else {
     _impl_._has_bits_[0] &= ~0x00000001u;
   }
-  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:mavsdk.rpc.camera.StopPhotoIntervalResponse.camera_result)
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:mavcam.rpc.camera.StopPhotoIntervalResponse.camera_result)
 }
-inline ::mavsdk::rpc::camera::CameraResult* StopPhotoIntervalResponse::release_camera_result() {
+inline ::mavcam::rpc::camera::CameraResult* StopPhotoIntervalResponse::release_camera_result() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
 
   _impl_._has_bits_[0] &= ~0x00000001u;
-  ::mavsdk::rpc::camera::CameraResult* released = _impl_.camera_result_;
+  ::mavcam::rpc::camera::CameraResult* released = _impl_.camera_result_;
   _impl_.camera_result_ = nullptr;
 #ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
   auto* old = reinterpret_cast<::google::protobuf::MessageLite*>(released);
@@ -11666,38 +11666,38 @@ inline ::mavsdk::rpc::camera::CameraResult* StopPhotoIntervalResponse::release_c
 #endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
   return released;
 }
-inline ::mavsdk::rpc::camera::CameraResult* StopPhotoIntervalResponse::unsafe_arena_release_camera_result() {
+inline ::mavcam::rpc::camera::CameraResult* StopPhotoIntervalResponse::unsafe_arena_release_camera_result() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  // @@protoc_insertion_point(field_release:mavsdk.rpc.camera.StopPhotoIntervalResponse.camera_result)
+  // @@protoc_insertion_point(field_release:mavcam.rpc.camera.StopPhotoIntervalResponse.camera_result)
 
   _impl_._has_bits_[0] &= ~0x00000001u;
-  ::mavsdk::rpc::camera::CameraResult* temp = _impl_.camera_result_;
+  ::mavcam::rpc::camera::CameraResult* temp = _impl_.camera_result_;
   _impl_.camera_result_ = nullptr;
   return temp;
 }
-inline ::mavsdk::rpc::camera::CameraResult* StopPhotoIntervalResponse::_internal_mutable_camera_result() {
+inline ::mavcam::rpc::camera::CameraResult* StopPhotoIntervalResponse::_internal_mutable_camera_result() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   _impl_._has_bits_[0] |= 0x00000001u;
   if (_impl_.camera_result_ == nullptr) {
-    auto* p = CreateMaybeMessage<::mavsdk::rpc::camera::CameraResult>(GetArena());
-    _impl_.camera_result_ = reinterpret_cast<::mavsdk::rpc::camera::CameraResult*>(p);
+    auto* p = CreateMaybeMessage<::mavcam::rpc::camera::CameraResult>(GetArena());
+    _impl_.camera_result_ = reinterpret_cast<::mavcam::rpc::camera::CameraResult*>(p);
   }
   return _impl_.camera_result_;
 }
-inline ::mavsdk::rpc::camera::CameraResult* StopPhotoIntervalResponse::mutable_camera_result() ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  ::mavsdk::rpc::camera::CameraResult* _msg = _internal_mutable_camera_result();
-  // @@protoc_insertion_point(field_mutable:mavsdk.rpc.camera.StopPhotoIntervalResponse.camera_result)
+inline ::mavcam::rpc::camera::CameraResult* StopPhotoIntervalResponse::mutable_camera_result() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  ::mavcam::rpc::camera::CameraResult* _msg = _internal_mutable_camera_result();
+  // @@protoc_insertion_point(field_mutable:mavcam.rpc.camera.StopPhotoIntervalResponse.camera_result)
   return _msg;
 }
-inline void StopPhotoIntervalResponse::set_allocated_camera_result(::mavsdk::rpc::camera::CameraResult* value) {
+inline void StopPhotoIntervalResponse::set_allocated_camera_result(::mavcam::rpc::camera::CameraResult* value) {
   ::google::protobuf::Arena* message_arena = GetArena();
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   if (message_arena == nullptr) {
-    delete reinterpret_cast<::mavsdk::rpc::camera::CameraResult*>(_impl_.camera_result_);
+    delete reinterpret_cast<::mavcam::rpc::camera::CameraResult*>(_impl_.camera_result_);
   }
 
   if (value != nullptr) {
-    ::google::protobuf::Arena* submessage_arena = reinterpret_cast<::mavsdk::rpc::camera::CameraResult*>(value)->GetArena();
+    ::google::protobuf::Arena* submessage_arena = reinterpret_cast<::mavcam::rpc::camera::CameraResult*>(value)->GetArena();
     if (message_arena != submessage_arena) {
       value = ::google::protobuf::internal::GetOwnedMessage(message_arena, value, submessage_arena);
     }
@@ -11706,8 +11706,8 @@ inline void StopPhotoIntervalResponse::set_allocated_camera_result(::mavsdk::rpc
     _impl_._has_bits_[0] &= ~0x00000001u;
   }
 
-  _impl_.camera_result_ = reinterpret_cast<::mavsdk::rpc::camera::CameraResult*>(value);
-  // @@protoc_insertion_point(field_set_allocated:mavsdk.rpc.camera.StopPhotoIntervalResponse.camera_result)
+  _impl_.camera_result_ = reinterpret_cast<::mavcam::rpc::camera::CameraResult*>(value);
+  // @@protoc_insertion_point(field_set_allocated:mavcam.rpc.camera.StopPhotoIntervalResponse.camera_result)
 }
 
 // -------------------------------------------------------------------
@@ -11718,7 +11718,7 @@ inline void StopPhotoIntervalResponse::set_allocated_camera_result(::mavsdk::rpc
 
 // StartVideoResponse
 
-// .mavsdk.rpc.camera.CameraResult camera_result = 1;
+// .mavcam.rpc.camera.CameraResult camera_result = 1;
 inline bool StartVideoResponse::has_camera_result() const {
   bool value = (_impl_._has_bits_[0] & 0x00000001u) != 0;
   PROTOBUF_ASSUME(!value || _impl_.camera_result_ != nullptr);
@@ -11729,33 +11729,33 @@ inline void StartVideoResponse::clear_camera_result() {
   if (_impl_.camera_result_ != nullptr) _impl_.camera_result_->Clear();
   _impl_._has_bits_[0] &= ~0x00000001u;
 }
-inline const ::mavsdk::rpc::camera::CameraResult& StartVideoResponse::_internal_camera_result() const {
+inline const ::mavcam::rpc::camera::CameraResult& StartVideoResponse::_internal_camera_result() const {
   PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
-  const ::mavsdk::rpc::camera::CameraResult* p = _impl_.camera_result_;
-  return p != nullptr ? *p : reinterpret_cast<const ::mavsdk::rpc::camera::CameraResult&>(::mavsdk::rpc::camera::_CameraResult_default_instance_);
+  const ::mavcam::rpc::camera::CameraResult* p = _impl_.camera_result_;
+  return p != nullptr ? *p : reinterpret_cast<const ::mavcam::rpc::camera::CameraResult&>(::mavcam::rpc::camera::_CameraResult_default_instance_);
 }
-inline const ::mavsdk::rpc::camera::CameraResult& StartVideoResponse::camera_result() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_get:mavsdk.rpc.camera.StartVideoResponse.camera_result)
+inline const ::mavcam::rpc::camera::CameraResult& StartVideoResponse::camera_result() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:mavcam.rpc.camera.StartVideoResponse.camera_result)
   return _internal_camera_result();
 }
-inline void StartVideoResponse::unsafe_arena_set_allocated_camera_result(::mavsdk::rpc::camera::CameraResult* value) {
+inline void StartVideoResponse::unsafe_arena_set_allocated_camera_result(::mavcam::rpc::camera::CameraResult* value) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   if (GetArena() == nullptr) {
     delete reinterpret_cast<::google::protobuf::MessageLite*>(_impl_.camera_result_);
   }
-  _impl_.camera_result_ = reinterpret_cast<::mavsdk::rpc::camera::CameraResult*>(value);
+  _impl_.camera_result_ = reinterpret_cast<::mavcam::rpc::camera::CameraResult*>(value);
   if (value != nullptr) {
     _impl_._has_bits_[0] |= 0x00000001u;
   } else {
     _impl_._has_bits_[0] &= ~0x00000001u;
   }
-  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:mavsdk.rpc.camera.StartVideoResponse.camera_result)
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:mavcam.rpc.camera.StartVideoResponse.camera_result)
 }
-inline ::mavsdk::rpc::camera::CameraResult* StartVideoResponse::release_camera_result() {
+inline ::mavcam::rpc::camera::CameraResult* StartVideoResponse::release_camera_result() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
 
   _impl_._has_bits_[0] &= ~0x00000001u;
-  ::mavsdk::rpc::camera::CameraResult* released = _impl_.camera_result_;
+  ::mavcam::rpc::camera::CameraResult* released = _impl_.camera_result_;
   _impl_.camera_result_ = nullptr;
 #ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
   auto* old = reinterpret_cast<::google::protobuf::MessageLite*>(released);
@@ -11770,38 +11770,38 @@ inline ::mavsdk::rpc::camera::CameraResult* StartVideoResponse::release_camera_r
 #endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
   return released;
 }
-inline ::mavsdk::rpc::camera::CameraResult* StartVideoResponse::unsafe_arena_release_camera_result() {
+inline ::mavcam::rpc::camera::CameraResult* StartVideoResponse::unsafe_arena_release_camera_result() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  // @@protoc_insertion_point(field_release:mavsdk.rpc.camera.StartVideoResponse.camera_result)
+  // @@protoc_insertion_point(field_release:mavcam.rpc.camera.StartVideoResponse.camera_result)
 
   _impl_._has_bits_[0] &= ~0x00000001u;
-  ::mavsdk::rpc::camera::CameraResult* temp = _impl_.camera_result_;
+  ::mavcam::rpc::camera::CameraResult* temp = _impl_.camera_result_;
   _impl_.camera_result_ = nullptr;
   return temp;
 }
-inline ::mavsdk::rpc::camera::CameraResult* StartVideoResponse::_internal_mutable_camera_result() {
+inline ::mavcam::rpc::camera::CameraResult* StartVideoResponse::_internal_mutable_camera_result() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   _impl_._has_bits_[0] |= 0x00000001u;
   if (_impl_.camera_result_ == nullptr) {
-    auto* p = CreateMaybeMessage<::mavsdk::rpc::camera::CameraResult>(GetArena());
-    _impl_.camera_result_ = reinterpret_cast<::mavsdk::rpc::camera::CameraResult*>(p);
+    auto* p = CreateMaybeMessage<::mavcam::rpc::camera::CameraResult>(GetArena());
+    _impl_.camera_result_ = reinterpret_cast<::mavcam::rpc::camera::CameraResult*>(p);
   }
   return _impl_.camera_result_;
 }
-inline ::mavsdk::rpc::camera::CameraResult* StartVideoResponse::mutable_camera_result() ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  ::mavsdk::rpc::camera::CameraResult* _msg = _internal_mutable_camera_result();
-  // @@protoc_insertion_point(field_mutable:mavsdk.rpc.camera.StartVideoResponse.camera_result)
+inline ::mavcam::rpc::camera::CameraResult* StartVideoResponse::mutable_camera_result() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  ::mavcam::rpc::camera::CameraResult* _msg = _internal_mutable_camera_result();
+  // @@protoc_insertion_point(field_mutable:mavcam.rpc.camera.StartVideoResponse.camera_result)
   return _msg;
 }
-inline void StartVideoResponse::set_allocated_camera_result(::mavsdk::rpc::camera::CameraResult* value) {
+inline void StartVideoResponse::set_allocated_camera_result(::mavcam::rpc::camera::CameraResult* value) {
   ::google::protobuf::Arena* message_arena = GetArena();
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   if (message_arena == nullptr) {
-    delete reinterpret_cast<::mavsdk::rpc::camera::CameraResult*>(_impl_.camera_result_);
+    delete reinterpret_cast<::mavcam::rpc::camera::CameraResult*>(_impl_.camera_result_);
   }
 
   if (value != nullptr) {
-    ::google::protobuf::Arena* submessage_arena = reinterpret_cast<::mavsdk::rpc::camera::CameraResult*>(value)->GetArena();
+    ::google::protobuf::Arena* submessage_arena = reinterpret_cast<::mavcam::rpc::camera::CameraResult*>(value)->GetArena();
     if (message_arena != submessage_arena) {
       value = ::google::protobuf::internal::GetOwnedMessage(message_arena, value, submessage_arena);
     }
@@ -11810,8 +11810,8 @@ inline void StartVideoResponse::set_allocated_camera_result(::mavsdk::rpc::camer
     _impl_._has_bits_[0] &= ~0x00000001u;
   }
 
-  _impl_.camera_result_ = reinterpret_cast<::mavsdk::rpc::camera::CameraResult*>(value);
-  // @@protoc_insertion_point(field_set_allocated:mavsdk.rpc.camera.StartVideoResponse.camera_result)
+  _impl_.camera_result_ = reinterpret_cast<::mavcam::rpc::camera::CameraResult*>(value);
+  // @@protoc_insertion_point(field_set_allocated:mavcam.rpc.camera.StartVideoResponse.camera_result)
 }
 
 // -------------------------------------------------------------------
@@ -11822,7 +11822,7 @@ inline void StartVideoResponse::set_allocated_camera_result(::mavsdk::rpc::camer
 
 // StopVideoResponse
 
-// .mavsdk.rpc.camera.CameraResult camera_result = 1;
+// .mavcam.rpc.camera.CameraResult camera_result = 1;
 inline bool StopVideoResponse::has_camera_result() const {
   bool value = (_impl_._has_bits_[0] & 0x00000001u) != 0;
   PROTOBUF_ASSUME(!value || _impl_.camera_result_ != nullptr);
@@ -11833,33 +11833,33 @@ inline void StopVideoResponse::clear_camera_result() {
   if (_impl_.camera_result_ != nullptr) _impl_.camera_result_->Clear();
   _impl_._has_bits_[0] &= ~0x00000001u;
 }
-inline const ::mavsdk::rpc::camera::CameraResult& StopVideoResponse::_internal_camera_result() const {
+inline const ::mavcam::rpc::camera::CameraResult& StopVideoResponse::_internal_camera_result() const {
   PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
-  const ::mavsdk::rpc::camera::CameraResult* p = _impl_.camera_result_;
-  return p != nullptr ? *p : reinterpret_cast<const ::mavsdk::rpc::camera::CameraResult&>(::mavsdk::rpc::camera::_CameraResult_default_instance_);
+  const ::mavcam::rpc::camera::CameraResult* p = _impl_.camera_result_;
+  return p != nullptr ? *p : reinterpret_cast<const ::mavcam::rpc::camera::CameraResult&>(::mavcam::rpc::camera::_CameraResult_default_instance_);
 }
-inline const ::mavsdk::rpc::camera::CameraResult& StopVideoResponse::camera_result() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_get:mavsdk.rpc.camera.StopVideoResponse.camera_result)
+inline const ::mavcam::rpc::camera::CameraResult& StopVideoResponse::camera_result() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:mavcam.rpc.camera.StopVideoResponse.camera_result)
   return _internal_camera_result();
 }
-inline void StopVideoResponse::unsafe_arena_set_allocated_camera_result(::mavsdk::rpc::camera::CameraResult* value) {
+inline void StopVideoResponse::unsafe_arena_set_allocated_camera_result(::mavcam::rpc::camera::CameraResult* value) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   if (GetArena() == nullptr) {
     delete reinterpret_cast<::google::protobuf::MessageLite*>(_impl_.camera_result_);
   }
-  _impl_.camera_result_ = reinterpret_cast<::mavsdk::rpc::camera::CameraResult*>(value);
+  _impl_.camera_result_ = reinterpret_cast<::mavcam::rpc::camera::CameraResult*>(value);
   if (value != nullptr) {
     _impl_._has_bits_[0] |= 0x00000001u;
   } else {
     _impl_._has_bits_[0] &= ~0x00000001u;
   }
-  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:mavsdk.rpc.camera.StopVideoResponse.camera_result)
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:mavcam.rpc.camera.StopVideoResponse.camera_result)
 }
-inline ::mavsdk::rpc::camera::CameraResult* StopVideoResponse::release_camera_result() {
+inline ::mavcam::rpc::camera::CameraResult* StopVideoResponse::release_camera_result() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
 
   _impl_._has_bits_[0] &= ~0x00000001u;
-  ::mavsdk::rpc::camera::CameraResult* released = _impl_.camera_result_;
+  ::mavcam::rpc::camera::CameraResult* released = _impl_.camera_result_;
   _impl_.camera_result_ = nullptr;
 #ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
   auto* old = reinterpret_cast<::google::protobuf::MessageLite*>(released);
@@ -11874,38 +11874,38 @@ inline ::mavsdk::rpc::camera::CameraResult* StopVideoResponse::release_camera_re
 #endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
   return released;
 }
-inline ::mavsdk::rpc::camera::CameraResult* StopVideoResponse::unsafe_arena_release_camera_result() {
+inline ::mavcam::rpc::camera::CameraResult* StopVideoResponse::unsafe_arena_release_camera_result() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  // @@protoc_insertion_point(field_release:mavsdk.rpc.camera.StopVideoResponse.camera_result)
+  // @@protoc_insertion_point(field_release:mavcam.rpc.camera.StopVideoResponse.camera_result)
 
   _impl_._has_bits_[0] &= ~0x00000001u;
-  ::mavsdk::rpc::camera::CameraResult* temp = _impl_.camera_result_;
+  ::mavcam::rpc::camera::CameraResult* temp = _impl_.camera_result_;
   _impl_.camera_result_ = nullptr;
   return temp;
 }
-inline ::mavsdk::rpc::camera::CameraResult* StopVideoResponse::_internal_mutable_camera_result() {
+inline ::mavcam::rpc::camera::CameraResult* StopVideoResponse::_internal_mutable_camera_result() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   _impl_._has_bits_[0] |= 0x00000001u;
   if (_impl_.camera_result_ == nullptr) {
-    auto* p = CreateMaybeMessage<::mavsdk::rpc::camera::CameraResult>(GetArena());
-    _impl_.camera_result_ = reinterpret_cast<::mavsdk::rpc::camera::CameraResult*>(p);
+    auto* p = CreateMaybeMessage<::mavcam::rpc::camera::CameraResult>(GetArena());
+    _impl_.camera_result_ = reinterpret_cast<::mavcam::rpc::camera::CameraResult*>(p);
   }
   return _impl_.camera_result_;
 }
-inline ::mavsdk::rpc::camera::CameraResult* StopVideoResponse::mutable_camera_result() ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  ::mavsdk::rpc::camera::CameraResult* _msg = _internal_mutable_camera_result();
-  // @@protoc_insertion_point(field_mutable:mavsdk.rpc.camera.StopVideoResponse.camera_result)
+inline ::mavcam::rpc::camera::CameraResult* StopVideoResponse::mutable_camera_result() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  ::mavcam::rpc::camera::CameraResult* _msg = _internal_mutable_camera_result();
+  // @@protoc_insertion_point(field_mutable:mavcam.rpc.camera.StopVideoResponse.camera_result)
   return _msg;
 }
-inline void StopVideoResponse::set_allocated_camera_result(::mavsdk::rpc::camera::CameraResult* value) {
+inline void StopVideoResponse::set_allocated_camera_result(::mavcam::rpc::camera::CameraResult* value) {
   ::google::protobuf::Arena* message_arena = GetArena();
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   if (message_arena == nullptr) {
-    delete reinterpret_cast<::mavsdk::rpc::camera::CameraResult*>(_impl_.camera_result_);
+    delete reinterpret_cast<::mavcam::rpc::camera::CameraResult*>(_impl_.camera_result_);
   }
 
   if (value != nullptr) {
-    ::google::protobuf::Arena* submessage_arena = reinterpret_cast<::mavsdk::rpc::camera::CameraResult*>(value)->GetArena();
+    ::google::protobuf::Arena* submessage_arena = reinterpret_cast<::mavcam::rpc::camera::CameraResult*>(value)->GetArena();
     if (message_arena != submessage_arena) {
       value = ::google::protobuf::internal::GetOwnedMessage(message_arena, value, submessage_arena);
     }
@@ -11914,8 +11914,8 @@ inline void StopVideoResponse::set_allocated_camera_result(::mavsdk::rpc::camera
     _impl_._has_bits_[0] &= ~0x00000001u;
   }
 
-  _impl_.camera_result_ = reinterpret_cast<::mavsdk::rpc::camera::CameraResult*>(value);
-  // @@protoc_insertion_point(field_set_allocated:mavsdk.rpc.camera.StopVideoResponse.camera_result)
+  _impl_.camera_result_ = reinterpret_cast<::mavcam::rpc::camera::CameraResult*>(value);
+  // @@protoc_insertion_point(field_set_allocated:mavcam.rpc.camera.StopVideoResponse.camera_result)
 }
 
 // -------------------------------------------------------------------
@@ -11928,12 +11928,12 @@ inline void StartVideoStreamingRequest::clear_stream_id() {
   _impl_.stream_id_ = 0;
 }
 inline ::int32_t StartVideoStreamingRequest::stream_id() const {
-  // @@protoc_insertion_point(field_get:mavsdk.rpc.camera.StartVideoStreamingRequest.stream_id)
+  // @@protoc_insertion_point(field_get:mavcam.rpc.camera.StartVideoStreamingRequest.stream_id)
   return _internal_stream_id();
 }
 inline void StartVideoStreamingRequest::set_stream_id(::int32_t value) {
   _internal_set_stream_id(value);
-  // @@protoc_insertion_point(field_set:mavsdk.rpc.camera.StartVideoStreamingRequest.stream_id)
+  // @@protoc_insertion_point(field_set:mavcam.rpc.camera.StartVideoStreamingRequest.stream_id)
 }
 inline ::int32_t StartVideoStreamingRequest::_internal_stream_id() const {
   PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
@@ -11949,7 +11949,7 @@ inline void StartVideoStreamingRequest::_internal_set_stream_id(::int32_t value)
 
 // StartVideoStreamingResponse
 
-// .mavsdk.rpc.camera.CameraResult camera_result = 1;
+// .mavcam.rpc.camera.CameraResult camera_result = 1;
 inline bool StartVideoStreamingResponse::has_camera_result() const {
   bool value = (_impl_._has_bits_[0] & 0x00000001u) != 0;
   PROTOBUF_ASSUME(!value || _impl_.camera_result_ != nullptr);
@@ -11960,33 +11960,33 @@ inline void StartVideoStreamingResponse::clear_camera_result() {
   if (_impl_.camera_result_ != nullptr) _impl_.camera_result_->Clear();
   _impl_._has_bits_[0] &= ~0x00000001u;
 }
-inline const ::mavsdk::rpc::camera::CameraResult& StartVideoStreamingResponse::_internal_camera_result() const {
+inline const ::mavcam::rpc::camera::CameraResult& StartVideoStreamingResponse::_internal_camera_result() const {
   PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
-  const ::mavsdk::rpc::camera::CameraResult* p = _impl_.camera_result_;
-  return p != nullptr ? *p : reinterpret_cast<const ::mavsdk::rpc::camera::CameraResult&>(::mavsdk::rpc::camera::_CameraResult_default_instance_);
+  const ::mavcam::rpc::camera::CameraResult* p = _impl_.camera_result_;
+  return p != nullptr ? *p : reinterpret_cast<const ::mavcam::rpc::camera::CameraResult&>(::mavcam::rpc::camera::_CameraResult_default_instance_);
 }
-inline const ::mavsdk::rpc::camera::CameraResult& StartVideoStreamingResponse::camera_result() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_get:mavsdk.rpc.camera.StartVideoStreamingResponse.camera_result)
+inline const ::mavcam::rpc::camera::CameraResult& StartVideoStreamingResponse::camera_result() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:mavcam.rpc.camera.StartVideoStreamingResponse.camera_result)
   return _internal_camera_result();
 }
-inline void StartVideoStreamingResponse::unsafe_arena_set_allocated_camera_result(::mavsdk::rpc::camera::CameraResult* value) {
+inline void StartVideoStreamingResponse::unsafe_arena_set_allocated_camera_result(::mavcam::rpc::camera::CameraResult* value) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   if (GetArena() == nullptr) {
     delete reinterpret_cast<::google::protobuf::MessageLite*>(_impl_.camera_result_);
   }
-  _impl_.camera_result_ = reinterpret_cast<::mavsdk::rpc::camera::CameraResult*>(value);
+  _impl_.camera_result_ = reinterpret_cast<::mavcam::rpc::camera::CameraResult*>(value);
   if (value != nullptr) {
     _impl_._has_bits_[0] |= 0x00000001u;
   } else {
     _impl_._has_bits_[0] &= ~0x00000001u;
   }
-  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:mavsdk.rpc.camera.StartVideoStreamingResponse.camera_result)
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:mavcam.rpc.camera.StartVideoStreamingResponse.camera_result)
 }
-inline ::mavsdk::rpc::camera::CameraResult* StartVideoStreamingResponse::release_camera_result() {
+inline ::mavcam::rpc::camera::CameraResult* StartVideoStreamingResponse::release_camera_result() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
 
   _impl_._has_bits_[0] &= ~0x00000001u;
-  ::mavsdk::rpc::camera::CameraResult* released = _impl_.camera_result_;
+  ::mavcam::rpc::camera::CameraResult* released = _impl_.camera_result_;
   _impl_.camera_result_ = nullptr;
 #ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
   auto* old = reinterpret_cast<::google::protobuf::MessageLite*>(released);
@@ -12001,38 +12001,38 @@ inline ::mavsdk::rpc::camera::CameraResult* StartVideoStreamingResponse::release
 #endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
   return released;
 }
-inline ::mavsdk::rpc::camera::CameraResult* StartVideoStreamingResponse::unsafe_arena_release_camera_result() {
+inline ::mavcam::rpc::camera::CameraResult* StartVideoStreamingResponse::unsafe_arena_release_camera_result() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  // @@protoc_insertion_point(field_release:mavsdk.rpc.camera.StartVideoStreamingResponse.camera_result)
+  // @@protoc_insertion_point(field_release:mavcam.rpc.camera.StartVideoStreamingResponse.camera_result)
 
   _impl_._has_bits_[0] &= ~0x00000001u;
-  ::mavsdk::rpc::camera::CameraResult* temp = _impl_.camera_result_;
+  ::mavcam::rpc::camera::CameraResult* temp = _impl_.camera_result_;
   _impl_.camera_result_ = nullptr;
   return temp;
 }
-inline ::mavsdk::rpc::camera::CameraResult* StartVideoStreamingResponse::_internal_mutable_camera_result() {
+inline ::mavcam::rpc::camera::CameraResult* StartVideoStreamingResponse::_internal_mutable_camera_result() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   _impl_._has_bits_[0] |= 0x00000001u;
   if (_impl_.camera_result_ == nullptr) {
-    auto* p = CreateMaybeMessage<::mavsdk::rpc::camera::CameraResult>(GetArena());
-    _impl_.camera_result_ = reinterpret_cast<::mavsdk::rpc::camera::CameraResult*>(p);
+    auto* p = CreateMaybeMessage<::mavcam::rpc::camera::CameraResult>(GetArena());
+    _impl_.camera_result_ = reinterpret_cast<::mavcam::rpc::camera::CameraResult*>(p);
   }
   return _impl_.camera_result_;
 }
-inline ::mavsdk::rpc::camera::CameraResult* StartVideoStreamingResponse::mutable_camera_result() ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  ::mavsdk::rpc::camera::CameraResult* _msg = _internal_mutable_camera_result();
-  // @@protoc_insertion_point(field_mutable:mavsdk.rpc.camera.StartVideoStreamingResponse.camera_result)
+inline ::mavcam::rpc::camera::CameraResult* StartVideoStreamingResponse::mutable_camera_result() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  ::mavcam::rpc::camera::CameraResult* _msg = _internal_mutable_camera_result();
+  // @@protoc_insertion_point(field_mutable:mavcam.rpc.camera.StartVideoStreamingResponse.camera_result)
   return _msg;
 }
-inline void StartVideoStreamingResponse::set_allocated_camera_result(::mavsdk::rpc::camera::CameraResult* value) {
+inline void StartVideoStreamingResponse::set_allocated_camera_result(::mavcam::rpc::camera::CameraResult* value) {
   ::google::protobuf::Arena* message_arena = GetArena();
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   if (message_arena == nullptr) {
-    delete reinterpret_cast<::mavsdk::rpc::camera::CameraResult*>(_impl_.camera_result_);
+    delete reinterpret_cast<::mavcam::rpc::camera::CameraResult*>(_impl_.camera_result_);
   }
 
   if (value != nullptr) {
-    ::google::protobuf::Arena* submessage_arena = reinterpret_cast<::mavsdk::rpc::camera::CameraResult*>(value)->GetArena();
+    ::google::protobuf::Arena* submessage_arena = reinterpret_cast<::mavcam::rpc::camera::CameraResult*>(value)->GetArena();
     if (message_arena != submessage_arena) {
       value = ::google::protobuf::internal::GetOwnedMessage(message_arena, value, submessage_arena);
     }
@@ -12041,8 +12041,8 @@ inline void StartVideoStreamingResponse::set_allocated_camera_result(::mavsdk::r
     _impl_._has_bits_[0] &= ~0x00000001u;
   }
 
-  _impl_.camera_result_ = reinterpret_cast<::mavsdk::rpc::camera::CameraResult*>(value);
-  // @@protoc_insertion_point(field_set_allocated:mavsdk.rpc.camera.StartVideoStreamingResponse.camera_result)
+  _impl_.camera_result_ = reinterpret_cast<::mavcam::rpc::camera::CameraResult*>(value);
+  // @@protoc_insertion_point(field_set_allocated:mavcam.rpc.camera.StartVideoStreamingResponse.camera_result)
 }
 
 // -------------------------------------------------------------------
@@ -12055,12 +12055,12 @@ inline void StopVideoStreamingRequest::clear_stream_id() {
   _impl_.stream_id_ = 0;
 }
 inline ::int32_t StopVideoStreamingRequest::stream_id() const {
-  // @@protoc_insertion_point(field_get:mavsdk.rpc.camera.StopVideoStreamingRequest.stream_id)
+  // @@protoc_insertion_point(field_get:mavcam.rpc.camera.StopVideoStreamingRequest.stream_id)
   return _internal_stream_id();
 }
 inline void StopVideoStreamingRequest::set_stream_id(::int32_t value) {
   _internal_set_stream_id(value);
-  // @@protoc_insertion_point(field_set:mavsdk.rpc.camera.StopVideoStreamingRequest.stream_id)
+  // @@protoc_insertion_point(field_set:mavcam.rpc.camera.StopVideoStreamingRequest.stream_id)
 }
 inline ::int32_t StopVideoStreamingRequest::_internal_stream_id() const {
   PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
@@ -12076,7 +12076,7 @@ inline void StopVideoStreamingRequest::_internal_set_stream_id(::int32_t value) 
 
 // StopVideoStreamingResponse
 
-// .mavsdk.rpc.camera.CameraResult camera_result = 1;
+// .mavcam.rpc.camera.CameraResult camera_result = 1;
 inline bool StopVideoStreamingResponse::has_camera_result() const {
   bool value = (_impl_._has_bits_[0] & 0x00000001u) != 0;
   PROTOBUF_ASSUME(!value || _impl_.camera_result_ != nullptr);
@@ -12087,33 +12087,33 @@ inline void StopVideoStreamingResponse::clear_camera_result() {
   if (_impl_.camera_result_ != nullptr) _impl_.camera_result_->Clear();
   _impl_._has_bits_[0] &= ~0x00000001u;
 }
-inline const ::mavsdk::rpc::camera::CameraResult& StopVideoStreamingResponse::_internal_camera_result() const {
+inline const ::mavcam::rpc::camera::CameraResult& StopVideoStreamingResponse::_internal_camera_result() const {
   PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
-  const ::mavsdk::rpc::camera::CameraResult* p = _impl_.camera_result_;
-  return p != nullptr ? *p : reinterpret_cast<const ::mavsdk::rpc::camera::CameraResult&>(::mavsdk::rpc::camera::_CameraResult_default_instance_);
+  const ::mavcam::rpc::camera::CameraResult* p = _impl_.camera_result_;
+  return p != nullptr ? *p : reinterpret_cast<const ::mavcam::rpc::camera::CameraResult&>(::mavcam::rpc::camera::_CameraResult_default_instance_);
 }
-inline const ::mavsdk::rpc::camera::CameraResult& StopVideoStreamingResponse::camera_result() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_get:mavsdk.rpc.camera.StopVideoStreamingResponse.camera_result)
+inline const ::mavcam::rpc::camera::CameraResult& StopVideoStreamingResponse::camera_result() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:mavcam.rpc.camera.StopVideoStreamingResponse.camera_result)
   return _internal_camera_result();
 }
-inline void StopVideoStreamingResponse::unsafe_arena_set_allocated_camera_result(::mavsdk::rpc::camera::CameraResult* value) {
+inline void StopVideoStreamingResponse::unsafe_arena_set_allocated_camera_result(::mavcam::rpc::camera::CameraResult* value) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   if (GetArena() == nullptr) {
     delete reinterpret_cast<::google::protobuf::MessageLite*>(_impl_.camera_result_);
   }
-  _impl_.camera_result_ = reinterpret_cast<::mavsdk::rpc::camera::CameraResult*>(value);
+  _impl_.camera_result_ = reinterpret_cast<::mavcam::rpc::camera::CameraResult*>(value);
   if (value != nullptr) {
     _impl_._has_bits_[0] |= 0x00000001u;
   } else {
     _impl_._has_bits_[0] &= ~0x00000001u;
   }
-  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:mavsdk.rpc.camera.StopVideoStreamingResponse.camera_result)
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:mavcam.rpc.camera.StopVideoStreamingResponse.camera_result)
 }
-inline ::mavsdk::rpc::camera::CameraResult* StopVideoStreamingResponse::release_camera_result() {
+inline ::mavcam::rpc::camera::CameraResult* StopVideoStreamingResponse::release_camera_result() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
 
   _impl_._has_bits_[0] &= ~0x00000001u;
-  ::mavsdk::rpc::camera::CameraResult* released = _impl_.camera_result_;
+  ::mavcam::rpc::camera::CameraResult* released = _impl_.camera_result_;
   _impl_.camera_result_ = nullptr;
 #ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
   auto* old = reinterpret_cast<::google::protobuf::MessageLite*>(released);
@@ -12128,38 +12128,38 @@ inline ::mavsdk::rpc::camera::CameraResult* StopVideoStreamingResponse::release_
 #endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
   return released;
 }
-inline ::mavsdk::rpc::camera::CameraResult* StopVideoStreamingResponse::unsafe_arena_release_camera_result() {
+inline ::mavcam::rpc::camera::CameraResult* StopVideoStreamingResponse::unsafe_arena_release_camera_result() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  // @@protoc_insertion_point(field_release:mavsdk.rpc.camera.StopVideoStreamingResponse.camera_result)
+  // @@protoc_insertion_point(field_release:mavcam.rpc.camera.StopVideoStreamingResponse.camera_result)
 
   _impl_._has_bits_[0] &= ~0x00000001u;
-  ::mavsdk::rpc::camera::CameraResult* temp = _impl_.camera_result_;
+  ::mavcam::rpc::camera::CameraResult* temp = _impl_.camera_result_;
   _impl_.camera_result_ = nullptr;
   return temp;
 }
-inline ::mavsdk::rpc::camera::CameraResult* StopVideoStreamingResponse::_internal_mutable_camera_result() {
+inline ::mavcam::rpc::camera::CameraResult* StopVideoStreamingResponse::_internal_mutable_camera_result() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   _impl_._has_bits_[0] |= 0x00000001u;
   if (_impl_.camera_result_ == nullptr) {
-    auto* p = CreateMaybeMessage<::mavsdk::rpc::camera::CameraResult>(GetArena());
-    _impl_.camera_result_ = reinterpret_cast<::mavsdk::rpc::camera::CameraResult*>(p);
+    auto* p = CreateMaybeMessage<::mavcam::rpc::camera::CameraResult>(GetArena());
+    _impl_.camera_result_ = reinterpret_cast<::mavcam::rpc::camera::CameraResult*>(p);
   }
   return _impl_.camera_result_;
 }
-inline ::mavsdk::rpc::camera::CameraResult* StopVideoStreamingResponse::mutable_camera_result() ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  ::mavsdk::rpc::camera::CameraResult* _msg = _internal_mutable_camera_result();
-  // @@protoc_insertion_point(field_mutable:mavsdk.rpc.camera.StopVideoStreamingResponse.camera_result)
+inline ::mavcam::rpc::camera::CameraResult* StopVideoStreamingResponse::mutable_camera_result() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  ::mavcam::rpc::camera::CameraResult* _msg = _internal_mutable_camera_result();
+  // @@protoc_insertion_point(field_mutable:mavcam.rpc.camera.StopVideoStreamingResponse.camera_result)
   return _msg;
 }
-inline void StopVideoStreamingResponse::set_allocated_camera_result(::mavsdk::rpc::camera::CameraResult* value) {
+inline void StopVideoStreamingResponse::set_allocated_camera_result(::mavcam::rpc::camera::CameraResult* value) {
   ::google::protobuf::Arena* message_arena = GetArena();
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   if (message_arena == nullptr) {
-    delete reinterpret_cast<::mavsdk::rpc::camera::CameraResult*>(_impl_.camera_result_);
+    delete reinterpret_cast<::mavcam::rpc::camera::CameraResult*>(_impl_.camera_result_);
   }
 
   if (value != nullptr) {
-    ::google::protobuf::Arena* submessage_arena = reinterpret_cast<::mavsdk::rpc::camera::CameraResult*>(value)->GetArena();
+    ::google::protobuf::Arena* submessage_arena = reinterpret_cast<::mavcam::rpc::camera::CameraResult*>(value)->GetArena();
     if (message_arena != submessage_arena) {
       value = ::google::protobuf::internal::GetOwnedMessage(message_arena, value, submessage_arena);
     }
@@ -12168,32 +12168,32 @@ inline void StopVideoStreamingResponse::set_allocated_camera_result(::mavsdk::rp
     _impl_._has_bits_[0] &= ~0x00000001u;
   }
 
-  _impl_.camera_result_ = reinterpret_cast<::mavsdk::rpc::camera::CameraResult*>(value);
-  // @@protoc_insertion_point(field_set_allocated:mavsdk.rpc.camera.StopVideoStreamingResponse.camera_result)
+  _impl_.camera_result_ = reinterpret_cast<::mavcam::rpc::camera::CameraResult*>(value);
+  // @@protoc_insertion_point(field_set_allocated:mavcam.rpc.camera.StopVideoStreamingResponse.camera_result)
 }
 
 // -------------------------------------------------------------------
 
 // SetModeRequest
 
-// .mavsdk.rpc.camera.Mode mode = 1;
+// .mavcam.rpc.camera.Mode mode = 1;
 inline void SetModeRequest::clear_mode() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   _impl_.mode_ = 0;
 }
-inline ::mavsdk::rpc::camera::Mode SetModeRequest::mode() const {
-  // @@protoc_insertion_point(field_get:mavsdk.rpc.camera.SetModeRequest.mode)
+inline ::mavcam::rpc::camera::Mode SetModeRequest::mode() const {
+  // @@protoc_insertion_point(field_get:mavcam.rpc.camera.SetModeRequest.mode)
   return _internal_mode();
 }
-inline void SetModeRequest::set_mode(::mavsdk::rpc::camera::Mode value) {
+inline void SetModeRequest::set_mode(::mavcam::rpc::camera::Mode value) {
   _internal_set_mode(value);
-  // @@protoc_insertion_point(field_set:mavsdk.rpc.camera.SetModeRequest.mode)
+  // @@protoc_insertion_point(field_set:mavcam.rpc.camera.SetModeRequest.mode)
 }
-inline ::mavsdk::rpc::camera::Mode SetModeRequest::_internal_mode() const {
+inline ::mavcam::rpc::camera::Mode SetModeRequest::_internal_mode() const {
   PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
-  return static_cast<::mavsdk::rpc::camera::Mode>(_impl_.mode_);
+  return static_cast<::mavcam::rpc::camera::Mode>(_impl_.mode_);
 }
-inline void SetModeRequest::_internal_set_mode(::mavsdk::rpc::camera::Mode value) {
+inline void SetModeRequest::_internal_set_mode(::mavcam::rpc::camera::Mode value) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
   _impl_.mode_ = value;
@@ -12203,7 +12203,7 @@ inline void SetModeRequest::_internal_set_mode(::mavsdk::rpc::camera::Mode value
 
 // SetModeResponse
 
-// .mavsdk.rpc.camera.CameraResult camera_result = 1;
+// .mavcam.rpc.camera.CameraResult camera_result = 1;
 inline bool SetModeResponse::has_camera_result() const {
   bool value = (_impl_._has_bits_[0] & 0x00000001u) != 0;
   PROTOBUF_ASSUME(!value || _impl_.camera_result_ != nullptr);
@@ -12214,33 +12214,33 @@ inline void SetModeResponse::clear_camera_result() {
   if (_impl_.camera_result_ != nullptr) _impl_.camera_result_->Clear();
   _impl_._has_bits_[0] &= ~0x00000001u;
 }
-inline const ::mavsdk::rpc::camera::CameraResult& SetModeResponse::_internal_camera_result() const {
+inline const ::mavcam::rpc::camera::CameraResult& SetModeResponse::_internal_camera_result() const {
   PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
-  const ::mavsdk::rpc::camera::CameraResult* p = _impl_.camera_result_;
-  return p != nullptr ? *p : reinterpret_cast<const ::mavsdk::rpc::camera::CameraResult&>(::mavsdk::rpc::camera::_CameraResult_default_instance_);
+  const ::mavcam::rpc::camera::CameraResult* p = _impl_.camera_result_;
+  return p != nullptr ? *p : reinterpret_cast<const ::mavcam::rpc::camera::CameraResult&>(::mavcam::rpc::camera::_CameraResult_default_instance_);
 }
-inline const ::mavsdk::rpc::camera::CameraResult& SetModeResponse::camera_result() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_get:mavsdk.rpc.camera.SetModeResponse.camera_result)
+inline const ::mavcam::rpc::camera::CameraResult& SetModeResponse::camera_result() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:mavcam.rpc.camera.SetModeResponse.camera_result)
   return _internal_camera_result();
 }
-inline void SetModeResponse::unsafe_arena_set_allocated_camera_result(::mavsdk::rpc::camera::CameraResult* value) {
+inline void SetModeResponse::unsafe_arena_set_allocated_camera_result(::mavcam::rpc::camera::CameraResult* value) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   if (GetArena() == nullptr) {
     delete reinterpret_cast<::google::protobuf::MessageLite*>(_impl_.camera_result_);
   }
-  _impl_.camera_result_ = reinterpret_cast<::mavsdk::rpc::camera::CameraResult*>(value);
+  _impl_.camera_result_ = reinterpret_cast<::mavcam::rpc::camera::CameraResult*>(value);
   if (value != nullptr) {
     _impl_._has_bits_[0] |= 0x00000001u;
   } else {
     _impl_._has_bits_[0] &= ~0x00000001u;
   }
-  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:mavsdk.rpc.camera.SetModeResponse.camera_result)
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:mavcam.rpc.camera.SetModeResponse.camera_result)
 }
-inline ::mavsdk::rpc::camera::CameraResult* SetModeResponse::release_camera_result() {
+inline ::mavcam::rpc::camera::CameraResult* SetModeResponse::release_camera_result() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
 
   _impl_._has_bits_[0] &= ~0x00000001u;
-  ::mavsdk::rpc::camera::CameraResult* released = _impl_.camera_result_;
+  ::mavcam::rpc::camera::CameraResult* released = _impl_.camera_result_;
   _impl_.camera_result_ = nullptr;
 #ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
   auto* old = reinterpret_cast<::google::protobuf::MessageLite*>(released);
@@ -12255,38 +12255,38 @@ inline ::mavsdk::rpc::camera::CameraResult* SetModeResponse::release_camera_resu
 #endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
   return released;
 }
-inline ::mavsdk::rpc::camera::CameraResult* SetModeResponse::unsafe_arena_release_camera_result() {
+inline ::mavcam::rpc::camera::CameraResult* SetModeResponse::unsafe_arena_release_camera_result() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  // @@protoc_insertion_point(field_release:mavsdk.rpc.camera.SetModeResponse.camera_result)
+  // @@protoc_insertion_point(field_release:mavcam.rpc.camera.SetModeResponse.camera_result)
 
   _impl_._has_bits_[0] &= ~0x00000001u;
-  ::mavsdk::rpc::camera::CameraResult* temp = _impl_.camera_result_;
+  ::mavcam::rpc::camera::CameraResult* temp = _impl_.camera_result_;
   _impl_.camera_result_ = nullptr;
   return temp;
 }
-inline ::mavsdk::rpc::camera::CameraResult* SetModeResponse::_internal_mutable_camera_result() {
+inline ::mavcam::rpc::camera::CameraResult* SetModeResponse::_internal_mutable_camera_result() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   _impl_._has_bits_[0] |= 0x00000001u;
   if (_impl_.camera_result_ == nullptr) {
-    auto* p = CreateMaybeMessage<::mavsdk::rpc::camera::CameraResult>(GetArena());
-    _impl_.camera_result_ = reinterpret_cast<::mavsdk::rpc::camera::CameraResult*>(p);
+    auto* p = CreateMaybeMessage<::mavcam::rpc::camera::CameraResult>(GetArena());
+    _impl_.camera_result_ = reinterpret_cast<::mavcam::rpc::camera::CameraResult*>(p);
   }
   return _impl_.camera_result_;
 }
-inline ::mavsdk::rpc::camera::CameraResult* SetModeResponse::mutable_camera_result() ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  ::mavsdk::rpc::camera::CameraResult* _msg = _internal_mutable_camera_result();
-  // @@protoc_insertion_point(field_mutable:mavsdk.rpc.camera.SetModeResponse.camera_result)
+inline ::mavcam::rpc::camera::CameraResult* SetModeResponse::mutable_camera_result() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  ::mavcam::rpc::camera::CameraResult* _msg = _internal_mutable_camera_result();
+  // @@protoc_insertion_point(field_mutable:mavcam.rpc.camera.SetModeResponse.camera_result)
   return _msg;
 }
-inline void SetModeResponse::set_allocated_camera_result(::mavsdk::rpc::camera::CameraResult* value) {
+inline void SetModeResponse::set_allocated_camera_result(::mavcam::rpc::camera::CameraResult* value) {
   ::google::protobuf::Arena* message_arena = GetArena();
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   if (message_arena == nullptr) {
-    delete reinterpret_cast<::mavsdk::rpc::camera::CameraResult*>(_impl_.camera_result_);
+    delete reinterpret_cast<::mavcam::rpc::camera::CameraResult*>(_impl_.camera_result_);
   }
 
   if (value != nullptr) {
-    ::google::protobuf::Arena* submessage_arena = reinterpret_cast<::mavsdk::rpc::camera::CameraResult*>(value)->GetArena();
+    ::google::protobuf::Arena* submessage_arena = reinterpret_cast<::mavcam::rpc::camera::CameraResult*>(value)->GetArena();
     if (message_arena != submessage_arena) {
       value = ::google::protobuf::internal::GetOwnedMessage(message_arena, value, submessage_arena);
     }
@@ -12295,32 +12295,32 @@ inline void SetModeResponse::set_allocated_camera_result(::mavsdk::rpc::camera::
     _impl_._has_bits_[0] &= ~0x00000001u;
   }
 
-  _impl_.camera_result_ = reinterpret_cast<::mavsdk::rpc::camera::CameraResult*>(value);
-  // @@protoc_insertion_point(field_set_allocated:mavsdk.rpc.camera.SetModeResponse.camera_result)
+  _impl_.camera_result_ = reinterpret_cast<::mavcam::rpc::camera::CameraResult*>(value);
+  // @@protoc_insertion_point(field_set_allocated:mavcam.rpc.camera.SetModeResponse.camera_result)
 }
 
 // -------------------------------------------------------------------
 
 // ListPhotosRequest
 
-// .mavsdk.rpc.camera.PhotosRange photos_range = 1;
+// .mavcam.rpc.camera.PhotosRange photos_range = 1;
 inline void ListPhotosRequest::clear_photos_range() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   _impl_.photos_range_ = 0;
 }
-inline ::mavsdk::rpc::camera::PhotosRange ListPhotosRequest::photos_range() const {
-  // @@protoc_insertion_point(field_get:mavsdk.rpc.camera.ListPhotosRequest.photos_range)
+inline ::mavcam::rpc::camera::PhotosRange ListPhotosRequest::photos_range() const {
+  // @@protoc_insertion_point(field_get:mavcam.rpc.camera.ListPhotosRequest.photos_range)
   return _internal_photos_range();
 }
-inline void ListPhotosRequest::set_photos_range(::mavsdk::rpc::camera::PhotosRange value) {
+inline void ListPhotosRequest::set_photos_range(::mavcam::rpc::camera::PhotosRange value) {
   _internal_set_photos_range(value);
-  // @@protoc_insertion_point(field_set:mavsdk.rpc.camera.ListPhotosRequest.photos_range)
+  // @@protoc_insertion_point(field_set:mavcam.rpc.camera.ListPhotosRequest.photos_range)
 }
-inline ::mavsdk::rpc::camera::PhotosRange ListPhotosRequest::_internal_photos_range() const {
+inline ::mavcam::rpc::camera::PhotosRange ListPhotosRequest::_internal_photos_range() const {
   PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
-  return static_cast<::mavsdk::rpc::camera::PhotosRange>(_impl_.photos_range_);
+  return static_cast<::mavcam::rpc::camera::PhotosRange>(_impl_.photos_range_);
 }
-inline void ListPhotosRequest::_internal_set_photos_range(::mavsdk::rpc::camera::PhotosRange value) {
+inline void ListPhotosRequest::_internal_set_photos_range(::mavcam::rpc::camera::PhotosRange value) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
   _impl_.photos_range_ = value;
@@ -12330,7 +12330,7 @@ inline void ListPhotosRequest::_internal_set_photos_range(::mavsdk::rpc::camera:
 
 // ListPhotosResponse
 
-// .mavsdk.rpc.camera.CameraResult camera_result = 1;
+// .mavcam.rpc.camera.CameraResult camera_result = 1;
 inline bool ListPhotosResponse::has_camera_result() const {
   bool value = (_impl_._has_bits_[0] & 0x00000001u) != 0;
   PROTOBUF_ASSUME(!value || _impl_.camera_result_ != nullptr);
@@ -12341,33 +12341,33 @@ inline void ListPhotosResponse::clear_camera_result() {
   if (_impl_.camera_result_ != nullptr) _impl_.camera_result_->Clear();
   _impl_._has_bits_[0] &= ~0x00000001u;
 }
-inline const ::mavsdk::rpc::camera::CameraResult& ListPhotosResponse::_internal_camera_result() const {
+inline const ::mavcam::rpc::camera::CameraResult& ListPhotosResponse::_internal_camera_result() const {
   PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
-  const ::mavsdk::rpc::camera::CameraResult* p = _impl_.camera_result_;
-  return p != nullptr ? *p : reinterpret_cast<const ::mavsdk::rpc::camera::CameraResult&>(::mavsdk::rpc::camera::_CameraResult_default_instance_);
+  const ::mavcam::rpc::camera::CameraResult* p = _impl_.camera_result_;
+  return p != nullptr ? *p : reinterpret_cast<const ::mavcam::rpc::camera::CameraResult&>(::mavcam::rpc::camera::_CameraResult_default_instance_);
 }
-inline const ::mavsdk::rpc::camera::CameraResult& ListPhotosResponse::camera_result() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_get:mavsdk.rpc.camera.ListPhotosResponse.camera_result)
+inline const ::mavcam::rpc::camera::CameraResult& ListPhotosResponse::camera_result() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:mavcam.rpc.camera.ListPhotosResponse.camera_result)
   return _internal_camera_result();
 }
-inline void ListPhotosResponse::unsafe_arena_set_allocated_camera_result(::mavsdk::rpc::camera::CameraResult* value) {
+inline void ListPhotosResponse::unsafe_arena_set_allocated_camera_result(::mavcam::rpc::camera::CameraResult* value) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   if (GetArena() == nullptr) {
     delete reinterpret_cast<::google::protobuf::MessageLite*>(_impl_.camera_result_);
   }
-  _impl_.camera_result_ = reinterpret_cast<::mavsdk::rpc::camera::CameraResult*>(value);
+  _impl_.camera_result_ = reinterpret_cast<::mavcam::rpc::camera::CameraResult*>(value);
   if (value != nullptr) {
     _impl_._has_bits_[0] |= 0x00000001u;
   } else {
     _impl_._has_bits_[0] &= ~0x00000001u;
   }
-  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:mavsdk.rpc.camera.ListPhotosResponse.camera_result)
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:mavcam.rpc.camera.ListPhotosResponse.camera_result)
 }
-inline ::mavsdk::rpc::camera::CameraResult* ListPhotosResponse::release_camera_result() {
+inline ::mavcam::rpc::camera::CameraResult* ListPhotosResponse::release_camera_result() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
 
   _impl_._has_bits_[0] &= ~0x00000001u;
-  ::mavsdk::rpc::camera::CameraResult* released = _impl_.camera_result_;
+  ::mavcam::rpc::camera::CameraResult* released = _impl_.camera_result_;
   _impl_.camera_result_ = nullptr;
 #ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
   auto* old = reinterpret_cast<::google::protobuf::MessageLite*>(released);
@@ -12382,38 +12382,38 @@ inline ::mavsdk::rpc::camera::CameraResult* ListPhotosResponse::release_camera_r
 #endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
   return released;
 }
-inline ::mavsdk::rpc::camera::CameraResult* ListPhotosResponse::unsafe_arena_release_camera_result() {
+inline ::mavcam::rpc::camera::CameraResult* ListPhotosResponse::unsafe_arena_release_camera_result() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  // @@protoc_insertion_point(field_release:mavsdk.rpc.camera.ListPhotosResponse.camera_result)
+  // @@protoc_insertion_point(field_release:mavcam.rpc.camera.ListPhotosResponse.camera_result)
 
   _impl_._has_bits_[0] &= ~0x00000001u;
-  ::mavsdk::rpc::camera::CameraResult* temp = _impl_.camera_result_;
+  ::mavcam::rpc::camera::CameraResult* temp = _impl_.camera_result_;
   _impl_.camera_result_ = nullptr;
   return temp;
 }
-inline ::mavsdk::rpc::camera::CameraResult* ListPhotosResponse::_internal_mutable_camera_result() {
+inline ::mavcam::rpc::camera::CameraResult* ListPhotosResponse::_internal_mutable_camera_result() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   _impl_._has_bits_[0] |= 0x00000001u;
   if (_impl_.camera_result_ == nullptr) {
-    auto* p = CreateMaybeMessage<::mavsdk::rpc::camera::CameraResult>(GetArena());
-    _impl_.camera_result_ = reinterpret_cast<::mavsdk::rpc::camera::CameraResult*>(p);
+    auto* p = CreateMaybeMessage<::mavcam::rpc::camera::CameraResult>(GetArena());
+    _impl_.camera_result_ = reinterpret_cast<::mavcam::rpc::camera::CameraResult*>(p);
   }
   return _impl_.camera_result_;
 }
-inline ::mavsdk::rpc::camera::CameraResult* ListPhotosResponse::mutable_camera_result() ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  ::mavsdk::rpc::camera::CameraResult* _msg = _internal_mutable_camera_result();
-  // @@protoc_insertion_point(field_mutable:mavsdk.rpc.camera.ListPhotosResponse.camera_result)
+inline ::mavcam::rpc::camera::CameraResult* ListPhotosResponse::mutable_camera_result() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  ::mavcam::rpc::camera::CameraResult* _msg = _internal_mutable_camera_result();
+  // @@protoc_insertion_point(field_mutable:mavcam.rpc.camera.ListPhotosResponse.camera_result)
   return _msg;
 }
-inline void ListPhotosResponse::set_allocated_camera_result(::mavsdk::rpc::camera::CameraResult* value) {
+inline void ListPhotosResponse::set_allocated_camera_result(::mavcam::rpc::camera::CameraResult* value) {
   ::google::protobuf::Arena* message_arena = GetArena();
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   if (message_arena == nullptr) {
-    delete reinterpret_cast<::mavsdk::rpc::camera::CameraResult*>(_impl_.camera_result_);
+    delete reinterpret_cast<::mavcam::rpc::camera::CameraResult*>(_impl_.camera_result_);
   }
 
   if (value != nullptr) {
-    ::google::protobuf::Arena* submessage_arena = reinterpret_cast<::mavsdk::rpc::camera::CameraResult*>(value)->GetArena();
+    ::google::protobuf::Arena* submessage_arena = reinterpret_cast<::mavcam::rpc::camera::CameraResult*>(value)->GetArena();
     if (message_arena != submessage_arena) {
       value = ::google::protobuf::internal::GetOwnedMessage(message_arena, value, submessage_arena);
     }
@@ -12422,11 +12422,11 @@ inline void ListPhotosResponse::set_allocated_camera_result(::mavsdk::rpc::camer
     _impl_._has_bits_[0] &= ~0x00000001u;
   }
 
-  _impl_.camera_result_ = reinterpret_cast<::mavsdk::rpc::camera::CameraResult*>(value);
-  // @@protoc_insertion_point(field_set_allocated:mavsdk.rpc.camera.ListPhotosResponse.camera_result)
+  _impl_.camera_result_ = reinterpret_cast<::mavcam::rpc::camera::CameraResult*>(value);
+  // @@protoc_insertion_point(field_set_allocated:mavcam.rpc.camera.ListPhotosResponse.camera_result)
 }
 
-// repeated .mavsdk.rpc.camera.CaptureInfo capture_infos = 2;
+// repeated .mavcam.rpc.camera.CaptureInfo capture_infos = 2;
 inline int ListPhotosResponse::_internal_capture_infos_size() const {
   return _internal_capture_infos().size();
 }
@@ -12437,39 +12437,39 @@ inline void ListPhotosResponse::clear_capture_infos() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   _impl_.capture_infos_.Clear();
 }
-inline ::mavsdk::rpc::camera::CaptureInfo* ListPhotosResponse::mutable_capture_infos(int index)
+inline ::mavcam::rpc::camera::CaptureInfo* ListPhotosResponse::mutable_capture_infos(int index)
     ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_mutable:mavsdk.rpc.camera.ListPhotosResponse.capture_infos)
+  // @@protoc_insertion_point(field_mutable:mavcam.rpc.camera.ListPhotosResponse.capture_infos)
   return _internal_mutable_capture_infos()->Mutable(index);
 }
-inline ::google::protobuf::RepeatedPtrField<::mavsdk::rpc::camera::CaptureInfo>* ListPhotosResponse::mutable_capture_infos()
+inline ::google::protobuf::RepeatedPtrField<::mavcam::rpc::camera::CaptureInfo>* ListPhotosResponse::mutable_capture_infos()
     ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_mutable_list:mavsdk.rpc.camera.ListPhotosResponse.capture_infos)
+  // @@protoc_insertion_point(field_mutable_list:mavcam.rpc.camera.ListPhotosResponse.capture_infos)
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   return _internal_mutable_capture_infos();
 }
-inline const ::mavsdk::rpc::camera::CaptureInfo& ListPhotosResponse::capture_infos(int index) const
+inline const ::mavcam::rpc::camera::CaptureInfo& ListPhotosResponse::capture_infos(int index) const
     ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_get:mavsdk.rpc.camera.ListPhotosResponse.capture_infos)
+  // @@protoc_insertion_point(field_get:mavcam.rpc.camera.ListPhotosResponse.capture_infos)
   return _internal_capture_infos().Get(index);
 }
-inline ::mavsdk::rpc::camera::CaptureInfo* ListPhotosResponse::add_capture_infos() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+inline ::mavcam::rpc::camera::CaptureInfo* ListPhotosResponse::add_capture_infos() ABSL_ATTRIBUTE_LIFETIME_BOUND {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  ::mavsdk::rpc::camera::CaptureInfo* _add = _internal_mutable_capture_infos()->Add();
-  // @@protoc_insertion_point(field_add:mavsdk.rpc.camera.ListPhotosResponse.capture_infos)
+  ::mavcam::rpc::camera::CaptureInfo* _add = _internal_mutable_capture_infos()->Add();
+  // @@protoc_insertion_point(field_add:mavcam.rpc.camera.ListPhotosResponse.capture_infos)
   return _add;
 }
-inline const ::google::protobuf::RepeatedPtrField<::mavsdk::rpc::camera::CaptureInfo>& ListPhotosResponse::capture_infos() const
+inline const ::google::protobuf::RepeatedPtrField<::mavcam::rpc::camera::CaptureInfo>& ListPhotosResponse::capture_infos() const
     ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_list:mavsdk.rpc.camera.ListPhotosResponse.capture_infos)
+  // @@protoc_insertion_point(field_list:mavcam.rpc.camera.ListPhotosResponse.capture_infos)
   return _internal_capture_infos();
 }
-inline const ::google::protobuf::RepeatedPtrField<::mavsdk::rpc::camera::CaptureInfo>&
+inline const ::google::protobuf::RepeatedPtrField<::mavcam::rpc::camera::CaptureInfo>&
 ListPhotosResponse::_internal_capture_infos() const {
   PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
   return _impl_.capture_infos_;
 }
-inline ::google::protobuf::RepeatedPtrField<::mavsdk::rpc::camera::CaptureInfo>*
+inline ::google::protobuf::RepeatedPtrField<::mavcam::rpc::camera::CaptureInfo>*
 ListPhotosResponse::_internal_mutable_capture_infos() {
   PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
   return &_impl_.capture_infos_;
@@ -12483,7 +12483,7 @@ ListPhotosResponse::_internal_mutable_capture_infos() {
 
 // InformationResponse
 
-// .mavsdk.rpc.camera.Information information = 1;
+// .mavcam.rpc.camera.Information information = 1;
 inline bool InformationResponse::has_information() const {
   bool value = (_impl_._has_bits_[0] & 0x00000001u) != 0;
   PROTOBUF_ASSUME(!value || _impl_.information_ != nullptr);
@@ -12494,33 +12494,33 @@ inline void InformationResponse::clear_information() {
   if (_impl_.information_ != nullptr) _impl_.information_->Clear();
   _impl_._has_bits_[0] &= ~0x00000001u;
 }
-inline const ::mavsdk::rpc::camera::Information& InformationResponse::_internal_information() const {
+inline const ::mavcam::rpc::camera::Information& InformationResponse::_internal_information() const {
   PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
-  const ::mavsdk::rpc::camera::Information* p = _impl_.information_;
-  return p != nullptr ? *p : reinterpret_cast<const ::mavsdk::rpc::camera::Information&>(::mavsdk::rpc::camera::_Information_default_instance_);
+  const ::mavcam::rpc::camera::Information* p = _impl_.information_;
+  return p != nullptr ? *p : reinterpret_cast<const ::mavcam::rpc::camera::Information&>(::mavcam::rpc::camera::_Information_default_instance_);
 }
-inline const ::mavsdk::rpc::camera::Information& InformationResponse::information() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_get:mavsdk.rpc.camera.InformationResponse.information)
+inline const ::mavcam::rpc::camera::Information& InformationResponse::information() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:mavcam.rpc.camera.InformationResponse.information)
   return _internal_information();
 }
-inline void InformationResponse::unsafe_arena_set_allocated_information(::mavsdk::rpc::camera::Information* value) {
+inline void InformationResponse::unsafe_arena_set_allocated_information(::mavcam::rpc::camera::Information* value) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   if (GetArena() == nullptr) {
     delete reinterpret_cast<::google::protobuf::MessageLite*>(_impl_.information_);
   }
-  _impl_.information_ = reinterpret_cast<::mavsdk::rpc::camera::Information*>(value);
+  _impl_.information_ = reinterpret_cast<::mavcam::rpc::camera::Information*>(value);
   if (value != nullptr) {
     _impl_._has_bits_[0] |= 0x00000001u;
   } else {
     _impl_._has_bits_[0] &= ~0x00000001u;
   }
-  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:mavsdk.rpc.camera.InformationResponse.information)
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:mavcam.rpc.camera.InformationResponse.information)
 }
-inline ::mavsdk::rpc::camera::Information* InformationResponse::release_information() {
+inline ::mavcam::rpc::camera::Information* InformationResponse::release_information() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
 
   _impl_._has_bits_[0] &= ~0x00000001u;
-  ::mavsdk::rpc::camera::Information* released = _impl_.information_;
+  ::mavcam::rpc::camera::Information* released = _impl_.information_;
   _impl_.information_ = nullptr;
 #ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
   auto* old = reinterpret_cast<::google::protobuf::MessageLite*>(released);
@@ -12535,38 +12535,38 @@ inline ::mavsdk::rpc::camera::Information* InformationResponse::release_informat
 #endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
   return released;
 }
-inline ::mavsdk::rpc::camera::Information* InformationResponse::unsafe_arena_release_information() {
+inline ::mavcam::rpc::camera::Information* InformationResponse::unsafe_arena_release_information() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  // @@protoc_insertion_point(field_release:mavsdk.rpc.camera.InformationResponse.information)
+  // @@protoc_insertion_point(field_release:mavcam.rpc.camera.InformationResponse.information)
 
   _impl_._has_bits_[0] &= ~0x00000001u;
-  ::mavsdk::rpc::camera::Information* temp = _impl_.information_;
+  ::mavcam::rpc::camera::Information* temp = _impl_.information_;
   _impl_.information_ = nullptr;
   return temp;
 }
-inline ::mavsdk::rpc::camera::Information* InformationResponse::_internal_mutable_information() {
+inline ::mavcam::rpc::camera::Information* InformationResponse::_internal_mutable_information() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   _impl_._has_bits_[0] |= 0x00000001u;
   if (_impl_.information_ == nullptr) {
-    auto* p = CreateMaybeMessage<::mavsdk::rpc::camera::Information>(GetArena());
-    _impl_.information_ = reinterpret_cast<::mavsdk::rpc::camera::Information*>(p);
+    auto* p = CreateMaybeMessage<::mavcam::rpc::camera::Information>(GetArena());
+    _impl_.information_ = reinterpret_cast<::mavcam::rpc::camera::Information*>(p);
   }
   return _impl_.information_;
 }
-inline ::mavsdk::rpc::camera::Information* InformationResponse::mutable_information() ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  ::mavsdk::rpc::camera::Information* _msg = _internal_mutable_information();
-  // @@protoc_insertion_point(field_mutable:mavsdk.rpc.camera.InformationResponse.information)
+inline ::mavcam::rpc::camera::Information* InformationResponse::mutable_information() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  ::mavcam::rpc::camera::Information* _msg = _internal_mutable_information();
+  // @@protoc_insertion_point(field_mutable:mavcam.rpc.camera.InformationResponse.information)
   return _msg;
 }
-inline void InformationResponse::set_allocated_information(::mavsdk::rpc::camera::Information* value) {
+inline void InformationResponse::set_allocated_information(::mavcam::rpc::camera::Information* value) {
   ::google::protobuf::Arena* message_arena = GetArena();
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   if (message_arena == nullptr) {
-    delete reinterpret_cast<::mavsdk::rpc::camera::Information*>(_impl_.information_);
+    delete reinterpret_cast<::mavcam::rpc::camera::Information*>(_impl_.information_);
   }
 
   if (value != nullptr) {
-    ::google::protobuf::Arena* submessage_arena = reinterpret_cast<::mavsdk::rpc::camera::Information*>(value)->GetArena();
+    ::google::protobuf::Arena* submessage_arena = reinterpret_cast<::mavcam::rpc::camera::Information*>(value)->GetArena();
     if (message_arena != submessage_arena) {
       value = ::google::protobuf::internal::GetOwnedMessage(message_arena, value, submessage_arena);
     }
@@ -12575,8 +12575,8 @@ inline void InformationResponse::set_allocated_information(::mavsdk::rpc::camera
     _impl_._has_bits_[0] &= ~0x00000001u;
   }
 
-  _impl_.information_ = reinterpret_cast<::mavsdk::rpc::camera::Information*>(value);
-  // @@protoc_insertion_point(field_set_allocated:mavsdk.rpc.camera.InformationResponse.information)
+  _impl_.information_ = reinterpret_cast<::mavcam::rpc::camera::Information*>(value);
+  // @@protoc_insertion_point(field_set_allocated:mavcam.rpc.camera.InformationResponse.information)
 }
 
 // -------------------------------------------------------------------
@@ -12587,24 +12587,24 @@ inline void InformationResponse::set_allocated_information(::mavsdk::rpc::camera
 
 // ModeResponse
 
-// .mavsdk.rpc.camera.Mode mode = 1;
+// .mavcam.rpc.camera.Mode mode = 1;
 inline void ModeResponse::clear_mode() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   _impl_.mode_ = 0;
 }
-inline ::mavsdk::rpc::camera::Mode ModeResponse::mode() const {
-  // @@protoc_insertion_point(field_get:mavsdk.rpc.camera.ModeResponse.mode)
+inline ::mavcam::rpc::camera::Mode ModeResponse::mode() const {
+  // @@protoc_insertion_point(field_get:mavcam.rpc.camera.ModeResponse.mode)
   return _internal_mode();
 }
-inline void ModeResponse::set_mode(::mavsdk::rpc::camera::Mode value) {
+inline void ModeResponse::set_mode(::mavcam::rpc::camera::Mode value) {
   _internal_set_mode(value);
-  // @@protoc_insertion_point(field_set:mavsdk.rpc.camera.ModeResponse.mode)
+  // @@protoc_insertion_point(field_set:mavcam.rpc.camera.ModeResponse.mode)
 }
-inline ::mavsdk::rpc::camera::Mode ModeResponse::_internal_mode() const {
+inline ::mavcam::rpc::camera::Mode ModeResponse::_internal_mode() const {
   PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
-  return static_cast<::mavsdk::rpc::camera::Mode>(_impl_.mode_);
+  return static_cast<::mavcam::rpc::camera::Mode>(_impl_.mode_);
 }
-inline void ModeResponse::_internal_set_mode(::mavsdk::rpc::camera::Mode value) {
+inline void ModeResponse::_internal_set_mode(::mavcam::rpc::camera::Mode value) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
   _impl_.mode_ = value;
@@ -12618,7 +12618,7 @@ inline void ModeResponse::_internal_set_mode(::mavsdk::rpc::camera::Mode value) 
 
 // VideoStreamInfoResponse
 
-// repeated .mavsdk.rpc.camera.VideoStreamInfo video_stream_infos = 1;
+// repeated .mavcam.rpc.camera.VideoStreamInfo video_stream_infos = 1;
 inline int VideoStreamInfoResponse::_internal_video_stream_infos_size() const {
   return _internal_video_stream_infos().size();
 }
@@ -12629,39 +12629,39 @@ inline void VideoStreamInfoResponse::clear_video_stream_infos() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   _impl_.video_stream_infos_.Clear();
 }
-inline ::mavsdk::rpc::camera::VideoStreamInfo* VideoStreamInfoResponse::mutable_video_stream_infos(int index)
+inline ::mavcam::rpc::camera::VideoStreamInfo* VideoStreamInfoResponse::mutable_video_stream_infos(int index)
     ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_mutable:mavsdk.rpc.camera.VideoStreamInfoResponse.video_stream_infos)
+  // @@protoc_insertion_point(field_mutable:mavcam.rpc.camera.VideoStreamInfoResponse.video_stream_infos)
   return _internal_mutable_video_stream_infos()->Mutable(index);
 }
-inline ::google::protobuf::RepeatedPtrField<::mavsdk::rpc::camera::VideoStreamInfo>* VideoStreamInfoResponse::mutable_video_stream_infos()
+inline ::google::protobuf::RepeatedPtrField<::mavcam::rpc::camera::VideoStreamInfo>* VideoStreamInfoResponse::mutable_video_stream_infos()
     ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_mutable_list:mavsdk.rpc.camera.VideoStreamInfoResponse.video_stream_infos)
+  // @@protoc_insertion_point(field_mutable_list:mavcam.rpc.camera.VideoStreamInfoResponse.video_stream_infos)
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   return _internal_mutable_video_stream_infos();
 }
-inline const ::mavsdk::rpc::camera::VideoStreamInfo& VideoStreamInfoResponse::video_stream_infos(int index) const
+inline const ::mavcam::rpc::camera::VideoStreamInfo& VideoStreamInfoResponse::video_stream_infos(int index) const
     ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_get:mavsdk.rpc.camera.VideoStreamInfoResponse.video_stream_infos)
+  // @@protoc_insertion_point(field_get:mavcam.rpc.camera.VideoStreamInfoResponse.video_stream_infos)
   return _internal_video_stream_infos().Get(index);
 }
-inline ::mavsdk::rpc::camera::VideoStreamInfo* VideoStreamInfoResponse::add_video_stream_infos() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+inline ::mavcam::rpc::camera::VideoStreamInfo* VideoStreamInfoResponse::add_video_stream_infos() ABSL_ATTRIBUTE_LIFETIME_BOUND {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  ::mavsdk::rpc::camera::VideoStreamInfo* _add = _internal_mutable_video_stream_infos()->Add();
-  // @@protoc_insertion_point(field_add:mavsdk.rpc.camera.VideoStreamInfoResponse.video_stream_infos)
+  ::mavcam::rpc::camera::VideoStreamInfo* _add = _internal_mutable_video_stream_infos()->Add();
+  // @@protoc_insertion_point(field_add:mavcam.rpc.camera.VideoStreamInfoResponse.video_stream_infos)
   return _add;
 }
-inline const ::google::protobuf::RepeatedPtrField<::mavsdk::rpc::camera::VideoStreamInfo>& VideoStreamInfoResponse::video_stream_infos() const
+inline const ::google::protobuf::RepeatedPtrField<::mavcam::rpc::camera::VideoStreamInfo>& VideoStreamInfoResponse::video_stream_infos() const
     ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_list:mavsdk.rpc.camera.VideoStreamInfoResponse.video_stream_infos)
+  // @@protoc_insertion_point(field_list:mavcam.rpc.camera.VideoStreamInfoResponse.video_stream_infos)
   return _internal_video_stream_infos();
 }
-inline const ::google::protobuf::RepeatedPtrField<::mavsdk::rpc::camera::VideoStreamInfo>&
+inline const ::google::protobuf::RepeatedPtrField<::mavcam::rpc::camera::VideoStreamInfo>&
 VideoStreamInfoResponse::_internal_video_stream_infos() const {
   PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
   return _impl_.video_stream_infos_;
 }
-inline ::google::protobuf::RepeatedPtrField<::mavsdk::rpc::camera::VideoStreamInfo>*
+inline ::google::protobuf::RepeatedPtrField<::mavcam::rpc::camera::VideoStreamInfo>*
 VideoStreamInfoResponse::_internal_mutable_video_stream_infos() {
   PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
   return &_impl_.video_stream_infos_;
@@ -12675,7 +12675,7 @@ VideoStreamInfoResponse::_internal_mutable_video_stream_infos() {
 
 // CaptureInfoResponse
 
-// .mavsdk.rpc.camera.CaptureInfo capture_info = 1;
+// .mavcam.rpc.camera.CaptureInfo capture_info = 1;
 inline bool CaptureInfoResponse::has_capture_info() const {
   bool value = (_impl_._has_bits_[0] & 0x00000001u) != 0;
   PROTOBUF_ASSUME(!value || _impl_.capture_info_ != nullptr);
@@ -12686,33 +12686,33 @@ inline void CaptureInfoResponse::clear_capture_info() {
   if (_impl_.capture_info_ != nullptr) _impl_.capture_info_->Clear();
   _impl_._has_bits_[0] &= ~0x00000001u;
 }
-inline const ::mavsdk::rpc::camera::CaptureInfo& CaptureInfoResponse::_internal_capture_info() const {
+inline const ::mavcam::rpc::camera::CaptureInfo& CaptureInfoResponse::_internal_capture_info() const {
   PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
-  const ::mavsdk::rpc::camera::CaptureInfo* p = _impl_.capture_info_;
-  return p != nullptr ? *p : reinterpret_cast<const ::mavsdk::rpc::camera::CaptureInfo&>(::mavsdk::rpc::camera::_CaptureInfo_default_instance_);
+  const ::mavcam::rpc::camera::CaptureInfo* p = _impl_.capture_info_;
+  return p != nullptr ? *p : reinterpret_cast<const ::mavcam::rpc::camera::CaptureInfo&>(::mavcam::rpc::camera::_CaptureInfo_default_instance_);
 }
-inline const ::mavsdk::rpc::camera::CaptureInfo& CaptureInfoResponse::capture_info() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_get:mavsdk.rpc.camera.CaptureInfoResponse.capture_info)
+inline const ::mavcam::rpc::camera::CaptureInfo& CaptureInfoResponse::capture_info() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:mavcam.rpc.camera.CaptureInfoResponse.capture_info)
   return _internal_capture_info();
 }
-inline void CaptureInfoResponse::unsafe_arena_set_allocated_capture_info(::mavsdk::rpc::camera::CaptureInfo* value) {
+inline void CaptureInfoResponse::unsafe_arena_set_allocated_capture_info(::mavcam::rpc::camera::CaptureInfo* value) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   if (GetArena() == nullptr) {
     delete reinterpret_cast<::google::protobuf::MessageLite*>(_impl_.capture_info_);
   }
-  _impl_.capture_info_ = reinterpret_cast<::mavsdk::rpc::camera::CaptureInfo*>(value);
+  _impl_.capture_info_ = reinterpret_cast<::mavcam::rpc::camera::CaptureInfo*>(value);
   if (value != nullptr) {
     _impl_._has_bits_[0] |= 0x00000001u;
   } else {
     _impl_._has_bits_[0] &= ~0x00000001u;
   }
-  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:mavsdk.rpc.camera.CaptureInfoResponse.capture_info)
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:mavcam.rpc.camera.CaptureInfoResponse.capture_info)
 }
-inline ::mavsdk::rpc::camera::CaptureInfo* CaptureInfoResponse::release_capture_info() {
+inline ::mavcam::rpc::camera::CaptureInfo* CaptureInfoResponse::release_capture_info() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
 
   _impl_._has_bits_[0] &= ~0x00000001u;
-  ::mavsdk::rpc::camera::CaptureInfo* released = _impl_.capture_info_;
+  ::mavcam::rpc::camera::CaptureInfo* released = _impl_.capture_info_;
   _impl_.capture_info_ = nullptr;
 #ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
   auto* old = reinterpret_cast<::google::protobuf::MessageLite*>(released);
@@ -12727,38 +12727,38 @@ inline ::mavsdk::rpc::camera::CaptureInfo* CaptureInfoResponse::release_capture_
 #endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
   return released;
 }
-inline ::mavsdk::rpc::camera::CaptureInfo* CaptureInfoResponse::unsafe_arena_release_capture_info() {
+inline ::mavcam::rpc::camera::CaptureInfo* CaptureInfoResponse::unsafe_arena_release_capture_info() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  // @@protoc_insertion_point(field_release:mavsdk.rpc.camera.CaptureInfoResponse.capture_info)
+  // @@protoc_insertion_point(field_release:mavcam.rpc.camera.CaptureInfoResponse.capture_info)
 
   _impl_._has_bits_[0] &= ~0x00000001u;
-  ::mavsdk::rpc::camera::CaptureInfo* temp = _impl_.capture_info_;
+  ::mavcam::rpc::camera::CaptureInfo* temp = _impl_.capture_info_;
   _impl_.capture_info_ = nullptr;
   return temp;
 }
-inline ::mavsdk::rpc::camera::CaptureInfo* CaptureInfoResponse::_internal_mutable_capture_info() {
+inline ::mavcam::rpc::camera::CaptureInfo* CaptureInfoResponse::_internal_mutable_capture_info() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   _impl_._has_bits_[0] |= 0x00000001u;
   if (_impl_.capture_info_ == nullptr) {
-    auto* p = CreateMaybeMessage<::mavsdk::rpc::camera::CaptureInfo>(GetArena());
-    _impl_.capture_info_ = reinterpret_cast<::mavsdk::rpc::camera::CaptureInfo*>(p);
+    auto* p = CreateMaybeMessage<::mavcam::rpc::camera::CaptureInfo>(GetArena());
+    _impl_.capture_info_ = reinterpret_cast<::mavcam::rpc::camera::CaptureInfo*>(p);
   }
   return _impl_.capture_info_;
 }
-inline ::mavsdk::rpc::camera::CaptureInfo* CaptureInfoResponse::mutable_capture_info() ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  ::mavsdk::rpc::camera::CaptureInfo* _msg = _internal_mutable_capture_info();
-  // @@protoc_insertion_point(field_mutable:mavsdk.rpc.camera.CaptureInfoResponse.capture_info)
+inline ::mavcam::rpc::camera::CaptureInfo* CaptureInfoResponse::mutable_capture_info() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  ::mavcam::rpc::camera::CaptureInfo* _msg = _internal_mutable_capture_info();
+  // @@protoc_insertion_point(field_mutable:mavcam.rpc.camera.CaptureInfoResponse.capture_info)
   return _msg;
 }
-inline void CaptureInfoResponse::set_allocated_capture_info(::mavsdk::rpc::camera::CaptureInfo* value) {
+inline void CaptureInfoResponse::set_allocated_capture_info(::mavcam::rpc::camera::CaptureInfo* value) {
   ::google::protobuf::Arena* message_arena = GetArena();
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   if (message_arena == nullptr) {
-    delete reinterpret_cast<::mavsdk::rpc::camera::CaptureInfo*>(_impl_.capture_info_);
+    delete reinterpret_cast<::mavcam::rpc::camera::CaptureInfo*>(_impl_.capture_info_);
   }
 
   if (value != nullptr) {
-    ::google::protobuf::Arena* submessage_arena = reinterpret_cast<::mavsdk::rpc::camera::CaptureInfo*>(value)->GetArena();
+    ::google::protobuf::Arena* submessage_arena = reinterpret_cast<::mavcam::rpc::camera::CaptureInfo*>(value)->GetArena();
     if (message_arena != submessage_arena) {
       value = ::google::protobuf::internal::GetOwnedMessage(message_arena, value, submessage_arena);
     }
@@ -12767,8 +12767,8 @@ inline void CaptureInfoResponse::set_allocated_capture_info(::mavsdk::rpc::camer
     _impl_._has_bits_[0] &= ~0x00000001u;
   }
 
-  _impl_.capture_info_ = reinterpret_cast<::mavsdk::rpc::camera::CaptureInfo*>(value);
-  // @@protoc_insertion_point(field_set_allocated:mavsdk.rpc.camera.CaptureInfoResponse.capture_info)
+  _impl_.capture_info_ = reinterpret_cast<::mavcam::rpc::camera::CaptureInfo*>(value);
+  // @@protoc_insertion_point(field_set_allocated:mavcam.rpc.camera.CaptureInfoResponse.capture_info)
 }
 
 // -------------------------------------------------------------------
@@ -12779,7 +12779,7 @@ inline void CaptureInfoResponse::set_allocated_capture_info(::mavsdk::rpc::camer
 
 // StatusResponse
 
-// .mavsdk.rpc.camera.Status camera_status = 1;
+// .mavcam.rpc.camera.Status camera_status = 1;
 inline bool StatusResponse::has_camera_status() const {
   bool value = (_impl_._has_bits_[0] & 0x00000001u) != 0;
   PROTOBUF_ASSUME(!value || _impl_.camera_status_ != nullptr);
@@ -12790,33 +12790,33 @@ inline void StatusResponse::clear_camera_status() {
   if (_impl_.camera_status_ != nullptr) _impl_.camera_status_->Clear();
   _impl_._has_bits_[0] &= ~0x00000001u;
 }
-inline const ::mavsdk::rpc::camera::Status& StatusResponse::_internal_camera_status() const {
+inline const ::mavcam::rpc::camera::Status& StatusResponse::_internal_camera_status() const {
   PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
-  const ::mavsdk::rpc::camera::Status* p = _impl_.camera_status_;
-  return p != nullptr ? *p : reinterpret_cast<const ::mavsdk::rpc::camera::Status&>(::mavsdk::rpc::camera::_Status_default_instance_);
+  const ::mavcam::rpc::camera::Status* p = _impl_.camera_status_;
+  return p != nullptr ? *p : reinterpret_cast<const ::mavcam::rpc::camera::Status&>(::mavcam::rpc::camera::_Status_default_instance_);
 }
-inline const ::mavsdk::rpc::camera::Status& StatusResponse::camera_status() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_get:mavsdk.rpc.camera.StatusResponse.camera_status)
+inline const ::mavcam::rpc::camera::Status& StatusResponse::camera_status() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:mavcam.rpc.camera.StatusResponse.camera_status)
   return _internal_camera_status();
 }
-inline void StatusResponse::unsafe_arena_set_allocated_camera_status(::mavsdk::rpc::camera::Status* value) {
+inline void StatusResponse::unsafe_arena_set_allocated_camera_status(::mavcam::rpc::camera::Status* value) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   if (GetArena() == nullptr) {
     delete reinterpret_cast<::google::protobuf::MessageLite*>(_impl_.camera_status_);
   }
-  _impl_.camera_status_ = reinterpret_cast<::mavsdk::rpc::camera::Status*>(value);
+  _impl_.camera_status_ = reinterpret_cast<::mavcam::rpc::camera::Status*>(value);
   if (value != nullptr) {
     _impl_._has_bits_[0] |= 0x00000001u;
   } else {
     _impl_._has_bits_[0] &= ~0x00000001u;
   }
-  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:mavsdk.rpc.camera.StatusResponse.camera_status)
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:mavcam.rpc.camera.StatusResponse.camera_status)
 }
-inline ::mavsdk::rpc::camera::Status* StatusResponse::release_camera_status() {
+inline ::mavcam::rpc::camera::Status* StatusResponse::release_camera_status() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
 
   _impl_._has_bits_[0] &= ~0x00000001u;
-  ::mavsdk::rpc::camera::Status* released = _impl_.camera_status_;
+  ::mavcam::rpc::camera::Status* released = _impl_.camera_status_;
   _impl_.camera_status_ = nullptr;
 #ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
   auto* old = reinterpret_cast<::google::protobuf::MessageLite*>(released);
@@ -12831,38 +12831,38 @@ inline ::mavsdk::rpc::camera::Status* StatusResponse::release_camera_status() {
 #endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
   return released;
 }
-inline ::mavsdk::rpc::camera::Status* StatusResponse::unsafe_arena_release_camera_status() {
+inline ::mavcam::rpc::camera::Status* StatusResponse::unsafe_arena_release_camera_status() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  // @@protoc_insertion_point(field_release:mavsdk.rpc.camera.StatusResponse.camera_status)
+  // @@protoc_insertion_point(field_release:mavcam.rpc.camera.StatusResponse.camera_status)
 
   _impl_._has_bits_[0] &= ~0x00000001u;
-  ::mavsdk::rpc::camera::Status* temp = _impl_.camera_status_;
+  ::mavcam::rpc::camera::Status* temp = _impl_.camera_status_;
   _impl_.camera_status_ = nullptr;
   return temp;
 }
-inline ::mavsdk::rpc::camera::Status* StatusResponse::_internal_mutable_camera_status() {
+inline ::mavcam::rpc::camera::Status* StatusResponse::_internal_mutable_camera_status() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   _impl_._has_bits_[0] |= 0x00000001u;
   if (_impl_.camera_status_ == nullptr) {
-    auto* p = CreateMaybeMessage<::mavsdk::rpc::camera::Status>(GetArena());
-    _impl_.camera_status_ = reinterpret_cast<::mavsdk::rpc::camera::Status*>(p);
+    auto* p = CreateMaybeMessage<::mavcam::rpc::camera::Status>(GetArena());
+    _impl_.camera_status_ = reinterpret_cast<::mavcam::rpc::camera::Status*>(p);
   }
   return _impl_.camera_status_;
 }
-inline ::mavsdk::rpc::camera::Status* StatusResponse::mutable_camera_status() ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  ::mavsdk::rpc::camera::Status* _msg = _internal_mutable_camera_status();
-  // @@protoc_insertion_point(field_mutable:mavsdk.rpc.camera.StatusResponse.camera_status)
+inline ::mavcam::rpc::camera::Status* StatusResponse::mutable_camera_status() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  ::mavcam::rpc::camera::Status* _msg = _internal_mutable_camera_status();
+  // @@protoc_insertion_point(field_mutable:mavcam.rpc.camera.StatusResponse.camera_status)
   return _msg;
 }
-inline void StatusResponse::set_allocated_camera_status(::mavsdk::rpc::camera::Status* value) {
+inline void StatusResponse::set_allocated_camera_status(::mavcam::rpc::camera::Status* value) {
   ::google::protobuf::Arena* message_arena = GetArena();
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   if (message_arena == nullptr) {
-    delete reinterpret_cast<::mavsdk::rpc::camera::Status*>(_impl_.camera_status_);
+    delete reinterpret_cast<::mavcam::rpc::camera::Status*>(_impl_.camera_status_);
   }
 
   if (value != nullptr) {
-    ::google::protobuf::Arena* submessage_arena = reinterpret_cast<::mavsdk::rpc::camera::Status*>(value)->GetArena();
+    ::google::protobuf::Arena* submessage_arena = reinterpret_cast<::mavcam::rpc::camera::Status*>(value)->GetArena();
     if (message_arena != submessage_arena) {
       value = ::google::protobuf::internal::GetOwnedMessage(message_arena, value, submessage_arena);
     }
@@ -12871,8 +12871,8 @@ inline void StatusResponse::set_allocated_camera_status(::mavsdk::rpc::camera::S
     _impl_._has_bits_[0] &= ~0x00000001u;
   }
 
-  _impl_.camera_status_ = reinterpret_cast<::mavsdk::rpc::camera::Status*>(value);
-  // @@protoc_insertion_point(field_set_allocated:mavsdk.rpc.camera.StatusResponse.camera_status)
+  _impl_.camera_status_ = reinterpret_cast<::mavcam::rpc::camera::Status*>(value);
+  // @@protoc_insertion_point(field_set_allocated:mavcam.rpc.camera.StatusResponse.camera_status)
 }
 
 // -------------------------------------------------------------------
@@ -12883,7 +12883,7 @@ inline void StatusResponse::set_allocated_camera_status(::mavsdk::rpc::camera::S
 
 // CurrentSettingsResponse
 
-// repeated .mavsdk.rpc.camera.Setting current_settings = 1;
+// repeated .mavcam.rpc.camera.Setting current_settings = 1;
 inline int CurrentSettingsResponse::_internal_current_settings_size() const {
   return _internal_current_settings().size();
 }
@@ -12894,39 +12894,39 @@ inline void CurrentSettingsResponse::clear_current_settings() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   _impl_.current_settings_.Clear();
 }
-inline ::mavsdk::rpc::camera::Setting* CurrentSettingsResponse::mutable_current_settings(int index)
+inline ::mavcam::rpc::camera::Setting* CurrentSettingsResponse::mutable_current_settings(int index)
     ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_mutable:mavsdk.rpc.camera.CurrentSettingsResponse.current_settings)
+  // @@protoc_insertion_point(field_mutable:mavcam.rpc.camera.CurrentSettingsResponse.current_settings)
   return _internal_mutable_current_settings()->Mutable(index);
 }
-inline ::google::protobuf::RepeatedPtrField<::mavsdk::rpc::camera::Setting>* CurrentSettingsResponse::mutable_current_settings()
+inline ::google::protobuf::RepeatedPtrField<::mavcam::rpc::camera::Setting>* CurrentSettingsResponse::mutable_current_settings()
     ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_mutable_list:mavsdk.rpc.camera.CurrentSettingsResponse.current_settings)
+  // @@protoc_insertion_point(field_mutable_list:mavcam.rpc.camera.CurrentSettingsResponse.current_settings)
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   return _internal_mutable_current_settings();
 }
-inline const ::mavsdk::rpc::camera::Setting& CurrentSettingsResponse::current_settings(int index) const
+inline const ::mavcam::rpc::camera::Setting& CurrentSettingsResponse::current_settings(int index) const
     ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_get:mavsdk.rpc.camera.CurrentSettingsResponse.current_settings)
+  // @@protoc_insertion_point(field_get:mavcam.rpc.camera.CurrentSettingsResponse.current_settings)
   return _internal_current_settings().Get(index);
 }
-inline ::mavsdk::rpc::camera::Setting* CurrentSettingsResponse::add_current_settings() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+inline ::mavcam::rpc::camera::Setting* CurrentSettingsResponse::add_current_settings() ABSL_ATTRIBUTE_LIFETIME_BOUND {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  ::mavsdk::rpc::camera::Setting* _add = _internal_mutable_current_settings()->Add();
-  // @@protoc_insertion_point(field_add:mavsdk.rpc.camera.CurrentSettingsResponse.current_settings)
+  ::mavcam::rpc::camera::Setting* _add = _internal_mutable_current_settings()->Add();
+  // @@protoc_insertion_point(field_add:mavcam.rpc.camera.CurrentSettingsResponse.current_settings)
   return _add;
 }
-inline const ::google::protobuf::RepeatedPtrField<::mavsdk::rpc::camera::Setting>& CurrentSettingsResponse::current_settings() const
+inline const ::google::protobuf::RepeatedPtrField<::mavcam::rpc::camera::Setting>& CurrentSettingsResponse::current_settings() const
     ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_list:mavsdk.rpc.camera.CurrentSettingsResponse.current_settings)
+  // @@protoc_insertion_point(field_list:mavcam.rpc.camera.CurrentSettingsResponse.current_settings)
   return _internal_current_settings();
 }
-inline const ::google::protobuf::RepeatedPtrField<::mavsdk::rpc::camera::Setting>&
+inline const ::google::protobuf::RepeatedPtrField<::mavcam::rpc::camera::Setting>&
 CurrentSettingsResponse::_internal_current_settings() const {
   PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
   return _impl_.current_settings_;
 }
-inline ::google::protobuf::RepeatedPtrField<::mavsdk::rpc::camera::Setting>*
+inline ::google::protobuf::RepeatedPtrField<::mavcam::rpc::camera::Setting>*
 CurrentSettingsResponse::_internal_mutable_current_settings() {
   PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
   return &_impl_.current_settings_;
@@ -12940,7 +12940,7 @@ CurrentSettingsResponse::_internal_mutable_current_settings() {
 
 // PossibleSettingOptionsResponse
 
-// repeated .mavsdk.rpc.camera.SettingOptions setting_options = 1;
+// repeated .mavcam.rpc.camera.SettingOptions setting_options = 1;
 inline int PossibleSettingOptionsResponse::_internal_setting_options_size() const {
   return _internal_setting_options().size();
 }
@@ -12951,39 +12951,39 @@ inline void PossibleSettingOptionsResponse::clear_setting_options() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   _impl_.setting_options_.Clear();
 }
-inline ::mavsdk::rpc::camera::SettingOptions* PossibleSettingOptionsResponse::mutable_setting_options(int index)
+inline ::mavcam::rpc::camera::SettingOptions* PossibleSettingOptionsResponse::mutable_setting_options(int index)
     ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_mutable:mavsdk.rpc.camera.PossibleSettingOptionsResponse.setting_options)
+  // @@protoc_insertion_point(field_mutable:mavcam.rpc.camera.PossibleSettingOptionsResponse.setting_options)
   return _internal_mutable_setting_options()->Mutable(index);
 }
-inline ::google::protobuf::RepeatedPtrField<::mavsdk::rpc::camera::SettingOptions>* PossibleSettingOptionsResponse::mutable_setting_options()
+inline ::google::protobuf::RepeatedPtrField<::mavcam::rpc::camera::SettingOptions>* PossibleSettingOptionsResponse::mutable_setting_options()
     ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_mutable_list:mavsdk.rpc.camera.PossibleSettingOptionsResponse.setting_options)
+  // @@protoc_insertion_point(field_mutable_list:mavcam.rpc.camera.PossibleSettingOptionsResponse.setting_options)
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   return _internal_mutable_setting_options();
 }
-inline const ::mavsdk::rpc::camera::SettingOptions& PossibleSettingOptionsResponse::setting_options(int index) const
+inline const ::mavcam::rpc::camera::SettingOptions& PossibleSettingOptionsResponse::setting_options(int index) const
     ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_get:mavsdk.rpc.camera.PossibleSettingOptionsResponse.setting_options)
+  // @@protoc_insertion_point(field_get:mavcam.rpc.camera.PossibleSettingOptionsResponse.setting_options)
   return _internal_setting_options().Get(index);
 }
-inline ::mavsdk::rpc::camera::SettingOptions* PossibleSettingOptionsResponse::add_setting_options() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+inline ::mavcam::rpc::camera::SettingOptions* PossibleSettingOptionsResponse::add_setting_options() ABSL_ATTRIBUTE_LIFETIME_BOUND {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  ::mavsdk::rpc::camera::SettingOptions* _add = _internal_mutable_setting_options()->Add();
-  // @@protoc_insertion_point(field_add:mavsdk.rpc.camera.PossibleSettingOptionsResponse.setting_options)
+  ::mavcam::rpc::camera::SettingOptions* _add = _internal_mutable_setting_options()->Add();
+  // @@protoc_insertion_point(field_add:mavcam.rpc.camera.PossibleSettingOptionsResponse.setting_options)
   return _add;
 }
-inline const ::google::protobuf::RepeatedPtrField<::mavsdk::rpc::camera::SettingOptions>& PossibleSettingOptionsResponse::setting_options() const
+inline const ::google::protobuf::RepeatedPtrField<::mavcam::rpc::camera::SettingOptions>& PossibleSettingOptionsResponse::setting_options() const
     ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_list:mavsdk.rpc.camera.PossibleSettingOptionsResponse.setting_options)
+  // @@protoc_insertion_point(field_list:mavcam.rpc.camera.PossibleSettingOptionsResponse.setting_options)
   return _internal_setting_options();
 }
-inline const ::google::protobuf::RepeatedPtrField<::mavsdk::rpc::camera::SettingOptions>&
+inline const ::google::protobuf::RepeatedPtrField<::mavcam::rpc::camera::SettingOptions>&
 PossibleSettingOptionsResponse::_internal_setting_options() const {
   PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
   return _impl_.setting_options_;
 }
-inline ::google::protobuf::RepeatedPtrField<::mavsdk::rpc::camera::SettingOptions>*
+inline ::google::protobuf::RepeatedPtrField<::mavcam::rpc::camera::SettingOptions>*
 PossibleSettingOptionsResponse::_internal_mutable_setting_options() {
   PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
   return &_impl_.setting_options_;
@@ -12993,7 +12993,7 @@ PossibleSettingOptionsResponse::_internal_mutable_setting_options() {
 
 // SetSettingRequest
 
-// .mavsdk.rpc.camera.Setting setting = 1;
+// .mavcam.rpc.camera.Setting setting = 1;
 inline bool SetSettingRequest::has_setting() const {
   bool value = (_impl_._has_bits_[0] & 0x00000001u) != 0;
   PROTOBUF_ASSUME(!value || _impl_.setting_ != nullptr);
@@ -13004,33 +13004,33 @@ inline void SetSettingRequest::clear_setting() {
   if (_impl_.setting_ != nullptr) _impl_.setting_->Clear();
   _impl_._has_bits_[0] &= ~0x00000001u;
 }
-inline const ::mavsdk::rpc::camera::Setting& SetSettingRequest::_internal_setting() const {
+inline const ::mavcam::rpc::camera::Setting& SetSettingRequest::_internal_setting() const {
   PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
-  const ::mavsdk::rpc::camera::Setting* p = _impl_.setting_;
-  return p != nullptr ? *p : reinterpret_cast<const ::mavsdk::rpc::camera::Setting&>(::mavsdk::rpc::camera::_Setting_default_instance_);
+  const ::mavcam::rpc::camera::Setting* p = _impl_.setting_;
+  return p != nullptr ? *p : reinterpret_cast<const ::mavcam::rpc::camera::Setting&>(::mavcam::rpc::camera::_Setting_default_instance_);
 }
-inline const ::mavsdk::rpc::camera::Setting& SetSettingRequest::setting() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_get:mavsdk.rpc.camera.SetSettingRequest.setting)
+inline const ::mavcam::rpc::camera::Setting& SetSettingRequest::setting() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:mavcam.rpc.camera.SetSettingRequest.setting)
   return _internal_setting();
 }
-inline void SetSettingRequest::unsafe_arena_set_allocated_setting(::mavsdk::rpc::camera::Setting* value) {
+inline void SetSettingRequest::unsafe_arena_set_allocated_setting(::mavcam::rpc::camera::Setting* value) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   if (GetArena() == nullptr) {
     delete reinterpret_cast<::google::protobuf::MessageLite*>(_impl_.setting_);
   }
-  _impl_.setting_ = reinterpret_cast<::mavsdk::rpc::camera::Setting*>(value);
+  _impl_.setting_ = reinterpret_cast<::mavcam::rpc::camera::Setting*>(value);
   if (value != nullptr) {
     _impl_._has_bits_[0] |= 0x00000001u;
   } else {
     _impl_._has_bits_[0] &= ~0x00000001u;
   }
-  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:mavsdk.rpc.camera.SetSettingRequest.setting)
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:mavcam.rpc.camera.SetSettingRequest.setting)
 }
-inline ::mavsdk::rpc::camera::Setting* SetSettingRequest::release_setting() {
+inline ::mavcam::rpc::camera::Setting* SetSettingRequest::release_setting() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
 
   _impl_._has_bits_[0] &= ~0x00000001u;
-  ::mavsdk::rpc::camera::Setting* released = _impl_.setting_;
+  ::mavcam::rpc::camera::Setting* released = _impl_.setting_;
   _impl_.setting_ = nullptr;
 #ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
   auto* old = reinterpret_cast<::google::protobuf::MessageLite*>(released);
@@ -13045,38 +13045,38 @@ inline ::mavsdk::rpc::camera::Setting* SetSettingRequest::release_setting() {
 #endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
   return released;
 }
-inline ::mavsdk::rpc::camera::Setting* SetSettingRequest::unsafe_arena_release_setting() {
+inline ::mavcam::rpc::camera::Setting* SetSettingRequest::unsafe_arena_release_setting() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  // @@protoc_insertion_point(field_release:mavsdk.rpc.camera.SetSettingRequest.setting)
+  // @@protoc_insertion_point(field_release:mavcam.rpc.camera.SetSettingRequest.setting)
 
   _impl_._has_bits_[0] &= ~0x00000001u;
-  ::mavsdk::rpc::camera::Setting* temp = _impl_.setting_;
+  ::mavcam::rpc::camera::Setting* temp = _impl_.setting_;
   _impl_.setting_ = nullptr;
   return temp;
 }
-inline ::mavsdk::rpc::camera::Setting* SetSettingRequest::_internal_mutable_setting() {
+inline ::mavcam::rpc::camera::Setting* SetSettingRequest::_internal_mutable_setting() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   _impl_._has_bits_[0] |= 0x00000001u;
   if (_impl_.setting_ == nullptr) {
-    auto* p = CreateMaybeMessage<::mavsdk::rpc::camera::Setting>(GetArena());
-    _impl_.setting_ = reinterpret_cast<::mavsdk::rpc::camera::Setting*>(p);
+    auto* p = CreateMaybeMessage<::mavcam::rpc::camera::Setting>(GetArena());
+    _impl_.setting_ = reinterpret_cast<::mavcam::rpc::camera::Setting*>(p);
   }
   return _impl_.setting_;
 }
-inline ::mavsdk::rpc::camera::Setting* SetSettingRequest::mutable_setting() ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  ::mavsdk::rpc::camera::Setting* _msg = _internal_mutable_setting();
-  // @@protoc_insertion_point(field_mutable:mavsdk.rpc.camera.SetSettingRequest.setting)
+inline ::mavcam::rpc::camera::Setting* SetSettingRequest::mutable_setting() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  ::mavcam::rpc::camera::Setting* _msg = _internal_mutable_setting();
+  // @@protoc_insertion_point(field_mutable:mavcam.rpc.camera.SetSettingRequest.setting)
   return _msg;
 }
-inline void SetSettingRequest::set_allocated_setting(::mavsdk::rpc::camera::Setting* value) {
+inline void SetSettingRequest::set_allocated_setting(::mavcam::rpc::camera::Setting* value) {
   ::google::protobuf::Arena* message_arena = GetArena();
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   if (message_arena == nullptr) {
-    delete reinterpret_cast<::mavsdk::rpc::camera::Setting*>(_impl_.setting_);
+    delete reinterpret_cast<::mavcam::rpc::camera::Setting*>(_impl_.setting_);
   }
 
   if (value != nullptr) {
-    ::google::protobuf::Arena* submessage_arena = reinterpret_cast<::mavsdk::rpc::camera::Setting*>(value)->GetArena();
+    ::google::protobuf::Arena* submessage_arena = reinterpret_cast<::mavcam::rpc::camera::Setting*>(value)->GetArena();
     if (message_arena != submessage_arena) {
       value = ::google::protobuf::internal::GetOwnedMessage(message_arena, value, submessage_arena);
     }
@@ -13085,15 +13085,15 @@ inline void SetSettingRequest::set_allocated_setting(::mavsdk::rpc::camera::Sett
     _impl_._has_bits_[0] &= ~0x00000001u;
   }
 
-  _impl_.setting_ = reinterpret_cast<::mavsdk::rpc::camera::Setting*>(value);
-  // @@protoc_insertion_point(field_set_allocated:mavsdk.rpc.camera.SetSettingRequest.setting)
+  _impl_.setting_ = reinterpret_cast<::mavcam::rpc::camera::Setting*>(value);
+  // @@protoc_insertion_point(field_set_allocated:mavcam.rpc.camera.SetSettingRequest.setting)
 }
 
 // -------------------------------------------------------------------
 
 // SetSettingResponse
 
-// .mavsdk.rpc.camera.CameraResult camera_result = 1;
+// .mavcam.rpc.camera.CameraResult camera_result = 1;
 inline bool SetSettingResponse::has_camera_result() const {
   bool value = (_impl_._has_bits_[0] & 0x00000001u) != 0;
   PROTOBUF_ASSUME(!value || _impl_.camera_result_ != nullptr);
@@ -13104,33 +13104,33 @@ inline void SetSettingResponse::clear_camera_result() {
   if (_impl_.camera_result_ != nullptr) _impl_.camera_result_->Clear();
   _impl_._has_bits_[0] &= ~0x00000001u;
 }
-inline const ::mavsdk::rpc::camera::CameraResult& SetSettingResponse::_internal_camera_result() const {
+inline const ::mavcam::rpc::camera::CameraResult& SetSettingResponse::_internal_camera_result() const {
   PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
-  const ::mavsdk::rpc::camera::CameraResult* p = _impl_.camera_result_;
-  return p != nullptr ? *p : reinterpret_cast<const ::mavsdk::rpc::camera::CameraResult&>(::mavsdk::rpc::camera::_CameraResult_default_instance_);
+  const ::mavcam::rpc::camera::CameraResult* p = _impl_.camera_result_;
+  return p != nullptr ? *p : reinterpret_cast<const ::mavcam::rpc::camera::CameraResult&>(::mavcam::rpc::camera::_CameraResult_default_instance_);
 }
-inline const ::mavsdk::rpc::camera::CameraResult& SetSettingResponse::camera_result() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_get:mavsdk.rpc.camera.SetSettingResponse.camera_result)
+inline const ::mavcam::rpc::camera::CameraResult& SetSettingResponse::camera_result() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:mavcam.rpc.camera.SetSettingResponse.camera_result)
   return _internal_camera_result();
 }
-inline void SetSettingResponse::unsafe_arena_set_allocated_camera_result(::mavsdk::rpc::camera::CameraResult* value) {
+inline void SetSettingResponse::unsafe_arena_set_allocated_camera_result(::mavcam::rpc::camera::CameraResult* value) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   if (GetArena() == nullptr) {
     delete reinterpret_cast<::google::protobuf::MessageLite*>(_impl_.camera_result_);
   }
-  _impl_.camera_result_ = reinterpret_cast<::mavsdk::rpc::camera::CameraResult*>(value);
+  _impl_.camera_result_ = reinterpret_cast<::mavcam::rpc::camera::CameraResult*>(value);
   if (value != nullptr) {
     _impl_._has_bits_[0] |= 0x00000001u;
   } else {
     _impl_._has_bits_[0] &= ~0x00000001u;
   }
-  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:mavsdk.rpc.camera.SetSettingResponse.camera_result)
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:mavcam.rpc.camera.SetSettingResponse.camera_result)
 }
-inline ::mavsdk::rpc::camera::CameraResult* SetSettingResponse::release_camera_result() {
+inline ::mavcam::rpc::camera::CameraResult* SetSettingResponse::release_camera_result() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
 
   _impl_._has_bits_[0] &= ~0x00000001u;
-  ::mavsdk::rpc::camera::CameraResult* released = _impl_.camera_result_;
+  ::mavcam::rpc::camera::CameraResult* released = _impl_.camera_result_;
   _impl_.camera_result_ = nullptr;
 #ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
   auto* old = reinterpret_cast<::google::protobuf::MessageLite*>(released);
@@ -13145,38 +13145,38 @@ inline ::mavsdk::rpc::camera::CameraResult* SetSettingResponse::release_camera_r
 #endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
   return released;
 }
-inline ::mavsdk::rpc::camera::CameraResult* SetSettingResponse::unsafe_arena_release_camera_result() {
+inline ::mavcam::rpc::camera::CameraResult* SetSettingResponse::unsafe_arena_release_camera_result() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  // @@protoc_insertion_point(field_release:mavsdk.rpc.camera.SetSettingResponse.camera_result)
+  // @@protoc_insertion_point(field_release:mavcam.rpc.camera.SetSettingResponse.camera_result)
 
   _impl_._has_bits_[0] &= ~0x00000001u;
-  ::mavsdk::rpc::camera::CameraResult* temp = _impl_.camera_result_;
+  ::mavcam::rpc::camera::CameraResult* temp = _impl_.camera_result_;
   _impl_.camera_result_ = nullptr;
   return temp;
 }
-inline ::mavsdk::rpc::camera::CameraResult* SetSettingResponse::_internal_mutable_camera_result() {
+inline ::mavcam::rpc::camera::CameraResult* SetSettingResponse::_internal_mutable_camera_result() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   _impl_._has_bits_[0] |= 0x00000001u;
   if (_impl_.camera_result_ == nullptr) {
-    auto* p = CreateMaybeMessage<::mavsdk::rpc::camera::CameraResult>(GetArena());
-    _impl_.camera_result_ = reinterpret_cast<::mavsdk::rpc::camera::CameraResult*>(p);
+    auto* p = CreateMaybeMessage<::mavcam::rpc::camera::CameraResult>(GetArena());
+    _impl_.camera_result_ = reinterpret_cast<::mavcam::rpc::camera::CameraResult*>(p);
   }
   return _impl_.camera_result_;
 }
-inline ::mavsdk::rpc::camera::CameraResult* SetSettingResponse::mutable_camera_result() ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  ::mavsdk::rpc::camera::CameraResult* _msg = _internal_mutable_camera_result();
-  // @@protoc_insertion_point(field_mutable:mavsdk.rpc.camera.SetSettingResponse.camera_result)
+inline ::mavcam::rpc::camera::CameraResult* SetSettingResponse::mutable_camera_result() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  ::mavcam::rpc::camera::CameraResult* _msg = _internal_mutable_camera_result();
+  // @@protoc_insertion_point(field_mutable:mavcam.rpc.camera.SetSettingResponse.camera_result)
   return _msg;
 }
-inline void SetSettingResponse::set_allocated_camera_result(::mavsdk::rpc::camera::CameraResult* value) {
+inline void SetSettingResponse::set_allocated_camera_result(::mavcam::rpc::camera::CameraResult* value) {
   ::google::protobuf::Arena* message_arena = GetArena();
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   if (message_arena == nullptr) {
-    delete reinterpret_cast<::mavsdk::rpc::camera::CameraResult*>(_impl_.camera_result_);
+    delete reinterpret_cast<::mavcam::rpc::camera::CameraResult*>(_impl_.camera_result_);
   }
 
   if (value != nullptr) {
-    ::google::protobuf::Arena* submessage_arena = reinterpret_cast<::mavsdk::rpc::camera::CameraResult*>(value)->GetArena();
+    ::google::protobuf::Arena* submessage_arena = reinterpret_cast<::mavcam::rpc::camera::CameraResult*>(value)->GetArena();
     if (message_arena != submessage_arena) {
       value = ::google::protobuf::internal::GetOwnedMessage(message_arena, value, submessage_arena);
     }
@@ -13185,15 +13185,15 @@ inline void SetSettingResponse::set_allocated_camera_result(::mavsdk::rpc::camer
     _impl_._has_bits_[0] &= ~0x00000001u;
   }
 
-  _impl_.camera_result_ = reinterpret_cast<::mavsdk::rpc::camera::CameraResult*>(value);
-  // @@protoc_insertion_point(field_set_allocated:mavsdk.rpc.camera.SetSettingResponse.camera_result)
+  _impl_.camera_result_ = reinterpret_cast<::mavcam::rpc::camera::CameraResult*>(value);
+  // @@protoc_insertion_point(field_set_allocated:mavcam.rpc.camera.SetSettingResponse.camera_result)
 }
 
 // -------------------------------------------------------------------
 
 // GetSettingRequest
 
-// .mavsdk.rpc.camera.Setting setting = 1;
+// .mavcam.rpc.camera.Setting setting = 1;
 inline bool GetSettingRequest::has_setting() const {
   bool value = (_impl_._has_bits_[0] & 0x00000001u) != 0;
   PROTOBUF_ASSUME(!value || _impl_.setting_ != nullptr);
@@ -13204,33 +13204,33 @@ inline void GetSettingRequest::clear_setting() {
   if (_impl_.setting_ != nullptr) _impl_.setting_->Clear();
   _impl_._has_bits_[0] &= ~0x00000001u;
 }
-inline const ::mavsdk::rpc::camera::Setting& GetSettingRequest::_internal_setting() const {
+inline const ::mavcam::rpc::camera::Setting& GetSettingRequest::_internal_setting() const {
   PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
-  const ::mavsdk::rpc::camera::Setting* p = _impl_.setting_;
-  return p != nullptr ? *p : reinterpret_cast<const ::mavsdk::rpc::camera::Setting&>(::mavsdk::rpc::camera::_Setting_default_instance_);
+  const ::mavcam::rpc::camera::Setting* p = _impl_.setting_;
+  return p != nullptr ? *p : reinterpret_cast<const ::mavcam::rpc::camera::Setting&>(::mavcam::rpc::camera::_Setting_default_instance_);
 }
-inline const ::mavsdk::rpc::camera::Setting& GetSettingRequest::setting() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_get:mavsdk.rpc.camera.GetSettingRequest.setting)
+inline const ::mavcam::rpc::camera::Setting& GetSettingRequest::setting() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:mavcam.rpc.camera.GetSettingRequest.setting)
   return _internal_setting();
 }
-inline void GetSettingRequest::unsafe_arena_set_allocated_setting(::mavsdk::rpc::camera::Setting* value) {
+inline void GetSettingRequest::unsafe_arena_set_allocated_setting(::mavcam::rpc::camera::Setting* value) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   if (GetArena() == nullptr) {
     delete reinterpret_cast<::google::protobuf::MessageLite*>(_impl_.setting_);
   }
-  _impl_.setting_ = reinterpret_cast<::mavsdk::rpc::camera::Setting*>(value);
+  _impl_.setting_ = reinterpret_cast<::mavcam::rpc::camera::Setting*>(value);
   if (value != nullptr) {
     _impl_._has_bits_[0] |= 0x00000001u;
   } else {
     _impl_._has_bits_[0] &= ~0x00000001u;
   }
-  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:mavsdk.rpc.camera.GetSettingRequest.setting)
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:mavcam.rpc.camera.GetSettingRequest.setting)
 }
-inline ::mavsdk::rpc::camera::Setting* GetSettingRequest::release_setting() {
+inline ::mavcam::rpc::camera::Setting* GetSettingRequest::release_setting() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
 
   _impl_._has_bits_[0] &= ~0x00000001u;
-  ::mavsdk::rpc::camera::Setting* released = _impl_.setting_;
+  ::mavcam::rpc::camera::Setting* released = _impl_.setting_;
   _impl_.setting_ = nullptr;
 #ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
   auto* old = reinterpret_cast<::google::protobuf::MessageLite*>(released);
@@ -13245,38 +13245,38 @@ inline ::mavsdk::rpc::camera::Setting* GetSettingRequest::release_setting() {
 #endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
   return released;
 }
-inline ::mavsdk::rpc::camera::Setting* GetSettingRequest::unsafe_arena_release_setting() {
+inline ::mavcam::rpc::camera::Setting* GetSettingRequest::unsafe_arena_release_setting() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  // @@protoc_insertion_point(field_release:mavsdk.rpc.camera.GetSettingRequest.setting)
+  // @@protoc_insertion_point(field_release:mavcam.rpc.camera.GetSettingRequest.setting)
 
   _impl_._has_bits_[0] &= ~0x00000001u;
-  ::mavsdk::rpc::camera::Setting* temp = _impl_.setting_;
+  ::mavcam::rpc::camera::Setting* temp = _impl_.setting_;
   _impl_.setting_ = nullptr;
   return temp;
 }
-inline ::mavsdk::rpc::camera::Setting* GetSettingRequest::_internal_mutable_setting() {
+inline ::mavcam::rpc::camera::Setting* GetSettingRequest::_internal_mutable_setting() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   _impl_._has_bits_[0] |= 0x00000001u;
   if (_impl_.setting_ == nullptr) {
-    auto* p = CreateMaybeMessage<::mavsdk::rpc::camera::Setting>(GetArena());
-    _impl_.setting_ = reinterpret_cast<::mavsdk::rpc::camera::Setting*>(p);
+    auto* p = CreateMaybeMessage<::mavcam::rpc::camera::Setting>(GetArena());
+    _impl_.setting_ = reinterpret_cast<::mavcam::rpc::camera::Setting*>(p);
   }
   return _impl_.setting_;
 }
-inline ::mavsdk::rpc::camera::Setting* GetSettingRequest::mutable_setting() ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  ::mavsdk::rpc::camera::Setting* _msg = _internal_mutable_setting();
-  // @@protoc_insertion_point(field_mutable:mavsdk.rpc.camera.GetSettingRequest.setting)
+inline ::mavcam::rpc::camera::Setting* GetSettingRequest::mutable_setting() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  ::mavcam::rpc::camera::Setting* _msg = _internal_mutable_setting();
+  // @@protoc_insertion_point(field_mutable:mavcam.rpc.camera.GetSettingRequest.setting)
   return _msg;
 }
-inline void GetSettingRequest::set_allocated_setting(::mavsdk::rpc::camera::Setting* value) {
+inline void GetSettingRequest::set_allocated_setting(::mavcam::rpc::camera::Setting* value) {
   ::google::protobuf::Arena* message_arena = GetArena();
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   if (message_arena == nullptr) {
-    delete reinterpret_cast<::mavsdk::rpc::camera::Setting*>(_impl_.setting_);
+    delete reinterpret_cast<::mavcam::rpc::camera::Setting*>(_impl_.setting_);
   }
 
   if (value != nullptr) {
-    ::google::protobuf::Arena* submessage_arena = reinterpret_cast<::mavsdk::rpc::camera::Setting*>(value)->GetArena();
+    ::google::protobuf::Arena* submessage_arena = reinterpret_cast<::mavcam::rpc::camera::Setting*>(value)->GetArena();
     if (message_arena != submessage_arena) {
       value = ::google::protobuf::internal::GetOwnedMessage(message_arena, value, submessage_arena);
     }
@@ -13285,15 +13285,15 @@ inline void GetSettingRequest::set_allocated_setting(::mavsdk::rpc::camera::Sett
     _impl_._has_bits_[0] &= ~0x00000001u;
   }
 
-  _impl_.setting_ = reinterpret_cast<::mavsdk::rpc::camera::Setting*>(value);
-  // @@protoc_insertion_point(field_set_allocated:mavsdk.rpc.camera.GetSettingRequest.setting)
+  _impl_.setting_ = reinterpret_cast<::mavcam::rpc::camera::Setting*>(value);
+  // @@protoc_insertion_point(field_set_allocated:mavcam.rpc.camera.GetSettingRequest.setting)
 }
 
 // -------------------------------------------------------------------
 
 // GetSettingResponse
 
-// .mavsdk.rpc.camera.CameraResult camera_result = 1;
+// .mavcam.rpc.camera.CameraResult camera_result = 1;
 inline bool GetSettingResponse::has_camera_result() const {
   bool value = (_impl_._has_bits_[0] & 0x00000001u) != 0;
   PROTOBUF_ASSUME(!value || _impl_.camera_result_ != nullptr);
@@ -13304,33 +13304,33 @@ inline void GetSettingResponse::clear_camera_result() {
   if (_impl_.camera_result_ != nullptr) _impl_.camera_result_->Clear();
   _impl_._has_bits_[0] &= ~0x00000001u;
 }
-inline const ::mavsdk::rpc::camera::CameraResult& GetSettingResponse::_internal_camera_result() const {
+inline const ::mavcam::rpc::camera::CameraResult& GetSettingResponse::_internal_camera_result() const {
   PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
-  const ::mavsdk::rpc::camera::CameraResult* p = _impl_.camera_result_;
-  return p != nullptr ? *p : reinterpret_cast<const ::mavsdk::rpc::camera::CameraResult&>(::mavsdk::rpc::camera::_CameraResult_default_instance_);
+  const ::mavcam::rpc::camera::CameraResult* p = _impl_.camera_result_;
+  return p != nullptr ? *p : reinterpret_cast<const ::mavcam::rpc::camera::CameraResult&>(::mavcam::rpc::camera::_CameraResult_default_instance_);
 }
-inline const ::mavsdk::rpc::camera::CameraResult& GetSettingResponse::camera_result() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_get:mavsdk.rpc.camera.GetSettingResponse.camera_result)
+inline const ::mavcam::rpc::camera::CameraResult& GetSettingResponse::camera_result() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:mavcam.rpc.camera.GetSettingResponse.camera_result)
   return _internal_camera_result();
 }
-inline void GetSettingResponse::unsafe_arena_set_allocated_camera_result(::mavsdk::rpc::camera::CameraResult* value) {
+inline void GetSettingResponse::unsafe_arena_set_allocated_camera_result(::mavcam::rpc::camera::CameraResult* value) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   if (GetArena() == nullptr) {
     delete reinterpret_cast<::google::protobuf::MessageLite*>(_impl_.camera_result_);
   }
-  _impl_.camera_result_ = reinterpret_cast<::mavsdk::rpc::camera::CameraResult*>(value);
+  _impl_.camera_result_ = reinterpret_cast<::mavcam::rpc::camera::CameraResult*>(value);
   if (value != nullptr) {
     _impl_._has_bits_[0] |= 0x00000001u;
   } else {
     _impl_._has_bits_[0] &= ~0x00000001u;
   }
-  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:mavsdk.rpc.camera.GetSettingResponse.camera_result)
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:mavcam.rpc.camera.GetSettingResponse.camera_result)
 }
-inline ::mavsdk::rpc::camera::CameraResult* GetSettingResponse::release_camera_result() {
+inline ::mavcam::rpc::camera::CameraResult* GetSettingResponse::release_camera_result() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
 
   _impl_._has_bits_[0] &= ~0x00000001u;
-  ::mavsdk::rpc::camera::CameraResult* released = _impl_.camera_result_;
+  ::mavcam::rpc::camera::CameraResult* released = _impl_.camera_result_;
   _impl_.camera_result_ = nullptr;
 #ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
   auto* old = reinterpret_cast<::google::protobuf::MessageLite*>(released);
@@ -13345,38 +13345,38 @@ inline ::mavsdk::rpc::camera::CameraResult* GetSettingResponse::release_camera_r
 #endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
   return released;
 }
-inline ::mavsdk::rpc::camera::CameraResult* GetSettingResponse::unsafe_arena_release_camera_result() {
+inline ::mavcam::rpc::camera::CameraResult* GetSettingResponse::unsafe_arena_release_camera_result() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  // @@protoc_insertion_point(field_release:mavsdk.rpc.camera.GetSettingResponse.camera_result)
+  // @@protoc_insertion_point(field_release:mavcam.rpc.camera.GetSettingResponse.camera_result)
 
   _impl_._has_bits_[0] &= ~0x00000001u;
-  ::mavsdk::rpc::camera::CameraResult* temp = _impl_.camera_result_;
+  ::mavcam::rpc::camera::CameraResult* temp = _impl_.camera_result_;
   _impl_.camera_result_ = nullptr;
   return temp;
 }
-inline ::mavsdk::rpc::camera::CameraResult* GetSettingResponse::_internal_mutable_camera_result() {
+inline ::mavcam::rpc::camera::CameraResult* GetSettingResponse::_internal_mutable_camera_result() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   _impl_._has_bits_[0] |= 0x00000001u;
   if (_impl_.camera_result_ == nullptr) {
-    auto* p = CreateMaybeMessage<::mavsdk::rpc::camera::CameraResult>(GetArena());
-    _impl_.camera_result_ = reinterpret_cast<::mavsdk::rpc::camera::CameraResult*>(p);
+    auto* p = CreateMaybeMessage<::mavcam::rpc::camera::CameraResult>(GetArena());
+    _impl_.camera_result_ = reinterpret_cast<::mavcam::rpc::camera::CameraResult*>(p);
   }
   return _impl_.camera_result_;
 }
-inline ::mavsdk::rpc::camera::CameraResult* GetSettingResponse::mutable_camera_result() ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  ::mavsdk::rpc::camera::CameraResult* _msg = _internal_mutable_camera_result();
-  // @@protoc_insertion_point(field_mutable:mavsdk.rpc.camera.GetSettingResponse.camera_result)
+inline ::mavcam::rpc::camera::CameraResult* GetSettingResponse::mutable_camera_result() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  ::mavcam::rpc::camera::CameraResult* _msg = _internal_mutable_camera_result();
+  // @@protoc_insertion_point(field_mutable:mavcam.rpc.camera.GetSettingResponse.camera_result)
   return _msg;
 }
-inline void GetSettingResponse::set_allocated_camera_result(::mavsdk::rpc::camera::CameraResult* value) {
+inline void GetSettingResponse::set_allocated_camera_result(::mavcam::rpc::camera::CameraResult* value) {
   ::google::protobuf::Arena* message_arena = GetArena();
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   if (message_arena == nullptr) {
-    delete reinterpret_cast<::mavsdk::rpc::camera::CameraResult*>(_impl_.camera_result_);
+    delete reinterpret_cast<::mavcam::rpc::camera::CameraResult*>(_impl_.camera_result_);
   }
 
   if (value != nullptr) {
-    ::google::protobuf::Arena* submessage_arena = reinterpret_cast<::mavsdk::rpc::camera::CameraResult*>(value)->GetArena();
+    ::google::protobuf::Arena* submessage_arena = reinterpret_cast<::mavcam::rpc::camera::CameraResult*>(value)->GetArena();
     if (message_arena != submessage_arena) {
       value = ::google::protobuf::internal::GetOwnedMessage(message_arena, value, submessage_arena);
     }
@@ -13385,11 +13385,11 @@ inline void GetSettingResponse::set_allocated_camera_result(::mavsdk::rpc::camer
     _impl_._has_bits_[0] &= ~0x00000001u;
   }
 
-  _impl_.camera_result_ = reinterpret_cast<::mavsdk::rpc::camera::CameraResult*>(value);
-  // @@protoc_insertion_point(field_set_allocated:mavsdk.rpc.camera.GetSettingResponse.camera_result)
+  _impl_.camera_result_ = reinterpret_cast<::mavcam::rpc::camera::CameraResult*>(value);
+  // @@protoc_insertion_point(field_set_allocated:mavcam.rpc.camera.GetSettingResponse.camera_result)
 }
 
-// .mavsdk.rpc.camera.Setting setting = 2;
+// .mavcam.rpc.camera.Setting setting = 2;
 inline bool GetSettingResponse::has_setting() const {
   bool value = (_impl_._has_bits_[0] & 0x00000002u) != 0;
   PROTOBUF_ASSUME(!value || _impl_.setting_ != nullptr);
@@ -13400,33 +13400,33 @@ inline void GetSettingResponse::clear_setting() {
   if (_impl_.setting_ != nullptr) _impl_.setting_->Clear();
   _impl_._has_bits_[0] &= ~0x00000002u;
 }
-inline const ::mavsdk::rpc::camera::Setting& GetSettingResponse::_internal_setting() const {
+inline const ::mavcam::rpc::camera::Setting& GetSettingResponse::_internal_setting() const {
   PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
-  const ::mavsdk::rpc::camera::Setting* p = _impl_.setting_;
-  return p != nullptr ? *p : reinterpret_cast<const ::mavsdk::rpc::camera::Setting&>(::mavsdk::rpc::camera::_Setting_default_instance_);
+  const ::mavcam::rpc::camera::Setting* p = _impl_.setting_;
+  return p != nullptr ? *p : reinterpret_cast<const ::mavcam::rpc::camera::Setting&>(::mavcam::rpc::camera::_Setting_default_instance_);
 }
-inline const ::mavsdk::rpc::camera::Setting& GetSettingResponse::setting() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_get:mavsdk.rpc.camera.GetSettingResponse.setting)
+inline const ::mavcam::rpc::camera::Setting& GetSettingResponse::setting() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:mavcam.rpc.camera.GetSettingResponse.setting)
   return _internal_setting();
 }
-inline void GetSettingResponse::unsafe_arena_set_allocated_setting(::mavsdk::rpc::camera::Setting* value) {
+inline void GetSettingResponse::unsafe_arena_set_allocated_setting(::mavcam::rpc::camera::Setting* value) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   if (GetArena() == nullptr) {
     delete reinterpret_cast<::google::protobuf::MessageLite*>(_impl_.setting_);
   }
-  _impl_.setting_ = reinterpret_cast<::mavsdk::rpc::camera::Setting*>(value);
+  _impl_.setting_ = reinterpret_cast<::mavcam::rpc::camera::Setting*>(value);
   if (value != nullptr) {
     _impl_._has_bits_[0] |= 0x00000002u;
   } else {
     _impl_._has_bits_[0] &= ~0x00000002u;
   }
-  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:mavsdk.rpc.camera.GetSettingResponse.setting)
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:mavcam.rpc.camera.GetSettingResponse.setting)
 }
-inline ::mavsdk::rpc::camera::Setting* GetSettingResponse::release_setting() {
+inline ::mavcam::rpc::camera::Setting* GetSettingResponse::release_setting() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
 
   _impl_._has_bits_[0] &= ~0x00000002u;
-  ::mavsdk::rpc::camera::Setting* released = _impl_.setting_;
+  ::mavcam::rpc::camera::Setting* released = _impl_.setting_;
   _impl_.setting_ = nullptr;
 #ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
   auto* old = reinterpret_cast<::google::protobuf::MessageLite*>(released);
@@ -13441,38 +13441,38 @@ inline ::mavsdk::rpc::camera::Setting* GetSettingResponse::release_setting() {
 #endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
   return released;
 }
-inline ::mavsdk::rpc::camera::Setting* GetSettingResponse::unsafe_arena_release_setting() {
+inline ::mavcam::rpc::camera::Setting* GetSettingResponse::unsafe_arena_release_setting() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  // @@protoc_insertion_point(field_release:mavsdk.rpc.camera.GetSettingResponse.setting)
+  // @@protoc_insertion_point(field_release:mavcam.rpc.camera.GetSettingResponse.setting)
 
   _impl_._has_bits_[0] &= ~0x00000002u;
-  ::mavsdk::rpc::camera::Setting* temp = _impl_.setting_;
+  ::mavcam::rpc::camera::Setting* temp = _impl_.setting_;
   _impl_.setting_ = nullptr;
   return temp;
 }
-inline ::mavsdk::rpc::camera::Setting* GetSettingResponse::_internal_mutable_setting() {
+inline ::mavcam::rpc::camera::Setting* GetSettingResponse::_internal_mutable_setting() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   _impl_._has_bits_[0] |= 0x00000002u;
   if (_impl_.setting_ == nullptr) {
-    auto* p = CreateMaybeMessage<::mavsdk::rpc::camera::Setting>(GetArena());
-    _impl_.setting_ = reinterpret_cast<::mavsdk::rpc::camera::Setting*>(p);
+    auto* p = CreateMaybeMessage<::mavcam::rpc::camera::Setting>(GetArena());
+    _impl_.setting_ = reinterpret_cast<::mavcam::rpc::camera::Setting*>(p);
   }
   return _impl_.setting_;
 }
-inline ::mavsdk::rpc::camera::Setting* GetSettingResponse::mutable_setting() ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  ::mavsdk::rpc::camera::Setting* _msg = _internal_mutable_setting();
-  // @@protoc_insertion_point(field_mutable:mavsdk.rpc.camera.GetSettingResponse.setting)
+inline ::mavcam::rpc::camera::Setting* GetSettingResponse::mutable_setting() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  ::mavcam::rpc::camera::Setting* _msg = _internal_mutable_setting();
+  // @@protoc_insertion_point(field_mutable:mavcam.rpc.camera.GetSettingResponse.setting)
   return _msg;
 }
-inline void GetSettingResponse::set_allocated_setting(::mavsdk::rpc::camera::Setting* value) {
+inline void GetSettingResponse::set_allocated_setting(::mavcam::rpc::camera::Setting* value) {
   ::google::protobuf::Arena* message_arena = GetArena();
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   if (message_arena == nullptr) {
-    delete reinterpret_cast<::mavsdk::rpc::camera::Setting*>(_impl_.setting_);
+    delete reinterpret_cast<::mavcam::rpc::camera::Setting*>(_impl_.setting_);
   }
 
   if (value != nullptr) {
-    ::google::protobuf::Arena* submessage_arena = reinterpret_cast<::mavsdk::rpc::camera::Setting*>(value)->GetArena();
+    ::google::protobuf::Arena* submessage_arena = reinterpret_cast<::mavcam::rpc::camera::Setting*>(value)->GetArena();
     if (message_arena != submessage_arena) {
       value = ::google::protobuf::internal::GetOwnedMessage(message_arena, value, submessage_arena);
     }
@@ -13481,8 +13481,8 @@ inline void GetSettingResponse::set_allocated_setting(::mavsdk::rpc::camera::Set
     _impl_._has_bits_[0] &= ~0x00000002u;
   }
 
-  _impl_.setting_ = reinterpret_cast<::mavsdk::rpc::camera::Setting*>(value);
-  // @@protoc_insertion_point(field_set_allocated:mavsdk.rpc.camera.GetSettingResponse.setting)
+  _impl_.setting_ = reinterpret_cast<::mavcam::rpc::camera::Setting*>(value);
+  // @@protoc_insertion_point(field_set_allocated:mavcam.rpc.camera.GetSettingResponse.setting)
 }
 
 // -------------------------------------------------------------------
@@ -13495,12 +13495,12 @@ inline void FormatStorageRequest::clear_storage_id() {
   _impl_.storage_id_ = 0;
 }
 inline ::int32_t FormatStorageRequest::storage_id() const {
-  // @@protoc_insertion_point(field_get:mavsdk.rpc.camera.FormatStorageRequest.storage_id)
+  // @@protoc_insertion_point(field_get:mavcam.rpc.camera.FormatStorageRequest.storage_id)
   return _internal_storage_id();
 }
 inline void FormatStorageRequest::set_storage_id(::int32_t value) {
   _internal_set_storage_id(value);
-  // @@protoc_insertion_point(field_set:mavsdk.rpc.camera.FormatStorageRequest.storage_id)
+  // @@protoc_insertion_point(field_set:mavcam.rpc.camera.FormatStorageRequest.storage_id)
 }
 inline ::int32_t FormatStorageRequest::_internal_storage_id() const {
   PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
@@ -13516,7 +13516,7 @@ inline void FormatStorageRequest::_internal_set_storage_id(::int32_t value) {
 
 // FormatStorageResponse
 
-// .mavsdk.rpc.camera.CameraResult camera_result = 1;
+// .mavcam.rpc.camera.CameraResult camera_result = 1;
 inline bool FormatStorageResponse::has_camera_result() const {
   bool value = (_impl_._has_bits_[0] & 0x00000001u) != 0;
   PROTOBUF_ASSUME(!value || _impl_.camera_result_ != nullptr);
@@ -13527,33 +13527,33 @@ inline void FormatStorageResponse::clear_camera_result() {
   if (_impl_.camera_result_ != nullptr) _impl_.camera_result_->Clear();
   _impl_._has_bits_[0] &= ~0x00000001u;
 }
-inline const ::mavsdk::rpc::camera::CameraResult& FormatStorageResponse::_internal_camera_result() const {
+inline const ::mavcam::rpc::camera::CameraResult& FormatStorageResponse::_internal_camera_result() const {
   PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
-  const ::mavsdk::rpc::camera::CameraResult* p = _impl_.camera_result_;
-  return p != nullptr ? *p : reinterpret_cast<const ::mavsdk::rpc::camera::CameraResult&>(::mavsdk::rpc::camera::_CameraResult_default_instance_);
+  const ::mavcam::rpc::camera::CameraResult* p = _impl_.camera_result_;
+  return p != nullptr ? *p : reinterpret_cast<const ::mavcam::rpc::camera::CameraResult&>(::mavcam::rpc::camera::_CameraResult_default_instance_);
 }
-inline const ::mavsdk::rpc::camera::CameraResult& FormatStorageResponse::camera_result() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_get:mavsdk.rpc.camera.FormatStorageResponse.camera_result)
+inline const ::mavcam::rpc::camera::CameraResult& FormatStorageResponse::camera_result() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:mavcam.rpc.camera.FormatStorageResponse.camera_result)
   return _internal_camera_result();
 }
-inline void FormatStorageResponse::unsafe_arena_set_allocated_camera_result(::mavsdk::rpc::camera::CameraResult* value) {
+inline void FormatStorageResponse::unsafe_arena_set_allocated_camera_result(::mavcam::rpc::camera::CameraResult* value) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   if (GetArena() == nullptr) {
     delete reinterpret_cast<::google::protobuf::MessageLite*>(_impl_.camera_result_);
   }
-  _impl_.camera_result_ = reinterpret_cast<::mavsdk::rpc::camera::CameraResult*>(value);
+  _impl_.camera_result_ = reinterpret_cast<::mavcam::rpc::camera::CameraResult*>(value);
   if (value != nullptr) {
     _impl_._has_bits_[0] |= 0x00000001u;
   } else {
     _impl_._has_bits_[0] &= ~0x00000001u;
   }
-  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:mavsdk.rpc.camera.FormatStorageResponse.camera_result)
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:mavcam.rpc.camera.FormatStorageResponse.camera_result)
 }
-inline ::mavsdk::rpc::camera::CameraResult* FormatStorageResponse::release_camera_result() {
+inline ::mavcam::rpc::camera::CameraResult* FormatStorageResponse::release_camera_result() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
 
   _impl_._has_bits_[0] &= ~0x00000001u;
-  ::mavsdk::rpc::camera::CameraResult* released = _impl_.camera_result_;
+  ::mavcam::rpc::camera::CameraResult* released = _impl_.camera_result_;
   _impl_.camera_result_ = nullptr;
 #ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
   auto* old = reinterpret_cast<::google::protobuf::MessageLite*>(released);
@@ -13568,38 +13568,38 @@ inline ::mavsdk::rpc::camera::CameraResult* FormatStorageResponse::release_camer
 #endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
   return released;
 }
-inline ::mavsdk::rpc::camera::CameraResult* FormatStorageResponse::unsafe_arena_release_camera_result() {
+inline ::mavcam::rpc::camera::CameraResult* FormatStorageResponse::unsafe_arena_release_camera_result() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  // @@protoc_insertion_point(field_release:mavsdk.rpc.camera.FormatStorageResponse.camera_result)
+  // @@protoc_insertion_point(field_release:mavcam.rpc.camera.FormatStorageResponse.camera_result)
 
   _impl_._has_bits_[0] &= ~0x00000001u;
-  ::mavsdk::rpc::camera::CameraResult* temp = _impl_.camera_result_;
+  ::mavcam::rpc::camera::CameraResult* temp = _impl_.camera_result_;
   _impl_.camera_result_ = nullptr;
   return temp;
 }
-inline ::mavsdk::rpc::camera::CameraResult* FormatStorageResponse::_internal_mutable_camera_result() {
+inline ::mavcam::rpc::camera::CameraResult* FormatStorageResponse::_internal_mutable_camera_result() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   _impl_._has_bits_[0] |= 0x00000001u;
   if (_impl_.camera_result_ == nullptr) {
-    auto* p = CreateMaybeMessage<::mavsdk::rpc::camera::CameraResult>(GetArena());
-    _impl_.camera_result_ = reinterpret_cast<::mavsdk::rpc::camera::CameraResult*>(p);
+    auto* p = CreateMaybeMessage<::mavcam::rpc::camera::CameraResult>(GetArena());
+    _impl_.camera_result_ = reinterpret_cast<::mavcam::rpc::camera::CameraResult*>(p);
   }
   return _impl_.camera_result_;
 }
-inline ::mavsdk::rpc::camera::CameraResult* FormatStorageResponse::mutable_camera_result() ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  ::mavsdk::rpc::camera::CameraResult* _msg = _internal_mutable_camera_result();
-  // @@protoc_insertion_point(field_mutable:mavsdk.rpc.camera.FormatStorageResponse.camera_result)
+inline ::mavcam::rpc::camera::CameraResult* FormatStorageResponse::mutable_camera_result() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  ::mavcam::rpc::camera::CameraResult* _msg = _internal_mutable_camera_result();
+  // @@protoc_insertion_point(field_mutable:mavcam.rpc.camera.FormatStorageResponse.camera_result)
   return _msg;
 }
-inline void FormatStorageResponse::set_allocated_camera_result(::mavsdk::rpc::camera::CameraResult* value) {
+inline void FormatStorageResponse::set_allocated_camera_result(::mavcam::rpc::camera::CameraResult* value) {
   ::google::protobuf::Arena* message_arena = GetArena();
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   if (message_arena == nullptr) {
-    delete reinterpret_cast<::mavsdk::rpc::camera::CameraResult*>(_impl_.camera_result_);
+    delete reinterpret_cast<::mavcam::rpc::camera::CameraResult*>(_impl_.camera_result_);
   }
 
   if (value != nullptr) {
-    ::google::protobuf::Arena* submessage_arena = reinterpret_cast<::mavsdk::rpc::camera::CameraResult*>(value)->GetArena();
+    ::google::protobuf::Arena* submessage_arena = reinterpret_cast<::mavcam::rpc::camera::CameraResult*>(value)->GetArena();
     if (message_arena != submessage_arena) {
       value = ::google::protobuf::internal::GetOwnedMessage(message_arena, value, submessage_arena);
     }
@@ -13608,15 +13608,15 @@ inline void FormatStorageResponse::set_allocated_camera_result(::mavsdk::rpc::ca
     _impl_._has_bits_[0] &= ~0x00000001u;
   }
 
-  _impl_.camera_result_ = reinterpret_cast<::mavsdk::rpc::camera::CameraResult*>(value);
-  // @@protoc_insertion_point(field_set_allocated:mavsdk.rpc.camera.FormatStorageResponse.camera_result)
+  _impl_.camera_result_ = reinterpret_cast<::mavcam::rpc::camera::CameraResult*>(value);
+  // @@protoc_insertion_point(field_set_allocated:mavcam.rpc.camera.FormatStorageResponse.camera_result)
 }
 
 // -------------------------------------------------------------------
 
 // SelectCameraResponse
 
-// .mavsdk.rpc.camera.CameraResult camera_result = 1;
+// .mavcam.rpc.camera.CameraResult camera_result = 1;
 inline bool SelectCameraResponse::has_camera_result() const {
   bool value = (_impl_._has_bits_[0] & 0x00000001u) != 0;
   PROTOBUF_ASSUME(!value || _impl_.camera_result_ != nullptr);
@@ -13627,33 +13627,33 @@ inline void SelectCameraResponse::clear_camera_result() {
   if (_impl_.camera_result_ != nullptr) _impl_.camera_result_->Clear();
   _impl_._has_bits_[0] &= ~0x00000001u;
 }
-inline const ::mavsdk::rpc::camera::CameraResult& SelectCameraResponse::_internal_camera_result() const {
+inline const ::mavcam::rpc::camera::CameraResult& SelectCameraResponse::_internal_camera_result() const {
   PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
-  const ::mavsdk::rpc::camera::CameraResult* p = _impl_.camera_result_;
-  return p != nullptr ? *p : reinterpret_cast<const ::mavsdk::rpc::camera::CameraResult&>(::mavsdk::rpc::camera::_CameraResult_default_instance_);
+  const ::mavcam::rpc::camera::CameraResult* p = _impl_.camera_result_;
+  return p != nullptr ? *p : reinterpret_cast<const ::mavcam::rpc::camera::CameraResult&>(::mavcam::rpc::camera::_CameraResult_default_instance_);
 }
-inline const ::mavsdk::rpc::camera::CameraResult& SelectCameraResponse::camera_result() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_get:mavsdk.rpc.camera.SelectCameraResponse.camera_result)
+inline const ::mavcam::rpc::camera::CameraResult& SelectCameraResponse::camera_result() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:mavcam.rpc.camera.SelectCameraResponse.camera_result)
   return _internal_camera_result();
 }
-inline void SelectCameraResponse::unsafe_arena_set_allocated_camera_result(::mavsdk::rpc::camera::CameraResult* value) {
+inline void SelectCameraResponse::unsafe_arena_set_allocated_camera_result(::mavcam::rpc::camera::CameraResult* value) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   if (GetArena() == nullptr) {
     delete reinterpret_cast<::google::protobuf::MessageLite*>(_impl_.camera_result_);
   }
-  _impl_.camera_result_ = reinterpret_cast<::mavsdk::rpc::camera::CameraResult*>(value);
+  _impl_.camera_result_ = reinterpret_cast<::mavcam::rpc::camera::CameraResult*>(value);
   if (value != nullptr) {
     _impl_._has_bits_[0] |= 0x00000001u;
   } else {
     _impl_._has_bits_[0] &= ~0x00000001u;
   }
-  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:mavsdk.rpc.camera.SelectCameraResponse.camera_result)
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:mavcam.rpc.camera.SelectCameraResponse.camera_result)
 }
-inline ::mavsdk::rpc::camera::CameraResult* SelectCameraResponse::release_camera_result() {
+inline ::mavcam::rpc::camera::CameraResult* SelectCameraResponse::release_camera_result() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
 
   _impl_._has_bits_[0] &= ~0x00000001u;
-  ::mavsdk::rpc::camera::CameraResult* released = _impl_.camera_result_;
+  ::mavcam::rpc::camera::CameraResult* released = _impl_.camera_result_;
   _impl_.camera_result_ = nullptr;
 #ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
   auto* old = reinterpret_cast<::google::protobuf::MessageLite*>(released);
@@ -13668,38 +13668,38 @@ inline ::mavsdk::rpc::camera::CameraResult* SelectCameraResponse::release_camera
 #endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
   return released;
 }
-inline ::mavsdk::rpc::camera::CameraResult* SelectCameraResponse::unsafe_arena_release_camera_result() {
+inline ::mavcam::rpc::camera::CameraResult* SelectCameraResponse::unsafe_arena_release_camera_result() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  // @@protoc_insertion_point(field_release:mavsdk.rpc.camera.SelectCameraResponse.camera_result)
+  // @@protoc_insertion_point(field_release:mavcam.rpc.camera.SelectCameraResponse.camera_result)
 
   _impl_._has_bits_[0] &= ~0x00000001u;
-  ::mavsdk::rpc::camera::CameraResult* temp = _impl_.camera_result_;
+  ::mavcam::rpc::camera::CameraResult* temp = _impl_.camera_result_;
   _impl_.camera_result_ = nullptr;
   return temp;
 }
-inline ::mavsdk::rpc::camera::CameraResult* SelectCameraResponse::_internal_mutable_camera_result() {
+inline ::mavcam::rpc::camera::CameraResult* SelectCameraResponse::_internal_mutable_camera_result() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   _impl_._has_bits_[0] |= 0x00000001u;
   if (_impl_.camera_result_ == nullptr) {
-    auto* p = CreateMaybeMessage<::mavsdk::rpc::camera::CameraResult>(GetArena());
-    _impl_.camera_result_ = reinterpret_cast<::mavsdk::rpc::camera::CameraResult*>(p);
+    auto* p = CreateMaybeMessage<::mavcam::rpc::camera::CameraResult>(GetArena());
+    _impl_.camera_result_ = reinterpret_cast<::mavcam::rpc::camera::CameraResult*>(p);
   }
   return _impl_.camera_result_;
 }
-inline ::mavsdk::rpc::camera::CameraResult* SelectCameraResponse::mutable_camera_result() ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  ::mavsdk::rpc::camera::CameraResult* _msg = _internal_mutable_camera_result();
-  // @@protoc_insertion_point(field_mutable:mavsdk.rpc.camera.SelectCameraResponse.camera_result)
+inline ::mavcam::rpc::camera::CameraResult* SelectCameraResponse::mutable_camera_result() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  ::mavcam::rpc::camera::CameraResult* _msg = _internal_mutable_camera_result();
+  // @@protoc_insertion_point(field_mutable:mavcam.rpc.camera.SelectCameraResponse.camera_result)
   return _msg;
 }
-inline void SelectCameraResponse::set_allocated_camera_result(::mavsdk::rpc::camera::CameraResult* value) {
+inline void SelectCameraResponse::set_allocated_camera_result(::mavcam::rpc::camera::CameraResult* value) {
   ::google::protobuf::Arena* message_arena = GetArena();
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   if (message_arena == nullptr) {
-    delete reinterpret_cast<::mavsdk::rpc::camera::CameraResult*>(_impl_.camera_result_);
+    delete reinterpret_cast<::mavcam::rpc::camera::CameraResult*>(_impl_.camera_result_);
   }
 
   if (value != nullptr) {
-    ::google::protobuf::Arena* submessage_arena = reinterpret_cast<::mavsdk::rpc::camera::CameraResult*>(value)->GetArena();
+    ::google::protobuf::Arena* submessage_arena = reinterpret_cast<::mavcam::rpc::camera::CameraResult*>(value)->GetArena();
     if (message_arena != submessage_arena) {
       value = ::google::protobuf::internal::GetOwnedMessage(message_arena, value, submessage_arena);
     }
@@ -13708,8 +13708,8 @@ inline void SelectCameraResponse::set_allocated_camera_result(::mavsdk::rpc::cam
     _impl_._has_bits_[0] &= ~0x00000001u;
   }
 
-  _impl_.camera_result_ = reinterpret_cast<::mavsdk::rpc::camera::CameraResult*>(value);
-  // @@protoc_insertion_point(field_set_allocated:mavsdk.rpc.camera.SelectCameraResponse.camera_result)
+  _impl_.camera_result_ = reinterpret_cast<::mavcam::rpc::camera::CameraResult*>(value);
+  // @@protoc_insertion_point(field_set_allocated:mavcam.rpc.camera.SelectCameraResponse.camera_result)
 }
 
 // -------------------------------------------------------------------
@@ -13722,12 +13722,12 @@ inline void SelectCameraRequest::clear_camera_id() {
   _impl_.camera_id_ = 0;
 }
 inline ::int32_t SelectCameraRequest::camera_id() const {
-  // @@protoc_insertion_point(field_get:mavsdk.rpc.camera.SelectCameraRequest.camera_id)
+  // @@protoc_insertion_point(field_get:mavcam.rpc.camera.SelectCameraRequest.camera_id)
   return _internal_camera_id();
 }
 inline void SelectCameraRequest::set_camera_id(::int32_t value) {
   _internal_set_camera_id(value);
-  // @@protoc_insertion_point(field_set:mavsdk.rpc.camera.SelectCameraRequest.camera_id)
+  // @@protoc_insertion_point(field_set:mavcam.rpc.camera.SelectCameraRequest.camera_id)
 }
 inline ::int32_t SelectCameraRequest::_internal_camera_id() const {
   PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
@@ -13747,7 +13747,7 @@ inline void SelectCameraRequest::_internal_set_camera_id(::int32_t value) {
 
 // ResetSettingsResponse
 
-// .mavsdk.rpc.camera.CameraResult camera_result = 1;
+// .mavcam.rpc.camera.CameraResult camera_result = 1;
 inline bool ResetSettingsResponse::has_camera_result() const {
   bool value = (_impl_._has_bits_[0] & 0x00000001u) != 0;
   PROTOBUF_ASSUME(!value || _impl_.camera_result_ != nullptr);
@@ -13758,33 +13758,33 @@ inline void ResetSettingsResponse::clear_camera_result() {
   if (_impl_.camera_result_ != nullptr) _impl_.camera_result_->Clear();
   _impl_._has_bits_[0] &= ~0x00000001u;
 }
-inline const ::mavsdk::rpc::camera::CameraResult& ResetSettingsResponse::_internal_camera_result() const {
+inline const ::mavcam::rpc::camera::CameraResult& ResetSettingsResponse::_internal_camera_result() const {
   PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
-  const ::mavsdk::rpc::camera::CameraResult* p = _impl_.camera_result_;
-  return p != nullptr ? *p : reinterpret_cast<const ::mavsdk::rpc::camera::CameraResult&>(::mavsdk::rpc::camera::_CameraResult_default_instance_);
+  const ::mavcam::rpc::camera::CameraResult* p = _impl_.camera_result_;
+  return p != nullptr ? *p : reinterpret_cast<const ::mavcam::rpc::camera::CameraResult&>(::mavcam::rpc::camera::_CameraResult_default_instance_);
 }
-inline const ::mavsdk::rpc::camera::CameraResult& ResetSettingsResponse::camera_result() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_get:mavsdk.rpc.camera.ResetSettingsResponse.camera_result)
+inline const ::mavcam::rpc::camera::CameraResult& ResetSettingsResponse::camera_result() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:mavcam.rpc.camera.ResetSettingsResponse.camera_result)
   return _internal_camera_result();
 }
-inline void ResetSettingsResponse::unsafe_arena_set_allocated_camera_result(::mavsdk::rpc::camera::CameraResult* value) {
+inline void ResetSettingsResponse::unsafe_arena_set_allocated_camera_result(::mavcam::rpc::camera::CameraResult* value) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   if (GetArena() == nullptr) {
     delete reinterpret_cast<::google::protobuf::MessageLite*>(_impl_.camera_result_);
   }
-  _impl_.camera_result_ = reinterpret_cast<::mavsdk::rpc::camera::CameraResult*>(value);
+  _impl_.camera_result_ = reinterpret_cast<::mavcam::rpc::camera::CameraResult*>(value);
   if (value != nullptr) {
     _impl_._has_bits_[0] |= 0x00000001u;
   } else {
     _impl_._has_bits_[0] &= ~0x00000001u;
   }
-  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:mavsdk.rpc.camera.ResetSettingsResponse.camera_result)
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:mavcam.rpc.camera.ResetSettingsResponse.camera_result)
 }
-inline ::mavsdk::rpc::camera::CameraResult* ResetSettingsResponse::release_camera_result() {
+inline ::mavcam::rpc::camera::CameraResult* ResetSettingsResponse::release_camera_result() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
 
   _impl_._has_bits_[0] &= ~0x00000001u;
-  ::mavsdk::rpc::camera::CameraResult* released = _impl_.camera_result_;
+  ::mavcam::rpc::camera::CameraResult* released = _impl_.camera_result_;
   _impl_.camera_result_ = nullptr;
 #ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
   auto* old = reinterpret_cast<::google::protobuf::MessageLite*>(released);
@@ -13799,38 +13799,38 @@ inline ::mavsdk::rpc::camera::CameraResult* ResetSettingsResponse::release_camer
 #endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
   return released;
 }
-inline ::mavsdk::rpc::camera::CameraResult* ResetSettingsResponse::unsafe_arena_release_camera_result() {
+inline ::mavcam::rpc::camera::CameraResult* ResetSettingsResponse::unsafe_arena_release_camera_result() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  // @@protoc_insertion_point(field_release:mavsdk.rpc.camera.ResetSettingsResponse.camera_result)
+  // @@protoc_insertion_point(field_release:mavcam.rpc.camera.ResetSettingsResponse.camera_result)
 
   _impl_._has_bits_[0] &= ~0x00000001u;
-  ::mavsdk::rpc::camera::CameraResult* temp = _impl_.camera_result_;
+  ::mavcam::rpc::camera::CameraResult* temp = _impl_.camera_result_;
   _impl_.camera_result_ = nullptr;
   return temp;
 }
-inline ::mavsdk::rpc::camera::CameraResult* ResetSettingsResponse::_internal_mutable_camera_result() {
+inline ::mavcam::rpc::camera::CameraResult* ResetSettingsResponse::_internal_mutable_camera_result() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   _impl_._has_bits_[0] |= 0x00000001u;
   if (_impl_.camera_result_ == nullptr) {
-    auto* p = CreateMaybeMessage<::mavsdk::rpc::camera::CameraResult>(GetArena());
-    _impl_.camera_result_ = reinterpret_cast<::mavsdk::rpc::camera::CameraResult*>(p);
+    auto* p = CreateMaybeMessage<::mavcam::rpc::camera::CameraResult>(GetArena());
+    _impl_.camera_result_ = reinterpret_cast<::mavcam::rpc::camera::CameraResult*>(p);
   }
   return _impl_.camera_result_;
 }
-inline ::mavsdk::rpc::camera::CameraResult* ResetSettingsResponse::mutable_camera_result() ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  ::mavsdk::rpc::camera::CameraResult* _msg = _internal_mutable_camera_result();
-  // @@protoc_insertion_point(field_mutable:mavsdk.rpc.camera.ResetSettingsResponse.camera_result)
+inline ::mavcam::rpc::camera::CameraResult* ResetSettingsResponse::mutable_camera_result() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  ::mavcam::rpc::camera::CameraResult* _msg = _internal_mutable_camera_result();
+  // @@protoc_insertion_point(field_mutable:mavcam.rpc.camera.ResetSettingsResponse.camera_result)
   return _msg;
 }
-inline void ResetSettingsResponse::set_allocated_camera_result(::mavsdk::rpc::camera::CameraResult* value) {
+inline void ResetSettingsResponse::set_allocated_camera_result(::mavcam::rpc::camera::CameraResult* value) {
   ::google::protobuf::Arena* message_arena = GetArena();
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   if (message_arena == nullptr) {
-    delete reinterpret_cast<::mavsdk::rpc::camera::CameraResult*>(_impl_.camera_result_);
+    delete reinterpret_cast<::mavcam::rpc::camera::CameraResult*>(_impl_.camera_result_);
   }
 
   if (value != nullptr) {
-    ::google::protobuf::Arena* submessage_arena = reinterpret_cast<::mavsdk::rpc::camera::CameraResult*>(value)->GetArena();
+    ::google::protobuf::Arena* submessage_arena = reinterpret_cast<::mavcam::rpc::camera::CameraResult*>(value)->GetArena();
     if (message_arena != submessage_arena) {
       value = ::google::protobuf::internal::GetOwnedMessage(message_arena, value, submessage_arena);
     }
@@ -13839,8 +13839,8 @@ inline void ResetSettingsResponse::set_allocated_camera_result(::mavsdk::rpc::ca
     _impl_._has_bits_[0] &= ~0x00000001u;
   }
 
-  _impl_.camera_result_ = reinterpret_cast<::mavsdk::rpc::camera::CameraResult*>(value);
-  // @@protoc_insertion_point(field_set_allocated:mavsdk.rpc.camera.ResetSettingsResponse.camera_result)
+  _impl_.camera_result_ = reinterpret_cast<::mavcam::rpc::camera::CameraResult*>(value);
+  // @@protoc_insertion_point(field_set_allocated:mavcam.rpc.camera.ResetSettingsResponse.camera_result)
 }
 
 // -------------------------------------------------------------------
@@ -13854,7 +13854,7 @@ inline void SetDefinitionDataRequest::clear_definition_data() {
 }
 inline const std::string& SetDefinitionDataRequest::definition_data() const
     ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_get:mavsdk.rpc.camera.SetDefinitionDataRequest.definition_data)
+  // @@protoc_insertion_point(field_get:mavcam.rpc.camera.SetDefinitionDataRequest.definition_data)
   return _internal_definition_data();
 }
 template <typename Arg_, typename... Args_>
@@ -13863,11 +13863,11 @@ inline PROTOBUF_ALWAYS_INLINE void SetDefinitionDataRequest::set_definition_data
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
   _impl_.definition_data_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
-  // @@protoc_insertion_point(field_set:mavsdk.rpc.camera.SetDefinitionDataRequest.definition_data)
+  // @@protoc_insertion_point(field_set:mavcam.rpc.camera.SetDefinitionDataRequest.definition_data)
 }
 inline std::string* SetDefinitionDataRequest::mutable_definition_data() ABSL_ATTRIBUTE_LIFETIME_BOUND {
   std::string* _s = _internal_mutable_definition_data();
-  // @@protoc_insertion_point(field_mutable:mavsdk.rpc.camera.SetDefinitionDataRequest.definition_data)
+  // @@protoc_insertion_point(field_mutable:mavcam.rpc.camera.SetDefinitionDataRequest.definition_data)
   return _s;
 }
 inline const std::string& SetDefinitionDataRequest::_internal_definition_data() const {
@@ -13886,7 +13886,7 @@ inline std::string* SetDefinitionDataRequest::_internal_mutable_definition_data(
 }
 inline std::string* SetDefinitionDataRequest::release_definition_data() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  // @@protoc_insertion_point(field_release:mavsdk.rpc.camera.SetDefinitionDataRequest.definition_data)
+  // @@protoc_insertion_point(field_release:mavcam.rpc.camera.SetDefinitionDataRequest.definition_data)
   return _impl_.definition_data_.Release();
 }
 inline void SetDefinitionDataRequest::set_allocated_definition_data(std::string* value) {
@@ -13897,14 +13897,14 @@ inline void SetDefinitionDataRequest::set_allocated_definition_data(std::string*
           _impl_.definition_data_.Set("", GetArena());
         }
   #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  // @@protoc_insertion_point(field_set_allocated:mavsdk.rpc.camera.SetDefinitionDataRequest.definition_data)
+  // @@protoc_insertion_point(field_set_allocated:mavcam.rpc.camera.SetDefinitionDataRequest.definition_data)
 }
 
 // -------------------------------------------------------------------
 
 // SetDefinitionDataResponse
 
-// .mavsdk.rpc.camera.CameraResult camera_result = 1;
+// .mavcam.rpc.camera.CameraResult camera_result = 1;
 inline bool SetDefinitionDataResponse::has_camera_result() const {
   bool value = (_impl_._has_bits_[0] & 0x00000001u) != 0;
   PROTOBUF_ASSUME(!value || _impl_.camera_result_ != nullptr);
@@ -13915,33 +13915,33 @@ inline void SetDefinitionDataResponse::clear_camera_result() {
   if (_impl_.camera_result_ != nullptr) _impl_.camera_result_->Clear();
   _impl_._has_bits_[0] &= ~0x00000001u;
 }
-inline const ::mavsdk::rpc::camera::CameraResult& SetDefinitionDataResponse::_internal_camera_result() const {
+inline const ::mavcam::rpc::camera::CameraResult& SetDefinitionDataResponse::_internal_camera_result() const {
   PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
-  const ::mavsdk::rpc::camera::CameraResult* p = _impl_.camera_result_;
-  return p != nullptr ? *p : reinterpret_cast<const ::mavsdk::rpc::camera::CameraResult&>(::mavsdk::rpc::camera::_CameraResult_default_instance_);
+  const ::mavcam::rpc::camera::CameraResult* p = _impl_.camera_result_;
+  return p != nullptr ? *p : reinterpret_cast<const ::mavcam::rpc::camera::CameraResult&>(::mavcam::rpc::camera::_CameraResult_default_instance_);
 }
-inline const ::mavsdk::rpc::camera::CameraResult& SetDefinitionDataResponse::camera_result() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_get:mavsdk.rpc.camera.SetDefinitionDataResponse.camera_result)
+inline const ::mavcam::rpc::camera::CameraResult& SetDefinitionDataResponse::camera_result() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:mavcam.rpc.camera.SetDefinitionDataResponse.camera_result)
   return _internal_camera_result();
 }
-inline void SetDefinitionDataResponse::unsafe_arena_set_allocated_camera_result(::mavsdk::rpc::camera::CameraResult* value) {
+inline void SetDefinitionDataResponse::unsafe_arena_set_allocated_camera_result(::mavcam::rpc::camera::CameraResult* value) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   if (GetArena() == nullptr) {
     delete reinterpret_cast<::google::protobuf::MessageLite*>(_impl_.camera_result_);
   }
-  _impl_.camera_result_ = reinterpret_cast<::mavsdk::rpc::camera::CameraResult*>(value);
+  _impl_.camera_result_ = reinterpret_cast<::mavcam::rpc::camera::CameraResult*>(value);
   if (value != nullptr) {
     _impl_._has_bits_[0] |= 0x00000001u;
   } else {
     _impl_._has_bits_[0] &= ~0x00000001u;
   }
-  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:mavsdk.rpc.camera.SetDefinitionDataResponse.camera_result)
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:mavcam.rpc.camera.SetDefinitionDataResponse.camera_result)
 }
-inline ::mavsdk::rpc::camera::CameraResult* SetDefinitionDataResponse::release_camera_result() {
+inline ::mavcam::rpc::camera::CameraResult* SetDefinitionDataResponse::release_camera_result() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
 
   _impl_._has_bits_[0] &= ~0x00000001u;
-  ::mavsdk::rpc::camera::CameraResult* released = _impl_.camera_result_;
+  ::mavcam::rpc::camera::CameraResult* released = _impl_.camera_result_;
   _impl_.camera_result_ = nullptr;
 #ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
   auto* old = reinterpret_cast<::google::protobuf::MessageLite*>(released);
@@ -13956,38 +13956,38 @@ inline ::mavsdk::rpc::camera::CameraResult* SetDefinitionDataResponse::release_c
 #endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
   return released;
 }
-inline ::mavsdk::rpc::camera::CameraResult* SetDefinitionDataResponse::unsafe_arena_release_camera_result() {
+inline ::mavcam::rpc::camera::CameraResult* SetDefinitionDataResponse::unsafe_arena_release_camera_result() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  // @@protoc_insertion_point(field_release:mavsdk.rpc.camera.SetDefinitionDataResponse.camera_result)
+  // @@protoc_insertion_point(field_release:mavcam.rpc.camera.SetDefinitionDataResponse.camera_result)
 
   _impl_._has_bits_[0] &= ~0x00000001u;
-  ::mavsdk::rpc::camera::CameraResult* temp = _impl_.camera_result_;
+  ::mavcam::rpc::camera::CameraResult* temp = _impl_.camera_result_;
   _impl_.camera_result_ = nullptr;
   return temp;
 }
-inline ::mavsdk::rpc::camera::CameraResult* SetDefinitionDataResponse::_internal_mutable_camera_result() {
+inline ::mavcam::rpc::camera::CameraResult* SetDefinitionDataResponse::_internal_mutable_camera_result() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   _impl_._has_bits_[0] |= 0x00000001u;
   if (_impl_.camera_result_ == nullptr) {
-    auto* p = CreateMaybeMessage<::mavsdk::rpc::camera::CameraResult>(GetArena());
-    _impl_.camera_result_ = reinterpret_cast<::mavsdk::rpc::camera::CameraResult*>(p);
+    auto* p = CreateMaybeMessage<::mavcam::rpc::camera::CameraResult>(GetArena());
+    _impl_.camera_result_ = reinterpret_cast<::mavcam::rpc::camera::CameraResult*>(p);
   }
   return _impl_.camera_result_;
 }
-inline ::mavsdk::rpc::camera::CameraResult* SetDefinitionDataResponse::mutable_camera_result() ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  ::mavsdk::rpc::camera::CameraResult* _msg = _internal_mutable_camera_result();
-  // @@protoc_insertion_point(field_mutable:mavsdk.rpc.camera.SetDefinitionDataResponse.camera_result)
+inline ::mavcam::rpc::camera::CameraResult* SetDefinitionDataResponse::mutable_camera_result() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  ::mavcam::rpc::camera::CameraResult* _msg = _internal_mutable_camera_result();
+  // @@protoc_insertion_point(field_mutable:mavcam.rpc.camera.SetDefinitionDataResponse.camera_result)
   return _msg;
 }
-inline void SetDefinitionDataResponse::set_allocated_camera_result(::mavsdk::rpc::camera::CameraResult* value) {
+inline void SetDefinitionDataResponse::set_allocated_camera_result(::mavcam::rpc::camera::CameraResult* value) {
   ::google::protobuf::Arena* message_arena = GetArena();
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   if (message_arena == nullptr) {
-    delete reinterpret_cast<::mavsdk::rpc::camera::CameraResult*>(_impl_.camera_result_);
+    delete reinterpret_cast<::mavcam::rpc::camera::CameraResult*>(_impl_.camera_result_);
   }
 
   if (value != nullptr) {
-    ::google::protobuf::Arena* submessage_arena = reinterpret_cast<::mavsdk::rpc::camera::CameraResult*>(value)->GetArena();
+    ::google::protobuf::Arena* submessage_arena = reinterpret_cast<::mavcam::rpc::camera::CameraResult*>(value)->GetArena();
     if (message_arena != submessage_arena) {
       value = ::google::protobuf::internal::GetOwnedMessage(message_arena, value, submessage_arena);
     }
@@ -13996,32 +13996,32 @@ inline void SetDefinitionDataResponse::set_allocated_camera_result(::mavsdk::rpc
     _impl_._has_bits_[0] &= ~0x00000001u;
   }
 
-  _impl_.camera_result_ = reinterpret_cast<::mavsdk::rpc::camera::CameraResult*>(value);
-  // @@protoc_insertion_point(field_set_allocated:mavsdk.rpc.camera.SetDefinitionDataResponse.camera_result)
+  _impl_.camera_result_ = reinterpret_cast<::mavcam::rpc::camera::CameraResult*>(value);
+  // @@protoc_insertion_point(field_set_allocated:mavcam.rpc.camera.SetDefinitionDataResponse.camera_result)
 }
 
 // -------------------------------------------------------------------
 
 // CameraResult
 
-// .mavsdk.rpc.camera.CameraResult.Result result = 1;
+// .mavcam.rpc.camera.CameraResult.Result result = 1;
 inline void CameraResult::clear_result() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   _impl_.result_ = 0;
 }
-inline ::mavsdk::rpc::camera::CameraResult_Result CameraResult::result() const {
-  // @@protoc_insertion_point(field_get:mavsdk.rpc.camera.CameraResult.result)
+inline ::mavcam::rpc::camera::CameraResult_Result CameraResult::result() const {
+  // @@protoc_insertion_point(field_get:mavcam.rpc.camera.CameraResult.result)
   return _internal_result();
 }
-inline void CameraResult::set_result(::mavsdk::rpc::camera::CameraResult_Result value) {
+inline void CameraResult::set_result(::mavcam::rpc::camera::CameraResult_Result value) {
   _internal_set_result(value);
-  // @@protoc_insertion_point(field_set:mavsdk.rpc.camera.CameraResult.result)
+  // @@protoc_insertion_point(field_set:mavcam.rpc.camera.CameraResult.result)
 }
-inline ::mavsdk::rpc::camera::CameraResult_Result CameraResult::_internal_result() const {
+inline ::mavcam::rpc::camera::CameraResult_Result CameraResult::_internal_result() const {
   PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
-  return static_cast<::mavsdk::rpc::camera::CameraResult_Result>(_impl_.result_);
+  return static_cast<::mavcam::rpc::camera::CameraResult_Result>(_impl_.result_);
 }
-inline void CameraResult::_internal_set_result(::mavsdk::rpc::camera::CameraResult_Result value) {
+inline void CameraResult::_internal_set_result(::mavcam::rpc::camera::CameraResult_Result value) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
   _impl_.result_ = value;
@@ -14034,7 +14034,7 @@ inline void CameraResult::clear_result_str() {
 }
 inline const std::string& CameraResult::result_str() const
     ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_get:mavsdk.rpc.camera.CameraResult.result_str)
+  // @@protoc_insertion_point(field_get:mavcam.rpc.camera.CameraResult.result_str)
   return _internal_result_str();
 }
 template <typename Arg_, typename... Args_>
@@ -14043,11 +14043,11 @@ inline PROTOBUF_ALWAYS_INLINE void CameraResult::set_result_str(Arg_&& arg,
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
   _impl_.result_str_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
-  // @@protoc_insertion_point(field_set:mavsdk.rpc.camera.CameraResult.result_str)
+  // @@protoc_insertion_point(field_set:mavcam.rpc.camera.CameraResult.result_str)
 }
 inline std::string* CameraResult::mutable_result_str() ABSL_ATTRIBUTE_LIFETIME_BOUND {
   std::string* _s = _internal_mutable_result_str();
-  // @@protoc_insertion_point(field_mutable:mavsdk.rpc.camera.CameraResult.result_str)
+  // @@protoc_insertion_point(field_mutable:mavcam.rpc.camera.CameraResult.result_str)
   return _s;
 }
 inline const std::string& CameraResult::_internal_result_str() const {
@@ -14066,7 +14066,7 @@ inline std::string* CameraResult::_internal_mutable_result_str() {
 }
 inline std::string* CameraResult::release_result_str() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  // @@protoc_insertion_point(field_release:mavsdk.rpc.camera.CameraResult.result_str)
+  // @@protoc_insertion_point(field_release:mavcam.rpc.camera.CameraResult.result_str)
   return _impl_.result_str_.Release();
 }
 inline void CameraResult::set_allocated_result_str(std::string* value) {
@@ -14077,7 +14077,7 @@ inline void CameraResult::set_allocated_result_str(std::string* value) {
           _impl_.result_str_.Set("", GetArena());
         }
   #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  // @@protoc_insertion_point(field_set_allocated:mavsdk.rpc.camera.CameraResult.result_str)
+  // @@protoc_insertion_point(field_set_allocated:mavcam.rpc.camera.CameraResult.result_str)
 }
 
 // -------------------------------------------------------------------
@@ -14090,12 +14090,12 @@ inline void Position::clear_latitude_deg() {
   _impl_.latitude_deg_ = 0;
 }
 inline double Position::latitude_deg() const {
-  // @@protoc_insertion_point(field_get:mavsdk.rpc.camera.Position.latitude_deg)
+  // @@protoc_insertion_point(field_get:mavcam.rpc.camera.Position.latitude_deg)
   return _internal_latitude_deg();
 }
 inline void Position::set_latitude_deg(double value) {
   _internal_set_latitude_deg(value);
-  // @@protoc_insertion_point(field_set:mavsdk.rpc.camera.Position.latitude_deg)
+  // @@protoc_insertion_point(field_set:mavcam.rpc.camera.Position.latitude_deg)
 }
 inline double Position::_internal_latitude_deg() const {
   PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
@@ -14113,12 +14113,12 @@ inline void Position::clear_longitude_deg() {
   _impl_.longitude_deg_ = 0;
 }
 inline double Position::longitude_deg() const {
-  // @@protoc_insertion_point(field_get:mavsdk.rpc.camera.Position.longitude_deg)
+  // @@protoc_insertion_point(field_get:mavcam.rpc.camera.Position.longitude_deg)
   return _internal_longitude_deg();
 }
 inline void Position::set_longitude_deg(double value) {
   _internal_set_longitude_deg(value);
-  // @@protoc_insertion_point(field_set:mavsdk.rpc.camera.Position.longitude_deg)
+  // @@protoc_insertion_point(field_set:mavcam.rpc.camera.Position.longitude_deg)
 }
 inline double Position::_internal_longitude_deg() const {
   PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
@@ -14136,12 +14136,12 @@ inline void Position::clear_absolute_altitude_m() {
   _impl_.absolute_altitude_m_ = 0;
 }
 inline float Position::absolute_altitude_m() const {
-  // @@protoc_insertion_point(field_get:mavsdk.rpc.camera.Position.absolute_altitude_m)
+  // @@protoc_insertion_point(field_get:mavcam.rpc.camera.Position.absolute_altitude_m)
   return _internal_absolute_altitude_m();
 }
 inline void Position::set_absolute_altitude_m(float value) {
   _internal_set_absolute_altitude_m(value);
-  // @@protoc_insertion_point(field_set:mavsdk.rpc.camera.Position.absolute_altitude_m)
+  // @@protoc_insertion_point(field_set:mavcam.rpc.camera.Position.absolute_altitude_m)
 }
 inline float Position::_internal_absolute_altitude_m() const {
   PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
@@ -14159,12 +14159,12 @@ inline void Position::clear_relative_altitude_m() {
   _impl_.relative_altitude_m_ = 0;
 }
 inline float Position::relative_altitude_m() const {
-  // @@protoc_insertion_point(field_get:mavsdk.rpc.camera.Position.relative_altitude_m)
+  // @@protoc_insertion_point(field_get:mavcam.rpc.camera.Position.relative_altitude_m)
   return _internal_relative_altitude_m();
 }
 inline void Position::set_relative_altitude_m(float value) {
   _internal_set_relative_altitude_m(value);
-  // @@protoc_insertion_point(field_set:mavsdk.rpc.camera.Position.relative_altitude_m)
+  // @@protoc_insertion_point(field_set:mavcam.rpc.camera.Position.relative_altitude_m)
 }
 inline float Position::_internal_relative_altitude_m() const {
   PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
@@ -14186,12 +14186,12 @@ inline void Quaternion::clear_w() {
   _impl_.w_ = 0;
 }
 inline float Quaternion::w() const {
-  // @@protoc_insertion_point(field_get:mavsdk.rpc.camera.Quaternion.w)
+  // @@protoc_insertion_point(field_get:mavcam.rpc.camera.Quaternion.w)
   return _internal_w();
 }
 inline void Quaternion::set_w(float value) {
   _internal_set_w(value);
-  // @@protoc_insertion_point(field_set:mavsdk.rpc.camera.Quaternion.w)
+  // @@protoc_insertion_point(field_set:mavcam.rpc.camera.Quaternion.w)
 }
 inline float Quaternion::_internal_w() const {
   PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
@@ -14209,12 +14209,12 @@ inline void Quaternion::clear_x() {
   _impl_.x_ = 0;
 }
 inline float Quaternion::x() const {
-  // @@protoc_insertion_point(field_get:mavsdk.rpc.camera.Quaternion.x)
+  // @@protoc_insertion_point(field_get:mavcam.rpc.camera.Quaternion.x)
   return _internal_x();
 }
 inline void Quaternion::set_x(float value) {
   _internal_set_x(value);
-  // @@protoc_insertion_point(field_set:mavsdk.rpc.camera.Quaternion.x)
+  // @@protoc_insertion_point(field_set:mavcam.rpc.camera.Quaternion.x)
 }
 inline float Quaternion::_internal_x() const {
   PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
@@ -14232,12 +14232,12 @@ inline void Quaternion::clear_y() {
   _impl_.y_ = 0;
 }
 inline float Quaternion::y() const {
-  // @@protoc_insertion_point(field_get:mavsdk.rpc.camera.Quaternion.y)
+  // @@protoc_insertion_point(field_get:mavcam.rpc.camera.Quaternion.y)
   return _internal_y();
 }
 inline void Quaternion::set_y(float value) {
   _internal_set_y(value);
-  // @@protoc_insertion_point(field_set:mavsdk.rpc.camera.Quaternion.y)
+  // @@protoc_insertion_point(field_set:mavcam.rpc.camera.Quaternion.y)
 }
 inline float Quaternion::_internal_y() const {
   PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
@@ -14255,12 +14255,12 @@ inline void Quaternion::clear_z() {
   _impl_.z_ = 0;
 }
 inline float Quaternion::z() const {
-  // @@protoc_insertion_point(field_get:mavsdk.rpc.camera.Quaternion.z)
+  // @@protoc_insertion_point(field_get:mavcam.rpc.camera.Quaternion.z)
   return _internal_z();
 }
 inline void Quaternion::set_z(float value) {
   _internal_set_z(value);
-  // @@protoc_insertion_point(field_set:mavsdk.rpc.camera.Quaternion.z)
+  // @@protoc_insertion_point(field_set:mavcam.rpc.camera.Quaternion.z)
 }
 inline float Quaternion::_internal_z() const {
   PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
@@ -14282,12 +14282,12 @@ inline void EulerAngle::clear_roll_deg() {
   _impl_.roll_deg_ = 0;
 }
 inline float EulerAngle::roll_deg() const {
-  // @@protoc_insertion_point(field_get:mavsdk.rpc.camera.EulerAngle.roll_deg)
+  // @@protoc_insertion_point(field_get:mavcam.rpc.camera.EulerAngle.roll_deg)
   return _internal_roll_deg();
 }
 inline void EulerAngle::set_roll_deg(float value) {
   _internal_set_roll_deg(value);
-  // @@protoc_insertion_point(field_set:mavsdk.rpc.camera.EulerAngle.roll_deg)
+  // @@protoc_insertion_point(field_set:mavcam.rpc.camera.EulerAngle.roll_deg)
 }
 inline float EulerAngle::_internal_roll_deg() const {
   PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
@@ -14305,12 +14305,12 @@ inline void EulerAngle::clear_pitch_deg() {
   _impl_.pitch_deg_ = 0;
 }
 inline float EulerAngle::pitch_deg() const {
-  // @@protoc_insertion_point(field_get:mavsdk.rpc.camera.EulerAngle.pitch_deg)
+  // @@protoc_insertion_point(field_get:mavcam.rpc.camera.EulerAngle.pitch_deg)
   return _internal_pitch_deg();
 }
 inline void EulerAngle::set_pitch_deg(float value) {
   _internal_set_pitch_deg(value);
-  // @@protoc_insertion_point(field_set:mavsdk.rpc.camera.EulerAngle.pitch_deg)
+  // @@protoc_insertion_point(field_set:mavcam.rpc.camera.EulerAngle.pitch_deg)
 }
 inline float EulerAngle::_internal_pitch_deg() const {
   PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
@@ -14328,12 +14328,12 @@ inline void EulerAngle::clear_yaw_deg() {
   _impl_.yaw_deg_ = 0;
 }
 inline float EulerAngle::yaw_deg() const {
-  // @@protoc_insertion_point(field_get:mavsdk.rpc.camera.EulerAngle.yaw_deg)
+  // @@protoc_insertion_point(field_get:mavcam.rpc.camera.EulerAngle.yaw_deg)
   return _internal_yaw_deg();
 }
 inline void EulerAngle::set_yaw_deg(float value) {
   _internal_set_yaw_deg(value);
-  // @@protoc_insertion_point(field_set:mavsdk.rpc.camera.EulerAngle.yaw_deg)
+  // @@protoc_insertion_point(field_set:mavcam.rpc.camera.EulerAngle.yaw_deg)
 }
 inline float EulerAngle::_internal_yaw_deg() const {
   PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
@@ -14349,7 +14349,7 @@ inline void EulerAngle::_internal_set_yaw_deg(float value) {
 
 // CaptureInfo
 
-// .mavsdk.rpc.camera.Position position = 1;
+// .mavcam.rpc.camera.Position position = 1;
 inline bool CaptureInfo::has_position() const {
   bool value = (_impl_._has_bits_[0] & 0x00000001u) != 0;
   PROTOBUF_ASSUME(!value || _impl_.position_ != nullptr);
@@ -14360,33 +14360,33 @@ inline void CaptureInfo::clear_position() {
   if (_impl_.position_ != nullptr) _impl_.position_->Clear();
   _impl_._has_bits_[0] &= ~0x00000001u;
 }
-inline const ::mavsdk::rpc::camera::Position& CaptureInfo::_internal_position() const {
+inline const ::mavcam::rpc::camera::Position& CaptureInfo::_internal_position() const {
   PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
-  const ::mavsdk::rpc::camera::Position* p = _impl_.position_;
-  return p != nullptr ? *p : reinterpret_cast<const ::mavsdk::rpc::camera::Position&>(::mavsdk::rpc::camera::_Position_default_instance_);
+  const ::mavcam::rpc::camera::Position* p = _impl_.position_;
+  return p != nullptr ? *p : reinterpret_cast<const ::mavcam::rpc::camera::Position&>(::mavcam::rpc::camera::_Position_default_instance_);
 }
-inline const ::mavsdk::rpc::camera::Position& CaptureInfo::position() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_get:mavsdk.rpc.camera.CaptureInfo.position)
+inline const ::mavcam::rpc::camera::Position& CaptureInfo::position() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:mavcam.rpc.camera.CaptureInfo.position)
   return _internal_position();
 }
-inline void CaptureInfo::unsafe_arena_set_allocated_position(::mavsdk::rpc::camera::Position* value) {
+inline void CaptureInfo::unsafe_arena_set_allocated_position(::mavcam::rpc::camera::Position* value) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   if (GetArena() == nullptr) {
     delete reinterpret_cast<::google::protobuf::MessageLite*>(_impl_.position_);
   }
-  _impl_.position_ = reinterpret_cast<::mavsdk::rpc::camera::Position*>(value);
+  _impl_.position_ = reinterpret_cast<::mavcam::rpc::camera::Position*>(value);
   if (value != nullptr) {
     _impl_._has_bits_[0] |= 0x00000001u;
   } else {
     _impl_._has_bits_[0] &= ~0x00000001u;
   }
-  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:mavsdk.rpc.camera.CaptureInfo.position)
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:mavcam.rpc.camera.CaptureInfo.position)
 }
-inline ::mavsdk::rpc::camera::Position* CaptureInfo::release_position() {
+inline ::mavcam::rpc::camera::Position* CaptureInfo::release_position() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
 
   _impl_._has_bits_[0] &= ~0x00000001u;
-  ::mavsdk::rpc::camera::Position* released = _impl_.position_;
+  ::mavcam::rpc::camera::Position* released = _impl_.position_;
   _impl_.position_ = nullptr;
 #ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
   auto* old = reinterpret_cast<::google::protobuf::MessageLite*>(released);
@@ -14401,38 +14401,38 @@ inline ::mavsdk::rpc::camera::Position* CaptureInfo::release_position() {
 #endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
   return released;
 }
-inline ::mavsdk::rpc::camera::Position* CaptureInfo::unsafe_arena_release_position() {
+inline ::mavcam::rpc::camera::Position* CaptureInfo::unsafe_arena_release_position() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  // @@protoc_insertion_point(field_release:mavsdk.rpc.camera.CaptureInfo.position)
+  // @@protoc_insertion_point(field_release:mavcam.rpc.camera.CaptureInfo.position)
 
   _impl_._has_bits_[0] &= ~0x00000001u;
-  ::mavsdk::rpc::camera::Position* temp = _impl_.position_;
+  ::mavcam::rpc::camera::Position* temp = _impl_.position_;
   _impl_.position_ = nullptr;
   return temp;
 }
-inline ::mavsdk::rpc::camera::Position* CaptureInfo::_internal_mutable_position() {
+inline ::mavcam::rpc::camera::Position* CaptureInfo::_internal_mutable_position() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   _impl_._has_bits_[0] |= 0x00000001u;
   if (_impl_.position_ == nullptr) {
-    auto* p = CreateMaybeMessage<::mavsdk::rpc::camera::Position>(GetArena());
-    _impl_.position_ = reinterpret_cast<::mavsdk::rpc::camera::Position*>(p);
+    auto* p = CreateMaybeMessage<::mavcam::rpc::camera::Position>(GetArena());
+    _impl_.position_ = reinterpret_cast<::mavcam::rpc::camera::Position*>(p);
   }
   return _impl_.position_;
 }
-inline ::mavsdk::rpc::camera::Position* CaptureInfo::mutable_position() ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  ::mavsdk::rpc::camera::Position* _msg = _internal_mutable_position();
-  // @@protoc_insertion_point(field_mutable:mavsdk.rpc.camera.CaptureInfo.position)
+inline ::mavcam::rpc::camera::Position* CaptureInfo::mutable_position() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  ::mavcam::rpc::camera::Position* _msg = _internal_mutable_position();
+  // @@protoc_insertion_point(field_mutable:mavcam.rpc.camera.CaptureInfo.position)
   return _msg;
 }
-inline void CaptureInfo::set_allocated_position(::mavsdk::rpc::camera::Position* value) {
+inline void CaptureInfo::set_allocated_position(::mavcam::rpc::camera::Position* value) {
   ::google::protobuf::Arena* message_arena = GetArena();
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   if (message_arena == nullptr) {
-    delete reinterpret_cast<::mavsdk::rpc::camera::Position*>(_impl_.position_);
+    delete reinterpret_cast<::mavcam::rpc::camera::Position*>(_impl_.position_);
   }
 
   if (value != nullptr) {
-    ::google::protobuf::Arena* submessage_arena = reinterpret_cast<::mavsdk::rpc::camera::Position*>(value)->GetArena();
+    ::google::protobuf::Arena* submessage_arena = reinterpret_cast<::mavcam::rpc::camera::Position*>(value)->GetArena();
     if (message_arena != submessage_arena) {
       value = ::google::protobuf::internal::GetOwnedMessage(message_arena, value, submessage_arena);
     }
@@ -14441,11 +14441,11 @@ inline void CaptureInfo::set_allocated_position(::mavsdk::rpc::camera::Position*
     _impl_._has_bits_[0] &= ~0x00000001u;
   }
 
-  _impl_.position_ = reinterpret_cast<::mavsdk::rpc::camera::Position*>(value);
-  // @@protoc_insertion_point(field_set_allocated:mavsdk.rpc.camera.CaptureInfo.position)
+  _impl_.position_ = reinterpret_cast<::mavcam::rpc::camera::Position*>(value);
+  // @@protoc_insertion_point(field_set_allocated:mavcam.rpc.camera.CaptureInfo.position)
 }
 
-// .mavsdk.rpc.camera.Quaternion attitude_quaternion = 2;
+// .mavcam.rpc.camera.Quaternion attitude_quaternion = 2;
 inline bool CaptureInfo::has_attitude_quaternion() const {
   bool value = (_impl_._has_bits_[0] & 0x00000002u) != 0;
   PROTOBUF_ASSUME(!value || _impl_.attitude_quaternion_ != nullptr);
@@ -14456,33 +14456,33 @@ inline void CaptureInfo::clear_attitude_quaternion() {
   if (_impl_.attitude_quaternion_ != nullptr) _impl_.attitude_quaternion_->Clear();
   _impl_._has_bits_[0] &= ~0x00000002u;
 }
-inline const ::mavsdk::rpc::camera::Quaternion& CaptureInfo::_internal_attitude_quaternion() const {
+inline const ::mavcam::rpc::camera::Quaternion& CaptureInfo::_internal_attitude_quaternion() const {
   PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
-  const ::mavsdk::rpc::camera::Quaternion* p = _impl_.attitude_quaternion_;
-  return p != nullptr ? *p : reinterpret_cast<const ::mavsdk::rpc::camera::Quaternion&>(::mavsdk::rpc::camera::_Quaternion_default_instance_);
+  const ::mavcam::rpc::camera::Quaternion* p = _impl_.attitude_quaternion_;
+  return p != nullptr ? *p : reinterpret_cast<const ::mavcam::rpc::camera::Quaternion&>(::mavcam::rpc::camera::_Quaternion_default_instance_);
 }
-inline const ::mavsdk::rpc::camera::Quaternion& CaptureInfo::attitude_quaternion() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_get:mavsdk.rpc.camera.CaptureInfo.attitude_quaternion)
+inline const ::mavcam::rpc::camera::Quaternion& CaptureInfo::attitude_quaternion() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:mavcam.rpc.camera.CaptureInfo.attitude_quaternion)
   return _internal_attitude_quaternion();
 }
-inline void CaptureInfo::unsafe_arena_set_allocated_attitude_quaternion(::mavsdk::rpc::camera::Quaternion* value) {
+inline void CaptureInfo::unsafe_arena_set_allocated_attitude_quaternion(::mavcam::rpc::camera::Quaternion* value) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   if (GetArena() == nullptr) {
     delete reinterpret_cast<::google::protobuf::MessageLite*>(_impl_.attitude_quaternion_);
   }
-  _impl_.attitude_quaternion_ = reinterpret_cast<::mavsdk::rpc::camera::Quaternion*>(value);
+  _impl_.attitude_quaternion_ = reinterpret_cast<::mavcam::rpc::camera::Quaternion*>(value);
   if (value != nullptr) {
     _impl_._has_bits_[0] |= 0x00000002u;
   } else {
     _impl_._has_bits_[0] &= ~0x00000002u;
   }
-  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:mavsdk.rpc.camera.CaptureInfo.attitude_quaternion)
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:mavcam.rpc.camera.CaptureInfo.attitude_quaternion)
 }
-inline ::mavsdk::rpc::camera::Quaternion* CaptureInfo::release_attitude_quaternion() {
+inline ::mavcam::rpc::camera::Quaternion* CaptureInfo::release_attitude_quaternion() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
 
   _impl_._has_bits_[0] &= ~0x00000002u;
-  ::mavsdk::rpc::camera::Quaternion* released = _impl_.attitude_quaternion_;
+  ::mavcam::rpc::camera::Quaternion* released = _impl_.attitude_quaternion_;
   _impl_.attitude_quaternion_ = nullptr;
 #ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
   auto* old = reinterpret_cast<::google::protobuf::MessageLite*>(released);
@@ -14497,38 +14497,38 @@ inline ::mavsdk::rpc::camera::Quaternion* CaptureInfo::release_attitude_quaterni
 #endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
   return released;
 }
-inline ::mavsdk::rpc::camera::Quaternion* CaptureInfo::unsafe_arena_release_attitude_quaternion() {
+inline ::mavcam::rpc::camera::Quaternion* CaptureInfo::unsafe_arena_release_attitude_quaternion() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  // @@protoc_insertion_point(field_release:mavsdk.rpc.camera.CaptureInfo.attitude_quaternion)
+  // @@protoc_insertion_point(field_release:mavcam.rpc.camera.CaptureInfo.attitude_quaternion)
 
   _impl_._has_bits_[0] &= ~0x00000002u;
-  ::mavsdk::rpc::camera::Quaternion* temp = _impl_.attitude_quaternion_;
+  ::mavcam::rpc::camera::Quaternion* temp = _impl_.attitude_quaternion_;
   _impl_.attitude_quaternion_ = nullptr;
   return temp;
 }
-inline ::mavsdk::rpc::camera::Quaternion* CaptureInfo::_internal_mutable_attitude_quaternion() {
+inline ::mavcam::rpc::camera::Quaternion* CaptureInfo::_internal_mutable_attitude_quaternion() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   _impl_._has_bits_[0] |= 0x00000002u;
   if (_impl_.attitude_quaternion_ == nullptr) {
-    auto* p = CreateMaybeMessage<::mavsdk::rpc::camera::Quaternion>(GetArena());
-    _impl_.attitude_quaternion_ = reinterpret_cast<::mavsdk::rpc::camera::Quaternion*>(p);
+    auto* p = CreateMaybeMessage<::mavcam::rpc::camera::Quaternion>(GetArena());
+    _impl_.attitude_quaternion_ = reinterpret_cast<::mavcam::rpc::camera::Quaternion*>(p);
   }
   return _impl_.attitude_quaternion_;
 }
-inline ::mavsdk::rpc::camera::Quaternion* CaptureInfo::mutable_attitude_quaternion() ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  ::mavsdk::rpc::camera::Quaternion* _msg = _internal_mutable_attitude_quaternion();
-  // @@protoc_insertion_point(field_mutable:mavsdk.rpc.camera.CaptureInfo.attitude_quaternion)
+inline ::mavcam::rpc::camera::Quaternion* CaptureInfo::mutable_attitude_quaternion() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  ::mavcam::rpc::camera::Quaternion* _msg = _internal_mutable_attitude_quaternion();
+  // @@protoc_insertion_point(field_mutable:mavcam.rpc.camera.CaptureInfo.attitude_quaternion)
   return _msg;
 }
-inline void CaptureInfo::set_allocated_attitude_quaternion(::mavsdk::rpc::camera::Quaternion* value) {
+inline void CaptureInfo::set_allocated_attitude_quaternion(::mavcam::rpc::camera::Quaternion* value) {
   ::google::protobuf::Arena* message_arena = GetArena();
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   if (message_arena == nullptr) {
-    delete reinterpret_cast<::mavsdk::rpc::camera::Quaternion*>(_impl_.attitude_quaternion_);
+    delete reinterpret_cast<::mavcam::rpc::camera::Quaternion*>(_impl_.attitude_quaternion_);
   }
 
   if (value != nullptr) {
-    ::google::protobuf::Arena* submessage_arena = reinterpret_cast<::mavsdk::rpc::camera::Quaternion*>(value)->GetArena();
+    ::google::protobuf::Arena* submessage_arena = reinterpret_cast<::mavcam::rpc::camera::Quaternion*>(value)->GetArena();
     if (message_arena != submessage_arena) {
       value = ::google::protobuf::internal::GetOwnedMessage(message_arena, value, submessage_arena);
     }
@@ -14537,11 +14537,11 @@ inline void CaptureInfo::set_allocated_attitude_quaternion(::mavsdk::rpc::camera
     _impl_._has_bits_[0] &= ~0x00000002u;
   }
 
-  _impl_.attitude_quaternion_ = reinterpret_cast<::mavsdk::rpc::camera::Quaternion*>(value);
-  // @@protoc_insertion_point(field_set_allocated:mavsdk.rpc.camera.CaptureInfo.attitude_quaternion)
+  _impl_.attitude_quaternion_ = reinterpret_cast<::mavcam::rpc::camera::Quaternion*>(value);
+  // @@protoc_insertion_point(field_set_allocated:mavcam.rpc.camera.CaptureInfo.attitude_quaternion)
 }
 
-// .mavsdk.rpc.camera.EulerAngle attitude_euler_angle = 3;
+// .mavcam.rpc.camera.EulerAngle attitude_euler_angle = 3;
 inline bool CaptureInfo::has_attitude_euler_angle() const {
   bool value = (_impl_._has_bits_[0] & 0x00000004u) != 0;
   PROTOBUF_ASSUME(!value || _impl_.attitude_euler_angle_ != nullptr);
@@ -14552,33 +14552,33 @@ inline void CaptureInfo::clear_attitude_euler_angle() {
   if (_impl_.attitude_euler_angle_ != nullptr) _impl_.attitude_euler_angle_->Clear();
   _impl_._has_bits_[0] &= ~0x00000004u;
 }
-inline const ::mavsdk::rpc::camera::EulerAngle& CaptureInfo::_internal_attitude_euler_angle() const {
+inline const ::mavcam::rpc::camera::EulerAngle& CaptureInfo::_internal_attitude_euler_angle() const {
   PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
-  const ::mavsdk::rpc::camera::EulerAngle* p = _impl_.attitude_euler_angle_;
-  return p != nullptr ? *p : reinterpret_cast<const ::mavsdk::rpc::camera::EulerAngle&>(::mavsdk::rpc::camera::_EulerAngle_default_instance_);
+  const ::mavcam::rpc::camera::EulerAngle* p = _impl_.attitude_euler_angle_;
+  return p != nullptr ? *p : reinterpret_cast<const ::mavcam::rpc::camera::EulerAngle&>(::mavcam::rpc::camera::_EulerAngle_default_instance_);
 }
-inline const ::mavsdk::rpc::camera::EulerAngle& CaptureInfo::attitude_euler_angle() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_get:mavsdk.rpc.camera.CaptureInfo.attitude_euler_angle)
+inline const ::mavcam::rpc::camera::EulerAngle& CaptureInfo::attitude_euler_angle() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:mavcam.rpc.camera.CaptureInfo.attitude_euler_angle)
   return _internal_attitude_euler_angle();
 }
-inline void CaptureInfo::unsafe_arena_set_allocated_attitude_euler_angle(::mavsdk::rpc::camera::EulerAngle* value) {
+inline void CaptureInfo::unsafe_arena_set_allocated_attitude_euler_angle(::mavcam::rpc::camera::EulerAngle* value) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   if (GetArena() == nullptr) {
     delete reinterpret_cast<::google::protobuf::MessageLite*>(_impl_.attitude_euler_angle_);
   }
-  _impl_.attitude_euler_angle_ = reinterpret_cast<::mavsdk::rpc::camera::EulerAngle*>(value);
+  _impl_.attitude_euler_angle_ = reinterpret_cast<::mavcam::rpc::camera::EulerAngle*>(value);
   if (value != nullptr) {
     _impl_._has_bits_[0] |= 0x00000004u;
   } else {
     _impl_._has_bits_[0] &= ~0x00000004u;
   }
-  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:mavsdk.rpc.camera.CaptureInfo.attitude_euler_angle)
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:mavcam.rpc.camera.CaptureInfo.attitude_euler_angle)
 }
-inline ::mavsdk::rpc::camera::EulerAngle* CaptureInfo::release_attitude_euler_angle() {
+inline ::mavcam::rpc::camera::EulerAngle* CaptureInfo::release_attitude_euler_angle() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
 
   _impl_._has_bits_[0] &= ~0x00000004u;
-  ::mavsdk::rpc::camera::EulerAngle* released = _impl_.attitude_euler_angle_;
+  ::mavcam::rpc::camera::EulerAngle* released = _impl_.attitude_euler_angle_;
   _impl_.attitude_euler_angle_ = nullptr;
 #ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
   auto* old = reinterpret_cast<::google::protobuf::MessageLite*>(released);
@@ -14593,38 +14593,38 @@ inline ::mavsdk::rpc::camera::EulerAngle* CaptureInfo::release_attitude_euler_an
 #endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
   return released;
 }
-inline ::mavsdk::rpc::camera::EulerAngle* CaptureInfo::unsafe_arena_release_attitude_euler_angle() {
+inline ::mavcam::rpc::camera::EulerAngle* CaptureInfo::unsafe_arena_release_attitude_euler_angle() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  // @@protoc_insertion_point(field_release:mavsdk.rpc.camera.CaptureInfo.attitude_euler_angle)
+  // @@protoc_insertion_point(field_release:mavcam.rpc.camera.CaptureInfo.attitude_euler_angle)
 
   _impl_._has_bits_[0] &= ~0x00000004u;
-  ::mavsdk::rpc::camera::EulerAngle* temp = _impl_.attitude_euler_angle_;
+  ::mavcam::rpc::camera::EulerAngle* temp = _impl_.attitude_euler_angle_;
   _impl_.attitude_euler_angle_ = nullptr;
   return temp;
 }
-inline ::mavsdk::rpc::camera::EulerAngle* CaptureInfo::_internal_mutable_attitude_euler_angle() {
+inline ::mavcam::rpc::camera::EulerAngle* CaptureInfo::_internal_mutable_attitude_euler_angle() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   _impl_._has_bits_[0] |= 0x00000004u;
   if (_impl_.attitude_euler_angle_ == nullptr) {
-    auto* p = CreateMaybeMessage<::mavsdk::rpc::camera::EulerAngle>(GetArena());
-    _impl_.attitude_euler_angle_ = reinterpret_cast<::mavsdk::rpc::camera::EulerAngle*>(p);
+    auto* p = CreateMaybeMessage<::mavcam::rpc::camera::EulerAngle>(GetArena());
+    _impl_.attitude_euler_angle_ = reinterpret_cast<::mavcam::rpc::camera::EulerAngle*>(p);
   }
   return _impl_.attitude_euler_angle_;
 }
-inline ::mavsdk::rpc::camera::EulerAngle* CaptureInfo::mutable_attitude_euler_angle() ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  ::mavsdk::rpc::camera::EulerAngle* _msg = _internal_mutable_attitude_euler_angle();
-  // @@protoc_insertion_point(field_mutable:mavsdk.rpc.camera.CaptureInfo.attitude_euler_angle)
+inline ::mavcam::rpc::camera::EulerAngle* CaptureInfo::mutable_attitude_euler_angle() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  ::mavcam::rpc::camera::EulerAngle* _msg = _internal_mutable_attitude_euler_angle();
+  // @@protoc_insertion_point(field_mutable:mavcam.rpc.camera.CaptureInfo.attitude_euler_angle)
   return _msg;
 }
-inline void CaptureInfo::set_allocated_attitude_euler_angle(::mavsdk::rpc::camera::EulerAngle* value) {
+inline void CaptureInfo::set_allocated_attitude_euler_angle(::mavcam::rpc::camera::EulerAngle* value) {
   ::google::protobuf::Arena* message_arena = GetArena();
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   if (message_arena == nullptr) {
-    delete reinterpret_cast<::mavsdk::rpc::camera::EulerAngle*>(_impl_.attitude_euler_angle_);
+    delete reinterpret_cast<::mavcam::rpc::camera::EulerAngle*>(_impl_.attitude_euler_angle_);
   }
 
   if (value != nullptr) {
-    ::google::protobuf::Arena* submessage_arena = reinterpret_cast<::mavsdk::rpc::camera::EulerAngle*>(value)->GetArena();
+    ::google::protobuf::Arena* submessage_arena = reinterpret_cast<::mavcam::rpc::camera::EulerAngle*>(value)->GetArena();
     if (message_arena != submessage_arena) {
       value = ::google::protobuf::internal::GetOwnedMessage(message_arena, value, submessage_arena);
     }
@@ -14633,8 +14633,8 @@ inline void CaptureInfo::set_allocated_attitude_euler_angle(::mavsdk::rpc::camer
     _impl_._has_bits_[0] &= ~0x00000004u;
   }
 
-  _impl_.attitude_euler_angle_ = reinterpret_cast<::mavsdk::rpc::camera::EulerAngle*>(value);
-  // @@protoc_insertion_point(field_set_allocated:mavsdk.rpc.camera.CaptureInfo.attitude_euler_angle)
+  _impl_.attitude_euler_angle_ = reinterpret_cast<::mavcam::rpc::camera::EulerAngle*>(value);
+  // @@protoc_insertion_point(field_set_allocated:mavcam.rpc.camera.CaptureInfo.attitude_euler_angle)
 }
 
 // uint64 time_utc_us = 4;
@@ -14643,12 +14643,12 @@ inline void CaptureInfo::clear_time_utc_us() {
   _impl_.time_utc_us_ = ::uint64_t{0u};
 }
 inline ::uint64_t CaptureInfo::time_utc_us() const {
-  // @@protoc_insertion_point(field_get:mavsdk.rpc.camera.CaptureInfo.time_utc_us)
+  // @@protoc_insertion_point(field_get:mavcam.rpc.camera.CaptureInfo.time_utc_us)
   return _internal_time_utc_us();
 }
 inline void CaptureInfo::set_time_utc_us(::uint64_t value) {
   _internal_set_time_utc_us(value);
-  // @@protoc_insertion_point(field_set:mavsdk.rpc.camera.CaptureInfo.time_utc_us)
+  // @@protoc_insertion_point(field_set:mavcam.rpc.camera.CaptureInfo.time_utc_us)
 }
 inline ::uint64_t CaptureInfo::_internal_time_utc_us() const {
   PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
@@ -14666,12 +14666,12 @@ inline void CaptureInfo::clear_is_success() {
   _impl_.is_success_ = false;
 }
 inline bool CaptureInfo::is_success() const {
-  // @@protoc_insertion_point(field_get:mavsdk.rpc.camera.CaptureInfo.is_success)
+  // @@protoc_insertion_point(field_get:mavcam.rpc.camera.CaptureInfo.is_success)
   return _internal_is_success();
 }
 inline void CaptureInfo::set_is_success(bool value) {
   _internal_set_is_success(value);
-  // @@protoc_insertion_point(field_set:mavsdk.rpc.camera.CaptureInfo.is_success)
+  // @@protoc_insertion_point(field_set:mavcam.rpc.camera.CaptureInfo.is_success)
 }
 inline bool CaptureInfo::_internal_is_success() const {
   PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
@@ -14689,12 +14689,12 @@ inline void CaptureInfo::clear_index() {
   _impl_.index_ = 0;
 }
 inline ::int32_t CaptureInfo::index() const {
-  // @@protoc_insertion_point(field_get:mavsdk.rpc.camera.CaptureInfo.index)
+  // @@protoc_insertion_point(field_get:mavcam.rpc.camera.CaptureInfo.index)
   return _internal_index();
 }
 inline void CaptureInfo::set_index(::int32_t value) {
   _internal_set_index(value);
-  // @@protoc_insertion_point(field_set:mavsdk.rpc.camera.CaptureInfo.index)
+  // @@protoc_insertion_point(field_set:mavcam.rpc.camera.CaptureInfo.index)
 }
 inline ::int32_t CaptureInfo::_internal_index() const {
   PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
@@ -14713,7 +14713,7 @@ inline void CaptureInfo::clear_file_url() {
 }
 inline const std::string& CaptureInfo::file_url() const
     ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_get:mavsdk.rpc.camera.CaptureInfo.file_url)
+  // @@protoc_insertion_point(field_get:mavcam.rpc.camera.CaptureInfo.file_url)
   return _internal_file_url();
 }
 template <typename Arg_, typename... Args_>
@@ -14722,11 +14722,11 @@ inline PROTOBUF_ALWAYS_INLINE void CaptureInfo::set_file_url(Arg_&& arg,
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
   _impl_.file_url_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
-  // @@protoc_insertion_point(field_set:mavsdk.rpc.camera.CaptureInfo.file_url)
+  // @@protoc_insertion_point(field_set:mavcam.rpc.camera.CaptureInfo.file_url)
 }
 inline std::string* CaptureInfo::mutable_file_url() ABSL_ATTRIBUTE_LIFETIME_BOUND {
   std::string* _s = _internal_mutable_file_url();
-  // @@protoc_insertion_point(field_mutable:mavsdk.rpc.camera.CaptureInfo.file_url)
+  // @@protoc_insertion_point(field_mutable:mavcam.rpc.camera.CaptureInfo.file_url)
   return _s;
 }
 inline const std::string& CaptureInfo::_internal_file_url() const {
@@ -14745,7 +14745,7 @@ inline std::string* CaptureInfo::_internal_mutable_file_url() {
 }
 inline std::string* CaptureInfo::release_file_url() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  // @@protoc_insertion_point(field_release:mavsdk.rpc.camera.CaptureInfo.file_url)
+  // @@protoc_insertion_point(field_release:mavcam.rpc.camera.CaptureInfo.file_url)
   return _impl_.file_url_.Release();
 }
 inline void CaptureInfo::set_allocated_file_url(std::string* value) {
@@ -14756,7 +14756,7 @@ inline void CaptureInfo::set_allocated_file_url(std::string* value) {
           _impl_.file_url_.Set("", GetArena());
         }
   #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  // @@protoc_insertion_point(field_set_allocated:mavsdk.rpc.camera.CaptureInfo.file_url)
+  // @@protoc_insertion_point(field_set_allocated:mavcam.rpc.camera.CaptureInfo.file_url)
 }
 
 // -------------------------------------------------------------------
@@ -14769,12 +14769,12 @@ inline void VideoStreamSettings::clear_frame_rate_hz() {
   _impl_.frame_rate_hz_ = 0;
 }
 inline float VideoStreamSettings::frame_rate_hz() const {
-  // @@protoc_insertion_point(field_get:mavsdk.rpc.camera.VideoStreamSettings.frame_rate_hz)
+  // @@protoc_insertion_point(field_get:mavcam.rpc.camera.VideoStreamSettings.frame_rate_hz)
   return _internal_frame_rate_hz();
 }
 inline void VideoStreamSettings::set_frame_rate_hz(float value) {
   _internal_set_frame_rate_hz(value);
-  // @@protoc_insertion_point(field_set:mavsdk.rpc.camera.VideoStreamSettings.frame_rate_hz)
+  // @@protoc_insertion_point(field_set:mavcam.rpc.camera.VideoStreamSettings.frame_rate_hz)
 }
 inline float VideoStreamSettings::_internal_frame_rate_hz() const {
   PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
@@ -14792,12 +14792,12 @@ inline void VideoStreamSettings::clear_horizontal_resolution_pix() {
   _impl_.horizontal_resolution_pix_ = 0u;
 }
 inline ::uint32_t VideoStreamSettings::horizontal_resolution_pix() const {
-  // @@protoc_insertion_point(field_get:mavsdk.rpc.camera.VideoStreamSettings.horizontal_resolution_pix)
+  // @@protoc_insertion_point(field_get:mavcam.rpc.camera.VideoStreamSettings.horizontal_resolution_pix)
   return _internal_horizontal_resolution_pix();
 }
 inline void VideoStreamSettings::set_horizontal_resolution_pix(::uint32_t value) {
   _internal_set_horizontal_resolution_pix(value);
-  // @@protoc_insertion_point(field_set:mavsdk.rpc.camera.VideoStreamSettings.horizontal_resolution_pix)
+  // @@protoc_insertion_point(field_set:mavcam.rpc.camera.VideoStreamSettings.horizontal_resolution_pix)
 }
 inline ::uint32_t VideoStreamSettings::_internal_horizontal_resolution_pix() const {
   PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
@@ -14815,12 +14815,12 @@ inline void VideoStreamSettings::clear_vertical_resolution_pix() {
   _impl_.vertical_resolution_pix_ = 0u;
 }
 inline ::uint32_t VideoStreamSettings::vertical_resolution_pix() const {
-  // @@protoc_insertion_point(field_get:mavsdk.rpc.camera.VideoStreamSettings.vertical_resolution_pix)
+  // @@protoc_insertion_point(field_get:mavcam.rpc.camera.VideoStreamSettings.vertical_resolution_pix)
   return _internal_vertical_resolution_pix();
 }
 inline void VideoStreamSettings::set_vertical_resolution_pix(::uint32_t value) {
   _internal_set_vertical_resolution_pix(value);
-  // @@protoc_insertion_point(field_set:mavsdk.rpc.camera.VideoStreamSettings.vertical_resolution_pix)
+  // @@protoc_insertion_point(field_set:mavcam.rpc.camera.VideoStreamSettings.vertical_resolution_pix)
 }
 inline ::uint32_t VideoStreamSettings::_internal_vertical_resolution_pix() const {
   PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
@@ -14838,12 +14838,12 @@ inline void VideoStreamSettings::clear_bit_rate_b_s() {
   _impl_.bit_rate_b_s_ = 0u;
 }
 inline ::uint32_t VideoStreamSettings::bit_rate_b_s() const {
-  // @@protoc_insertion_point(field_get:mavsdk.rpc.camera.VideoStreamSettings.bit_rate_b_s)
+  // @@protoc_insertion_point(field_get:mavcam.rpc.camera.VideoStreamSettings.bit_rate_b_s)
   return _internal_bit_rate_b_s();
 }
 inline void VideoStreamSettings::set_bit_rate_b_s(::uint32_t value) {
   _internal_set_bit_rate_b_s(value);
-  // @@protoc_insertion_point(field_set:mavsdk.rpc.camera.VideoStreamSettings.bit_rate_b_s)
+  // @@protoc_insertion_point(field_set:mavcam.rpc.camera.VideoStreamSettings.bit_rate_b_s)
 }
 inline ::uint32_t VideoStreamSettings::_internal_bit_rate_b_s() const {
   PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
@@ -14861,12 +14861,12 @@ inline void VideoStreamSettings::clear_rotation_deg() {
   _impl_.rotation_deg_ = 0u;
 }
 inline ::uint32_t VideoStreamSettings::rotation_deg() const {
-  // @@protoc_insertion_point(field_get:mavsdk.rpc.camera.VideoStreamSettings.rotation_deg)
+  // @@protoc_insertion_point(field_get:mavcam.rpc.camera.VideoStreamSettings.rotation_deg)
   return _internal_rotation_deg();
 }
 inline void VideoStreamSettings::set_rotation_deg(::uint32_t value) {
   _internal_set_rotation_deg(value);
-  // @@protoc_insertion_point(field_set:mavsdk.rpc.camera.VideoStreamSettings.rotation_deg)
+  // @@protoc_insertion_point(field_set:mavcam.rpc.camera.VideoStreamSettings.rotation_deg)
 }
 inline ::uint32_t VideoStreamSettings::_internal_rotation_deg() const {
   PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
@@ -14885,7 +14885,7 @@ inline void VideoStreamSettings::clear_uri() {
 }
 inline const std::string& VideoStreamSettings::uri() const
     ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_get:mavsdk.rpc.camera.VideoStreamSettings.uri)
+  // @@protoc_insertion_point(field_get:mavcam.rpc.camera.VideoStreamSettings.uri)
   return _internal_uri();
 }
 template <typename Arg_, typename... Args_>
@@ -14894,11 +14894,11 @@ inline PROTOBUF_ALWAYS_INLINE void VideoStreamSettings::set_uri(Arg_&& arg,
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
   _impl_.uri_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
-  // @@protoc_insertion_point(field_set:mavsdk.rpc.camera.VideoStreamSettings.uri)
+  // @@protoc_insertion_point(field_set:mavcam.rpc.camera.VideoStreamSettings.uri)
 }
 inline std::string* VideoStreamSettings::mutable_uri() ABSL_ATTRIBUTE_LIFETIME_BOUND {
   std::string* _s = _internal_mutable_uri();
-  // @@protoc_insertion_point(field_mutable:mavsdk.rpc.camera.VideoStreamSettings.uri)
+  // @@protoc_insertion_point(field_mutable:mavcam.rpc.camera.VideoStreamSettings.uri)
   return _s;
 }
 inline const std::string& VideoStreamSettings::_internal_uri() const {
@@ -14917,7 +14917,7 @@ inline std::string* VideoStreamSettings::_internal_mutable_uri() {
 }
 inline std::string* VideoStreamSettings::release_uri() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  // @@protoc_insertion_point(field_release:mavsdk.rpc.camera.VideoStreamSettings.uri)
+  // @@protoc_insertion_point(field_release:mavcam.rpc.camera.VideoStreamSettings.uri)
   return _impl_.uri_.Release();
 }
 inline void VideoStreamSettings::set_allocated_uri(std::string* value) {
@@ -14928,7 +14928,7 @@ inline void VideoStreamSettings::set_allocated_uri(std::string* value) {
           _impl_.uri_.Set("", GetArena());
         }
   #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  // @@protoc_insertion_point(field_set_allocated:mavsdk.rpc.camera.VideoStreamSettings.uri)
+  // @@protoc_insertion_point(field_set_allocated:mavcam.rpc.camera.VideoStreamSettings.uri)
 }
 
 // float horizontal_fov_deg = 7;
@@ -14937,12 +14937,12 @@ inline void VideoStreamSettings::clear_horizontal_fov_deg() {
   _impl_.horizontal_fov_deg_ = 0;
 }
 inline float VideoStreamSettings::horizontal_fov_deg() const {
-  // @@protoc_insertion_point(field_get:mavsdk.rpc.camera.VideoStreamSettings.horizontal_fov_deg)
+  // @@protoc_insertion_point(field_get:mavcam.rpc.camera.VideoStreamSettings.horizontal_fov_deg)
   return _internal_horizontal_fov_deg();
 }
 inline void VideoStreamSettings::set_horizontal_fov_deg(float value) {
   _internal_set_horizontal_fov_deg(value);
-  // @@protoc_insertion_point(field_set:mavsdk.rpc.camera.VideoStreamSettings.horizontal_fov_deg)
+  // @@protoc_insertion_point(field_set:mavcam.rpc.camera.VideoStreamSettings.horizontal_fov_deg)
 }
 inline float VideoStreamSettings::_internal_horizontal_fov_deg() const {
   PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
@@ -14964,12 +14964,12 @@ inline void VideoStreamInfo::clear_stream_id() {
   _impl_.stream_id_ = 0;
 }
 inline ::int32_t VideoStreamInfo::stream_id() const {
-  // @@protoc_insertion_point(field_get:mavsdk.rpc.camera.VideoStreamInfo.stream_id)
+  // @@protoc_insertion_point(field_get:mavcam.rpc.camera.VideoStreamInfo.stream_id)
   return _internal_stream_id();
 }
 inline void VideoStreamInfo::set_stream_id(::int32_t value) {
   _internal_set_stream_id(value);
-  // @@protoc_insertion_point(field_set:mavsdk.rpc.camera.VideoStreamInfo.stream_id)
+  // @@protoc_insertion_point(field_set:mavcam.rpc.camera.VideoStreamInfo.stream_id)
 }
 inline ::int32_t VideoStreamInfo::_internal_stream_id() const {
   PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
@@ -14981,7 +14981,7 @@ inline void VideoStreamInfo::_internal_set_stream_id(::int32_t value) {
   _impl_.stream_id_ = value;
 }
 
-// .mavsdk.rpc.camera.VideoStreamSettings settings = 2;
+// .mavcam.rpc.camera.VideoStreamSettings settings = 2;
 inline bool VideoStreamInfo::has_settings() const {
   bool value = (_impl_._has_bits_[0] & 0x00000001u) != 0;
   PROTOBUF_ASSUME(!value || _impl_.settings_ != nullptr);
@@ -14992,33 +14992,33 @@ inline void VideoStreamInfo::clear_settings() {
   if (_impl_.settings_ != nullptr) _impl_.settings_->Clear();
   _impl_._has_bits_[0] &= ~0x00000001u;
 }
-inline const ::mavsdk::rpc::camera::VideoStreamSettings& VideoStreamInfo::_internal_settings() const {
+inline const ::mavcam::rpc::camera::VideoStreamSettings& VideoStreamInfo::_internal_settings() const {
   PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
-  const ::mavsdk::rpc::camera::VideoStreamSettings* p = _impl_.settings_;
-  return p != nullptr ? *p : reinterpret_cast<const ::mavsdk::rpc::camera::VideoStreamSettings&>(::mavsdk::rpc::camera::_VideoStreamSettings_default_instance_);
+  const ::mavcam::rpc::camera::VideoStreamSettings* p = _impl_.settings_;
+  return p != nullptr ? *p : reinterpret_cast<const ::mavcam::rpc::camera::VideoStreamSettings&>(::mavcam::rpc::camera::_VideoStreamSettings_default_instance_);
 }
-inline const ::mavsdk::rpc::camera::VideoStreamSettings& VideoStreamInfo::settings() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_get:mavsdk.rpc.camera.VideoStreamInfo.settings)
+inline const ::mavcam::rpc::camera::VideoStreamSettings& VideoStreamInfo::settings() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:mavcam.rpc.camera.VideoStreamInfo.settings)
   return _internal_settings();
 }
-inline void VideoStreamInfo::unsafe_arena_set_allocated_settings(::mavsdk::rpc::camera::VideoStreamSettings* value) {
+inline void VideoStreamInfo::unsafe_arena_set_allocated_settings(::mavcam::rpc::camera::VideoStreamSettings* value) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   if (GetArena() == nullptr) {
     delete reinterpret_cast<::google::protobuf::MessageLite*>(_impl_.settings_);
   }
-  _impl_.settings_ = reinterpret_cast<::mavsdk::rpc::camera::VideoStreamSettings*>(value);
+  _impl_.settings_ = reinterpret_cast<::mavcam::rpc::camera::VideoStreamSettings*>(value);
   if (value != nullptr) {
     _impl_._has_bits_[0] |= 0x00000001u;
   } else {
     _impl_._has_bits_[0] &= ~0x00000001u;
   }
-  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:mavsdk.rpc.camera.VideoStreamInfo.settings)
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:mavcam.rpc.camera.VideoStreamInfo.settings)
 }
-inline ::mavsdk::rpc::camera::VideoStreamSettings* VideoStreamInfo::release_settings() {
+inline ::mavcam::rpc::camera::VideoStreamSettings* VideoStreamInfo::release_settings() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
 
   _impl_._has_bits_[0] &= ~0x00000001u;
-  ::mavsdk::rpc::camera::VideoStreamSettings* released = _impl_.settings_;
+  ::mavcam::rpc::camera::VideoStreamSettings* released = _impl_.settings_;
   _impl_.settings_ = nullptr;
 #ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
   auto* old = reinterpret_cast<::google::protobuf::MessageLite*>(released);
@@ -15033,38 +15033,38 @@ inline ::mavsdk::rpc::camera::VideoStreamSettings* VideoStreamInfo::release_sett
 #endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
   return released;
 }
-inline ::mavsdk::rpc::camera::VideoStreamSettings* VideoStreamInfo::unsafe_arena_release_settings() {
+inline ::mavcam::rpc::camera::VideoStreamSettings* VideoStreamInfo::unsafe_arena_release_settings() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  // @@protoc_insertion_point(field_release:mavsdk.rpc.camera.VideoStreamInfo.settings)
+  // @@protoc_insertion_point(field_release:mavcam.rpc.camera.VideoStreamInfo.settings)
 
   _impl_._has_bits_[0] &= ~0x00000001u;
-  ::mavsdk::rpc::camera::VideoStreamSettings* temp = _impl_.settings_;
+  ::mavcam::rpc::camera::VideoStreamSettings* temp = _impl_.settings_;
   _impl_.settings_ = nullptr;
   return temp;
 }
-inline ::mavsdk::rpc::camera::VideoStreamSettings* VideoStreamInfo::_internal_mutable_settings() {
+inline ::mavcam::rpc::camera::VideoStreamSettings* VideoStreamInfo::_internal_mutable_settings() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   _impl_._has_bits_[0] |= 0x00000001u;
   if (_impl_.settings_ == nullptr) {
-    auto* p = CreateMaybeMessage<::mavsdk::rpc::camera::VideoStreamSettings>(GetArena());
-    _impl_.settings_ = reinterpret_cast<::mavsdk::rpc::camera::VideoStreamSettings*>(p);
+    auto* p = CreateMaybeMessage<::mavcam::rpc::camera::VideoStreamSettings>(GetArena());
+    _impl_.settings_ = reinterpret_cast<::mavcam::rpc::camera::VideoStreamSettings*>(p);
   }
   return _impl_.settings_;
 }
-inline ::mavsdk::rpc::camera::VideoStreamSettings* VideoStreamInfo::mutable_settings() ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  ::mavsdk::rpc::camera::VideoStreamSettings* _msg = _internal_mutable_settings();
-  // @@protoc_insertion_point(field_mutable:mavsdk.rpc.camera.VideoStreamInfo.settings)
+inline ::mavcam::rpc::camera::VideoStreamSettings* VideoStreamInfo::mutable_settings() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  ::mavcam::rpc::camera::VideoStreamSettings* _msg = _internal_mutable_settings();
+  // @@protoc_insertion_point(field_mutable:mavcam.rpc.camera.VideoStreamInfo.settings)
   return _msg;
 }
-inline void VideoStreamInfo::set_allocated_settings(::mavsdk::rpc::camera::VideoStreamSettings* value) {
+inline void VideoStreamInfo::set_allocated_settings(::mavcam::rpc::camera::VideoStreamSettings* value) {
   ::google::protobuf::Arena* message_arena = GetArena();
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   if (message_arena == nullptr) {
-    delete reinterpret_cast<::mavsdk::rpc::camera::VideoStreamSettings*>(_impl_.settings_);
+    delete reinterpret_cast<::mavcam::rpc::camera::VideoStreamSettings*>(_impl_.settings_);
   }
 
   if (value != nullptr) {
-    ::google::protobuf::Arena* submessage_arena = reinterpret_cast<::mavsdk::rpc::camera::VideoStreamSettings*>(value)->GetArena();
+    ::google::protobuf::Arena* submessage_arena = reinterpret_cast<::mavcam::rpc::camera::VideoStreamSettings*>(value)->GetArena();
     if (message_arena != submessage_arena) {
       value = ::google::protobuf::internal::GetOwnedMessage(message_arena, value, submessage_arena);
     }
@@ -15073,51 +15073,51 @@ inline void VideoStreamInfo::set_allocated_settings(::mavsdk::rpc::camera::Video
     _impl_._has_bits_[0] &= ~0x00000001u;
   }
 
-  _impl_.settings_ = reinterpret_cast<::mavsdk::rpc::camera::VideoStreamSettings*>(value);
-  // @@protoc_insertion_point(field_set_allocated:mavsdk.rpc.camera.VideoStreamInfo.settings)
+  _impl_.settings_ = reinterpret_cast<::mavcam::rpc::camera::VideoStreamSettings*>(value);
+  // @@protoc_insertion_point(field_set_allocated:mavcam.rpc.camera.VideoStreamInfo.settings)
 }
 
-// .mavsdk.rpc.camera.VideoStreamInfo.VideoStreamStatus status = 3;
+// .mavcam.rpc.camera.VideoStreamInfo.VideoStreamStatus status = 3;
 inline void VideoStreamInfo::clear_status() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   _impl_.status_ = 0;
 }
-inline ::mavsdk::rpc::camera::VideoStreamInfo_VideoStreamStatus VideoStreamInfo::status() const {
-  // @@protoc_insertion_point(field_get:mavsdk.rpc.camera.VideoStreamInfo.status)
+inline ::mavcam::rpc::camera::VideoStreamInfo_VideoStreamStatus VideoStreamInfo::status() const {
+  // @@protoc_insertion_point(field_get:mavcam.rpc.camera.VideoStreamInfo.status)
   return _internal_status();
 }
-inline void VideoStreamInfo::set_status(::mavsdk::rpc::camera::VideoStreamInfo_VideoStreamStatus value) {
+inline void VideoStreamInfo::set_status(::mavcam::rpc::camera::VideoStreamInfo_VideoStreamStatus value) {
   _internal_set_status(value);
-  // @@protoc_insertion_point(field_set:mavsdk.rpc.camera.VideoStreamInfo.status)
+  // @@protoc_insertion_point(field_set:mavcam.rpc.camera.VideoStreamInfo.status)
 }
-inline ::mavsdk::rpc::camera::VideoStreamInfo_VideoStreamStatus VideoStreamInfo::_internal_status() const {
+inline ::mavcam::rpc::camera::VideoStreamInfo_VideoStreamStatus VideoStreamInfo::_internal_status() const {
   PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
-  return static_cast<::mavsdk::rpc::camera::VideoStreamInfo_VideoStreamStatus>(_impl_.status_);
+  return static_cast<::mavcam::rpc::camera::VideoStreamInfo_VideoStreamStatus>(_impl_.status_);
 }
-inline void VideoStreamInfo::_internal_set_status(::mavsdk::rpc::camera::VideoStreamInfo_VideoStreamStatus value) {
+inline void VideoStreamInfo::_internal_set_status(::mavcam::rpc::camera::VideoStreamInfo_VideoStreamStatus value) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
   _impl_.status_ = value;
 }
 
-// .mavsdk.rpc.camera.VideoStreamInfo.VideoStreamSpectrum spectrum = 4;
+// .mavcam.rpc.camera.VideoStreamInfo.VideoStreamSpectrum spectrum = 4;
 inline void VideoStreamInfo::clear_spectrum() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   _impl_.spectrum_ = 0;
 }
-inline ::mavsdk::rpc::camera::VideoStreamInfo_VideoStreamSpectrum VideoStreamInfo::spectrum() const {
-  // @@protoc_insertion_point(field_get:mavsdk.rpc.camera.VideoStreamInfo.spectrum)
+inline ::mavcam::rpc::camera::VideoStreamInfo_VideoStreamSpectrum VideoStreamInfo::spectrum() const {
+  // @@protoc_insertion_point(field_get:mavcam.rpc.camera.VideoStreamInfo.spectrum)
   return _internal_spectrum();
 }
-inline void VideoStreamInfo::set_spectrum(::mavsdk::rpc::camera::VideoStreamInfo_VideoStreamSpectrum value) {
+inline void VideoStreamInfo::set_spectrum(::mavcam::rpc::camera::VideoStreamInfo_VideoStreamSpectrum value) {
   _internal_set_spectrum(value);
-  // @@protoc_insertion_point(field_set:mavsdk.rpc.camera.VideoStreamInfo.spectrum)
+  // @@protoc_insertion_point(field_set:mavcam.rpc.camera.VideoStreamInfo.spectrum)
 }
-inline ::mavsdk::rpc::camera::VideoStreamInfo_VideoStreamSpectrum VideoStreamInfo::_internal_spectrum() const {
+inline ::mavcam::rpc::camera::VideoStreamInfo_VideoStreamSpectrum VideoStreamInfo::_internal_spectrum() const {
   PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
-  return static_cast<::mavsdk::rpc::camera::VideoStreamInfo_VideoStreamSpectrum>(_impl_.spectrum_);
+  return static_cast<::mavcam::rpc::camera::VideoStreamInfo_VideoStreamSpectrum>(_impl_.spectrum_);
 }
-inline void VideoStreamInfo::_internal_set_spectrum(::mavsdk::rpc::camera::VideoStreamInfo_VideoStreamSpectrum value) {
+inline void VideoStreamInfo::_internal_set_spectrum(::mavcam::rpc::camera::VideoStreamInfo_VideoStreamSpectrum value) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
   _impl_.spectrum_ = value;
@@ -15133,12 +15133,12 @@ inline void Status::clear_video_on() {
   _impl_.video_on_ = false;
 }
 inline bool Status::video_on() const {
-  // @@protoc_insertion_point(field_get:mavsdk.rpc.camera.Status.video_on)
+  // @@protoc_insertion_point(field_get:mavcam.rpc.camera.Status.video_on)
   return _internal_video_on();
 }
 inline void Status::set_video_on(bool value) {
   _internal_set_video_on(value);
-  // @@protoc_insertion_point(field_set:mavsdk.rpc.camera.Status.video_on)
+  // @@protoc_insertion_point(field_set:mavcam.rpc.camera.Status.video_on)
 }
 inline bool Status::_internal_video_on() const {
   PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
@@ -15156,12 +15156,12 @@ inline void Status::clear_photo_interval_on() {
   _impl_.photo_interval_on_ = false;
 }
 inline bool Status::photo_interval_on() const {
-  // @@protoc_insertion_point(field_get:mavsdk.rpc.camera.Status.photo_interval_on)
+  // @@protoc_insertion_point(field_get:mavcam.rpc.camera.Status.photo_interval_on)
   return _internal_photo_interval_on();
 }
 inline void Status::set_photo_interval_on(bool value) {
   _internal_set_photo_interval_on(value);
-  // @@protoc_insertion_point(field_set:mavsdk.rpc.camera.Status.photo_interval_on)
+  // @@protoc_insertion_point(field_set:mavcam.rpc.camera.Status.photo_interval_on)
 }
 inline bool Status::_internal_photo_interval_on() const {
   PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
@@ -15179,12 +15179,12 @@ inline void Status::clear_used_storage_mib() {
   _impl_.used_storage_mib_ = 0;
 }
 inline float Status::used_storage_mib() const {
-  // @@protoc_insertion_point(field_get:mavsdk.rpc.camera.Status.used_storage_mib)
+  // @@protoc_insertion_point(field_get:mavcam.rpc.camera.Status.used_storage_mib)
   return _internal_used_storage_mib();
 }
 inline void Status::set_used_storage_mib(float value) {
   _internal_set_used_storage_mib(value);
-  // @@protoc_insertion_point(field_set:mavsdk.rpc.camera.Status.used_storage_mib)
+  // @@protoc_insertion_point(field_set:mavcam.rpc.camera.Status.used_storage_mib)
 }
 inline float Status::_internal_used_storage_mib() const {
   PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
@@ -15202,12 +15202,12 @@ inline void Status::clear_available_storage_mib() {
   _impl_.available_storage_mib_ = 0;
 }
 inline float Status::available_storage_mib() const {
-  // @@protoc_insertion_point(field_get:mavsdk.rpc.camera.Status.available_storage_mib)
+  // @@protoc_insertion_point(field_get:mavcam.rpc.camera.Status.available_storage_mib)
   return _internal_available_storage_mib();
 }
 inline void Status::set_available_storage_mib(float value) {
   _internal_set_available_storage_mib(value);
-  // @@protoc_insertion_point(field_set:mavsdk.rpc.camera.Status.available_storage_mib)
+  // @@protoc_insertion_point(field_set:mavcam.rpc.camera.Status.available_storage_mib)
 }
 inline float Status::_internal_available_storage_mib() const {
   PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
@@ -15225,12 +15225,12 @@ inline void Status::clear_total_storage_mib() {
   _impl_.total_storage_mib_ = 0;
 }
 inline float Status::total_storage_mib() const {
-  // @@protoc_insertion_point(field_get:mavsdk.rpc.camera.Status.total_storage_mib)
+  // @@protoc_insertion_point(field_get:mavcam.rpc.camera.Status.total_storage_mib)
   return _internal_total_storage_mib();
 }
 inline void Status::set_total_storage_mib(float value) {
   _internal_set_total_storage_mib(value);
-  // @@protoc_insertion_point(field_set:mavsdk.rpc.camera.Status.total_storage_mib)
+  // @@protoc_insertion_point(field_set:mavcam.rpc.camera.Status.total_storage_mib)
 }
 inline float Status::_internal_total_storage_mib() const {
   PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
@@ -15248,12 +15248,12 @@ inline void Status::clear_recording_time_s() {
   _impl_.recording_time_s_ = 0;
 }
 inline float Status::recording_time_s() const {
-  // @@protoc_insertion_point(field_get:mavsdk.rpc.camera.Status.recording_time_s)
+  // @@protoc_insertion_point(field_get:mavcam.rpc.camera.Status.recording_time_s)
   return _internal_recording_time_s();
 }
 inline void Status::set_recording_time_s(float value) {
   _internal_set_recording_time_s(value);
-  // @@protoc_insertion_point(field_set:mavsdk.rpc.camera.Status.recording_time_s)
+  // @@protoc_insertion_point(field_set:mavcam.rpc.camera.Status.recording_time_s)
 }
 inline float Status::_internal_recording_time_s() const {
   PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
@@ -15272,7 +15272,7 @@ inline void Status::clear_media_folder_name() {
 }
 inline const std::string& Status::media_folder_name() const
     ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_get:mavsdk.rpc.camera.Status.media_folder_name)
+  // @@protoc_insertion_point(field_get:mavcam.rpc.camera.Status.media_folder_name)
   return _internal_media_folder_name();
 }
 template <typename Arg_, typename... Args_>
@@ -15281,11 +15281,11 @@ inline PROTOBUF_ALWAYS_INLINE void Status::set_media_folder_name(Arg_&& arg,
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
   _impl_.media_folder_name_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
-  // @@protoc_insertion_point(field_set:mavsdk.rpc.camera.Status.media_folder_name)
+  // @@protoc_insertion_point(field_set:mavcam.rpc.camera.Status.media_folder_name)
 }
 inline std::string* Status::mutable_media_folder_name() ABSL_ATTRIBUTE_LIFETIME_BOUND {
   std::string* _s = _internal_mutable_media_folder_name();
-  // @@protoc_insertion_point(field_mutable:mavsdk.rpc.camera.Status.media_folder_name)
+  // @@protoc_insertion_point(field_mutable:mavcam.rpc.camera.Status.media_folder_name)
   return _s;
 }
 inline const std::string& Status::_internal_media_folder_name() const {
@@ -15304,7 +15304,7 @@ inline std::string* Status::_internal_mutable_media_folder_name() {
 }
 inline std::string* Status::release_media_folder_name() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  // @@protoc_insertion_point(field_release:mavsdk.rpc.camera.Status.media_folder_name)
+  // @@protoc_insertion_point(field_release:mavcam.rpc.camera.Status.media_folder_name)
   return _impl_.media_folder_name_.Release();
 }
 inline void Status::set_allocated_media_folder_name(std::string* value) {
@@ -15315,27 +15315,27 @@ inline void Status::set_allocated_media_folder_name(std::string* value) {
           _impl_.media_folder_name_.Set("", GetArena());
         }
   #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  // @@protoc_insertion_point(field_set_allocated:mavsdk.rpc.camera.Status.media_folder_name)
+  // @@protoc_insertion_point(field_set_allocated:mavcam.rpc.camera.Status.media_folder_name)
 }
 
-// .mavsdk.rpc.camera.Status.StorageStatus storage_status = 8;
+// .mavcam.rpc.camera.Status.StorageStatus storage_status = 8;
 inline void Status::clear_storage_status() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   _impl_.storage_status_ = 0;
 }
-inline ::mavsdk::rpc::camera::Status_StorageStatus Status::storage_status() const {
-  // @@protoc_insertion_point(field_get:mavsdk.rpc.camera.Status.storage_status)
+inline ::mavcam::rpc::camera::Status_StorageStatus Status::storage_status() const {
+  // @@protoc_insertion_point(field_get:mavcam.rpc.camera.Status.storage_status)
   return _internal_storage_status();
 }
-inline void Status::set_storage_status(::mavsdk::rpc::camera::Status_StorageStatus value) {
+inline void Status::set_storage_status(::mavcam::rpc::camera::Status_StorageStatus value) {
   _internal_set_storage_status(value);
-  // @@protoc_insertion_point(field_set:mavsdk.rpc.camera.Status.storage_status)
+  // @@protoc_insertion_point(field_set:mavcam.rpc.camera.Status.storage_status)
 }
-inline ::mavsdk::rpc::camera::Status_StorageStatus Status::_internal_storage_status() const {
+inline ::mavcam::rpc::camera::Status_StorageStatus Status::_internal_storage_status() const {
   PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
-  return static_cast<::mavsdk::rpc::camera::Status_StorageStatus>(_impl_.storage_status_);
+  return static_cast<::mavcam::rpc::camera::Status_StorageStatus>(_impl_.storage_status_);
 }
-inline void Status::_internal_set_storage_status(::mavsdk::rpc::camera::Status_StorageStatus value) {
+inline void Status::_internal_set_storage_status(::mavcam::rpc::camera::Status_StorageStatus value) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
   _impl_.storage_status_ = value;
@@ -15347,12 +15347,12 @@ inline void Status::clear_storage_id() {
   _impl_.storage_id_ = 0u;
 }
 inline ::uint32_t Status::storage_id() const {
-  // @@protoc_insertion_point(field_get:mavsdk.rpc.camera.Status.storage_id)
+  // @@protoc_insertion_point(field_get:mavcam.rpc.camera.Status.storage_id)
   return _internal_storage_id();
 }
 inline void Status::set_storage_id(::uint32_t value) {
   _internal_set_storage_id(value);
-  // @@protoc_insertion_point(field_set:mavsdk.rpc.camera.Status.storage_id)
+  // @@protoc_insertion_point(field_set:mavcam.rpc.camera.Status.storage_id)
 }
 inline ::uint32_t Status::_internal_storage_id() const {
   PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
@@ -15364,24 +15364,24 @@ inline void Status::_internal_set_storage_id(::uint32_t value) {
   _impl_.storage_id_ = value;
 }
 
-// .mavsdk.rpc.camera.Status.StorageType storage_type = 10;
+// .mavcam.rpc.camera.Status.StorageType storage_type = 10;
 inline void Status::clear_storage_type() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   _impl_.storage_type_ = 0;
 }
-inline ::mavsdk::rpc::camera::Status_StorageType Status::storage_type() const {
-  // @@protoc_insertion_point(field_get:mavsdk.rpc.camera.Status.storage_type)
+inline ::mavcam::rpc::camera::Status_StorageType Status::storage_type() const {
+  // @@protoc_insertion_point(field_get:mavcam.rpc.camera.Status.storage_type)
   return _internal_storage_type();
 }
-inline void Status::set_storage_type(::mavsdk::rpc::camera::Status_StorageType value) {
+inline void Status::set_storage_type(::mavcam::rpc::camera::Status_StorageType value) {
   _internal_set_storage_type(value);
-  // @@protoc_insertion_point(field_set:mavsdk.rpc.camera.Status.storage_type)
+  // @@protoc_insertion_point(field_set:mavcam.rpc.camera.Status.storage_type)
 }
-inline ::mavsdk::rpc::camera::Status_StorageType Status::_internal_storage_type() const {
+inline ::mavcam::rpc::camera::Status_StorageType Status::_internal_storage_type() const {
   PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
-  return static_cast<::mavsdk::rpc::camera::Status_StorageType>(_impl_.storage_type_);
+  return static_cast<::mavcam::rpc::camera::Status_StorageType>(_impl_.storage_type_);
 }
-inline void Status::_internal_set_storage_type(::mavsdk::rpc::camera::Status_StorageType value) {
+inline void Status::_internal_set_storage_type(::mavcam::rpc::camera::Status_StorageType value) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
   _impl_.storage_type_ = value;
@@ -15398,7 +15398,7 @@ inline void Option::clear_option_id() {
 }
 inline const std::string& Option::option_id() const
     ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_get:mavsdk.rpc.camera.Option.option_id)
+  // @@protoc_insertion_point(field_get:mavcam.rpc.camera.Option.option_id)
   return _internal_option_id();
 }
 template <typename Arg_, typename... Args_>
@@ -15407,11 +15407,11 @@ inline PROTOBUF_ALWAYS_INLINE void Option::set_option_id(Arg_&& arg,
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
   _impl_.option_id_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
-  // @@protoc_insertion_point(field_set:mavsdk.rpc.camera.Option.option_id)
+  // @@protoc_insertion_point(field_set:mavcam.rpc.camera.Option.option_id)
 }
 inline std::string* Option::mutable_option_id() ABSL_ATTRIBUTE_LIFETIME_BOUND {
   std::string* _s = _internal_mutable_option_id();
-  // @@protoc_insertion_point(field_mutable:mavsdk.rpc.camera.Option.option_id)
+  // @@protoc_insertion_point(field_mutable:mavcam.rpc.camera.Option.option_id)
   return _s;
 }
 inline const std::string& Option::_internal_option_id() const {
@@ -15430,7 +15430,7 @@ inline std::string* Option::_internal_mutable_option_id() {
 }
 inline std::string* Option::release_option_id() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  // @@protoc_insertion_point(field_release:mavsdk.rpc.camera.Option.option_id)
+  // @@protoc_insertion_point(field_release:mavcam.rpc.camera.Option.option_id)
   return _impl_.option_id_.Release();
 }
 inline void Option::set_allocated_option_id(std::string* value) {
@@ -15441,7 +15441,7 @@ inline void Option::set_allocated_option_id(std::string* value) {
           _impl_.option_id_.Set("", GetArena());
         }
   #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  // @@protoc_insertion_point(field_set_allocated:mavsdk.rpc.camera.Option.option_id)
+  // @@protoc_insertion_point(field_set_allocated:mavcam.rpc.camera.Option.option_id)
 }
 
 // string option_description = 2;
@@ -15451,7 +15451,7 @@ inline void Option::clear_option_description() {
 }
 inline const std::string& Option::option_description() const
     ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_get:mavsdk.rpc.camera.Option.option_description)
+  // @@protoc_insertion_point(field_get:mavcam.rpc.camera.Option.option_description)
   return _internal_option_description();
 }
 template <typename Arg_, typename... Args_>
@@ -15460,11 +15460,11 @@ inline PROTOBUF_ALWAYS_INLINE void Option::set_option_description(Arg_&& arg,
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
   _impl_.option_description_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
-  // @@protoc_insertion_point(field_set:mavsdk.rpc.camera.Option.option_description)
+  // @@protoc_insertion_point(field_set:mavcam.rpc.camera.Option.option_description)
 }
 inline std::string* Option::mutable_option_description() ABSL_ATTRIBUTE_LIFETIME_BOUND {
   std::string* _s = _internal_mutable_option_description();
-  // @@protoc_insertion_point(field_mutable:mavsdk.rpc.camera.Option.option_description)
+  // @@protoc_insertion_point(field_mutable:mavcam.rpc.camera.Option.option_description)
   return _s;
 }
 inline const std::string& Option::_internal_option_description() const {
@@ -15483,7 +15483,7 @@ inline std::string* Option::_internal_mutable_option_description() {
 }
 inline std::string* Option::release_option_description() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  // @@protoc_insertion_point(field_release:mavsdk.rpc.camera.Option.option_description)
+  // @@protoc_insertion_point(field_release:mavcam.rpc.camera.Option.option_description)
   return _impl_.option_description_.Release();
 }
 inline void Option::set_allocated_option_description(std::string* value) {
@@ -15494,7 +15494,7 @@ inline void Option::set_allocated_option_description(std::string* value) {
           _impl_.option_description_.Set("", GetArena());
         }
   #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  // @@protoc_insertion_point(field_set_allocated:mavsdk.rpc.camera.Option.option_description)
+  // @@protoc_insertion_point(field_set_allocated:mavcam.rpc.camera.Option.option_description)
 }
 
 // -------------------------------------------------------------------
@@ -15508,7 +15508,7 @@ inline void Setting::clear_setting_id() {
 }
 inline const std::string& Setting::setting_id() const
     ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_get:mavsdk.rpc.camera.Setting.setting_id)
+  // @@protoc_insertion_point(field_get:mavcam.rpc.camera.Setting.setting_id)
   return _internal_setting_id();
 }
 template <typename Arg_, typename... Args_>
@@ -15517,11 +15517,11 @@ inline PROTOBUF_ALWAYS_INLINE void Setting::set_setting_id(Arg_&& arg,
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
   _impl_.setting_id_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
-  // @@protoc_insertion_point(field_set:mavsdk.rpc.camera.Setting.setting_id)
+  // @@protoc_insertion_point(field_set:mavcam.rpc.camera.Setting.setting_id)
 }
 inline std::string* Setting::mutable_setting_id() ABSL_ATTRIBUTE_LIFETIME_BOUND {
   std::string* _s = _internal_mutable_setting_id();
-  // @@protoc_insertion_point(field_mutable:mavsdk.rpc.camera.Setting.setting_id)
+  // @@protoc_insertion_point(field_mutable:mavcam.rpc.camera.Setting.setting_id)
   return _s;
 }
 inline const std::string& Setting::_internal_setting_id() const {
@@ -15540,7 +15540,7 @@ inline std::string* Setting::_internal_mutable_setting_id() {
 }
 inline std::string* Setting::release_setting_id() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  // @@protoc_insertion_point(field_release:mavsdk.rpc.camera.Setting.setting_id)
+  // @@protoc_insertion_point(field_release:mavcam.rpc.camera.Setting.setting_id)
   return _impl_.setting_id_.Release();
 }
 inline void Setting::set_allocated_setting_id(std::string* value) {
@@ -15551,7 +15551,7 @@ inline void Setting::set_allocated_setting_id(std::string* value) {
           _impl_.setting_id_.Set("", GetArena());
         }
   #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  // @@protoc_insertion_point(field_set_allocated:mavsdk.rpc.camera.Setting.setting_id)
+  // @@protoc_insertion_point(field_set_allocated:mavcam.rpc.camera.Setting.setting_id)
 }
 
 // string setting_description = 2;
@@ -15561,7 +15561,7 @@ inline void Setting::clear_setting_description() {
 }
 inline const std::string& Setting::setting_description() const
     ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_get:mavsdk.rpc.camera.Setting.setting_description)
+  // @@protoc_insertion_point(field_get:mavcam.rpc.camera.Setting.setting_description)
   return _internal_setting_description();
 }
 template <typename Arg_, typename... Args_>
@@ -15570,11 +15570,11 @@ inline PROTOBUF_ALWAYS_INLINE void Setting::set_setting_description(Arg_&& arg,
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
   _impl_.setting_description_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
-  // @@protoc_insertion_point(field_set:mavsdk.rpc.camera.Setting.setting_description)
+  // @@protoc_insertion_point(field_set:mavcam.rpc.camera.Setting.setting_description)
 }
 inline std::string* Setting::mutable_setting_description() ABSL_ATTRIBUTE_LIFETIME_BOUND {
   std::string* _s = _internal_mutable_setting_description();
-  // @@protoc_insertion_point(field_mutable:mavsdk.rpc.camera.Setting.setting_description)
+  // @@protoc_insertion_point(field_mutable:mavcam.rpc.camera.Setting.setting_description)
   return _s;
 }
 inline const std::string& Setting::_internal_setting_description() const {
@@ -15593,7 +15593,7 @@ inline std::string* Setting::_internal_mutable_setting_description() {
 }
 inline std::string* Setting::release_setting_description() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  // @@protoc_insertion_point(field_release:mavsdk.rpc.camera.Setting.setting_description)
+  // @@protoc_insertion_point(field_release:mavcam.rpc.camera.Setting.setting_description)
   return _impl_.setting_description_.Release();
 }
 inline void Setting::set_allocated_setting_description(std::string* value) {
@@ -15604,10 +15604,10 @@ inline void Setting::set_allocated_setting_description(std::string* value) {
           _impl_.setting_description_.Set("", GetArena());
         }
   #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  // @@protoc_insertion_point(field_set_allocated:mavsdk.rpc.camera.Setting.setting_description)
+  // @@protoc_insertion_point(field_set_allocated:mavcam.rpc.camera.Setting.setting_description)
 }
 
-// .mavsdk.rpc.camera.Option option = 3;
+// .mavcam.rpc.camera.Option option = 3;
 inline bool Setting::has_option() const {
   bool value = (_impl_._has_bits_[0] & 0x00000001u) != 0;
   PROTOBUF_ASSUME(!value || _impl_.option_ != nullptr);
@@ -15618,33 +15618,33 @@ inline void Setting::clear_option() {
   if (_impl_.option_ != nullptr) _impl_.option_->Clear();
   _impl_._has_bits_[0] &= ~0x00000001u;
 }
-inline const ::mavsdk::rpc::camera::Option& Setting::_internal_option() const {
+inline const ::mavcam::rpc::camera::Option& Setting::_internal_option() const {
   PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
-  const ::mavsdk::rpc::camera::Option* p = _impl_.option_;
-  return p != nullptr ? *p : reinterpret_cast<const ::mavsdk::rpc::camera::Option&>(::mavsdk::rpc::camera::_Option_default_instance_);
+  const ::mavcam::rpc::camera::Option* p = _impl_.option_;
+  return p != nullptr ? *p : reinterpret_cast<const ::mavcam::rpc::camera::Option&>(::mavcam::rpc::camera::_Option_default_instance_);
 }
-inline const ::mavsdk::rpc::camera::Option& Setting::option() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_get:mavsdk.rpc.camera.Setting.option)
+inline const ::mavcam::rpc::camera::Option& Setting::option() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:mavcam.rpc.camera.Setting.option)
   return _internal_option();
 }
-inline void Setting::unsafe_arena_set_allocated_option(::mavsdk::rpc::camera::Option* value) {
+inline void Setting::unsafe_arena_set_allocated_option(::mavcam::rpc::camera::Option* value) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   if (GetArena() == nullptr) {
     delete reinterpret_cast<::google::protobuf::MessageLite*>(_impl_.option_);
   }
-  _impl_.option_ = reinterpret_cast<::mavsdk::rpc::camera::Option*>(value);
+  _impl_.option_ = reinterpret_cast<::mavcam::rpc::camera::Option*>(value);
   if (value != nullptr) {
     _impl_._has_bits_[0] |= 0x00000001u;
   } else {
     _impl_._has_bits_[0] &= ~0x00000001u;
   }
-  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:mavsdk.rpc.camera.Setting.option)
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:mavcam.rpc.camera.Setting.option)
 }
-inline ::mavsdk::rpc::camera::Option* Setting::release_option() {
+inline ::mavcam::rpc::camera::Option* Setting::release_option() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
 
   _impl_._has_bits_[0] &= ~0x00000001u;
-  ::mavsdk::rpc::camera::Option* released = _impl_.option_;
+  ::mavcam::rpc::camera::Option* released = _impl_.option_;
   _impl_.option_ = nullptr;
 #ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
   auto* old = reinterpret_cast<::google::protobuf::MessageLite*>(released);
@@ -15659,38 +15659,38 @@ inline ::mavsdk::rpc::camera::Option* Setting::release_option() {
 #endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
   return released;
 }
-inline ::mavsdk::rpc::camera::Option* Setting::unsafe_arena_release_option() {
+inline ::mavcam::rpc::camera::Option* Setting::unsafe_arena_release_option() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  // @@protoc_insertion_point(field_release:mavsdk.rpc.camera.Setting.option)
+  // @@protoc_insertion_point(field_release:mavcam.rpc.camera.Setting.option)
 
   _impl_._has_bits_[0] &= ~0x00000001u;
-  ::mavsdk::rpc::camera::Option* temp = _impl_.option_;
+  ::mavcam::rpc::camera::Option* temp = _impl_.option_;
   _impl_.option_ = nullptr;
   return temp;
 }
-inline ::mavsdk::rpc::camera::Option* Setting::_internal_mutable_option() {
+inline ::mavcam::rpc::camera::Option* Setting::_internal_mutable_option() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   _impl_._has_bits_[0] |= 0x00000001u;
   if (_impl_.option_ == nullptr) {
-    auto* p = CreateMaybeMessage<::mavsdk::rpc::camera::Option>(GetArena());
-    _impl_.option_ = reinterpret_cast<::mavsdk::rpc::camera::Option*>(p);
+    auto* p = CreateMaybeMessage<::mavcam::rpc::camera::Option>(GetArena());
+    _impl_.option_ = reinterpret_cast<::mavcam::rpc::camera::Option*>(p);
   }
   return _impl_.option_;
 }
-inline ::mavsdk::rpc::camera::Option* Setting::mutable_option() ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  ::mavsdk::rpc::camera::Option* _msg = _internal_mutable_option();
-  // @@protoc_insertion_point(field_mutable:mavsdk.rpc.camera.Setting.option)
+inline ::mavcam::rpc::camera::Option* Setting::mutable_option() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  ::mavcam::rpc::camera::Option* _msg = _internal_mutable_option();
+  // @@protoc_insertion_point(field_mutable:mavcam.rpc.camera.Setting.option)
   return _msg;
 }
-inline void Setting::set_allocated_option(::mavsdk::rpc::camera::Option* value) {
+inline void Setting::set_allocated_option(::mavcam::rpc::camera::Option* value) {
   ::google::protobuf::Arena* message_arena = GetArena();
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   if (message_arena == nullptr) {
-    delete reinterpret_cast<::mavsdk::rpc::camera::Option*>(_impl_.option_);
+    delete reinterpret_cast<::mavcam::rpc::camera::Option*>(_impl_.option_);
   }
 
   if (value != nullptr) {
-    ::google::protobuf::Arena* submessage_arena = reinterpret_cast<::mavsdk::rpc::camera::Option*>(value)->GetArena();
+    ::google::protobuf::Arena* submessage_arena = reinterpret_cast<::mavcam::rpc::camera::Option*>(value)->GetArena();
     if (message_arena != submessage_arena) {
       value = ::google::protobuf::internal::GetOwnedMessage(message_arena, value, submessage_arena);
     }
@@ -15699,8 +15699,8 @@ inline void Setting::set_allocated_option(::mavsdk::rpc::camera::Option* value) 
     _impl_._has_bits_[0] &= ~0x00000001u;
   }
 
-  _impl_.option_ = reinterpret_cast<::mavsdk::rpc::camera::Option*>(value);
-  // @@protoc_insertion_point(field_set_allocated:mavsdk.rpc.camera.Setting.option)
+  _impl_.option_ = reinterpret_cast<::mavcam::rpc::camera::Option*>(value);
+  // @@protoc_insertion_point(field_set_allocated:mavcam.rpc.camera.Setting.option)
 }
 
 // bool is_range = 4;
@@ -15709,12 +15709,12 @@ inline void Setting::clear_is_range() {
   _impl_.is_range_ = false;
 }
 inline bool Setting::is_range() const {
-  // @@protoc_insertion_point(field_get:mavsdk.rpc.camera.Setting.is_range)
+  // @@protoc_insertion_point(field_get:mavcam.rpc.camera.Setting.is_range)
   return _internal_is_range();
 }
 inline void Setting::set_is_range(bool value) {
   _internal_set_is_range(value);
-  // @@protoc_insertion_point(field_set:mavsdk.rpc.camera.Setting.is_range)
+  // @@protoc_insertion_point(field_set:mavcam.rpc.camera.Setting.is_range)
 }
 inline bool Setting::_internal_is_range() const {
   PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
@@ -15737,7 +15737,7 @@ inline void SettingOptions::clear_setting_id() {
 }
 inline const std::string& SettingOptions::setting_id() const
     ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_get:mavsdk.rpc.camera.SettingOptions.setting_id)
+  // @@protoc_insertion_point(field_get:mavcam.rpc.camera.SettingOptions.setting_id)
   return _internal_setting_id();
 }
 template <typename Arg_, typename... Args_>
@@ -15746,11 +15746,11 @@ inline PROTOBUF_ALWAYS_INLINE void SettingOptions::set_setting_id(Arg_&& arg,
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
   _impl_.setting_id_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
-  // @@protoc_insertion_point(field_set:mavsdk.rpc.camera.SettingOptions.setting_id)
+  // @@protoc_insertion_point(field_set:mavcam.rpc.camera.SettingOptions.setting_id)
 }
 inline std::string* SettingOptions::mutable_setting_id() ABSL_ATTRIBUTE_LIFETIME_BOUND {
   std::string* _s = _internal_mutable_setting_id();
-  // @@protoc_insertion_point(field_mutable:mavsdk.rpc.camera.SettingOptions.setting_id)
+  // @@protoc_insertion_point(field_mutable:mavcam.rpc.camera.SettingOptions.setting_id)
   return _s;
 }
 inline const std::string& SettingOptions::_internal_setting_id() const {
@@ -15769,7 +15769,7 @@ inline std::string* SettingOptions::_internal_mutable_setting_id() {
 }
 inline std::string* SettingOptions::release_setting_id() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  // @@protoc_insertion_point(field_release:mavsdk.rpc.camera.SettingOptions.setting_id)
+  // @@protoc_insertion_point(field_release:mavcam.rpc.camera.SettingOptions.setting_id)
   return _impl_.setting_id_.Release();
 }
 inline void SettingOptions::set_allocated_setting_id(std::string* value) {
@@ -15780,7 +15780,7 @@ inline void SettingOptions::set_allocated_setting_id(std::string* value) {
           _impl_.setting_id_.Set("", GetArena());
         }
   #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  // @@protoc_insertion_point(field_set_allocated:mavsdk.rpc.camera.SettingOptions.setting_id)
+  // @@protoc_insertion_point(field_set_allocated:mavcam.rpc.camera.SettingOptions.setting_id)
 }
 
 // string setting_description = 2;
@@ -15790,7 +15790,7 @@ inline void SettingOptions::clear_setting_description() {
 }
 inline const std::string& SettingOptions::setting_description() const
     ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_get:mavsdk.rpc.camera.SettingOptions.setting_description)
+  // @@protoc_insertion_point(field_get:mavcam.rpc.camera.SettingOptions.setting_description)
   return _internal_setting_description();
 }
 template <typename Arg_, typename... Args_>
@@ -15799,11 +15799,11 @@ inline PROTOBUF_ALWAYS_INLINE void SettingOptions::set_setting_description(Arg_&
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
   _impl_.setting_description_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
-  // @@protoc_insertion_point(field_set:mavsdk.rpc.camera.SettingOptions.setting_description)
+  // @@protoc_insertion_point(field_set:mavcam.rpc.camera.SettingOptions.setting_description)
 }
 inline std::string* SettingOptions::mutable_setting_description() ABSL_ATTRIBUTE_LIFETIME_BOUND {
   std::string* _s = _internal_mutable_setting_description();
-  // @@protoc_insertion_point(field_mutable:mavsdk.rpc.camera.SettingOptions.setting_description)
+  // @@protoc_insertion_point(field_mutable:mavcam.rpc.camera.SettingOptions.setting_description)
   return _s;
 }
 inline const std::string& SettingOptions::_internal_setting_description() const {
@@ -15822,7 +15822,7 @@ inline std::string* SettingOptions::_internal_mutable_setting_description() {
 }
 inline std::string* SettingOptions::release_setting_description() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  // @@protoc_insertion_point(field_release:mavsdk.rpc.camera.SettingOptions.setting_description)
+  // @@protoc_insertion_point(field_release:mavcam.rpc.camera.SettingOptions.setting_description)
   return _impl_.setting_description_.Release();
 }
 inline void SettingOptions::set_allocated_setting_description(std::string* value) {
@@ -15833,10 +15833,10 @@ inline void SettingOptions::set_allocated_setting_description(std::string* value
           _impl_.setting_description_.Set("", GetArena());
         }
   #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  // @@protoc_insertion_point(field_set_allocated:mavsdk.rpc.camera.SettingOptions.setting_description)
+  // @@protoc_insertion_point(field_set_allocated:mavcam.rpc.camera.SettingOptions.setting_description)
 }
 
-// repeated .mavsdk.rpc.camera.Option options = 3;
+// repeated .mavcam.rpc.camera.Option options = 3;
 inline int SettingOptions::_internal_options_size() const {
   return _internal_options().size();
 }
@@ -15847,39 +15847,39 @@ inline void SettingOptions::clear_options() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   _impl_.options_.Clear();
 }
-inline ::mavsdk::rpc::camera::Option* SettingOptions::mutable_options(int index)
+inline ::mavcam::rpc::camera::Option* SettingOptions::mutable_options(int index)
     ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_mutable:mavsdk.rpc.camera.SettingOptions.options)
+  // @@protoc_insertion_point(field_mutable:mavcam.rpc.camera.SettingOptions.options)
   return _internal_mutable_options()->Mutable(index);
 }
-inline ::google::protobuf::RepeatedPtrField<::mavsdk::rpc::camera::Option>* SettingOptions::mutable_options()
+inline ::google::protobuf::RepeatedPtrField<::mavcam::rpc::camera::Option>* SettingOptions::mutable_options()
     ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_mutable_list:mavsdk.rpc.camera.SettingOptions.options)
+  // @@protoc_insertion_point(field_mutable_list:mavcam.rpc.camera.SettingOptions.options)
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   return _internal_mutable_options();
 }
-inline const ::mavsdk::rpc::camera::Option& SettingOptions::options(int index) const
+inline const ::mavcam::rpc::camera::Option& SettingOptions::options(int index) const
     ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_get:mavsdk.rpc.camera.SettingOptions.options)
+  // @@protoc_insertion_point(field_get:mavcam.rpc.camera.SettingOptions.options)
   return _internal_options().Get(index);
 }
-inline ::mavsdk::rpc::camera::Option* SettingOptions::add_options() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+inline ::mavcam::rpc::camera::Option* SettingOptions::add_options() ABSL_ATTRIBUTE_LIFETIME_BOUND {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  ::mavsdk::rpc::camera::Option* _add = _internal_mutable_options()->Add();
-  // @@protoc_insertion_point(field_add:mavsdk.rpc.camera.SettingOptions.options)
+  ::mavcam::rpc::camera::Option* _add = _internal_mutable_options()->Add();
+  // @@protoc_insertion_point(field_add:mavcam.rpc.camera.SettingOptions.options)
   return _add;
 }
-inline const ::google::protobuf::RepeatedPtrField<::mavsdk::rpc::camera::Option>& SettingOptions::options() const
+inline const ::google::protobuf::RepeatedPtrField<::mavcam::rpc::camera::Option>& SettingOptions::options() const
     ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_list:mavsdk.rpc.camera.SettingOptions.options)
+  // @@protoc_insertion_point(field_list:mavcam.rpc.camera.SettingOptions.options)
   return _internal_options();
 }
-inline const ::google::protobuf::RepeatedPtrField<::mavsdk::rpc::camera::Option>&
+inline const ::google::protobuf::RepeatedPtrField<::mavcam::rpc::camera::Option>&
 SettingOptions::_internal_options() const {
   PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
   return _impl_.options_;
 }
-inline ::google::protobuf::RepeatedPtrField<::mavsdk::rpc::camera::Option>*
+inline ::google::protobuf::RepeatedPtrField<::mavcam::rpc::camera::Option>*
 SettingOptions::_internal_mutable_options() {
   PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
   return &_impl_.options_;
@@ -15891,12 +15891,12 @@ inline void SettingOptions::clear_is_range() {
   _impl_.is_range_ = false;
 }
 inline bool SettingOptions::is_range() const {
-  // @@protoc_insertion_point(field_get:mavsdk.rpc.camera.SettingOptions.is_range)
+  // @@protoc_insertion_point(field_get:mavcam.rpc.camera.SettingOptions.is_range)
   return _internal_is_range();
 }
 inline void SettingOptions::set_is_range(bool value) {
   _internal_set_is_range(value);
-  // @@protoc_insertion_point(field_set:mavsdk.rpc.camera.SettingOptions.is_range)
+  // @@protoc_insertion_point(field_set:mavcam.rpc.camera.SettingOptions.is_range)
 }
 inline bool SettingOptions::_internal_is_range() const {
   PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
@@ -15919,7 +15919,7 @@ inline void Information::clear_vendor_name() {
 }
 inline const std::string& Information::vendor_name() const
     ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_get:mavsdk.rpc.camera.Information.vendor_name)
+  // @@protoc_insertion_point(field_get:mavcam.rpc.camera.Information.vendor_name)
   return _internal_vendor_name();
 }
 template <typename Arg_, typename... Args_>
@@ -15928,11 +15928,11 @@ inline PROTOBUF_ALWAYS_INLINE void Information::set_vendor_name(Arg_&& arg,
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
   _impl_.vendor_name_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
-  // @@protoc_insertion_point(field_set:mavsdk.rpc.camera.Information.vendor_name)
+  // @@protoc_insertion_point(field_set:mavcam.rpc.camera.Information.vendor_name)
 }
 inline std::string* Information::mutable_vendor_name() ABSL_ATTRIBUTE_LIFETIME_BOUND {
   std::string* _s = _internal_mutable_vendor_name();
-  // @@protoc_insertion_point(field_mutable:mavsdk.rpc.camera.Information.vendor_name)
+  // @@protoc_insertion_point(field_mutable:mavcam.rpc.camera.Information.vendor_name)
   return _s;
 }
 inline const std::string& Information::_internal_vendor_name() const {
@@ -15951,7 +15951,7 @@ inline std::string* Information::_internal_mutable_vendor_name() {
 }
 inline std::string* Information::release_vendor_name() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  // @@protoc_insertion_point(field_release:mavsdk.rpc.camera.Information.vendor_name)
+  // @@protoc_insertion_point(field_release:mavcam.rpc.camera.Information.vendor_name)
   return _impl_.vendor_name_.Release();
 }
 inline void Information::set_allocated_vendor_name(std::string* value) {
@@ -15962,7 +15962,7 @@ inline void Information::set_allocated_vendor_name(std::string* value) {
           _impl_.vendor_name_.Set("", GetArena());
         }
   #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  // @@protoc_insertion_point(field_set_allocated:mavsdk.rpc.camera.Information.vendor_name)
+  // @@protoc_insertion_point(field_set_allocated:mavcam.rpc.camera.Information.vendor_name)
 }
 
 // string model_name = 2;
@@ -15972,7 +15972,7 @@ inline void Information::clear_model_name() {
 }
 inline const std::string& Information::model_name() const
     ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_get:mavsdk.rpc.camera.Information.model_name)
+  // @@protoc_insertion_point(field_get:mavcam.rpc.camera.Information.model_name)
   return _internal_model_name();
 }
 template <typename Arg_, typename... Args_>
@@ -15981,11 +15981,11 @@ inline PROTOBUF_ALWAYS_INLINE void Information::set_model_name(Arg_&& arg,
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
   _impl_.model_name_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
-  // @@protoc_insertion_point(field_set:mavsdk.rpc.camera.Information.model_name)
+  // @@protoc_insertion_point(field_set:mavcam.rpc.camera.Information.model_name)
 }
 inline std::string* Information::mutable_model_name() ABSL_ATTRIBUTE_LIFETIME_BOUND {
   std::string* _s = _internal_mutable_model_name();
-  // @@protoc_insertion_point(field_mutable:mavsdk.rpc.camera.Information.model_name)
+  // @@protoc_insertion_point(field_mutable:mavcam.rpc.camera.Information.model_name)
   return _s;
 }
 inline const std::string& Information::_internal_model_name() const {
@@ -16004,7 +16004,7 @@ inline std::string* Information::_internal_mutable_model_name() {
 }
 inline std::string* Information::release_model_name() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  // @@protoc_insertion_point(field_release:mavsdk.rpc.camera.Information.model_name)
+  // @@protoc_insertion_point(field_release:mavcam.rpc.camera.Information.model_name)
   return _impl_.model_name_.Release();
 }
 inline void Information::set_allocated_model_name(std::string* value) {
@@ -16015,7 +16015,7 @@ inline void Information::set_allocated_model_name(std::string* value) {
           _impl_.model_name_.Set("", GetArena());
         }
   #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  // @@protoc_insertion_point(field_set_allocated:mavsdk.rpc.camera.Information.model_name)
+  // @@protoc_insertion_point(field_set_allocated:mavcam.rpc.camera.Information.model_name)
 }
 
 // string firmware_version = 3;
@@ -16025,7 +16025,7 @@ inline void Information::clear_firmware_version() {
 }
 inline const std::string& Information::firmware_version() const
     ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_get:mavsdk.rpc.camera.Information.firmware_version)
+  // @@protoc_insertion_point(field_get:mavcam.rpc.camera.Information.firmware_version)
   return _internal_firmware_version();
 }
 template <typename Arg_, typename... Args_>
@@ -16034,11 +16034,11 @@ inline PROTOBUF_ALWAYS_INLINE void Information::set_firmware_version(Arg_&& arg,
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
   _impl_.firmware_version_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
-  // @@protoc_insertion_point(field_set:mavsdk.rpc.camera.Information.firmware_version)
+  // @@protoc_insertion_point(field_set:mavcam.rpc.camera.Information.firmware_version)
 }
 inline std::string* Information::mutable_firmware_version() ABSL_ATTRIBUTE_LIFETIME_BOUND {
   std::string* _s = _internal_mutable_firmware_version();
-  // @@protoc_insertion_point(field_mutable:mavsdk.rpc.camera.Information.firmware_version)
+  // @@protoc_insertion_point(field_mutable:mavcam.rpc.camera.Information.firmware_version)
   return _s;
 }
 inline const std::string& Information::_internal_firmware_version() const {
@@ -16057,7 +16057,7 @@ inline std::string* Information::_internal_mutable_firmware_version() {
 }
 inline std::string* Information::release_firmware_version() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  // @@protoc_insertion_point(field_release:mavsdk.rpc.camera.Information.firmware_version)
+  // @@protoc_insertion_point(field_release:mavcam.rpc.camera.Information.firmware_version)
   return _impl_.firmware_version_.Release();
 }
 inline void Information::set_allocated_firmware_version(std::string* value) {
@@ -16068,7 +16068,7 @@ inline void Information::set_allocated_firmware_version(std::string* value) {
           _impl_.firmware_version_.Set("", GetArena());
         }
   #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  // @@protoc_insertion_point(field_set_allocated:mavsdk.rpc.camera.Information.firmware_version)
+  // @@protoc_insertion_point(field_set_allocated:mavcam.rpc.camera.Information.firmware_version)
 }
 
 // float focal_length_mm = 4;
@@ -16077,12 +16077,12 @@ inline void Information::clear_focal_length_mm() {
   _impl_.focal_length_mm_ = 0;
 }
 inline float Information::focal_length_mm() const {
-  // @@protoc_insertion_point(field_get:mavsdk.rpc.camera.Information.focal_length_mm)
+  // @@protoc_insertion_point(field_get:mavcam.rpc.camera.Information.focal_length_mm)
   return _internal_focal_length_mm();
 }
 inline void Information::set_focal_length_mm(float value) {
   _internal_set_focal_length_mm(value);
-  // @@protoc_insertion_point(field_set:mavsdk.rpc.camera.Information.focal_length_mm)
+  // @@protoc_insertion_point(field_set:mavcam.rpc.camera.Information.focal_length_mm)
 }
 inline float Information::_internal_focal_length_mm() const {
   PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
@@ -16100,12 +16100,12 @@ inline void Information::clear_horizontal_sensor_size_mm() {
   _impl_.horizontal_sensor_size_mm_ = 0;
 }
 inline float Information::horizontal_sensor_size_mm() const {
-  // @@protoc_insertion_point(field_get:mavsdk.rpc.camera.Information.horizontal_sensor_size_mm)
+  // @@protoc_insertion_point(field_get:mavcam.rpc.camera.Information.horizontal_sensor_size_mm)
   return _internal_horizontal_sensor_size_mm();
 }
 inline void Information::set_horizontal_sensor_size_mm(float value) {
   _internal_set_horizontal_sensor_size_mm(value);
-  // @@protoc_insertion_point(field_set:mavsdk.rpc.camera.Information.horizontal_sensor_size_mm)
+  // @@protoc_insertion_point(field_set:mavcam.rpc.camera.Information.horizontal_sensor_size_mm)
 }
 inline float Information::_internal_horizontal_sensor_size_mm() const {
   PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
@@ -16123,12 +16123,12 @@ inline void Information::clear_vertical_sensor_size_mm() {
   _impl_.vertical_sensor_size_mm_ = 0;
 }
 inline float Information::vertical_sensor_size_mm() const {
-  // @@protoc_insertion_point(field_get:mavsdk.rpc.camera.Information.vertical_sensor_size_mm)
+  // @@protoc_insertion_point(field_get:mavcam.rpc.camera.Information.vertical_sensor_size_mm)
   return _internal_vertical_sensor_size_mm();
 }
 inline void Information::set_vertical_sensor_size_mm(float value) {
   _internal_set_vertical_sensor_size_mm(value);
-  // @@protoc_insertion_point(field_set:mavsdk.rpc.camera.Information.vertical_sensor_size_mm)
+  // @@protoc_insertion_point(field_set:mavcam.rpc.camera.Information.vertical_sensor_size_mm)
 }
 inline float Information::_internal_vertical_sensor_size_mm() const {
   PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
@@ -16146,12 +16146,12 @@ inline void Information::clear_horizontal_resolution_px() {
   _impl_.horizontal_resolution_px_ = 0u;
 }
 inline ::uint32_t Information::horizontal_resolution_px() const {
-  // @@protoc_insertion_point(field_get:mavsdk.rpc.camera.Information.horizontal_resolution_px)
+  // @@protoc_insertion_point(field_get:mavcam.rpc.camera.Information.horizontal_resolution_px)
   return _internal_horizontal_resolution_px();
 }
 inline void Information::set_horizontal_resolution_px(::uint32_t value) {
   _internal_set_horizontal_resolution_px(value);
-  // @@protoc_insertion_point(field_set:mavsdk.rpc.camera.Information.horizontal_resolution_px)
+  // @@protoc_insertion_point(field_set:mavcam.rpc.camera.Information.horizontal_resolution_px)
 }
 inline ::uint32_t Information::_internal_horizontal_resolution_px() const {
   PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
@@ -16169,12 +16169,12 @@ inline void Information::clear_vertical_resolution_px() {
   _impl_.vertical_resolution_px_ = 0u;
 }
 inline ::uint32_t Information::vertical_resolution_px() const {
-  // @@protoc_insertion_point(field_get:mavsdk.rpc.camera.Information.vertical_resolution_px)
+  // @@protoc_insertion_point(field_get:mavcam.rpc.camera.Information.vertical_resolution_px)
   return _internal_vertical_resolution_px();
 }
 inline void Information::set_vertical_resolution_px(::uint32_t value) {
   _internal_set_vertical_resolution_px(value);
-  // @@protoc_insertion_point(field_set:mavsdk.rpc.camera.Information.vertical_resolution_px)
+  // @@protoc_insertion_point(field_set:mavcam.rpc.camera.Information.vertical_resolution_px)
 }
 inline ::uint32_t Information::_internal_vertical_resolution_px() const {
   PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
@@ -16192,12 +16192,12 @@ inline void Information::clear_lens_id() {
   _impl_.lens_id_ = 0u;
 }
 inline ::uint32_t Information::lens_id() const {
-  // @@protoc_insertion_point(field_get:mavsdk.rpc.camera.Information.lens_id)
+  // @@protoc_insertion_point(field_get:mavcam.rpc.camera.Information.lens_id)
   return _internal_lens_id();
 }
 inline void Information::set_lens_id(::uint32_t value) {
   _internal_set_lens_id(value);
-  // @@protoc_insertion_point(field_set:mavsdk.rpc.camera.Information.lens_id)
+  // @@protoc_insertion_point(field_set:mavcam.rpc.camera.Information.lens_id)
 }
 inline ::uint32_t Information::_internal_lens_id() const {
   PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
@@ -16215,12 +16215,12 @@ inline void Information::clear_definition_file_version() {
   _impl_.definition_file_version_ = 0u;
 }
 inline ::uint32_t Information::definition_file_version() const {
-  // @@protoc_insertion_point(field_get:mavsdk.rpc.camera.Information.definition_file_version)
+  // @@protoc_insertion_point(field_get:mavcam.rpc.camera.Information.definition_file_version)
   return _internal_definition_file_version();
 }
 inline void Information::set_definition_file_version(::uint32_t value) {
   _internal_set_definition_file_version(value);
-  // @@protoc_insertion_point(field_set:mavsdk.rpc.camera.Information.definition_file_version)
+  // @@protoc_insertion_point(field_set:mavcam.rpc.camera.Information.definition_file_version)
 }
 inline ::uint32_t Information::_internal_definition_file_version() const {
   PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
@@ -16239,7 +16239,7 @@ inline void Information::clear_definition_file_uri() {
 }
 inline const std::string& Information::definition_file_uri() const
     ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_get:mavsdk.rpc.camera.Information.definition_file_uri)
+  // @@protoc_insertion_point(field_get:mavcam.rpc.camera.Information.definition_file_uri)
   return _internal_definition_file_uri();
 }
 template <typename Arg_, typename... Args_>
@@ -16248,11 +16248,11 @@ inline PROTOBUF_ALWAYS_INLINE void Information::set_definition_file_uri(Arg_&& a
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
   _impl_.definition_file_uri_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
-  // @@protoc_insertion_point(field_set:mavsdk.rpc.camera.Information.definition_file_uri)
+  // @@protoc_insertion_point(field_set:mavcam.rpc.camera.Information.definition_file_uri)
 }
 inline std::string* Information::mutable_definition_file_uri() ABSL_ATTRIBUTE_LIFETIME_BOUND {
   std::string* _s = _internal_mutable_definition_file_uri();
-  // @@protoc_insertion_point(field_mutable:mavsdk.rpc.camera.Information.definition_file_uri)
+  // @@protoc_insertion_point(field_mutable:mavcam.rpc.camera.Information.definition_file_uri)
   return _s;
 }
 inline const std::string& Information::_internal_definition_file_uri() const {
@@ -16271,7 +16271,7 @@ inline std::string* Information::_internal_mutable_definition_file_uri() {
 }
 inline std::string* Information::release_definition_file_uri() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  // @@protoc_insertion_point(field_release:mavsdk.rpc.camera.Information.definition_file_uri)
+  // @@protoc_insertion_point(field_release:mavcam.rpc.camera.Information.definition_file_uri)
   return _impl_.definition_file_uri_.Release();
 }
 inline void Information::set_allocated_definition_file_uri(std::string* value) {
@@ -16282,10 +16282,10 @@ inline void Information::set_allocated_definition_file_uri(std::string* value) {
           _impl_.definition_file_uri_.Set("", GetArena());
         }
   #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  // @@protoc_insertion_point(field_set_allocated:mavsdk.rpc.camera.Information.definition_file_uri)
+  // @@protoc_insertion_point(field_set_allocated:mavcam.rpc.camera.Information.definition_file_uri)
 }
 
-// repeated .mavsdk.rpc.camera.Information.CameraCapFlags camera_cap_flags = 12;
+// repeated .mavcam.rpc.camera.Information.CameraCapFlags camera_cap_flags = 12;
 inline int Information::_internal_camera_cap_flags_size() const {
   return _internal_camera_cap_flags().size();
 }
@@ -16296,27 +16296,27 @@ inline void Information::clear_camera_cap_flags() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   _impl_.camera_cap_flags_.Clear();
 }
-inline ::mavsdk::rpc::camera::Information_CameraCapFlags Information::camera_cap_flags(int index) const {
-  // @@protoc_insertion_point(field_get:mavsdk.rpc.camera.Information.camera_cap_flags)
-  return static_cast<::mavsdk::rpc::camera::Information_CameraCapFlags>(_internal_camera_cap_flags().Get(index));
+inline ::mavcam::rpc::camera::Information_CameraCapFlags Information::camera_cap_flags(int index) const {
+  // @@protoc_insertion_point(field_get:mavcam.rpc.camera.Information.camera_cap_flags)
+  return static_cast<::mavcam::rpc::camera::Information_CameraCapFlags>(_internal_camera_cap_flags().Get(index));
 }
-inline void Information::set_camera_cap_flags(int index, ::mavsdk::rpc::camera::Information_CameraCapFlags value) {
+inline void Information::set_camera_cap_flags(int index, ::mavcam::rpc::camera::Information_CameraCapFlags value) {
   _internal_mutable_camera_cap_flags()->Set(index, value);
-  // @@protoc_insertion_point(field_set:mavsdk.rpc.camera.Information.camera_cap_flags)
+  // @@protoc_insertion_point(field_set:mavcam.rpc.camera.Information.camera_cap_flags)
 }
-inline void Information::add_camera_cap_flags(::mavsdk::rpc::camera::Information_CameraCapFlags value) {
+inline void Information::add_camera_cap_flags(::mavcam::rpc::camera::Information_CameraCapFlags value) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   _internal_mutable_camera_cap_flags()->Add(value);
-  // @@protoc_insertion_point(field_add:mavsdk.rpc.camera.Information.camera_cap_flags)
+  // @@protoc_insertion_point(field_add:mavcam.rpc.camera.Information.camera_cap_flags)
 }
 inline const ::google::protobuf::RepeatedField<int>& Information::camera_cap_flags() const
     ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_list:mavsdk.rpc.camera.Information.camera_cap_flags)
+  // @@protoc_insertion_point(field_list:mavcam.rpc.camera.Information.camera_cap_flags)
   return _internal_camera_cap_flags();
 }
 inline ::google::protobuf::RepeatedField<int>* Information::mutable_camera_cap_flags()
     ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_mutable_list:mavsdk.rpc.camera.Information.camera_cap_flags)
+  // @@protoc_insertion_point(field_mutable_list:mavcam.rpc.camera.Information.camera_cap_flags)
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   return _internal_mutable_camera_cap_flags();
 }
@@ -16336,59 +16336,59 @@ inline ::google::protobuf::RepeatedField<int>* Information::_internal_mutable_ca
 // @@protoc_insertion_point(namespace_scope)
 }  // namespace camera
 }  // namespace rpc
-}  // namespace mavsdk
+}  // namespace mavcam
 
 
 namespace google {
 namespace protobuf {
 
 template <>
-struct is_proto_enum<::mavsdk::rpc::camera::CameraResult_Result> : std::true_type {};
+struct is_proto_enum<::mavcam::rpc::camera::CameraResult_Result> : std::true_type {};
 template <>
-inline const EnumDescriptor* GetEnumDescriptor<::mavsdk::rpc::camera::CameraResult_Result>() {
-  return ::mavsdk::rpc::camera::CameraResult_Result_descriptor();
+inline const EnumDescriptor* GetEnumDescriptor<::mavcam::rpc::camera::CameraResult_Result>() {
+  return ::mavcam::rpc::camera::CameraResult_Result_descriptor();
 }
 template <>
-struct is_proto_enum<::mavsdk::rpc::camera::VideoStreamInfo_VideoStreamStatus> : std::true_type {};
+struct is_proto_enum<::mavcam::rpc::camera::VideoStreamInfo_VideoStreamStatus> : std::true_type {};
 template <>
-inline const EnumDescriptor* GetEnumDescriptor<::mavsdk::rpc::camera::VideoStreamInfo_VideoStreamStatus>() {
-  return ::mavsdk::rpc::camera::VideoStreamInfo_VideoStreamStatus_descriptor();
+inline const EnumDescriptor* GetEnumDescriptor<::mavcam::rpc::camera::VideoStreamInfo_VideoStreamStatus>() {
+  return ::mavcam::rpc::camera::VideoStreamInfo_VideoStreamStatus_descriptor();
 }
 template <>
-struct is_proto_enum<::mavsdk::rpc::camera::VideoStreamInfo_VideoStreamSpectrum> : std::true_type {};
+struct is_proto_enum<::mavcam::rpc::camera::VideoStreamInfo_VideoStreamSpectrum> : std::true_type {};
 template <>
-inline const EnumDescriptor* GetEnumDescriptor<::mavsdk::rpc::camera::VideoStreamInfo_VideoStreamSpectrum>() {
-  return ::mavsdk::rpc::camera::VideoStreamInfo_VideoStreamSpectrum_descriptor();
+inline const EnumDescriptor* GetEnumDescriptor<::mavcam::rpc::camera::VideoStreamInfo_VideoStreamSpectrum>() {
+  return ::mavcam::rpc::camera::VideoStreamInfo_VideoStreamSpectrum_descriptor();
 }
 template <>
-struct is_proto_enum<::mavsdk::rpc::camera::Status_StorageStatus> : std::true_type {};
+struct is_proto_enum<::mavcam::rpc::camera::Status_StorageStatus> : std::true_type {};
 template <>
-inline const EnumDescriptor* GetEnumDescriptor<::mavsdk::rpc::camera::Status_StorageStatus>() {
-  return ::mavsdk::rpc::camera::Status_StorageStatus_descriptor();
+inline const EnumDescriptor* GetEnumDescriptor<::mavcam::rpc::camera::Status_StorageStatus>() {
+  return ::mavcam::rpc::camera::Status_StorageStatus_descriptor();
 }
 template <>
-struct is_proto_enum<::mavsdk::rpc::camera::Status_StorageType> : std::true_type {};
+struct is_proto_enum<::mavcam::rpc::camera::Status_StorageType> : std::true_type {};
 template <>
-inline const EnumDescriptor* GetEnumDescriptor<::mavsdk::rpc::camera::Status_StorageType>() {
-  return ::mavsdk::rpc::camera::Status_StorageType_descriptor();
+inline const EnumDescriptor* GetEnumDescriptor<::mavcam::rpc::camera::Status_StorageType>() {
+  return ::mavcam::rpc::camera::Status_StorageType_descriptor();
 }
 template <>
-struct is_proto_enum<::mavsdk::rpc::camera::Information_CameraCapFlags> : std::true_type {};
+struct is_proto_enum<::mavcam::rpc::camera::Information_CameraCapFlags> : std::true_type {};
 template <>
-inline const EnumDescriptor* GetEnumDescriptor<::mavsdk::rpc::camera::Information_CameraCapFlags>() {
-  return ::mavsdk::rpc::camera::Information_CameraCapFlags_descriptor();
+inline const EnumDescriptor* GetEnumDescriptor<::mavcam::rpc::camera::Information_CameraCapFlags>() {
+  return ::mavcam::rpc::camera::Information_CameraCapFlags_descriptor();
 }
 template <>
-struct is_proto_enum<::mavsdk::rpc::camera::Mode> : std::true_type {};
+struct is_proto_enum<::mavcam::rpc::camera::Mode> : std::true_type {};
 template <>
-inline const EnumDescriptor* GetEnumDescriptor<::mavsdk::rpc::camera::Mode>() {
-  return ::mavsdk::rpc::camera::Mode_descriptor();
+inline const EnumDescriptor* GetEnumDescriptor<::mavcam::rpc::camera::Mode>() {
+  return ::mavcam::rpc::camera::Mode_descriptor();
 }
 template <>
-struct is_proto_enum<::mavsdk::rpc::camera::PhotosRange> : std::true_type {};
+struct is_proto_enum<::mavcam::rpc::camera::PhotosRange> : std::true_type {};
 template <>
-inline const EnumDescriptor* GetEnumDescriptor<::mavsdk::rpc::camera::PhotosRange>() {
-  return ::mavsdk::rpc::camera::PhotosRange_descriptor();
+inline const EnumDescriptor* GetEnumDescriptor<::mavcam::rpc::camera::PhotosRange>() {
+  return ::mavcam::rpc::camera::PhotosRange_descriptor();
 }
 
 }  // namespace protobuf

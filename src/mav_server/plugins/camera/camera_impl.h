@@ -149,6 +149,13 @@ public:
     void capture_info_async(const Camera::CaptureInfoCallback &callback);
 
     /**
+     * @brief Poll for 'CaptureInfo' (blocking).
+     *
+     * @return One CaptureInfo update.
+     */
+    Camera::CaptureInfo capture_info() const;
+
+    /**
      * @brief Subscribe to camera status updates.
      */
     void status_async(const Camera::StatusCallback &callback);
@@ -164,6 +171,13 @@ public:
      * @brief Get the list of current camera settings.
      */
     void current_settings_async(const Camera::CurrentSettingsCallback &callback);
+
+    /**
+     * @brief Poll for 'std::vector<Setting>' (blocking).
+     *
+     * @return One std::vector<Setting> update.
+     */
+    std::vector<Camera::Setting> current_settings() const;
 
     /**
      * @brief Get the list of settings that can be changed.

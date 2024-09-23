@@ -14,8 +14,8 @@ if (BUILD_SERVER)
     set(MAV_CLIENT_SOURCES
         ${MAV_CLIENT_SOURCES}
         camera_rpc_client.cpp
-        ${CMAKE_CURRENT_SOURCE_DIR}/../generated/mavsdk_options.grpc.pb.cc
-        ${CMAKE_CURRENT_SOURCE_DIR}/../generated/mavsdk_options.pb.cc
+        ${CMAKE_CURRENT_SOURCE_DIR}/../generated/mavcam_options.grpc.pb.cc
+        ${CMAKE_CURRENT_SOURCE_DIR}/../generated/mavcam_options.pb.cc
         ${CMAKE_CURRENT_SOURCE_DIR}/../generated/camera/camera.grpc.pb.cc
         ${CMAKE_CURRENT_SOURCE_DIR}/../generated/camera/camera.pb.cc)
 endif()

@@ -60,19 +60,19 @@ command -v ${protoc_binary} > /dev/null && command -v ${protoc_grpc_binary} > /d
     echo "-------------------------------"
 }
 
-echo "Installing protoc-gen-mavsdk locally into build folder"
+echo "Installing protoc-gen-mavcam locally into build folder"
 python3 -m pip install --upgrade --target=${build_dir}/pb_plugins ${script_dir}/../proto/pb_plugins
 
-protoc_gen_mavsdk="${build_dir}/pb_plugins/bin/protoc-gen-mavsdk"
+protoc_gen_mavcam="${build_dir}/pb_plugins/bin/protoc-gen-mavcam"
 export PYTHONPATH="${build_dir}/pb_plugins:${PYTHONPATH}"
-echo "Using protoc_gen_mavsdk: ${protoc_gen_mavsdk}"
+echo "Using protoc_gen_mavcam: ${protoc_gen_mavcam}"
 
 mkdir -p ${mavsdk_server_generated_dir}
 
-echo "Processing mavsdk_options.proto"
-${protoc_binary} -I ${proto_dir} --cpp_out=${mavsdk_server_generated_dir} --grpc_out=${mavsdk_server_generated_dir} --plugin=protoc-gen-grpc=${protoc_grpc_binary} ${proto_dir}/mavsdk_options.proto
+echo "Processing mavcam_options.proto"
+${protoc_binary} -I ${proto_dir} --cpp_out=${mavsdk_server_generated_dir} --grpc_out=${mavsdk_server_generated_dir} --plugin=protoc-gen-grpc=${protoc_grpc_binary} ${proto_dir}/mavcam_options.proto
 
-plugin_list=("camera" "camera_server")
+plugin_list=("camera")
 plugin_count=${#plugin_list[*]}
 
 for ((i=0; i<${plugin_count}; i++));
@@ -101,16 +101,16 @@ do
     mkdir -p ${script_dir}/../src/mav_server/plugins/${plugin}
 
     file_h="${script_dir}/../src/mav_server/plugins/${plugin}/${plugin}.h"
-    ${protoc_binary} -I ${proto_dir} --custom_out=${tmp_output_dir} --plugin=protoc-gen-custom=${protoc_gen_mavsdk} --custom_opt="file_ext=h,template_path=${template_path_plugin_h}" ${proto_dir}/${plugin}/${plugin}.proto
+    ${protoc_binary} -I ${proto_dir} --custom_out=${tmp_output_dir} --plugin=protoc-gen-custom=${protoc_gen_mavcam} --custom_opt="file_ext=h,template_path=${template_path_plugin_h}" ${proto_dir}/${plugin}/${plugin}.proto
     mv ${tmp_output_dir}/${plugin}/$(snake_case_to_camel_case ${plugin}).h ${file_h}
 
     file_cpp=${script_dir}/../src/mav_server/plugins/${plugin}/${plugin}.cpp
-    ${protoc_binary} -I ${proto_dir} --custom_out=${tmp_output_dir} --plugin=protoc-gen-custom=${protoc_gen_mavsdk} --custom_opt="file_ext=cpp,template_path=${template_path_plugin_cpp}" ${proto_dir}/${plugin}/${plugin}.proto
+    ${protoc_binary} -I ${proto_dir} --custom_out=${tmp_output_dir} --plugin=protoc-gen-custom=${protoc_gen_mavcam} --custom_opt="file_ext=cpp,template_path=${template_path_plugin_cpp}" ${proto_dir}/${plugin}/${plugin}.proto
     mv ${tmp_output_dir}/${plugin}/$(snake_case_to_camel_case ${plugin}).cpp ${file_cpp}
 
     file_impl_h="${script_dir}/../src/mav_server/plugins/${plugin}/${plugin}_impl.h"
     if [[ ! -f "${file_impl_h}" ]]; then
-        ${protoc_binary} -I ${proto_dir} --custom_out=${tmp_output_dir} --plugin=protoc-gen-custom=${protoc_gen_mavsdk} --custom_opt="file_ext=h,template_path=${template_path_plugin_impl_h}" ${proto_dir}/${plugin}/${plugin}.proto
+        ${protoc_binary} -I ${proto_dir} --custom_out=${tmp_output_dir} --plugin=protoc-gen-custom=${protoc_gen_mavcam} --custom_opt="file_ext=h,template_path=${template_path_plugin_impl_h}" ${proto_dir}/${plugin}/${plugin}.proto
         mv ${tmp_output_dir}/${plugin}/$(snake_case_to_camel_case ${plugin}).h ${file_impl_h}
         echo "-> Creating ${file_impl_h}"
     else
@@ -122,7 +122,7 @@ do
 
     file_impl_cpp="${script_dir}/../src/mav_server/plugins/${plugin}/${plugin}_impl.cpp"
     if [[ ! -f $file_impl_cpp ]]; then
-        ${protoc_binary} -I ${proto_dir} --custom_out=${tmp_output_dir} --plugin=protoc-gen-custom=${protoc_gen_mavsdk} --custom_opt="file_ext=cpp,template_path=${template_path_plugin_impl_cpp}" ${proto_dir}/${plugin}/${plugin}.proto
+        ${protoc_binary} -I ${proto_dir} --custom_out=${tmp_output_dir} --plugin=protoc-gen-custom=${protoc_gen_mavcam} --custom_opt="file_ext=cpp,template_path=${template_path_plugin_impl_cpp}" ${proto_dir}/${plugin}/${plugin}.proto
         mv ${tmp_output_dir}/${plugin}/$(snake_case_to_camel_case ${plugin}).cpp ${file_impl_cpp}
         echo "-> Creating ${file_impl_cpp}"
     else
@@ -133,6 +133,6 @@ do
     fi
 
     file_service_impl_h=" ${script_dir}/../src/mav_server/plugins/${plugin}/${plugin}_service_impl.h"
-    ${protoc_binary} -I ${proto_dir} --custom_out=${tmp_output_dir} --plugin=protoc-gen-custom=${protoc_gen_mavsdk} --custom_opt="file_ext=h,template_path=${template_path_plugin_service_impl_h}" ${proto_dir}/${plugin}/${plugin}.proto
+    ${protoc_binary} -I ${proto_dir} --custom_out=${tmp_output_dir} --plugin=protoc-gen-custom=${protoc_gen_mavcam} --custom_opt="file_ext=h,template_path=${template_path_plugin_service_impl_h}" ${proto_dir}/${plugin}/${plugin}.proto
     mv ${tmp_output_dir}/${plugin}/$(snake_case_to_camel_case ${plugin}).h ${file_service_impl_h}
 done

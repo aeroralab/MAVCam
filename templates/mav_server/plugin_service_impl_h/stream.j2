@@ -1,4 +1,4 @@
-grpc::Status Subscribe{{ name.upper_camel_case }}(grpc::ServerContext* /* context */, const mavsdk::rpc::{{ plugin_name.lower_snake_case }}::Subscribe{{ name.upper_camel_case }}Request* {% if params %}request{% else %}/* request */{% endif %}, grpc::ServerWriter<mavsdk::rpc::{{ plugin_name.lower_snake_case }}::{{ name.upper_camel_case }}Response>* writer) override
+grpc::Status Subscribe{{ name.upper_camel_case }}(grpc::ServerContext* /* context */, const mavcam::rpc::{{ plugin_name.lower_snake_case }}::Subscribe{{ name.upper_camel_case }}Request* {% if params %}request{% else %}/* request */{% endif %}, grpc::ServerWriter<mavcam::rpc::{{ plugin_name.lower_snake_case }}::{{ name.upper_camel_case }}Response>* writer) override
 {
     auto stream_closed_promise = std::make_shared<std::promise<void>>();
     auto stream_closed_future = stream_closed_promise->get_future();
@@ -9,7 +9,7 @@ grpc::Status Subscribe{{ name.upper_camel_case }}(grpc::ServerContext* /* contex
             {%- if has_result -%}mav::{{ plugin_name.upper_camel_case }}::Result result,{%- endif -%}
             const {% if return_type.is_repeated %}std::vector<{% if not return_type.is_primitive %}mav::{{ plugin_name.upper_camel_case }}::{% endif %}{{ return_type.inner_name }}>{% else %}{%- if not return_type.is_primitive %}mav::{{ plugin_name.upper_camel_case }}::{% endif %}{{ return_type.name }}{% endif %} {{ name.lower_snake_case }}) {
 
-        mavsdk::rpc::{{ plugin_name.lower_snake_case }}::{{ name.upper_camel_case }}Response rpc_response;
+        mavcam::rpc::{{ plugin_name.lower_snake_case }}::{{ name.upper_camel_case }}Response rpc_response;
         {% if return_type.is_primitive %}
             rpc_response.set_{{ return_name.lower_snake_case }}({{ name.lower_snake_case }});
         {% elif return_type.is_enum %}

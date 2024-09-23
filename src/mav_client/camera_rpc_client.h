@@ -65,11 +65,11 @@ private:
 private:
     mavsdk::CameraServer::Mode _current_mode;
 private:
-    std::unique_ptr<grpc::ClientReader<mavsdk::rpc::camera::CurrentSettingsResponse>>
+    std::unique_ptr<grpc::ClientReader<mavcam::rpc::camera::CurrentSettingsResponse>>
         _current_settings_reader;
 private:
     std::shared_ptr<grpc::Channel> _channel;
-    std::unique_ptr<mavsdk::rpc::camera::CameraService::Stub> _stub;
+    std::unique_ptr<mavcam::rpc::camera::CameraService::Stub> _stub;
 private:  // backend work thread
     std::thread *_work_thread{nullptr};
     std::atomic<bool> _should_exit{false};

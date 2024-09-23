@@ -5,8 +5,8 @@ set(EXECUTABLE_NAME mav_server)
 set(MAV_SERVER_SOURCES
     mav_server_bin.cpp
     mav_server.cpp
-    ${CMAKE_CURRENT_SOURCE_DIR}/../generated/mavsdk_options.grpc.pb.cc
-    ${CMAKE_CURRENT_SOURCE_DIR}/../generated/mavsdk_options.pb.cc
+    ${CMAKE_CURRENT_SOURCE_DIR}/../generated/mavcam_options.grpc.pb.cc
+    ${CMAKE_CURRENT_SOURCE_DIR}/../generated/mavcam_options.pb.cc
     ${CMAKE_CURRENT_SOURCE_DIR}/../generated/camera/camera.grpc.pb.cc
     ${CMAKE_CURRENT_SOURCE_DIR}/../generated/camera/camera.pb.cc
     ${CMAKE_CURRENT_SOURCE_DIR}/plugins/camera/camera.cpp
