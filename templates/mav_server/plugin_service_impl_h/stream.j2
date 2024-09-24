@@ -6,8 +6,8 @@ grpc::Status Subscribe{{ name.upper_camel_case }}(grpc::ServerContext* /* contex
 
     _plugin->{{ name.lower_snake_case }}_async({% for param in params %}{% if not param.type_info.is_primitive %}translateFromRpc{{ param.name.upper_camel_case }}({% endif %}request->{{ param.name.lower_snake_case }}(){% if not param.type_info.is_primitive %}){% endif %}, {% endfor %}
         [this, &writer, &stream_closed_promise](
-            {%- if has_result -%}mav::{{ plugin_name.upper_camel_case }}::Result result,{%- endif -%}
-            const {% if return_type.is_repeated %}std::vector<{% if not return_type.is_primitive %}mav::{{ plugin_name.upper_camel_case }}::{% endif %}{{ return_type.inner_name }}>{% else %}{%- if not return_type.is_primitive %}mav::{{ plugin_name.upper_camel_case }}::{% endif %}{{ return_type.name }}{% endif %} {{ name.lower_snake_case }}) {
+            {%- if has_result -%}mavcam::{{ plugin_name.upper_camel_case }}::Result result,{%- endif -%}
+            const {% if return_type.is_repeated %}std::vector<{% if not return_type.is_primitive %}mavcam::{{ plugin_name.upper_camel_case }}::{% endif %}{{ return_type.inner_name }}>{% else %}{%- if not return_type.is_primitive %}mavcam::{{ plugin_name.upper_camel_case }}::{% endif %}{{ return_type.name }}{% endif %} {{ name.lower_snake_case }}) {
 
         mavcam::rpc::{{ plugin_name.lower_snake_case }}::{{ name.upper_camel_case }}Response rpc_response;
         {% if return_type.is_primitive %}

@@ -7,7 +7,7 @@
 
 #include "base/log.h"
 
-namespace mav {
+namespace mavcam {
 
 const std::string kCameraDisplayModeName = "CAM_DISPLAY_MODE";
 const std::string kCameraModeName = "CAM_MODE";
@@ -264,7 +264,7 @@ void CameraImpl::video_stream_info_async(const Camera::VideoStreamInfoCallback &
 }
 
 std::vector<Camera::VideoStreamInfo> CameraImpl::video_stream_info() const {
-    mav::Camera::VideoStreamInfo normal_video_stream;
+    mavcam::Camera::VideoStreamInfo normal_video_stream;
     normal_video_stream.stream_id = 1;
 
     normal_video_stream.settings.frame_rate_hz = _framerate;
@@ -279,8 +279,9 @@ std::vector<Camera::VideoStreamInfo> CameraImpl::video_stream_info() const {
     normal_video_stream.settings.rotation_deg = 0;
     normal_video_stream.settings.uri = "rtsp://169.254.254.1:8900/live";
     normal_video_stream.settings.horizontal_fov_deg = 0;
-    normal_video_stream.status = mav::Camera::VideoStreamInfo::VideoStreamStatus::InProgress;
-    normal_video_stream.spectrum = mav::Camera::VideoStreamInfo::VideoStreamSpectrum::VisibleLight;
+    normal_video_stream.status = mavcam::Camera::VideoStreamInfo::VideoStreamStatus::InProgress;
+    normal_video_stream.spectrum =
+        mavcam::Camera::VideoStreamInfo::VideoStreamSpectrum::VisibleLight;
 
     return {normal_video_stream};
 }
@@ -602,36 +603,36 @@ std::string CameraImpl::get_shutter_speed_value() {
     return value;
 }
 
-mav::Camera::Result CameraImpl::convert_camera_result_to_mav_result(
+mavcam::Camera::Result CameraImpl::convert_camera_result_to_mav_result(
     mav_camera::Result input_result) {
-    mav::Camera::Result output_result = mav::Camera::Result::Unknown;
+    mavcam::Camera::Result output_result = mavcam::Camera::Result::Unknown;
     switch (input_result) {
         case mav_camera::Result::Success:
-            output_result = mav::Camera::Result::Success;
+            output_result = mavcam::Camera::Result::Success;
             break;
         case mav_camera::Result::Denied:
-            output_result = mav::Camera::Result::Denied;
+            output_result = mavcam::Camera::Result::Denied;
             break;
         case mav_camera::Result::Busy:
-            output_result = mav::Camera::Result::Busy;
+            output_result = mavcam::Camera::Result::Busy;
             break;
         case mav_camera::Result::Error:
-            output_result = mav::Camera::Result::Error;
+            output_result = mavcam::Camera::Result::Error;
             break;
         case mav_camera::Result::InProgress:
-            output_result = mav::Camera::Result::InProgress;
+            output_result = mavcam::Camera::Result::InProgress;
             break;
         case mav_camera::Result::NoSystem:
-            output_result = mav::Camera::Result::NoSystem;
+            output_result = mavcam::Camera::Result::NoSystem;
             break;
         case mav_camera::Result::Timeout:
-            output_result = mav::Camera::Result::Timeout;
+            output_result = mavcam::Camera::Result::Timeout;
             break;
         case mav_camera::Result::Unknown:
-            output_result = mav::Camera::Result::Unknown;
+            output_result = mavcam::Camera::Result::Unknown;
             break;
         case mav_camera::Result::WrongArgument:
-            output_result = mav::Camera::Result::WrongArgument;
+            output_result = mavcam::Camera::Result::WrongArgument;
             break;
     }
     return output_result;
@@ -641,4 +642,4 @@ void CameraImpl::stop_video_async() {
     _mav_camera->stop_video();
 }
 
-}  // namespace mav
+}  // namespace mavcam

@@ -13,7 +13,7 @@
 #include <utility>
 #include <vector>
 
-namespace mav {
+namespace mavcam {
 
 class CameraImpl;
 
@@ -793,4 +793,4 @@ private:
     std::unique_ptr<CameraImpl> _impl;
 };
 
-}  // namespace mav
+}  // namespace mavcam

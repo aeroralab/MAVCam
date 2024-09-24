@@ -9,7 +9,7 @@
 #include "mav_camera.h"
 #include "plugins/camera/camera.h"
 
-namespace mav {
+namespace mavcam {
 
 class CameraImpl final {
 public:
@@ -263,7 +263,7 @@ private:
     /**
      * @brief build setting with name and value
      */
-    mav::Camera::Setting build_setting(std::string name, std::string value);
+    mavcam::Camera::Setting build_setting(std::string name, std::string value);
     /**
      * @brief set camera display mode
      */
@@ -293,9 +293,9 @@ private:
      */
     std::string get_shutter_speed_value();
     /**
-     * @brief convert mav_camera::Result to mav::Camera::Result
+     * @brief convert mav_camera::Result to mavcam::Camera::Result
      */
-    mav::Camera::Result convert_camera_result_to_mav_result(mav_camera::Result input_result);
+    mavcam::Camera::Result convert_camera_result_to_mav_result(mav_camera::Result input_result);
     /**
      * @brief stop video async
      */
@@ -317,4 +317,4 @@ private:
     int32_t _framerate;
 };
 
-}  // namespace mav
+}  // namespace mavcam

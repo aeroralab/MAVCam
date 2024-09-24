@@ -8,7 +8,7 @@
 
 #include "camera_client.h"
 
-namespace mav {
+namespace mavcam {
 
 class CameraLocalClient : public CameraClient {
 public:
@@ -54,4 +54,4 @@ private:
     std::mutex _mutex{};
 };
 
-}  // namespace mav
+}  // namespace mavcam

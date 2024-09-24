@@ -6,7 +6,7 @@
 #include "base/log.h"
 #include "camera/camera.pb.h"
 
-namespace mav {
+namespace mavcam {
 
 static std::string kCameraModeName = "CAM_MODE";
 
@@ -634,4 +634,4 @@ static mavsdk::CameraServer::StorageInformation::StorageType translateFromRpcSto
     }
 }
 
-}  // namespace mav
+}  // namespace mavcam

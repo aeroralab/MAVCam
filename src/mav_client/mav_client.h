@@ -8,7 +8,7 @@ class CameraServer;
 class ParamServer;
 }  // namespace mavsdk
 
-namespace mav {
+namespace mavcam {
 
 class CameraClient;
 
@@ -34,4 +34,4 @@ private:
     std::string _ftp_root_path;
 };
 
-}  // namespace mav
+}  // namespace mavcam

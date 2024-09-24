@@ -2,7 +2,7 @@
 
 #include <grpc++/grpc++.h>
 
-namespace mav {
+namespace mavcam {
 
 class MavServer final {
 public:
@@ -18,4 +18,4 @@ private:
     std::unique_ptr<grpc::Server> _server;
 };
 
-}  // namespace mav
+}  // namespace mavcam

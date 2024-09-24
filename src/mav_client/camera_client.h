@@ -5,7 +5,7 @@
 
 #include <vector>
 
-namespace mav {
+namespace mavcam {
 
 class CameraClient {
 public:
@@ -43,4 +43,4 @@ public:  // settings
 CameraClient *CreateLocalCameraClient();
 CameraClient *CreateRpcCameraClient(int rpc_port);
 
-}  // namespace mav
+}  // namespace mavcam

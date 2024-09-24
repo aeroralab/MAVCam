@@ -14,14 +14,14 @@
 #include "camera/camera.grpc.pb.h"
 #include "plugins/camera/camera.h"
 
-namespace mav {
+namespace mavcam {
 
 class CameraServiceImpl final : public mavcam::rpc::camera::CameraService::Service {
 public:
     CameraServiceImpl(std::shared_ptr<Camera> plugin) : _plugin(plugin) {}
 
     template <typename ResponseType>
-    void fillResponseWithResult(ResponseType *response, mav::Camera::Result &result) const {
+    void fillResponseWithResult(ResponseType *response, mavcam::Camera::Result &result) const {
         auto rpc_result = translateToRpcResult(result);
 
         auto *rpc_camera_result = new mavcam::rpc::camera::CameraResult();
@@ -33,49 +33,49 @@ public:
         response->set_allocated_camera_result(rpc_camera_result);
     }
 
-    static mavcam::rpc::camera::Mode translateToRpcMode(const mav::Camera::Mode &mode) {
+    static mavcam::rpc::camera::Mode translateToRpcMode(const mavcam::Camera::Mode &mode) {
         switch (mode) {
             default:
                 base::LogError() << "Unknown mode enum value: " << static_cast<int>(mode);
             // FALLTHROUGH
-            case mav::Camera::Mode::Unknown:
+            case mavcam::Camera::Mode::Unknown:
                 return mavcam::rpc::camera::MODE_UNKNOWN;
-            case mav::Camera::Mode::Photo:
+            case mavcam::Camera::Mode::Photo:
                 return mavcam::rpc::camera::MODE_PHOTO;
-            case mav::Camera::Mode::Video:
+            case mavcam::Camera::Mode::Video:
                 return mavcam::rpc::camera::MODE_VIDEO;
         }
     }
 
-    static mav::Camera::Mode translateFromRpcMode(const mavcam::rpc::camera::Mode mode) {
+    static mavcam::Camera::Mode translateFromRpcMode(const mavcam::rpc::camera::Mode mode) {
         switch (mode) {
             default:
                 base::LogError() << "Unknown mode enum value: " << static_cast<int>(mode);
             // FALLTHROUGH
             case mavcam::rpc::camera::MODE_UNKNOWN:
-                return mav::Camera::Mode::Unknown;
+                return mavcam::Camera::Mode::Unknown;
             case mavcam::rpc::camera::MODE_PHOTO:
-                return mav::Camera::Mode::Photo;
+                return mavcam::Camera::Mode::Photo;
             case mavcam::rpc::camera::MODE_VIDEO:
-                return mav::Camera::Mode::Video;
+                return mavcam::Camera::Mode::Video;
         }
     }
 
     static mavcam::rpc::camera::PhotosRange translateToRpcPhotosRange(
-        const mav::Camera::PhotosRange &photos_range) {
+        const mavcam::Camera::PhotosRange &photos_range) {
         switch (photos_range) {
             default:
                 base::LogError() << "Unknown photos_range enum value: "
                                  << static_cast<int>(photos_range);
             // FALLTHROUGH
-            case mav::Camera::PhotosRange::All:
+            case mavcam::Camera::PhotosRange::All:
                 return mavcam::rpc::camera::PHOTOS_RANGE_ALL;
-            case mav::Camera::PhotosRange::SinceConnection:
+            case mavcam::Camera::PhotosRange::SinceConnection:
                 return mavcam::rpc::camera::PHOTOS_RANGE_SINCE_CONNECTION;
         }
     }
 
-    static mav::Camera::PhotosRange translateFromRpcPhotosRange(
+    static mavcam::Camera::PhotosRange translateFromRpcPhotosRange(
         const mavcam::rpc::camera::PhotosRange photos_range) {
         switch (photos_range) {
             default:
@@ -83,72 +83,72 @@ public:
                                  << static_cast<int>(photos_range);
             // FALLTHROUGH
             case mavcam::rpc::camera::PHOTOS_RANGE_ALL:
-                return mav::Camera::PhotosRange::All;
+                return mavcam::Camera::PhotosRange::All;
             case mavcam::rpc::camera::PHOTOS_RANGE_SINCE_CONNECTION:
-                return mav::Camera::PhotosRange::SinceConnection;
+                return mavcam::Camera::PhotosRange::SinceConnection;
         }
     }
 
     static mavcam::rpc::camera::CameraResult::Result translateToRpcResult(
-        const mav::Camera::Result &result) {
+        const mavcam::Camera::Result &result) {
         switch (result) {
             default:
                 base::LogError() << "Unknown result enum value: " << static_cast<int>(result);
             // FALLTHROUGH
-            case mav::Camera::Result::Unknown:
+            case mavcam::Camera::Result::Unknown:
                 return mavcam::rpc::camera::CameraResult_Result_RESULT_UNKNOWN;
-            case mav::Camera::Result::Success:
+            case mavcam::Camera::Result::Success:
                 return mavcam::rpc::camera::CameraResult_Result_RESULT_SUCCESS;
-            case mav::Camera::Result::InProgress:
+            case mavcam::Camera::Result::InProgress:
                 return mavcam::rpc::camera::CameraResult_Result_RESULT_IN_PROGRESS;
-            case mav::Camera::Result::Busy:
+            case mavcam::Camera::Result::Busy:
                 return mavcam::rpc::camera::CameraResult_Result_RESULT_BUSY;
-            case mav::Camera::Result::Denied:
+            case mavcam::Camera::Result::Denied:
                 return mavcam::rpc::camera::CameraResult_Result_RESULT_DENIED;
-            case mav::Camera::Result::Error:
+            case mavcam::Camera::Result::Error:
                 return mavcam::rpc::camera::CameraResult_Result_RESULT_ERROR;
-            case mav::Camera::Result::Timeout:
+            case mavcam::Camera::Result::Timeout:
                 return mavcam::rpc::camera::CameraResult_Result_RESULT_TIMEOUT;
-            case mav::Camera::Result::WrongArgument:
+            case mavcam::Camera::Result::WrongArgument:
                 return mavcam::rpc::camera::CameraResult_Result_RESULT_WRONG_ARGUMENT;
-            case mav::Camera::Result::NoSystem:
+            case mavcam::Camera::Result::NoSystem:
                 return mavcam::rpc::camera::CameraResult_Result_RESULT_NO_SYSTEM;
-            case mav::Camera::Result::ProtocolUnsupported:
+            case mavcam::Camera::Result::ProtocolUnsupported:
                 return mavcam::rpc::camera::CameraResult_Result_RESULT_PROTOCOL_UNSUPPORTED;
         }
     }
 
-    static mav::Camera::Result translateFromRpcResult(
+    static mavcam::Camera::Result translateFromRpcResult(
         const mavcam::rpc::camera::CameraResult::Result result) {
         switch (result) {
             default:
                 base::LogError() << "Unknown result enum value: " << static_cast<int>(result);
             // FALLTHROUGH
             case mavcam::rpc::camera::CameraResult_Result_RESULT_UNKNOWN:
-                return mav::Camera::Result::Unknown;
+                return mavcam::Camera::Result::Unknown;
             case mavcam::rpc::camera::CameraResult_Result_RESULT_SUCCESS:
-                return mav::Camera::Result::Success;
+                return mavcam::Camera::Result::Success;
             case mavcam::rpc::camera::CameraResult_Result_RESULT_IN_PROGRESS:
-                return mav::Camera::Result::InProgress;
+                return mavcam::Camera::Result::InProgress;
             case mavcam::rpc::camera::CameraResult_Result_RESULT_BUSY:
-                return mav::Camera::Result::Busy;
+                return mavcam::Camera::Result::Busy;
             case mavcam::rpc::camera::CameraResult_Result_RESULT_DENIED:
-                return mav::Camera::Result::Denied;
+                return mavcam::Camera::Result::Denied;
             case mavcam::rpc::camera::CameraResult_Result_RESULT_ERROR:
-                return mav::Camera::Result::Error;
+                return mavcam::Camera::Result::Error;
             case mavcam::rpc::camera::CameraResult_Result_RESULT_TIMEOUT:
-                return mav::Camera::Result::Timeout;
+                return mavcam::Camera::Result::Timeout;
             case mavcam::rpc::camera::CameraResult_Result_RESULT_WRONG_ARGUMENT:
-                return mav::Camera::Result::WrongArgument;
+                return mavcam::Camera::Result::WrongArgument;
             case mavcam::rpc::camera::CameraResult_Result_RESULT_NO_SYSTEM:
-                return mav::Camera::Result::NoSystem;
+                return mavcam::Camera::Result::NoSystem;
             case mavcam::rpc::camera::CameraResult_Result_RESULT_PROTOCOL_UNSUPPORTED:
-                return mav::Camera::Result::ProtocolUnsupported;
+                return mavcam::Camera::Result::ProtocolUnsupported;
         }
     }
 
     static std::unique_ptr<mavcam::rpc::camera::Position> translateToRpcPosition(
-        const mav::Camera::Position &position) {
+        const mavcam::Camera::Position &position) {
         auto rpc_obj = std::make_unique<mavcam::rpc::camera::Position>();
 
         rpc_obj->set_latitude_deg(position.latitude_deg);
@@ -162,9 +162,9 @@ public:
         return rpc_obj;
     }
 
-    static mav::Camera::Position translateFromRpcPosition(
+    static mavcam::Camera::Position translateFromRpcPosition(
         const mavcam::rpc::camera::Position &position) {
-        mav::Camera::Position obj;
+        mavcam::Camera::Position obj;
 
         obj.latitude_deg = position.latitude_deg();
 
@@ -178,7 +178,7 @@ public:
     }
 
     static std::unique_ptr<mavcam::rpc::camera::Quaternion> translateToRpcQuaternion(
-        const mav::Camera::Quaternion &quaternion) {
+        const mavcam::Camera::Quaternion &quaternion) {
         auto rpc_obj = std::make_unique<mavcam::rpc::camera::Quaternion>();
 
         rpc_obj->set_w(quaternion.w);
@@ -192,9 +192,9 @@ public:
         return rpc_obj;
     }
 
-    static mav::Camera::Quaternion translateFromRpcQuaternion(
+    static mavcam::Camera::Quaternion translateFromRpcQuaternion(
         const mavcam::rpc::camera::Quaternion &quaternion) {
-        mav::Camera::Quaternion obj;
+        mavcam::Camera::Quaternion obj;
 
         obj.w = quaternion.w();
 
@@ -208,7 +208,7 @@ public:
     }
 
     static std::unique_ptr<mavcam::rpc::camera::EulerAngle> translateToRpcEulerAngle(
-        const mav::Camera::EulerAngle &euler_angle) {
+        const mavcam::Camera::EulerAngle &euler_angle) {
         auto rpc_obj = std::make_unique<mavcam::rpc::camera::EulerAngle>();
 
         rpc_obj->set_roll_deg(euler_angle.roll_deg);
@@ -220,9 +220,9 @@ public:
         return rpc_obj;
     }
 
-    static mav::Camera::EulerAngle translateFromRpcEulerAngle(
+    static mavcam::Camera::EulerAngle translateFromRpcEulerAngle(
         const mavcam::rpc::camera::EulerAngle &euler_angle) {
-        mav::Camera::EulerAngle obj;
+        mavcam::Camera::EulerAngle obj;
 
         obj.roll_deg = euler_angle.roll_deg();
 
@@ -234,7 +234,7 @@ public:
     }
 
     static std::unique_ptr<mavcam::rpc::camera::CaptureInfo> translateToRpcCaptureInfo(
-        const mav::Camera::CaptureInfo &capture_info) {
+        const mavcam::Camera::CaptureInfo &capture_info) {
         auto rpc_obj = std::make_unique<mavcam::rpc::camera::CaptureInfo>();
 
         rpc_obj->set_allocated_position(translateToRpcPosition(capture_info.position).release());
@@ -256,9 +256,9 @@ public:
         return rpc_obj;
     }
 
-    static mav::Camera::CaptureInfo translateFromRpcCaptureInfo(
+    static mavcam::Camera::CaptureInfo translateFromRpcCaptureInfo(
         const mavcam::rpc::camera::CaptureInfo &capture_info) {
-        mav::Camera::CaptureInfo obj;
+        mavcam::Camera::CaptureInfo obj;
 
         obj.position = translateFromRpcPosition(capture_info.position());
 
@@ -279,7 +279,7 @@ public:
 
     static std::unique_ptr<mavcam::rpc::camera::VideoStreamSettings>
     translateToRpcVideoStreamSettings(
-        const mav::Camera::VideoStreamSettings &video_stream_settings) {
+        const mavcam::Camera::VideoStreamSettings &video_stream_settings) {
         auto rpc_obj = std::make_unique<mavcam::rpc::camera::VideoStreamSettings>();
 
         rpc_obj->set_frame_rate_hz(video_stream_settings.frame_rate_hz);
@@ -299,9 +299,9 @@ public:
         return rpc_obj;
     }
 
-    static mav::Camera::VideoStreamSettings translateFromRpcVideoStreamSettings(
+    static mavcam::Camera::VideoStreamSettings translateFromRpcVideoStreamSettings(
         const mavcam::rpc::camera::VideoStreamSettings &video_stream_settings) {
-        mav::Camera::VideoStreamSettings obj;
+        mavcam::Camera::VideoStreamSettings obj;
 
         obj.frame_rate_hz = video_stream_settings.frame_rate_hz();
 
@@ -321,22 +321,22 @@ public:
     }
 
     static mavcam::rpc::camera::VideoStreamInfo::VideoStreamStatus translateToRpcVideoStreamStatus(
-        const mav::Camera::VideoStreamInfo::VideoStreamStatus &video_stream_status) {
+        const mavcam::Camera::VideoStreamInfo::VideoStreamStatus &video_stream_status) {
         switch (video_stream_status) {
             default:
                 base::LogError() << "Unknown video_stream_status enum value: "
                                  << static_cast<int>(video_stream_status);
             // FALLTHROUGH
-            case mav::Camera::VideoStreamInfo::VideoStreamStatus::NotRunning:
+            case mavcam::Camera::VideoStreamInfo::VideoStreamStatus::NotRunning:
                 return mavcam::rpc::camera::
                     VideoStreamInfo_VideoStreamStatus_VIDEO_STREAM_STATUS_NOT_RUNNING;
-            case mav::Camera::VideoStreamInfo::VideoStreamStatus::InProgress:
+            case mavcam::Camera::VideoStreamInfo::VideoStreamStatus::InProgress:
                 return mavcam::rpc::camera::
                     VideoStreamInfo_VideoStreamStatus_VIDEO_STREAM_STATUS_IN_PROGRESS;
         }
     }
 
-    static mav::Camera::VideoStreamInfo::VideoStreamStatus translateFromRpcVideoStreamStatus(
+    static mavcam::Camera::VideoStreamInfo::VideoStreamStatus translateFromRpcVideoStreamStatus(
         const mavcam::rpc::camera::VideoStreamInfo::VideoStreamStatus video_stream_status) {
         switch (video_stream_status) {
             default:
@@ -345,34 +345,34 @@ public:
             // FALLTHROUGH
             case mavcam::rpc::camera::
                 VideoStreamInfo_VideoStreamStatus_VIDEO_STREAM_STATUS_NOT_RUNNING:
-                return mav::Camera::VideoStreamInfo::VideoStreamStatus::NotRunning;
+                return mavcam::Camera::VideoStreamInfo::VideoStreamStatus::NotRunning;
             case mavcam::rpc::camera::
                 VideoStreamInfo_VideoStreamStatus_VIDEO_STREAM_STATUS_IN_PROGRESS:
-                return mav::Camera::VideoStreamInfo::VideoStreamStatus::InProgress;
+                return mavcam::Camera::VideoStreamInfo::VideoStreamStatus::InProgress;
         }
     }
 
     static mavcam::rpc::camera::VideoStreamInfo::VideoStreamSpectrum
     translateToRpcVideoStreamSpectrum(
-        const mav::Camera::VideoStreamInfo::VideoStreamSpectrum &video_stream_spectrum) {
+        const mavcam::Camera::VideoStreamInfo::VideoStreamSpectrum &video_stream_spectrum) {
         switch (video_stream_spectrum) {
             default:
                 base::LogError() << "Unknown video_stream_spectrum enum value: "
                                  << static_cast<int>(video_stream_spectrum);
             // FALLTHROUGH
-            case mav::Camera::VideoStreamInfo::VideoStreamSpectrum::Unknown:
+            case mavcam::Camera::VideoStreamInfo::VideoStreamSpectrum::Unknown:
                 return mavcam::rpc::camera::
                     VideoStreamInfo_VideoStreamSpectrum_VIDEO_STREAM_SPECTRUM_UNKNOWN;
-            case mav::Camera::VideoStreamInfo::VideoStreamSpectrum::VisibleLight:
+            case mavcam::Camera::VideoStreamInfo::VideoStreamSpectrum::VisibleLight:
                 return mavcam::rpc::camera::
                     VideoStreamInfo_VideoStreamSpectrum_VIDEO_STREAM_SPECTRUM_VISIBLE_LIGHT;
-            case mav::Camera::VideoStreamInfo::VideoStreamSpectrum::Infrared:
+            case mavcam::Camera::VideoStreamInfo::VideoStreamSpectrum::Infrared:
                 return mavcam::rpc::camera::
                     VideoStreamInfo_VideoStreamSpectrum_VIDEO_STREAM_SPECTRUM_INFRARED;
         }
     }
 
-    static mav::Camera::VideoStreamInfo::VideoStreamSpectrum translateFromRpcVideoStreamSpectrum(
+    static mavcam::Camera::VideoStreamInfo::VideoStreamSpectrum translateFromRpcVideoStreamSpectrum(
         const mavcam::rpc::camera::VideoStreamInfo::VideoStreamSpectrum video_stream_spectrum) {
         switch (video_stream_spectrum) {
             default:
@@ -381,18 +381,18 @@ public:
             // FALLTHROUGH
             case mavcam::rpc::camera::
                 VideoStreamInfo_VideoStreamSpectrum_VIDEO_STREAM_SPECTRUM_UNKNOWN:
-                return mav::Camera::VideoStreamInfo::VideoStreamSpectrum::Unknown;
+                return mavcam::Camera::VideoStreamInfo::VideoStreamSpectrum::Unknown;
             case mavcam::rpc::camera::
                 VideoStreamInfo_VideoStreamSpectrum_VIDEO_STREAM_SPECTRUM_VISIBLE_LIGHT:
-                return mav::Camera::VideoStreamInfo::VideoStreamSpectrum::VisibleLight;
+                return mavcam::Camera::VideoStreamInfo::VideoStreamSpectrum::VisibleLight;
             case mavcam::rpc::camera::
                 VideoStreamInfo_VideoStreamSpectrum_VIDEO_STREAM_SPECTRUM_INFRARED:
-                return mav::Camera::VideoStreamInfo::VideoStreamSpectrum::Infrared;
+                return mavcam::Camera::VideoStreamInfo::VideoStreamSpectrum::Infrared;
         }
     }
 
     static std::unique_ptr<mavcam::rpc::camera::VideoStreamInfo> translateToRpcVideoStreamInfo(
-        const mav::Camera::VideoStreamInfo &video_stream_info) {
+        const mavcam::Camera::VideoStreamInfo &video_stream_info) {
         auto rpc_obj = std::make_unique<mavcam::rpc::camera::VideoStreamInfo>();
 
         rpc_obj->set_stream_id(video_stream_info.stream_id);
@@ -407,9 +407,9 @@ public:
         return rpc_obj;
     }
 
-    static mav::Camera::VideoStreamInfo translateFromRpcVideoStreamInfo(
+    static mavcam::Camera::VideoStreamInfo translateFromRpcVideoStreamInfo(
         const mavcam::rpc::camera::VideoStreamInfo &video_stream_info) {
-        mav::Camera::VideoStreamInfo obj;
+        mavcam::Camera::VideoStreamInfo obj;
 
         obj.stream_id = video_stream_info.stream_id();
 
@@ -423,24 +423,24 @@ public:
     }
 
     static mavcam::rpc::camera::Status::StorageStatus translateToRpcStorageStatus(
-        const mav::Camera::Status::StorageStatus &storage_status) {
+        const mavcam::Camera::Status::StorageStatus &storage_status) {
         switch (storage_status) {
             default:
                 base::LogError() << "Unknown storage_status enum value: "
                                  << static_cast<int>(storage_status);
             // FALLTHROUGH
-            case mav::Camera::Status::StorageStatus::NotAvailable:
+            case mavcam::Camera::Status::StorageStatus::NotAvailable:
                 return mavcam::rpc::camera::Status_StorageStatus_STORAGE_STATUS_NOT_AVAILABLE;
-            case mav::Camera::Status::StorageStatus::Unformatted:
+            case mavcam::Camera::Status::StorageStatus::Unformatted:
                 return mavcam::rpc::camera::Status_StorageStatus_STORAGE_STATUS_UNFORMATTED;
-            case mav::Camera::Status::StorageStatus::Formatted:
+            case mavcam::Camera::Status::StorageStatus::Formatted:
                 return mavcam::rpc::camera::Status_StorageStatus_STORAGE_STATUS_FORMATTED;
-            case mav::Camera::Status::StorageStatus::NotSupported:
+            case mavcam::Camera::Status::StorageStatus::NotSupported:
                 return mavcam::rpc::camera::Status_StorageStatus_STORAGE_STATUS_NOT_SUPPORTED;
         }
     }
 
-    static mav::Camera::Status::StorageStatus translateFromRpcStorageStatus(
+    static mavcam::Camera::Status::StorageStatus translateFromRpcStorageStatus(
         const mavcam::rpc::camera::Status::StorageStatus storage_status) {
         switch (storage_status) {
             default:
@@ -448,39 +448,39 @@ public:
                                  << static_cast<int>(storage_status);
             // FALLTHROUGH
             case mavcam::rpc::camera::Status_StorageStatus_STORAGE_STATUS_NOT_AVAILABLE:
-                return mav::Camera::Status::StorageStatus::NotAvailable;
+                return mavcam::Camera::Status::StorageStatus::NotAvailable;
             case mavcam::rpc::camera::Status_StorageStatus_STORAGE_STATUS_UNFORMATTED:
-                return mav::Camera::Status::StorageStatus::Unformatted;
+                return mavcam::Camera::Status::StorageStatus::Unformatted;
             case mavcam::rpc::camera::Status_StorageStatus_STORAGE_STATUS_FORMATTED:
-                return mav::Camera::Status::StorageStatus::Formatted;
+                return mavcam::Camera::Status::StorageStatus::Formatted;
             case mavcam::rpc::camera::Status_StorageStatus_STORAGE_STATUS_NOT_SUPPORTED:
-                return mav::Camera::Status::StorageStatus::NotSupported;
+                return mavcam::Camera::Status::StorageStatus::NotSupported;
         }
     }
 
     static mavcam::rpc::camera::Status::StorageType translateToRpcStorageType(
-        const mav::Camera::Status::StorageType &storage_type) {
+        const mavcam::Camera::Status::StorageType &storage_type) {
         switch (storage_type) {
             default:
                 base::LogError() << "Unknown storage_type enum value: "
                                  << static_cast<int>(storage_type);
             // FALLTHROUGH
-            case mav::Camera::Status::StorageType::Unknown:
+            case mavcam::Camera::Status::StorageType::Unknown:
                 return mavcam::rpc::camera::Status_StorageType_STORAGE_TYPE_UNKNOWN;
-            case mav::Camera::Status::StorageType::UsbStick:
+            case mavcam::Camera::Status::StorageType::UsbStick:
                 return mavcam::rpc::camera::Status_StorageType_STORAGE_TYPE_USB_STICK;
-            case mav::Camera::Status::StorageType::Sd:
+            case mavcam::Camera::Status::StorageType::Sd:
                 return mavcam::rpc::camera::Status_StorageType_STORAGE_TYPE_SD;
-            case mav::Camera::Status::StorageType::Microsd:
+            case mavcam::Camera::Status::StorageType::Microsd:
                 return mavcam::rpc::camera::Status_StorageType_STORAGE_TYPE_MICROSD;
-            case mav::Camera::Status::StorageType::Hd:
+            case mavcam::Camera::Status::StorageType::Hd:
                 return mavcam::rpc::camera::Status_StorageType_STORAGE_TYPE_HD;
-            case mav::Camera::Status::StorageType::Other:
+            case mavcam::Camera::Status::StorageType::Other:
                 return mavcam::rpc::camera::Status_StorageType_STORAGE_TYPE_OTHER;
         }
     }
 
-    static mav::Camera::Status::StorageType translateFromRpcStorageType(
+    static mavcam::Camera::Status::StorageType translateFromRpcStorageType(
         const mavcam::rpc::camera::Status::StorageType storage_type) {
         switch (storage_type) {
             default:
@@ -488,22 +488,22 @@ public:
                                  << static_cast<int>(storage_type);
             // FALLTHROUGH
             case mavcam::rpc::camera::Status_StorageType_STORAGE_TYPE_UNKNOWN:
-                return mav::Camera::Status::StorageType::Unknown;
+                return mavcam::Camera::Status::StorageType::Unknown;
             case mavcam::rpc::camera::Status_StorageType_STORAGE_TYPE_USB_STICK:
-                return mav::Camera::Status::StorageType::UsbStick;
+                return mavcam::Camera::Status::StorageType::UsbStick;
             case mavcam::rpc::camera::Status_StorageType_STORAGE_TYPE_SD:
-                return mav::Camera::Status::StorageType::Sd;
+                return mavcam::Camera::Status::StorageType::Sd;
             case mavcam::rpc::camera::Status_StorageType_STORAGE_TYPE_MICROSD:
-                return mav::Camera::Status::StorageType::Microsd;
+                return mavcam::Camera::Status::StorageType::Microsd;
             case mavcam::rpc::camera::Status_StorageType_STORAGE_TYPE_HD:
-                return mav::Camera::Status::StorageType::Hd;
+                return mavcam::Camera::Status::StorageType::Hd;
             case mavcam::rpc::camera::Status_StorageType_STORAGE_TYPE_OTHER:
-                return mav::Camera::Status::StorageType::Other;
+                return mavcam::Camera::Status::StorageType::Other;
         }
     }
 
     static std::unique_ptr<mavcam::rpc::camera::Status> translateToRpcStatus(
-        const mav::Camera::Status &status) {
+        const mavcam::Camera::Status &status) {
         auto rpc_obj = std::make_unique<mavcam::rpc::camera::Status>();
 
         rpc_obj->set_video_on(status.video_on);
@@ -529,8 +529,9 @@ public:
         return rpc_obj;
     }
 
-    static mav::Camera::Status translateFromRpcStatus(const mavcam::rpc::camera::Status &status) {
-        mav::Camera::Status obj;
+    static mavcam::Camera::Status translateFromRpcStatus(
+        const mavcam::rpc::camera::Status &status) {
+        mavcam::Camera::Status obj;
 
         obj.video_on = status.video_on();
 
@@ -556,7 +557,7 @@ public:
     }
 
     static std::unique_ptr<mavcam::rpc::camera::Option> translateToRpcOption(
-        const mav::Camera::Option &option) {
+        const mavcam::Camera::Option &option) {
         auto rpc_obj = std::make_unique<mavcam::rpc::camera::Option>();
 
         rpc_obj->set_option_id(option.option_id);
@@ -566,8 +567,9 @@ public:
         return rpc_obj;
     }
 
-    static mav::Camera::Option translateFromRpcOption(const mavcam::rpc::camera::Option &option) {
-        mav::Camera::Option obj;
+    static mavcam::Camera::Option translateFromRpcOption(
+        const mavcam::rpc::camera::Option &option) {
+        mavcam::Camera::Option obj;
 
         obj.option_id = option.option_id();
 
@@ -577,7 +579,7 @@ public:
     }
 
     static std::unique_ptr<mavcam::rpc::camera::Setting> translateToRpcSetting(
-        const mav::Camera::Setting &setting) {
+        const mavcam::Camera::Setting &setting) {
         auto rpc_obj = std::make_unique<mavcam::rpc::camera::Setting>();
 
         rpc_obj->set_setting_id(setting.setting_id);
@@ -591,9 +593,9 @@ public:
         return rpc_obj;
     }
 
-    static mav::Camera::Setting translateFromRpcSetting(
+    static mavcam::Camera::Setting translateFromRpcSetting(
         const mavcam::rpc::camera::Setting &setting) {
-        mav::Camera::Setting obj;
+        mavcam::Camera::Setting obj;
 
         obj.setting_id = setting.setting_id();
 
@@ -607,7 +609,7 @@ public:
     }
 
     static std::unique_ptr<mavcam::rpc::camera::SettingOptions> translateToRpcSettingOptions(
-        const mav::Camera::SettingOptions &setting_options) {
+        const mavcam::Camera::SettingOptions &setting_options) {
         auto rpc_obj = std::make_unique<mavcam::rpc::camera::SettingOptions>();
 
         rpc_obj->set_setting_id(setting_options.setting_id);
@@ -624,9 +626,9 @@ public:
         return rpc_obj;
     }
 
-    static mav::Camera::SettingOptions translateFromRpcSettingOptions(
+    static mavcam::Camera::SettingOptions translateFromRpcSettingOptions(
         const mavcam::rpc::camera::SettingOptions &setting_options) {
-        mav::Camera::SettingOptions obj;
+        mavcam::Camera::SettingOptions obj;
 
         obj.setting_id = setting_options.setting_id();
 
@@ -643,51 +645,51 @@ public:
     }
 
     static mavcam::rpc::camera::Information::CameraCapFlags translateToRpcCameraCapFlags(
-        const mav::Camera::Information::CameraCapFlags &camera_cap_flags) {
+        const mavcam::Camera::Information::CameraCapFlags &camera_cap_flags) {
         switch (camera_cap_flags) {
             default:
                 base::LogError() << "Unknown camera_cap_flags enum value: "
                                  << static_cast<int>(camera_cap_flags);
             // FALLTHROUGH
-            case mav::Camera::Information::CameraCapFlags::CaptureVideo:
+            case mavcam::Camera::Information::CameraCapFlags::CaptureVideo:
                 return mavcam::rpc::camera::
                     Information_CameraCapFlags_CAMERA_CAP_FLAGS_CAPTURE_VIDEO;
-            case mav::Camera::Information::CameraCapFlags::CaptureImage:
+            case mavcam::Camera::Information::CameraCapFlags::CaptureImage:
                 return mavcam::rpc::camera::
                     Information_CameraCapFlags_CAMERA_CAP_FLAGS_CAPTURE_IMAGE;
-            case mav::Camera::Information::CameraCapFlags::HasModes:
+            case mavcam::Camera::Information::CameraCapFlags::HasModes:
                 return mavcam::rpc::camera::Information_CameraCapFlags_CAMERA_CAP_FLAGS_HAS_MODES;
-            case mav::Camera::Information::CameraCapFlags::CanCaptureImageInVideoMode:
+            case mavcam::Camera::Information::CameraCapFlags::CanCaptureImageInVideoMode:
                 return mavcam::rpc::camera::
                     Information_CameraCapFlags_CAMERA_CAP_FLAGS_CAN_CAPTURE_IMAGE_IN_VIDEO_MODE;
-            case mav::Camera::Information::CameraCapFlags::CanCaptureVideoInImageMode:
+            case mavcam::Camera::Information::CameraCapFlags::CanCaptureVideoInImageMode:
                 return mavcam::rpc::camera::
                     Information_CameraCapFlags_CAMERA_CAP_FLAGS_CAN_CAPTURE_VIDEO_IN_IMAGE_MODE;
-            case mav::Camera::Information::CameraCapFlags::HasImageSurveyMode:
+            case mavcam::Camera::Information::CameraCapFlags::HasImageSurveyMode:
                 return mavcam::rpc::camera::
                     Information_CameraCapFlags_CAMERA_CAP_FLAGS_HAS_IMAGE_SURVEY_MODE;
-            case mav::Camera::Information::CameraCapFlags::HasBasicZoom:
+            case mavcam::Camera::Information::CameraCapFlags::HasBasicZoom:
                 return mavcam::rpc::camera::
                     Information_CameraCapFlags_CAMERA_CAP_FLAGS_HAS_BASIC_ZOOM;
-            case mav::Camera::Information::CameraCapFlags::HasBasicFocus:
+            case mavcam::Camera::Information::CameraCapFlags::HasBasicFocus:
                 return mavcam::rpc::camera::
                     Information_CameraCapFlags_CAMERA_CAP_FLAGS_HAS_BASIC_FOCUS;
-            case mav::Camera::Information::CameraCapFlags::HasVideoStream:
+            case mavcam::Camera::Information::CameraCapFlags::HasVideoStream:
                 return mavcam::rpc::camera::
                     Information_CameraCapFlags_CAMERA_CAP_FLAGS_HAS_VIDEO_STREAM;
-            case mav::Camera::Information::CameraCapFlags::HasTrackingPoint:
+            case mavcam::Camera::Information::CameraCapFlags::HasTrackingPoint:
                 return mavcam::rpc::camera::
                     Information_CameraCapFlags_CAMERA_CAP_FLAGS_HAS_TRACKING_POINT;
-            case mav::Camera::Information::CameraCapFlags::HasTrackingRectangle:
+            case mavcam::Camera::Information::CameraCapFlags::HasTrackingRectangle:
                 return mavcam::rpc::camera::
                     Information_CameraCapFlags_CAMERA_CAP_FLAGS_HAS_TRACKING_RECTANGLE;
-            case mav::Camera::Information::CameraCapFlags::HasTrackingGeoStatus:
+            case mavcam::Camera::Information::CameraCapFlags::HasTrackingGeoStatus:
                 return mavcam::rpc::camera::
                     Information_CameraCapFlags_CAMERA_CAP_FLAGS_HAS_TRACKING_GEO_STATUS;
         }
     }
 
-    static mav::Camera::Information::CameraCapFlags translateFromRpcCameraCapFlags(
+    static mavcam::Camera::Information::CameraCapFlags translateFromRpcCameraCapFlags(
         const mavcam::rpc::camera::Information::CameraCapFlags camera_cap_flags) {
         switch (camera_cap_flags) {
             default:
@@ -695,40 +697,40 @@ public:
                                  << static_cast<int>(camera_cap_flags);
             // FALLTHROUGH
             case mavcam::rpc::camera::Information_CameraCapFlags_CAMERA_CAP_FLAGS_CAPTURE_VIDEO:
-                return mav::Camera::Information::CameraCapFlags::CaptureVideo;
+                return mavcam::Camera::Information::CameraCapFlags::CaptureVideo;
             case mavcam::rpc::camera::Information_CameraCapFlags_CAMERA_CAP_FLAGS_CAPTURE_IMAGE:
-                return mav::Camera::Information::CameraCapFlags::CaptureImage;
+                return mavcam::Camera::Information::CameraCapFlags::CaptureImage;
             case mavcam::rpc::camera::Information_CameraCapFlags_CAMERA_CAP_FLAGS_HAS_MODES:
-                return mav::Camera::Information::CameraCapFlags::HasModes;
+                return mavcam::Camera::Information::CameraCapFlags::HasModes;
             case mavcam::rpc::camera::
                 Information_CameraCapFlags_CAMERA_CAP_FLAGS_CAN_CAPTURE_IMAGE_IN_VIDEO_MODE:
-                return mav::Camera::Information::CameraCapFlags::CanCaptureImageInVideoMode;
+                return mavcam::Camera::Information::CameraCapFlags::CanCaptureImageInVideoMode;
             case mavcam::rpc::camera::
                 Information_CameraCapFlags_CAMERA_CAP_FLAGS_CAN_CAPTURE_VIDEO_IN_IMAGE_MODE:
-                return mav::Camera::Information::CameraCapFlags::CanCaptureVideoInImageMode;
+                return mavcam::Camera::Information::CameraCapFlags::CanCaptureVideoInImageMode;
             case mavcam::rpc::camera::
                 Information_CameraCapFlags_CAMERA_CAP_FLAGS_HAS_IMAGE_SURVEY_MODE:
-                return mav::Camera::Information::CameraCapFlags::HasImageSurveyMode;
+                return mavcam::Camera::Information::CameraCapFlags::HasImageSurveyMode;
             case mavcam::rpc::camera::Information_CameraCapFlags_CAMERA_CAP_FLAGS_HAS_BASIC_ZOOM:
-                return mav::Camera::Information::CameraCapFlags::HasBasicZoom;
+                return mavcam::Camera::Information::CameraCapFlags::HasBasicZoom;
             case mavcam::rpc::camera::Information_CameraCapFlags_CAMERA_CAP_FLAGS_HAS_BASIC_FOCUS:
-                return mav::Camera::Information::CameraCapFlags::HasBasicFocus;
+                return mavcam::Camera::Information::CameraCapFlags::HasBasicFocus;
             case mavcam::rpc::camera::Information_CameraCapFlags_CAMERA_CAP_FLAGS_HAS_VIDEO_STREAM:
-                return mav::Camera::Information::CameraCapFlags::HasVideoStream;
+                return mavcam::Camera::Information::CameraCapFlags::HasVideoStream;
             case mavcam::rpc::camera::
                 Information_CameraCapFlags_CAMERA_CAP_FLAGS_HAS_TRACKING_POINT:
-                return mav::Camera::Information::CameraCapFlags::HasTrackingPoint;
+                return mavcam::Camera::Information::CameraCapFlags::HasTrackingPoint;
             case mavcam::rpc::camera::
                 Information_CameraCapFlags_CAMERA_CAP_FLAGS_HAS_TRACKING_RECTANGLE:
-                return mav::Camera::Information::CameraCapFlags::HasTrackingRectangle;
+                return mavcam::Camera::Information::CameraCapFlags::HasTrackingRectangle;
             case mavcam::rpc::camera::
                 Information_CameraCapFlags_CAMERA_CAP_FLAGS_HAS_TRACKING_GEO_STATUS:
-                return mav::Camera::Information::CameraCapFlags::HasTrackingGeoStatus;
+                return mavcam::Camera::Information::CameraCapFlags::HasTrackingGeoStatus;
         }
     }
 
     static std::unique_ptr<mavcam::rpc::camera::Information> translateToRpcInformation(
-        const mav::Camera::Information &information) {
+        const mavcam::Camera::Information &information) {
         auto rpc_obj = std::make_unique<mavcam::rpc::camera::Information>();
 
         rpc_obj->set_vendor_name(information.vendor_name);
@@ -760,9 +762,9 @@ public:
         return rpc_obj;
     }
 
-    static mav::Camera::Information translateFromRpcInformation(
+    static mavcam::Camera::Information translateFromRpcInformation(
         const mavcam::rpc::camera::Information &information) {
-        mav::Camera::Information obj;
+        mavcam::Camera::Information obj;
 
         obj.vendor_name = information.vendor_name();
 
@@ -956,15 +958,16 @@ public:
         auto stream_closed_future = stream_closed_promise->get_future();
         register_stream_stop_promise(stream_closed_promise);
 
-        _plugin->mode_async([this, &writer, &stream_closed_promise](const mav::Camera::Mode mode) {
-            mavcam::rpc::camera::ModeResponse rpc_response;
+        _plugin->mode_async(
+            [this, &writer, &stream_closed_promise](const mavcam::Camera::Mode mode) {
+                mavcam::rpc::camera::ModeResponse rpc_response;
 
-            rpc_response.set_mode(translateToRpcMode(mode));
+                rpc_response.set_mode(translateToRpcMode(mode));
 
-            writer->Write(rpc_response);
-            unregister_stream_stop_promise(stream_closed_promise);
-            stream_closed_promise->set_value();
-        });
+                writer->Write(rpc_response);
+                unregister_stream_stop_promise(stream_closed_promise);
+                stream_closed_promise->set_value();
+            });
 
         stream_closed_future.wait();
 
@@ -980,7 +983,7 @@ public:
         register_stream_stop_promise(stream_closed_promise);
 
         _plugin->information_async(
-            [this, &writer, &stream_closed_promise](const mav::Camera::Information information) {
+            [this, &writer, &stream_closed_promise](const mavcam::Camera::Information information) {
                 mavcam::rpc::camera::InformationResponse rpc_response;
 
                 rpc_response.set_allocated_information(
@@ -1006,7 +1009,7 @@ public:
 
         _plugin->video_stream_info_async(
             [this, &writer, &stream_closed_promise](
-                const std::vector<mav::Camera::VideoStreamInfo> video_stream_info) {
+                const std::vector<mavcam::Camera::VideoStreamInfo> video_stream_info) {
                 mavcam::rpc::camera::VideoStreamInfoResponse rpc_response;
 
                 for (const auto &elem : video_stream_info) {
@@ -1032,17 +1035,17 @@ public:
         auto stream_closed_future = stream_closed_promise->get_future();
         register_stream_stop_promise(stream_closed_promise);
 
-        _plugin->capture_info_async(
-            [this, &writer, &stream_closed_promise](const mav::Camera::CaptureInfo capture_info) {
-                mavcam::rpc::camera::CaptureInfoResponse rpc_response;
+        _plugin->capture_info_async([this, &writer, &stream_closed_promise](
+                                        const mavcam::Camera::CaptureInfo capture_info) {
+            mavcam::rpc::camera::CaptureInfoResponse rpc_response;
 
-                rpc_response.set_allocated_capture_info(
-                    translateToRpcCaptureInfo(capture_info).release());
+            rpc_response.set_allocated_capture_info(
+                translateToRpcCaptureInfo(capture_info).release());
 
-                writer->Write(rpc_response);
-                unregister_stream_stop_promise(stream_closed_promise);
-                stream_closed_promise->set_value();
-            });
+            writer->Write(rpc_response);
+            unregister_stream_stop_promise(stream_closed_promise);
+            stream_closed_promise->set_value();
+        });
 
         stream_closed_future.wait();
 
@@ -1058,7 +1061,7 @@ public:
         register_stream_stop_promise(stream_closed_promise);
 
         _plugin->status_async(
-            [this, &writer, &stream_closed_promise](const mav::Camera::Status status) {
+            [this, &writer, &stream_closed_promise](const mavcam::Camera::Status status) {
                 mavcam::rpc::camera::StatusResponse rpc_response;
 
                 rpc_response.set_allocated_camera_status(translateToRpcStatus(status).release());
@@ -1083,7 +1086,7 @@ public:
 
         _plugin->current_settings_async(
             [this, &writer,
-             &stream_closed_promise](const std::vector<mav::Camera::Setting> current_settings) {
+             &stream_closed_promise](const std::vector<mavcam::Camera::Setting> current_settings) {
                 mavcam::rpc::camera::CurrentSettingsResponse rpc_response;
 
                 for (const auto &elem : current_settings) {
@@ -1111,7 +1114,7 @@ public:
 
         _plugin->possible_setting_options_async(
             [this, &writer, &stream_closed_promise](
-                const std::vector<mav::Camera::SettingOptions> possible_setting_options) {
+                const std::vector<mavcam::Camera::SettingOptions> possible_setting_options) {
                 mavcam::rpc::camera::PossibleSettingOptionsResponse rpc_response;
 
                 for (const auto &elem : possible_setting_options) {
@@ -1265,4 +1268,4 @@ private:
     std::vector<std::weak_ptr<std::promise<void>>> _stream_stop_promises{};
 };
 
-}  // namespace mav
+}  // namespace mavcam

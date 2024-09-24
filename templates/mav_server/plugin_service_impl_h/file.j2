@@ -15,7 +15,7 @@
 
 #include "base/log.h"
 
-namespace mav {
+namespace mavcam {
 
 class {{ plugin_name.upper_camel_case }}ServiceImpl final : public mavcam::rpc::{{ plugin_name.lower_snake_case }}::{{ plugin_name.upper_camel_case }}Service::Service {
 public:
@@ -23,7 +23,7 @@ public:
 
 {% if has_result %}
     template<typename ResponseType>
-    void fillResponseWithResult(ResponseType* response, mav::{{ plugin_name.upper_camel_case }}::Result& result) const
+    void fillResponseWithResult(ResponseType* response, mavcam::{{ plugin_name.upper_camel_case }}::Result& result) const
     {
         auto rpc_result = translateToRpcResult(result);
 
@@ -87,4 +87,4 @@ private:
     std::vector<std::weak_ptr<std::promise<void>>> _stream_stop_promises {};
 };
 
-} // namespace mav
+} // namespace mavcam

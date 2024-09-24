@@ -8,7 +8,7 @@
 #include "plugins/camera/camera_impl.h"
 #include "plugins/camera/camera_service_impl.h"
 
-namespace mav {
+namespace mavcam {
 
 bool MavServer::init(int rpc_port) {
     _rpc_port = rpc_port;
@@ -45,4 +45,4 @@ void MavServer::stop_runloop() {
     _running = false;
 }
 
-}  // namespace mav
+}  // namespace mavcam

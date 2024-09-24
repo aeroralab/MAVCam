@@ -11,7 +11,7 @@
 #include "base/log.h"
 #include "camera_client.h"
 
-namespace mav {
+namespace mavcam {
 
 bool MavClient::init(std::string &connection_url, bool use_local, int32_t rpc_port,
                      std::string &ftp_root_path) {
@@ -211,4 +211,4 @@ void MavClient::fill_param(mavsdk::ParamServer &param_server) {
     }
 }
 
-}  // namespace mav
+}  // namespace mavcam

@@ -5,7 +5,7 @@
 
 #include "base/log.h"
 
-namespace mav {
+namespace mavcam {
 
 static std::string kCameraModeName = "CAM_MODE";
 
@@ -239,4 +239,4 @@ mavsdk::Camera::Setting CameraLocalClient::build_setting(std::string name, std::
     return setting;
 }
 
-}  // namespace mav
+}  // namespace mavcam

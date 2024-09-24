@@ -7,7 +7,7 @@
 #include "camera_rpc_client.h"
 #endif
 
-namespace mav {
+namespace mavcam {
 
 CameraClient *CreateLocalCameraClient() {
     return new CameraLocalClient();
@@ -24,4 +24,4 @@ CameraClient *CreateRpcCameraClient(int rpc_port) {
 #endif
 }
 
-}  // namespace mav
+}  // namespace mavcam

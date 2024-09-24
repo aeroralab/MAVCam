@@ -12,7 +12,7 @@
 #include "camera/camera.pb.h"
 #include "camera_client.h"
 
-namespace mav {
+namespace mavcam {
 
 class CameraRpcClient : public CameraClient {
 public:
@@ -76,4 +76,4 @@ private:  // backend work thread
     mutable std::mutex _mutex{};
 };
 
-}  // namespace mav
+}  // namespace mavcam

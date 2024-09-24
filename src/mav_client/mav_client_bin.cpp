@@ -19,7 +19,7 @@ static void init_log();
 static bool is_integer(const std::string &tested_integer);
 void signal_handler(int signum);
 
-static mav::MavClient client;
+static mavcam::MavClient client;
 int main(int argc, const char *argv[]) {
     std::ios::sync_with_stdio(true);
 

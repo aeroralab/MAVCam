@@ -8,7 +8,7 @@
 
 #include "camera_impl.h"
 
-namespace mav {
+namespace mavcam {
 
 using Position = Camera::Position;
 using Quaternion = Camera::Quaternion;
@@ -534,4 +534,4 @@ std::ostream &operator<<(std::ostream &str, Camera::PhotosRange const &photos_ra
     }
 }
 
-}  // namespace mav
+}  // namespace mavcam
