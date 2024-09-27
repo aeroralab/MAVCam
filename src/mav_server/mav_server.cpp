@@ -34,15 +34,15 @@ bool MavServer::start_runloop() {
     // Run server
     base::LogInfo() << "Server listening on " << server_address;
     _running = true;
-    while (_running) {
-        std::this_thread::sleep_for(std::chrono::microseconds(500));
+    while (_running.load(std::memory_order_relaxed)) {
+        std::this_thread::sleep_for(std::chrono::microseconds(50));
     }
-    _server->Shutdown();
     return 0;
 }
 
 void MavServer::stop_runloop() {
     _running = false;
+    _server->Shutdown();
 }
 
 }  // namespace mavcam

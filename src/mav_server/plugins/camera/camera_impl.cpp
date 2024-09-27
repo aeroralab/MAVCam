@@ -17,8 +17,6 @@ const std::string kEVName = "CAM_EV";
 const std::string kISOName = "CAM_ISO";
 const std::string kShutterSpeedName = "CAM_SHUTTERSPD";
 
-const std::string kStreamingUrl = "127.0.0.1:8554";
-
 const int32_t kPreviewWidth = 1920;
 const int32_t kPreviewPhotoHeight = 1440;
 const int32_t kPreviewVideoHeight = 1080;
@@ -71,7 +69,7 @@ Camera::Result CameraImpl::prepare() {
         return Camera::Result::Error;
     }
 
-    _mav_camera->set_timestamp(1727083216503);
+    _mav_camera->set_timestamp(1727404495836);
     _mav_camera->set_log_path("/data/camera/qcom_cam.log");
 
     mav_camera::Options options;
@@ -465,7 +463,6 @@ Camera::Result CameraImpl::set_definition_data(std::string definition_data) {
 
 void CameraImpl::close_camera() {
     if (_mav_camera != nullptr) {
-        _mav_camera->stop_streaming();
         _mav_camera->close();
         delete _mav_camera;
     }
