@@ -293,6 +293,14 @@ private:
      */
     std::string get_shutter_speed_value();
     /**
+     * @brief get video resoltuion
+     */
+    std::string get_video_resolution();
+    /**
+     * @brief set video resoltuion
+     */
+    bool set_video_resolution(std::string value);
+    /**
      * @brief convert mav_camera::Result to mavcam::Camera::Result
      */
     mavcam::Camera::Result convert_camera_result_to_mav_result(mav_camera::Result input_result);

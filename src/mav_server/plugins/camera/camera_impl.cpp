@@ -16,6 +16,7 @@ const std::string kWhitebalanceModeName = "CAM_WBMODE";
 const std::string kEVName = "CAM_EV";
 const std::string kISOName = "CAM_ISO";
 const std::string kShutterSpeedName = "CAM_SHUTTERSPD";
+const std::string kVideoResolution = "CAM_VIDRES";
 
 const int32_t kPreviewWidth = 1920;
 const int32_t kPreviewPhotoHeight = 1440;
@@ -26,8 +27,8 @@ const int32_t kSnapshotHeight = 6944;
 const int32_t kSnapshotHalfWidth = 4624;
 const int32_t kSnapshotHalfHeight = 3472;
 
-const int32_t kVideoWidth = 1920;
-const int32_t kVideoHeight = 1080;
+const int32_t kVideoWidth = 3840;
+const int32_t kVideoHeight = 2160;
 
 #define QCOM_CAMERA_LIBERAY "libqcom_camera.so"
 
@@ -125,7 +126,8 @@ Camera::Result CameraImpl::prepare() {
     std::string shutter_speed_value = get_shutter_speed_value();
     _settings.emplace_back(build_setting(kShutterSpeedName, shutter_speed_value));
     _settings.emplace_back(build_setting("CAM_VIDFMT", "1"));
-    _settings.emplace_back(build_setting("CAM_VIDRES", "0"));
+    std::string video_resolution = get_video_resolution();
+    _settings.emplace_back(build_setting(kVideoResolution, video_resolution));
 
     return Camera::Result::Success;
 }
@@ -401,6 +403,11 @@ Camera::Result CameraImpl::set_setting(Camera::Setting setting) {
     } else if (setting.setting_id == kShutterSpeedName) {
         auto result = _mav_camera->set_shutter_speed(setting.option.option_id);
         set_success = result == mav_camera::Result::Success;
+    } else if (setting.setting_id == kVideoResolution) {
+        set_success = set_video_resolution(setting.option.option_id);
+    } else {
+        base::LogError() << "Not implement setting";
+        set_success = true;
     }
 
     if (set_success) {  // update current setting
@@ -555,6 +562,8 @@ bool CameraImpl::set_whitebalance_mode(std::string mode) {
 std::string CameraImpl::get_whitebalance_mode() {
     auto [result, value] = _mav_camera->get_white_balance();
     if (result != mav_camera::Result::Success) {
+        base::LogError() << "Cannot get whitebalance mode"
+                         << convert_camera_result_to_mav_result(result);
         return "0";
     }
     if (value == mav_camera::kAutoWhitebalanceValue) {
@@ -579,6 +588,8 @@ std::string CameraImpl::get_whitebalance_mode() {
 std::string CameraImpl::get_ev_value() {
     auto [result, value] = _mav_camera->get_exposure_value();
     if (result != mav_camera::Result::Success) {
+        base::LogError() << "Cannot get exposure value"
+                         << convert_camera_result_to_mav_result(result);
         return "0";
     }
     return std::to_string(value);
@@ -587,6 +598,7 @@ std::string CameraImpl::get_ev_value() {
 std::string CameraImpl::get_iso_value() {
     auto [result, value] = _mav_camera->get_iso();
     if (result != mav_camera::Result::Success) {
+        base::LogError() << "Cannot get iso value" << convert_camera_result_to_mav_result(result);
         return "100";
     }
     return std::to_string(value);
@@ -595,9 +607,74 @@ std::string CameraImpl::get_iso_value() {
 std::string CameraImpl::get_shutter_speed_value() {
     auto [result, value] = _mav_camera->get_shutter_speed();
     if (result != mav_camera::Result::Success) {
+        base::LogDebug() << "Cannot get shutterspeed"
+                         << convert_camera_result_to_mav_result(result);
         return "1";
     }
     return value;
+}
+
+std::string CameraImpl::get_video_resolution() {
+    auto [result, width, height] = _mav_camera->get_video_resolution();
+    if (result != mav_camera::Result::Success) {
+        base::LogError() << "Cannot get video resolution"
+                         << convert_camera_result_to_mav_result(result);
+        return "0";
+    }
+    auto [result2, framerate] = _mav_camera->get_framerate();
+    if (result2 != mav_camera::Result::Success) {
+        base::LogError() << "Cannot get framerate" << convert_camera_result_to_mav_result(result);
+        return "0";
+    }
+    base::LogDebug() << "Current video resolution is " << width << "x" << height << "@"
+                     << framerate;
+    if (width == 3840 && height == 2160 && framerate == 60) {
+        return "0";
+    } else if (width == 3840 && height == 2160 && framerate == 30) {
+        return "1";
+    } else if (width == 1920 && height == 1080 && framerate == 60) {
+        return "2";
+    } else if (width == 1920 && height == 1080 && framerate == 30) {
+        return "3";
+    } else {
+        base::LogError() << "Not found match resolution : " << width << "x" << height << "@"
+                         << framerate;
+        return "0";
+    }
+}
+
+bool CameraImpl::set_video_resolution(std::string value) {
+    int set_width = 0;
+    int set_height = 0;
+    int set_framerate = 0;
+    if (value == "0") {
+        set_width = 3840;
+        set_height = 2160;
+        set_framerate = 60;
+    } else if (value == "1") {
+        set_width = 3840;
+        set_height = 2160;
+        set_framerate = 30;
+    } else if (value == "2") {
+        set_width = 1920;
+        set_height = 1080;
+        set_framerate = 60;
+    } else if (value == "3") {
+        set_width = 1920;
+        set_height = 1080;
+        set_framerate = 30;
+    }
+    base::LogDebug() << "Set video resolution to " << set_width << "x" << set_height << "@"
+                     << set_framerate;
+    auto result = _mav_camera->set_video_resolution(set_width, set_height);
+    if (result != mav_camera::Result::Success) {
+        base::LogError() << "Failed to set video resolution : " << set_width << "x" << set_height;
+    }
+    result = _mav_camera->set_framerate(set_framerate);
+    if (result != mav_camera::Result::Success) {
+        base::LogError() << "Failed to set video framerate : " << set_framerate;
+    }
+    return result == mav_camera::Result::Success;
 }
 
 mavcam::Camera::Result CameraImpl::convert_camera_result_to_mav_result(
