@@ -70,7 +70,7 @@ Camera::Result CameraImpl::prepare() {
         return Camera::Result::Error;
     }
 
-    _mav_camera->set_timestamp(1727404495836);
+    _mav_camera->set_timestamp(1727679020074);
     _mav_camera->set_log_path("/data/camera/qcom_cam.log");
 
     mav_camera::Options options;
@@ -133,8 +133,8 @@ Camera::Result CameraImpl::prepare() {
 }
 
 Camera::Result CameraImpl::take_photo() {
-    _mav_camera->take_photo();
-    return Camera::Result::Success;
+    auto result = _mav_camera->take_photo();
+    return convert_camera_result_to_mav_result(result);
 }
 
 Camera::Result CameraImpl::start_photo_interval(float interval_s) {
@@ -151,8 +151,8 @@ Camera::Result CameraImpl::start_video() {
     base::LogDebug() << "call start video";
     _status.video_on = true;
     _start_video_time = std::chrono::steady_clock::now();
-    _mav_camera->start_video();
-    return Camera::Result::Success;
+    auto result = _mav_camera->start_video();
+    return convert_camera_result_to_mav_result(result);
 }
 
 Camera::Result CameraImpl::stop_video() {
@@ -165,12 +165,12 @@ Camera::Result CameraImpl::stop_video() {
 
 Camera::Result CameraImpl::start_video_streaming(int32_t stream_id) {
     base::LogDebug() << "call start video streaming " << stream_id;
-    return Camera::Result::Success;
+    return Camera::Result::ProtocolUnsupported;
 }
 
 Camera::Result CameraImpl::stop_video_streaming(int32_t stream_id) {
     base::LogDebug() << "call stop video streaming " << stream_id;
-    return Camera::Result::Success;
+    return Camera::Result::ProtocolUnsupported;
 }
 
 Camera::Result CameraImpl::set_mode(Camera::Mode mode) {
@@ -181,20 +181,21 @@ Camera::Result CameraImpl::set_mode(Camera::Mode mode) {
 
     base::LogDebug() << "call set camera to mode " << mode;
     _current_mode = mode;
+    mav_camera::Result result = mav_camera::Result::Unknown;
     // also need change mode in settings
     if (_current_mode == Camera::Mode::Photo) {
         auto setting = build_setting(kCameraModeName, "0");
         set_setting(setting);
 
-        _mav_camera->set_mode(mav_camera::Mode::Photo);
+        result = _mav_camera->set_mode(mav_camera::Mode::Photo);
     } else {
         auto setting = build_setting(kCameraModeName, "1");
         set_setting(setting);
 
-        _mav_camera->set_mode(mav_camera::Mode::Video);
+        result = _mav_camera->set_mode(mav_camera::Mode::Video);
     }
 
-    return Camera::Result::Success;
+    return convert_camera_result_to_mav_result(result);
 }
 
 std::pair<Camera::Result, std::vector<Camera::CaptureInfo>> CameraImpl::list_photos(
@@ -677,36 +678,35 @@ bool CameraImpl::set_video_resolution(std::string value) {
     return result == mav_camera::Result::Success;
 }
 
-mavcam::Camera::Result CameraImpl::convert_camera_result_to_mav_result(
-    mav_camera::Result input_result) {
-    mavcam::Camera::Result output_result = mavcam::Camera::Result::Unknown;
+Camera::Result CameraImpl::convert_camera_result_to_mav_result(mav_camera::Result input_result) {
+    Camera::Result output_result = Camera::Result::Unknown;
     switch (input_result) {
         case mav_camera::Result::Success:
-            output_result = mavcam::Camera::Result::Success;
+            output_result = Camera::Result::Success;
             break;
         case mav_camera::Result::Denied:
-            output_result = mavcam::Camera::Result::Denied;
+            output_result = Camera::Result::Denied;
             break;
         case mav_camera::Result::Busy:
-            output_result = mavcam::Camera::Result::Busy;
+            output_result = Camera::Result::Busy;
             break;
         case mav_camera::Result::Error:
-            output_result = mavcam::Camera::Result::Error;
+            output_result = Camera::Result::Error;
             break;
         case mav_camera::Result::InProgress:
-            output_result = mavcam::Camera::Result::InProgress;
+            output_result = Camera::Result::InProgress;
             break;
         case mav_camera::Result::NoSystem:
-            output_result = mavcam::Camera::Result::NoSystem;
+            output_result = Camera::Result::NoSystem;
             break;
         case mav_camera::Result::Timeout:
-            output_result = mavcam::Camera::Result::Timeout;
+            output_result = Camera::Result::Timeout;
             break;
         case mav_camera::Result::Unknown:
-            output_result = mavcam::Camera::Result::Unknown;
+            output_result = Camera::Result::Unknown;
             break;
         case mav_camera::Result::WrongArgument:
-            output_result = mavcam::Camera::Result::WrongArgument;
+            output_result = Camera::Result::WrongArgument;
             break;
     }
     return output_result;

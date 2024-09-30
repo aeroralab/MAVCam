@@ -303,7 +303,7 @@ private:
     /**
      * @brief convert mav_camera::Result to mavcam::Camera::Result
      */
-    mavcam::Camera::Result convert_camera_result_to_mav_result(mav_camera::Result input_result);
+    Camera::Result convert_camera_result_to_mav_result(mav_camera::Result input_result);
     /**
      * @brief stop video async
      */
