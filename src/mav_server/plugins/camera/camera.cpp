@@ -143,6 +143,10 @@ Camera::Result Camera::reset_settings() const {
     return _impl->reset_settings();
 }
 
+Camera::Result Camera::set_timestamp(int64_t timestamp) const {
+    return _impl->set_timestamp(timestamp);
+}
+
 std::ostream &operator<<(std::ostream &str, Camera::Result const &result) {
     switch (result) {
         case Camera::Result::Unknown:

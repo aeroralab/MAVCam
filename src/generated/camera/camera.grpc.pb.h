@@ -267,6 +267,15 @@ class CameraService final {
     std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::mavcam::rpc::camera::ResetSettingsResponse>> PrepareAsyncResetSettings(::grpc::ClientContext* context, const ::mavcam::rpc::camera::ResetSettingsRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::mavcam::rpc::camera::ResetSettingsResponse>>(PrepareAsyncResetSettingsRaw(context, request, cq));
     }
+    //
+    // Set camera timestamp.
+    virtual ::grpc::Status SetTimestamp(::grpc::ClientContext* context, const ::mavcam::rpc::camera::SetTimestampRequest& request, ::mavcam::rpc::camera::SetTimestampResponse* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::mavcam::rpc::camera::SetTimestampResponse>> AsyncSetTimestamp(::grpc::ClientContext* context, const ::mavcam::rpc::camera::SetTimestampRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::mavcam::rpc::camera::SetTimestampResponse>>(AsyncSetTimestampRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::mavcam::rpc::camera::SetTimestampResponse>> PrepareAsyncSetTimestamp(::grpc::ClientContext* context, const ::mavcam::rpc::camera::SetTimestampRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::mavcam::rpc::camera::SetTimestampResponse>>(PrepareAsyncSetTimestampRaw(context, request, cq));
+    }
     class async_interface {
      public:
       virtual ~async_interface() {}
@@ -361,6 +370,10 @@ class CameraService final {
       // This will reset all camera settings to default value
       virtual void ResetSettings(::grpc::ClientContext* context, const ::mavcam::rpc::camera::ResetSettingsRequest* request, ::mavcam::rpc::camera::ResetSettingsResponse* response, std::function<void(::grpc::Status)>) = 0;
       virtual void ResetSettings(::grpc::ClientContext* context, const ::mavcam::rpc::camera::ResetSettingsRequest* request, ::mavcam::rpc::camera::ResetSettingsResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      //
+      // Set camera timestamp.
+      virtual void SetTimestamp(::grpc::ClientContext* context, const ::mavcam::rpc::camera::SetTimestampRequest* request, ::mavcam::rpc::camera::SetTimestampResponse* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void SetTimestamp(::grpc::ClientContext* context, const ::mavcam::rpc::camera::SetTimestampRequest* request, ::mavcam::rpc::camera::SetTimestampResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
     };
     typedef class async_interface experimental_async_interface;
     virtual class async_interface* async() { return nullptr; }
@@ -417,6 +430,8 @@ class CameraService final {
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::mavcam::rpc::camera::SelectCameraResponse>* PrepareAsyncSelectCameraRaw(::grpc::ClientContext* context, const ::mavcam::rpc::camera::SelectCameraRequest& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::mavcam::rpc::camera::ResetSettingsResponse>* AsyncResetSettingsRaw(::grpc::ClientContext* context, const ::mavcam::rpc::camera::ResetSettingsRequest& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::mavcam::rpc::camera::ResetSettingsResponse>* PrepareAsyncResetSettingsRaw(::grpc::ClientContext* context, const ::mavcam::rpc::camera::ResetSettingsRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::mavcam::rpc::camera::SetTimestampResponse>* AsyncSetTimestampRaw(::grpc::ClientContext* context, const ::mavcam::rpc::camera::SetTimestampRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::mavcam::rpc::camera::SetTimestampResponse>* PrepareAsyncSetTimestampRaw(::grpc::ClientContext* context, const ::mavcam::rpc::camera::SetTimestampRequest& request, ::grpc::CompletionQueue* cq) = 0;
   };
   class Stub final : public StubInterface {
    public:
@@ -589,6 +604,13 @@ class CameraService final {
     std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::mavcam::rpc::camera::ResetSettingsResponse>> PrepareAsyncResetSettings(::grpc::ClientContext* context, const ::mavcam::rpc::camera::ResetSettingsRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::mavcam::rpc::camera::ResetSettingsResponse>>(PrepareAsyncResetSettingsRaw(context, request, cq));
     }
+    ::grpc::Status SetTimestamp(::grpc::ClientContext* context, const ::mavcam::rpc::camera::SetTimestampRequest& request, ::mavcam::rpc::camera::SetTimestampResponse* response) override;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::mavcam::rpc::camera::SetTimestampResponse>> AsyncSetTimestamp(::grpc::ClientContext* context, const ::mavcam::rpc::camera::SetTimestampRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::mavcam::rpc::camera::SetTimestampResponse>>(AsyncSetTimestampRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::mavcam::rpc::camera::SetTimestampResponse>> PrepareAsyncSetTimestamp(::grpc::ClientContext* context, const ::mavcam::rpc::camera::SetTimestampRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::mavcam::rpc::camera::SetTimestampResponse>>(PrepareAsyncSetTimestampRaw(context, request, cq));
+    }
     class async final :
       public StubInterface::async_interface {
      public:
@@ -629,6 +651,8 @@ class CameraService final {
       void SelectCamera(::grpc::ClientContext* context, const ::mavcam::rpc::camera::SelectCameraRequest* request, ::mavcam::rpc::camera::SelectCameraResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
       void ResetSettings(::grpc::ClientContext* context, const ::mavcam::rpc::camera::ResetSettingsRequest* request, ::mavcam::rpc::camera::ResetSettingsResponse* response, std::function<void(::grpc::Status)>) override;
       void ResetSettings(::grpc::ClientContext* context, const ::mavcam::rpc::camera::ResetSettingsRequest* request, ::mavcam::rpc::camera::ResetSettingsResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      void SetTimestamp(::grpc::ClientContext* context, const ::mavcam::rpc::camera::SetTimestampRequest* request, ::mavcam::rpc::camera::SetTimestampResponse* response, std::function<void(::grpc::Status)>) override;
+      void SetTimestamp(::grpc::ClientContext* context, const ::mavcam::rpc::camera::SetTimestampRequest* request, ::mavcam::rpc::camera::SetTimestampResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
      private:
       friend class Stub;
       explicit async(Stub* stub): stub_(stub) { }
@@ -691,6 +715,8 @@ class CameraService final {
     ::grpc::ClientAsyncResponseReader< ::mavcam::rpc::camera::SelectCameraResponse>* PrepareAsyncSelectCameraRaw(::grpc::ClientContext* context, const ::mavcam::rpc::camera::SelectCameraRequest& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::mavcam::rpc::camera::ResetSettingsResponse>* AsyncResetSettingsRaw(::grpc::ClientContext* context, const ::mavcam::rpc::camera::ResetSettingsRequest& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::mavcam::rpc::camera::ResetSettingsResponse>* PrepareAsyncResetSettingsRaw(::grpc::ClientContext* context, const ::mavcam::rpc::camera::ResetSettingsRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::mavcam::rpc::camera::SetTimestampResponse>* AsyncSetTimestampRaw(::grpc::ClientContext* context, const ::mavcam::rpc::camera::SetTimestampRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::mavcam::rpc::camera::SetTimestampResponse>* PrepareAsyncSetTimestampRaw(::grpc::ClientContext* context, const ::mavcam::rpc::camera::SetTimestampRequest& request, ::grpc::CompletionQueue* cq) override;
     const ::grpc::internal::RpcMethod rpcmethod_Prepare_;
     const ::grpc::internal::RpcMethod rpcmethod_TakePhoto_;
     const ::grpc::internal::RpcMethod rpcmethod_StartPhotoInterval_;
@@ -713,6 +739,7 @@ class CameraService final {
     const ::grpc::internal::RpcMethod rpcmethod_FormatStorage_;
     const ::grpc::internal::RpcMethod rpcmethod_SelectCamera_;
     const ::grpc::internal::RpcMethod rpcmethod_ResetSettings_;
+    const ::grpc::internal::RpcMethod rpcmethod_SetTimestamp_;
   };
   static std::unique_ptr<Stub> NewStub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options = ::grpc::StubOptions());
 
@@ -796,6 +823,9 @@ class CameraService final {
     //
     // This will reset all camera settings to default value
     virtual ::grpc::Status ResetSettings(::grpc::ServerContext* context, const ::mavcam::rpc::camera::ResetSettingsRequest* request, ::mavcam::rpc::camera::ResetSettingsResponse* response);
+    //
+    // Set camera timestamp.
+    virtual ::grpc::Status SetTimestamp(::grpc::ServerContext* context, const ::mavcam::rpc::camera::SetTimestampRequest* request, ::mavcam::rpc::camera::SetTimestampResponse* response);
   };
   template <class BaseClass>
   class WithAsyncMethod_Prepare : public BaseClass {
@@ -1237,7 +1267,27 @@ class CameraService final {
       ::grpc::Service::RequestAsyncUnary(21, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
-  typedef WithAsyncMethod_Prepare<WithAsyncMethod_TakePhoto<WithAsyncMethod_StartPhotoInterval<WithAsyncMethod_StopPhotoInterval<WithAsyncMethod_StartVideo<WithAsyncMethod_StopVideo<WithAsyncMethod_StartVideoStreaming<WithAsyncMethod_StopVideoStreaming<WithAsyncMethod_SetMode<WithAsyncMethod_ListPhotos<WithAsyncMethod_SubscribeMode<WithAsyncMethod_SubscribeInformation<WithAsyncMethod_SubscribeVideoStreamInfo<WithAsyncMethod_SubscribeCaptureInfo<WithAsyncMethod_SubscribeStatus<WithAsyncMethod_SubscribeCurrentSettings<WithAsyncMethod_SubscribePossibleSettingOptions<WithAsyncMethod_SetSetting<WithAsyncMethod_GetSetting<WithAsyncMethod_FormatStorage<WithAsyncMethod_SelectCamera<WithAsyncMethod_ResetSettings<Service > > > > > > > > > > > > > > > > > > > > > > AsyncService;
+  template <class BaseClass>
+  class WithAsyncMethod_SetTimestamp : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithAsyncMethod_SetTimestamp() {
+      ::grpc::Service::MarkMethodAsync(22);
+    }
+    ~WithAsyncMethod_SetTimestamp() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status SetTimestamp(::grpc::ServerContext* /*context*/, const ::mavcam::rpc::camera::SetTimestampRequest* /*request*/, ::mavcam::rpc::camera::SetTimestampResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestSetTimestamp(::grpc::ServerContext* context, ::mavcam::rpc::camera::SetTimestampRequest* request, ::grpc::ServerAsyncResponseWriter< ::mavcam::rpc::camera::SetTimestampResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(22, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  typedef WithAsyncMethod_Prepare<WithAsyncMethod_TakePhoto<WithAsyncMethod_StartPhotoInterval<WithAsyncMethod_StopPhotoInterval<WithAsyncMethod_StartVideo<WithAsyncMethod_StopVideo<WithAsyncMethod_StartVideoStreaming<WithAsyncMethod_StopVideoStreaming<WithAsyncMethod_SetMode<WithAsyncMethod_ListPhotos<WithAsyncMethod_SubscribeMode<WithAsyncMethod_SubscribeInformation<WithAsyncMethod_SubscribeVideoStreamInfo<WithAsyncMethod_SubscribeCaptureInfo<WithAsyncMethod_SubscribeStatus<WithAsyncMethod_SubscribeCurrentSettings<WithAsyncMethod_SubscribePossibleSettingOptions<WithAsyncMethod_SetSetting<WithAsyncMethod_GetSetting<WithAsyncMethod_FormatStorage<WithAsyncMethod_SelectCamera<WithAsyncMethod_ResetSettings<WithAsyncMethod_SetTimestamp<Service > > > > > > > > > > > > > > > > > > > > > > > AsyncService;
   template <class BaseClass>
   class WithCallbackMethod_Prepare : public BaseClass {
    private:
@@ -1797,7 +1847,34 @@ class CameraService final {
     virtual ::grpc::ServerUnaryReactor* ResetSettings(
       ::grpc::CallbackServerContext* /*context*/, const ::mavcam::rpc::camera::ResetSettingsRequest* /*request*/, ::mavcam::rpc::camera::ResetSettingsResponse* /*response*/)  { return nullptr; }
   };
-  typedef WithCallbackMethod_Prepare<WithCallbackMethod_TakePhoto<WithCallbackMethod_StartPhotoInterval<WithCallbackMethod_StopPhotoInterval<WithCallbackMethod_StartVideo<WithCallbackMethod_StopVideo<WithCallbackMethod_StartVideoStreaming<WithCallbackMethod_StopVideoStreaming<WithCallbackMethod_SetMode<WithCallbackMethod_ListPhotos<WithCallbackMethod_SubscribeMode<WithCallbackMethod_SubscribeInformation<WithCallbackMethod_SubscribeVideoStreamInfo<WithCallbackMethod_SubscribeCaptureInfo<WithCallbackMethod_SubscribeStatus<WithCallbackMethod_SubscribeCurrentSettings<WithCallbackMethod_SubscribePossibleSettingOptions<WithCallbackMethod_SetSetting<WithCallbackMethod_GetSetting<WithCallbackMethod_FormatStorage<WithCallbackMethod_SelectCamera<WithCallbackMethod_ResetSettings<Service > > > > > > > > > > > > > > > > > > > > > > CallbackService;
+  template <class BaseClass>
+  class WithCallbackMethod_SetTimestamp : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithCallbackMethod_SetTimestamp() {
+      ::grpc::Service::MarkMethodCallback(22,
+          new ::grpc::internal::CallbackUnaryHandler< ::mavcam::rpc::camera::SetTimestampRequest, ::mavcam::rpc::camera::SetTimestampResponse>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::mavcam::rpc::camera::SetTimestampRequest* request, ::mavcam::rpc::camera::SetTimestampResponse* response) { return this->SetTimestamp(context, request, response); }));}
+    void SetMessageAllocatorFor_SetTimestamp(
+        ::grpc::MessageAllocator< ::mavcam::rpc::camera::SetTimestampRequest, ::mavcam::rpc::camera::SetTimestampResponse>* allocator) {
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(22);
+      static_cast<::grpc::internal::CallbackUnaryHandler< ::mavcam::rpc::camera::SetTimestampRequest, ::mavcam::rpc::camera::SetTimestampResponse>*>(handler)
+              ->SetMessageAllocator(allocator);
+    }
+    ~WithCallbackMethod_SetTimestamp() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status SetTimestamp(::grpc::ServerContext* /*context*/, const ::mavcam::rpc::camera::SetTimestampRequest* /*request*/, ::mavcam::rpc::camera::SetTimestampResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* SetTimestamp(
+      ::grpc::CallbackServerContext* /*context*/, const ::mavcam::rpc::camera::SetTimestampRequest* /*request*/, ::mavcam::rpc::camera::SetTimestampResponse* /*response*/)  { return nullptr; }
+  };
+  typedef WithCallbackMethod_Prepare<WithCallbackMethod_TakePhoto<WithCallbackMethod_StartPhotoInterval<WithCallbackMethod_StopPhotoInterval<WithCallbackMethod_StartVideo<WithCallbackMethod_StopVideo<WithCallbackMethod_StartVideoStreaming<WithCallbackMethod_StopVideoStreaming<WithCallbackMethod_SetMode<WithCallbackMethod_ListPhotos<WithCallbackMethod_SubscribeMode<WithCallbackMethod_SubscribeInformation<WithCallbackMethod_SubscribeVideoStreamInfo<WithCallbackMethod_SubscribeCaptureInfo<WithCallbackMethod_SubscribeStatus<WithCallbackMethod_SubscribeCurrentSettings<WithCallbackMethod_SubscribePossibleSettingOptions<WithCallbackMethod_SetSetting<WithCallbackMethod_GetSetting<WithCallbackMethod_FormatStorage<WithCallbackMethod_SelectCamera<WithCallbackMethod_ResetSettings<WithCallbackMethod_SetTimestamp<Service > > > > > > > > > > > > > > > > > > > > > > > CallbackService;
   typedef CallbackService ExperimentalCallbackService;
   template <class BaseClass>
   class WithGenericMethod_Prepare : public BaseClass {
@@ -2169,6 +2246,23 @@ class CameraService final {
     }
     // disable synchronous version of this method
     ::grpc::Status ResetSettings(::grpc::ServerContext* /*context*/, const ::mavcam::rpc::camera::ResetSettingsRequest* /*request*/, ::mavcam::rpc::camera::ResetSettingsResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+  };
+  template <class BaseClass>
+  class WithGenericMethod_SetTimestamp : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithGenericMethod_SetTimestamp() {
+      ::grpc::Service::MarkMethodGeneric(22);
+    }
+    ~WithGenericMethod_SetTimestamp() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status SetTimestamp(::grpc::ServerContext* /*context*/, const ::mavcam::rpc::camera::SetTimestampRequest* /*request*/, ::mavcam::rpc::camera::SetTimestampResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
@@ -2611,6 +2705,26 @@ class CameraService final {
     }
     void RequestResetSettings(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
       ::grpc::Service::RequestAsyncUnary(21, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithRawMethod_SetTimestamp : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawMethod_SetTimestamp() {
+      ::grpc::Service::MarkMethodRaw(22);
+    }
+    ~WithRawMethod_SetTimestamp() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status SetTimestamp(::grpc::ServerContext* /*context*/, const ::mavcam::rpc::camera::SetTimestampRequest* /*request*/, ::mavcam::rpc::camera::SetTimestampResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestSetTimestamp(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(22, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -3098,6 +3212,28 @@ class CameraService final {
       ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
   };
   template <class BaseClass>
+  class WithRawCallbackMethod_SetTimestamp : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawCallbackMethod_SetTimestamp() {
+      ::grpc::Service::MarkMethodRawCallback(22,
+          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->SetTimestamp(context, request, response); }));
+    }
+    ~WithRawCallbackMethod_SetTimestamp() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status SetTimestamp(::grpc::ServerContext* /*context*/, const ::mavcam::rpc::camera::SetTimestampRequest* /*request*/, ::mavcam::rpc::camera::SetTimestampResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* SetTimestamp(
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
+  };
+  template <class BaseClass>
   class WithStreamedUnaryMethod_Prepare : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
@@ -3502,7 +3638,34 @@ class CameraService final {
     // replace default version of method with streamed unary
     virtual ::grpc::Status StreamedResetSettings(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::mavcam::rpc::camera::ResetSettingsRequest,::mavcam::rpc::camera::ResetSettingsResponse>* server_unary_streamer) = 0;
   };
-  typedef WithStreamedUnaryMethod_Prepare<WithStreamedUnaryMethod_TakePhoto<WithStreamedUnaryMethod_StartPhotoInterval<WithStreamedUnaryMethod_StopPhotoInterval<WithStreamedUnaryMethod_StartVideo<WithStreamedUnaryMethod_StopVideo<WithStreamedUnaryMethod_StartVideoStreaming<WithStreamedUnaryMethod_StopVideoStreaming<WithStreamedUnaryMethod_SetMode<WithStreamedUnaryMethod_ListPhotos<WithStreamedUnaryMethod_SetSetting<WithStreamedUnaryMethod_GetSetting<WithStreamedUnaryMethod_FormatStorage<WithStreamedUnaryMethod_SelectCamera<WithStreamedUnaryMethod_ResetSettings<Service > > > > > > > > > > > > > > > StreamedUnaryService;
+  template <class BaseClass>
+  class WithStreamedUnaryMethod_SetTimestamp : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithStreamedUnaryMethod_SetTimestamp() {
+      ::grpc::Service::MarkMethodStreamed(22,
+        new ::grpc::internal::StreamedUnaryHandler<
+          ::mavcam::rpc::camera::SetTimestampRequest, ::mavcam::rpc::camera::SetTimestampResponse>(
+            [this](::grpc::ServerContext* context,
+                   ::grpc::ServerUnaryStreamer<
+                     ::mavcam::rpc::camera::SetTimestampRequest, ::mavcam::rpc::camera::SetTimestampResponse>* streamer) {
+                       return this->StreamedSetTimestamp(context,
+                         streamer);
+                  }));
+    }
+    ~WithStreamedUnaryMethod_SetTimestamp() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable regular version of this method
+    ::grpc::Status SetTimestamp(::grpc::ServerContext* /*context*/, const ::mavcam::rpc::camera::SetTimestampRequest* /*request*/, ::mavcam::rpc::camera::SetTimestampResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    // replace default version of method with streamed unary
+    virtual ::grpc::Status StreamedSetTimestamp(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::mavcam::rpc::camera::SetTimestampRequest,::mavcam::rpc::camera::SetTimestampResponse>* server_unary_streamer) = 0;
+  };
+  typedef WithStreamedUnaryMethod_Prepare<WithStreamedUnaryMethod_TakePhoto<WithStreamedUnaryMethod_StartPhotoInterval<WithStreamedUnaryMethod_StopPhotoInterval<WithStreamedUnaryMethod_StartVideo<WithStreamedUnaryMethod_StopVideo<WithStreamedUnaryMethod_StartVideoStreaming<WithStreamedUnaryMethod_StopVideoStreaming<WithStreamedUnaryMethod_SetMode<WithStreamedUnaryMethod_ListPhotos<WithStreamedUnaryMethod_SetSetting<WithStreamedUnaryMethod_GetSetting<WithStreamedUnaryMethod_FormatStorage<WithStreamedUnaryMethod_SelectCamera<WithStreamedUnaryMethod_ResetSettings<WithStreamedUnaryMethod_SetTimestamp<Service > > > > > > > > > > > > > > > > StreamedUnaryService;
   template <class BaseClass>
   class WithSplitStreamingMethod_SubscribeMode : public BaseClass {
    private:
@@ -3693,7 +3856,7 @@ class CameraService final {
     virtual ::grpc::Status StreamedSubscribePossibleSettingOptions(::grpc::ServerContext* context, ::grpc::ServerSplitStreamer< ::mavcam::rpc::camera::SubscribePossibleSettingOptionsRequest,::mavcam::rpc::camera::PossibleSettingOptionsResponse>* server_split_streamer) = 0;
   };
   typedef WithSplitStreamingMethod_SubscribeMode<WithSplitStreamingMethod_SubscribeInformation<WithSplitStreamingMethod_SubscribeVideoStreamInfo<WithSplitStreamingMethod_SubscribeCaptureInfo<WithSplitStreamingMethod_SubscribeStatus<WithSplitStreamingMethod_SubscribeCurrentSettings<WithSplitStreamingMethod_SubscribePossibleSettingOptions<Service > > > > > > > SplitStreamedService;
-  typedef WithStreamedUnaryMethod_Prepare<WithStreamedUnaryMethod_TakePhoto<WithStreamedUnaryMethod_StartPhotoInterval<WithStreamedUnaryMethod_StopPhotoInterval<WithStreamedUnaryMethod_StartVideo<WithStreamedUnaryMethod_StopVideo<WithStreamedUnaryMethod_StartVideoStreaming<WithStreamedUnaryMethod_StopVideoStreaming<WithStreamedUnaryMethod_SetMode<WithStreamedUnaryMethod_ListPhotos<WithSplitStreamingMethod_SubscribeMode<WithSplitStreamingMethod_SubscribeInformation<WithSplitStreamingMethod_SubscribeVideoStreamInfo<WithSplitStreamingMethod_SubscribeCaptureInfo<WithSplitStreamingMethod_SubscribeStatus<WithSplitStreamingMethod_SubscribeCurrentSettings<WithSplitStreamingMethod_SubscribePossibleSettingOptions<WithStreamedUnaryMethod_SetSetting<WithStreamedUnaryMethod_GetSetting<WithStreamedUnaryMethod_FormatStorage<WithStreamedUnaryMethod_SelectCamera<WithStreamedUnaryMethod_ResetSettings<Service > > > > > > > > > > > > > > > > > > > > > > StreamedService;
+  typedef WithStreamedUnaryMethod_Prepare<WithStreamedUnaryMethod_TakePhoto<WithStreamedUnaryMethod_StartPhotoInterval<WithStreamedUnaryMethod_StopPhotoInterval<WithStreamedUnaryMethod_StartVideo<WithStreamedUnaryMethod_StopVideo<WithStreamedUnaryMethod_StartVideoStreaming<WithStreamedUnaryMethod_StopVideoStreaming<WithStreamedUnaryMethod_SetMode<WithStreamedUnaryMethod_ListPhotos<WithSplitStreamingMethod_SubscribeMode<WithSplitStreamingMethod_SubscribeInformation<WithSplitStreamingMethod_SubscribeVideoStreamInfo<WithSplitStreamingMethod_SubscribeCaptureInfo<WithSplitStreamingMethod_SubscribeStatus<WithSplitStreamingMethod_SubscribeCurrentSettings<WithSplitStreamingMethod_SubscribePossibleSettingOptions<WithStreamedUnaryMethod_SetSetting<WithStreamedUnaryMethod_GetSetting<WithStreamedUnaryMethod_FormatStorage<WithStreamedUnaryMethod_SelectCamera<WithStreamedUnaryMethod_ResetSettings<WithStreamedUnaryMethod_SetTimestamp<Service > > > > > > > > > > > > > > > > > > > > > > > StreamedService;
 };
 
 }  // namespace camera

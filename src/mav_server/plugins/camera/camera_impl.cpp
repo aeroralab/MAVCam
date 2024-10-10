@@ -70,7 +70,6 @@ Camera::Result CameraImpl::prepare() {
         return Camera::Result::Error;
     }
 
-    _mav_camera->set_timestamp(1727679020074);
     _mav_camera->set_log_path("/data/camera/qcom_cam.log");
 
     mav_camera::Options options;
@@ -464,9 +463,12 @@ Camera::Result CameraImpl::reset_settings() {
     return Camera::Result::Success;
 }
 
-Camera::Result CameraImpl::set_definition_data(std::string definition_data) {
-    base::LogDebug() << "call set_definition_data";
-    return Camera::Result::ProtocolUnsupported;
+Camera::Result CameraImpl::set_timestamp(int64_t timestamp) {
+    base::LogDebug() << "call set_timestamp " << timestamp;
+    if (_mav_camera != nullptr) {
+        _mav_camera->set_timestamp(timestamp);
+    }
+    return Camera::Result::Success;
 }
 
 void CameraImpl::close_camera() {

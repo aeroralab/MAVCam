@@ -220,6 +220,23 @@ mavsdk::CameraServer::Result CameraRpcClient::reset_settings() {
     return translateFromRpcResult(response.camera_result().result());
 }
 
+mavsdk::CameraServer::Result CameraRpcClient::set_timestamp(int64_t timestamp) {
+    std::lock_guard<std::mutex> lock(_mutex);
+    base::LogDebug() << "rpc call set timestamp";
+
+    mavcam::rpc::camera::SetTimestampRequest request;
+    request.set_timestamp(timestamp);
+    grpc::ClientContext context;
+    mavcam::rpc::camera::SetTimestampResponse response;
+    grpc::Status status = _stub->SetTimestamp(&context, request, &response);
+    if (!status.ok()) {
+        base::LogError() << "call rpc set_timestamp failed with errorcode: " << status.error_code();
+        return mavsdk::CameraServer::Result::NoSystem;
+    }
+    base::LogDebug() << "Set timestamp result : " << response.camera_result().result_str();
+    return translateFromRpcResult(response.camera_result().result());
+}
+
 mavsdk::CameraServer::Result CameraRpcClient::fill_information(
     mavsdk::CameraServer::Information &information) {
     if (!_init_information) {

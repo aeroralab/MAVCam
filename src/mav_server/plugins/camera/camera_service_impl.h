@@ -1214,6 +1214,23 @@ public:
         return ::grpc::Status::OK;
     }
 
+    grpc::Status SetTimestamp(grpc::ServerContext * /* context */,
+                              const mavcam::rpc::camera::SetTimestampRequest *request,
+                              mavcam::rpc::camera::SetTimestampResponse *response) override {
+        if (request == nullptr) {
+            base::LogWarn() << "SetTimestamp sent with a null request! Ignoring...";
+            return grpc::Status::OK;
+        }
+
+        auto result = _plugin->set_timestamp(request->timestamp());
+
+        if (response != nullptr) {
+            fillResponseWithResult(response, result);
+        }
+
+        return ::grpc::Status::OK;
+    }
+
     void stop() {
         _stopped.store(true);
         for (auto &prom : _stream_stop_promises) {

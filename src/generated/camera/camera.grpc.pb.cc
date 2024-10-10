@@ -46,6 +46,7 @@ static const char* CameraService_method_names[] = {
   "/mavcam.rpc.camera.CameraService/FormatStorage",
   "/mavcam.rpc.camera.CameraService/SelectCamera",
   "/mavcam.rpc.camera.CameraService/ResetSettings",
+  "/mavcam.rpc.camera.CameraService/SetTimestamp",
 };
 
 std::unique_ptr< CameraService::Stub> CameraService::NewStub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options) {
@@ -77,6 +78,7 @@ CameraService::Stub::Stub(const std::shared_ptr< ::grpc::ChannelInterface>& chan
   , rpcmethod_FormatStorage_(CameraService_method_names[19], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   , rpcmethod_SelectCamera_(CameraService_method_names[20], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   , rpcmethod_ResetSettings_(CameraService_method_names[21], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_SetTimestamp_(CameraService_method_names[22], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   {}
 
 ::grpc::Status CameraService::Stub::Prepare(::grpc::ClientContext* context, const ::mavcam::rpc::camera::PrepareRequest& request, ::mavcam::rpc::camera::PrepareResponse* response) {
@@ -536,6 +538,29 @@ void CameraService::Stub::async::ResetSettings(::grpc::ClientContext* context, c
   return result;
 }
 
+::grpc::Status CameraService::Stub::SetTimestamp(::grpc::ClientContext* context, const ::mavcam::rpc::camera::SetTimestampRequest& request, ::mavcam::rpc::camera::SetTimestampResponse* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::mavcam::rpc::camera::SetTimestampRequest, ::mavcam::rpc::camera::SetTimestampResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_SetTimestamp_, context, request, response);
+}
+
+void CameraService::Stub::async::SetTimestamp(::grpc::ClientContext* context, const ::mavcam::rpc::camera::SetTimestampRequest* request, ::mavcam::rpc::camera::SetTimestampResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::mavcam::rpc::camera::SetTimestampRequest, ::mavcam::rpc::camera::SetTimestampResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_SetTimestamp_, context, request, response, std::move(f));
+}
+
+void CameraService::Stub::async::SetTimestamp(::grpc::ClientContext* context, const ::mavcam::rpc::camera::SetTimestampRequest* request, ::mavcam::rpc::camera::SetTimestampResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_SetTimestamp_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::mavcam::rpc::camera::SetTimestampResponse>* CameraService::Stub::PrepareAsyncSetTimestampRaw(::grpc::ClientContext* context, const ::mavcam::rpc::camera::SetTimestampRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::mavcam::rpc::camera::SetTimestampResponse, ::mavcam::rpc::camera::SetTimestampRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_SetTimestamp_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::mavcam::rpc::camera::SetTimestampResponse>* CameraService::Stub::AsyncSetTimestampRaw(::grpc::ClientContext* context, const ::mavcam::rpc::camera::SetTimestampRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncSetTimestampRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
 CameraService::Service::Service() {
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       CameraService_method_names[0],
@@ -757,6 +782,16 @@ CameraService::Service::Service() {
              ::mavcam::rpc::camera::ResetSettingsResponse* resp) {
                return service->ResetSettings(ctx, req, resp);
              }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      CameraService_method_names[22],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< CameraService::Service, ::mavcam::rpc::camera::SetTimestampRequest, ::mavcam::rpc::camera::SetTimestampResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](CameraService::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::mavcam::rpc::camera::SetTimestampRequest* req,
+             ::mavcam::rpc::camera::SetTimestampResponse* resp) {
+               return service->SetTimestamp(ctx, req, resp);
+             }, this)));
 }
 
 CameraService::Service::~Service() {
@@ -910,6 +945,13 @@ CameraService::Service::~Service() {
 }
 
 ::grpc::Status CameraService::Service::ResetSettings(::grpc::ServerContext* context, const ::mavcam::rpc::camera::ResetSettingsRequest* request, ::mavcam::rpc::camera::ResetSettingsResponse* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status CameraService::Service::SetTimestamp(::grpc::ServerContext* context, const ::mavcam::rpc::camera::SetTimestampRequest* request, ::mavcam::rpc::camera::SetTimestampResponse* response) {
   (void) context;
   (void) request;
   (void) response;

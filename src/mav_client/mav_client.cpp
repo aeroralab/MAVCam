@@ -28,6 +28,8 @@ bool MavClient::init(std::string &connection_url, bool use_local, int32_t rpc_po
     if (_camera_client == nullptr) {
         return false;
     }
+
+    _camera_client->set_timestamp(1728526844429);
     return true;
 }
 

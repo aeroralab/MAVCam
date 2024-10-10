@@ -247,14 +247,13 @@ public:
     Camera::Result reset_settings();
 
     /**
-     * @brief Manual set the definition data
-     * e.g. use mavlink ftp download definition file and set to camera
+     * @brief Set camera timestamp.
      *
      * This function is blocking.
      *
      * @return Result of request.
      */
-    Camera::Result set_definition_data(std::string definition_data);
+    Camera::Result set_timestamp(int64_t timestamp);
 private:
     /**
      * @brief close camera and release resource

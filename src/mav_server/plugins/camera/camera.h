@@ -770,6 +770,15 @@ public:
     Result reset_settings() const;
 
     /**
+     * @brief Set camera timestamp.
+     *
+     * This function is blocking.
+     *
+     * @return Result of request.
+     */
+    Result set_timestamp(int64_t timestamp) const;
+
+    /**
      * @brief Copy constructor.
      */
     Camera(const Camera &other) = delete;

@@ -106,6 +106,11 @@ mavsdk::CameraServer::Result CameraLocalClient::reset_settings() {
     return mavsdk::CameraServer::Result::Success;
 }
 
+mavsdk::CameraServer::Result CameraLocalClient::set_timestamp(int64_t timestamp) {
+    base::LogDebug() << "local call set timestamp " << timestamp;
+    return mavsdk::CameraServer::Result::Denied;
+}
+
 mavsdk::CameraServer::Result CameraLocalClient::fill_information(
     mavsdk::CameraServer::Information &information) {
     information.vendor_name = "GoerLabs";
