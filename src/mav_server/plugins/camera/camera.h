@@ -770,16 +770,6 @@ public:
     Result reset_settings() const;
 
     /**
-     * @brief Manual set the definition data
-     * e.g. use mavlink ftp download definition file and set to camera
-     *
-     * This function is blocking.
-     *
-     * @return Result of request.
-     */
-    Result set_definition_data(std::string definition_data) const;
-
-    /**
      * @brief Copy constructor.
      */
     Camera(const Camera &other) = delete;

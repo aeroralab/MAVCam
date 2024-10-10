@@ -1214,24 +1214,6 @@ public:
         return ::grpc::Status::OK;
     }
 
-    grpc::Status SetDefinitionData(
-        grpc::ServerContext * /* context */,
-        const mavcam::rpc::camera::SetDefinitionDataRequest *request,
-        mavcam::rpc::camera::SetDefinitionDataResponse *response) override {
-        if (request == nullptr) {
-            base::LogWarn() << "SetDefinitionData sent with a null request! Ignoring...";
-            return grpc::Status::OK;
-        }
-
-        auto result = _plugin->set_definition_data(request->definition_data());
-
-        if (response != nullptr) {
-            fillResponseWithResult(response, result);
-        }
-
-        return ::grpc::Status::OK;
-    }
-
     void stop() {
         _stopped.store(true);
         for (auto &prom : _stream_stop_promises) {

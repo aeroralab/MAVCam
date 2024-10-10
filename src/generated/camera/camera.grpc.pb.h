@@ -267,16 +267,6 @@ class CameraService final {
     std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::mavcam::rpc::camera::ResetSettingsResponse>> PrepareAsyncResetSettings(::grpc::ClientContext* context, const ::mavcam::rpc::camera::ResetSettingsRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::mavcam::rpc::camera::ResetSettingsResponse>>(PrepareAsyncResetSettingsRaw(context, request, cq));
     }
-    //
-    // Manual set the definition data
-    // e.g. use mavlink ftp download definition file and set to camera
-    virtual ::grpc::Status SetDefinitionData(::grpc::ClientContext* context, const ::mavcam::rpc::camera::SetDefinitionDataRequest& request, ::mavcam::rpc::camera::SetDefinitionDataResponse* response) = 0;
-    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::mavcam::rpc::camera::SetDefinitionDataResponse>> AsyncSetDefinitionData(::grpc::ClientContext* context, const ::mavcam::rpc::camera::SetDefinitionDataRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::mavcam::rpc::camera::SetDefinitionDataResponse>>(AsyncSetDefinitionDataRaw(context, request, cq));
-    }
-    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::mavcam::rpc::camera::SetDefinitionDataResponse>> PrepareAsyncSetDefinitionData(::grpc::ClientContext* context, const ::mavcam::rpc::camera::SetDefinitionDataRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::mavcam::rpc::camera::SetDefinitionDataResponse>>(PrepareAsyncSetDefinitionDataRaw(context, request, cq));
-    }
     class async_interface {
      public:
       virtual ~async_interface() {}
@@ -371,11 +361,6 @@ class CameraService final {
       // This will reset all camera settings to default value
       virtual void ResetSettings(::grpc::ClientContext* context, const ::mavcam::rpc::camera::ResetSettingsRequest* request, ::mavcam::rpc::camera::ResetSettingsResponse* response, std::function<void(::grpc::Status)>) = 0;
       virtual void ResetSettings(::grpc::ClientContext* context, const ::mavcam::rpc::camera::ResetSettingsRequest* request, ::mavcam::rpc::camera::ResetSettingsResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
-      //
-      // Manual set the definition data
-      // e.g. use mavlink ftp download definition file and set to camera
-      virtual void SetDefinitionData(::grpc::ClientContext* context, const ::mavcam::rpc::camera::SetDefinitionDataRequest* request, ::mavcam::rpc::camera::SetDefinitionDataResponse* response, std::function<void(::grpc::Status)>) = 0;
-      virtual void SetDefinitionData(::grpc::ClientContext* context, const ::mavcam::rpc::camera::SetDefinitionDataRequest* request, ::mavcam::rpc::camera::SetDefinitionDataResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
     };
     typedef class async_interface experimental_async_interface;
     virtual class async_interface* async() { return nullptr; }
@@ -432,8 +417,6 @@ class CameraService final {
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::mavcam::rpc::camera::SelectCameraResponse>* PrepareAsyncSelectCameraRaw(::grpc::ClientContext* context, const ::mavcam::rpc::camera::SelectCameraRequest& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::mavcam::rpc::camera::ResetSettingsResponse>* AsyncResetSettingsRaw(::grpc::ClientContext* context, const ::mavcam::rpc::camera::ResetSettingsRequest& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::mavcam::rpc::camera::ResetSettingsResponse>* PrepareAsyncResetSettingsRaw(::grpc::ClientContext* context, const ::mavcam::rpc::camera::ResetSettingsRequest& request, ::grpc::CompletionQueue* cq) = 0;
-    virtual ::grpc::ClientAsyncResponseReaderInterface< ::mavcam::rpc::camera::SetDefinitionDataResponse>* AsyncSetDefinitionDataRaw(::grpc::ClientContext* context, const ::mavcam::rpc::camera::SetDefinitionDataRequest& request, ::grpc::CompletionQueue* cq) = 0;
-    virtual ::grpc::ClientAsyncResponseReaderInterface< ::mavcam::rpc::camera::SetDefinitionDataResponse>* PrepareAsyncSetDefinitionDataRaw(::grpc::ClientContext* context, const ::mavcam::rpc::camera::SetDefinitionDataRequest& request, ::grpc::CompletionQueue* cq) = 0;
   };
   class Stub final : public StubInterface {
    public:
@@ -606,13 +589,6 @@ class CameraService final {
     std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::mavcam::rpc::camera::ResetSettingsResponse>> PrepareAsyncResetSettings(::grpc::ClientContext* context, const ::mavcam::rpc::camera::ResetSettingsRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::mavcam::rpc::camera::ResetSettingsResponse>>(PrepareAsyncResetSettingsRaw(context, request, cq));
     }
-    ::grpc::Status SetDefinitionData(::grpc::ClientContext* context, const ::mavcam::rpc::camera::SetDefinitionDataRequest& request, ::mavcam::rpc::camera::SetDefinitionDataResponse* response) override;
-    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::mavcam::rpc::camera::SetDefinitionDataResponse>> AsyncSetDefinitionData(::grpc::ClientContext* context, const ::mavcam::rpc::camera::SetDefinitionDataRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::mavcam::rpc::camera::SetDefinitionDataResponse>>(AsyncSetDefinitionDataRaw(context, request, cq));
-    }
-    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::mavcam::rpc::camera::SetDefinitionDataResponse>> PrepareAsyncSetDefinitionData(::grpc::ClientContext* context, const ::mavcam::rpc::camera::SetDefinitionDataRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::mavcam::rpc::camera::SetDefinitionDataResponse>>(PrepareAsyncSetDefinitionDataRaw(context, request, cq));
-    }
     class async final :
       public StubInterface::async_interface {
      public:
@@ -653,8 +629,6 @@ class CameraService final {
       void SelectCamera(::grpc::ClientContext* context, const ::mavcam::rpc::camera::SelectCameraRequest* request, ::mavcam::rpc::camera::SelectCameraResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
       void ResetSettings(::grpc::ClientContext* context, const ::mavcam::rpc::camera::ResetSettingsRequest* request, ::mavcam::rpc::camera::ResetSettingsResponse* response, std::function<void(::grpc::Status)>) override;
       void ResetSettings(::grpc::ClientContext* context, const ::mavcam::rpc::camera::ResetSettingsRequest* request, ::mavcam::rpc::camera::ResetSettingsResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
-      void SetDefinitionData(::grpc::ClientContext* context, const ::mavcam::rpc::camera::SetDefinitionDataRequest* request, ::mavcam::rpc::camera::SetDefinitionDataResponse* response, std::function<void(::grpc::Status)>) override;
-      void SetDefinitionData(::grpc::ClientContext* context, const ::mavcam::rpc::camera::SetDefinitionDataRequest* request, ::mavcam::rpc::camera::SetDefinitionDataResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
      private:
       friend class Stub;
       explicit async(Stub* stub): stub_(stub) { }
@@ -717,8 +691,6 @@ class CameraService final {
     ::grpc::ClientAsyncResponseReader< ::mavcam::rpc::camera::SelectCameraResponse>* PrepareAsyncSelectCameraRaw(::grpc::ClientContext* context, const ::mavcam::rpc::camera::SelectCameraRequest& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::mavcam::rpc::camera::ResetSettingsResponse>* AsyncResetSettingsRaw(::grpc::ClientContext* context, const ::mavcam::rpc::camera::ResetSettingsRequest& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::mavcam::rpc::camera::ResetSettingsResponse>* PrepareAsyncResetSettingsRaw(::grpc::ClientContext* context, const ::mavcam::rpc::camera::ResetSettingsRequest& request, ::grpc::CompletionQueue* cq) override;
-    ::grpc::ClientAsyncResponseReader< ::mavcam::rpc::camera::SetDefinitionDataResponse>* AsyncSetDefinitionDataRaw(::grpc::ClientContext* context, const ::mavcam::rpc::camera::SetDefinitionDataRequest& request, ::grpc::CompletionQueue* cq) override;
-    ::grpc::ClientAsyncResponseReader< ::mavcam::rpc::camera::SetDefinitionDataResponse>* PrepareAsyncSetDefinitionDataRaw(::grpc::ClientContext* context, const ::mavcam::rpc::camera::SetDefinitionDataRequest& request, ::grpc::CompletionQueue* cq) override;
     const ::grpc::internal::RpcMethod rpcmethod_Prepare_;
     const ::grpc::internal::RpcMethod rpcmethod_TakePhoto_;
     const ::grpc::internal::RpcMethod rpcmethod_StartPhotoInterval_;
@@ -741,7 +713,6 @@ class CameraService final {
     const ::grpc::internal::RpcMethod rpcmethod_FormatStorage_;
     const ::grpc::internal::RpcMethod rpcmethod_SelectCamera_;
     const ::grpc::internal::RpcMethod rpcmethod_ResetSettings_;
-    const ::grpc::internal::RpcMethod rpcmethod_SetDefinitionData_;
   };
   static std::unique_ptr<Stub> NewStub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options = ::grpc::StubOptions());
 
@@ -825,10 +796,6 @@ class CameraService final {
     //
     // This will reset all camera settings to default value
     virtual ::grpc::Status ResetSettings(::grpc::ServerContext* context, const ::mavcam::rpc::camera::ResetSettingsRequest* request, ::mavcam::rpc::camera::ResetSettingsResponse* response);
-    //
-    // Manual set the definition data
-    // e.g. use mavlink ftp download definition file and set to camera
-    virtual ::grpc::Status SetDefinitionData(::grpc::ServerContext* context, const ::mavcam::rpc::camera::SetDefinitionDataRequest* request, ::mavcam::rpc::camera::SetDefinitionDataResponse* response);
   };
   template <class BaseClass>
   class WithAsyncMethod_Prepare : public BaseClass {
@@ -1270,27 +1237,7 @@ class CameraService final {
       ::grpc::Service::RequestAsyncUnary(21, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
-  template <class BaseClass>
-  class WithAsyncMethod_SetDefinitionData : public BaseClass {
-   private:
-    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-   public:
-    WithAsyncMethod_SetDefinitionData() {
-      ::grpc::Service::MarkMethodAsync(22);
-    }
-    ~WithAsyncMethod_SetDefinitionData() override {
-      BaseClassMustBeDerivedFromService(this);
-    }
-    // disable synchronous version of this method
-    ::grpc::Status SetDefinitionData(::grpc::ServerContext* /*context*/, const ::mavcam::rpc::camera::SetDefinitionDataRequest* /*request*/, ::mavcam::rpc::camera::SetDefinitionDataResponse* /*response*/) override {
-      abort();
-      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-    }
-    void RequestSetDefinitionData(::grpc::ServerContext* context, ::mavcam::rpc::camera::SetDefinitionDataRequest* request, ::grpc::ServerAsyncResponseWriter< ::mavcam::rpc::camera::SetDefinitionDataResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(22, context, request, response, new_call_cq, notification_cq, tag);
-    }
-  };
-  typedef WithAsyncMethod_Prepare<WithAsyncMethod_TakePhoto<WithAsyncMethod_StartPhotoInterval<WithAsyncMethod_StopPhotoInterval<WithAsyncMethod_StartVideo<WithAsyncMethod_StopVideo<WithAsyncMethod_StartVideoStreaming<WithAsyncMethod_StopVideoStreaming<WithAsyncMethod_SetMode<WithAsyncMethod_ListPhotos<WithAsyncMethod_SubscribeMode<WithAsyncMethod_SubscribeInformation<WithAsyncMethod_SubscribeVideoStreamInfo<WithAsyncMethod_SubscribeCaptureInfo<WithAsyncMethod_SubscribeStatus<WithAsyncMethod_SubscribeCurrentSettings<WithAsyncMethod_SubscribePossibleSettingOptions<WithAsyncMethod_SetSetting<WithAsyncMethod_GetSetting<WithAsyncMethod_FormatStorage<WithAsyncMethod_SelectCamera<WithAsyncMethod_ResetSettings<WithAsyncMethod_SetDefinitionData<Service > > > > > > > > > > > > > > > > > > > > > > > AsyncService;
+  typedef WithAsyncMethod_Prepare<WithAsyncMethod_TakePhoto<WithAsyncMethod_StartPhotoInterval<WithAsyncMethod_StopPhotoInterval<WithAsyncMethod_StartVideo<WithAsyncMethod_StopVideo<WithAsyncMethod_StartVideoStreaming<WithAsyncMethod_StopVideoStreaming<WithAsyncMethod_SetMode<WithAsyncMethod_ListPhotos<WithAsyncMethod_SubscribeMode<WithAsyncMethod_SubscribeInformation<WithAsyncMethod_SubscribeVideoStreamInfo<WithAsyncMethod_SubscribeCaptureInfo<WithAsyncMethod_SubscribeStatus<WithAsyncMethod_SubscribeCurrentSettings<WithAsyncMethod_SubscribePossibleSettingOptions<WithAsyncMethod_SetSetting<WithAsyncMethod_GetSetting<WithAsyncMethod_FormatStorage<WithAsyncMethod_SelectCamera<WithAsyncMethod_ResetSettings<Service > > > > > > > > > > > > > > > > > > > > > > AsyncService;
   template <class BaseClass>
   class WithCallbackMethod_Prepare : public BaseClass {
    private:
@@ -1850,34 +1797,7 @@ class CameraService final {
     virtual ::grpc::ServerUnaryReactor* ResetSettings(
       ::grpc::CallbackServerContext* /*context*/, const ::mavcam::rpc::camera::ResetSettingsRequest* /*request*/, ::mavcam::rpc::camera::ResetSettingsResponse* /*response*/)  { return nullptr; }
   };
-  template <class BaseClass>
-  class WithCallbackMethod_SetDefinitionData : public BaseClass {
-   private:
-    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-   public:
-    WithCallbackMethod_SetDefinitionData() {
-      ::grpc::Service::MarkMethodCallback(22,
-          new ::grpc::internal::CallbackUnaryHandler< ::mavcam::rpc::camera::SetDefinitionDataRequest, ::mavcam::rpc::camera::SetDefinitionDataResponse>(
-            [this](
-                   ::grpc::CallbackServerContext* context, const ::mavcam::rpc::camera::SetDefinitionDataRequest* request, ::mavcam::rpc::camera::SetDefinitionDataResponse* response) { return this->SetDefinitionData(context, request, response); }));}
-    void SetMessageAllocatorFor_SetDefinitionData(
-        ::grpc::MessageAllocator< ::mavcam::rpc::camera::SetDefinitionDataRequest, ::mavcam::rpc::camera::SetDefinitionDataResponse>* allocator) {
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(22);
-      static_cast<::grpc::internal::CallbackUnaryHandler< ::mavcam::rpc::camera::SetDefinitionDataRequest, ::mavcam::rpc::camera::SetDefinitionDataResponse>*>(handler)
-              ->SetMessageAllocator(allocator);
-    }
-    ~WithCallbackMethod_SetDefinitionData() override {
-      BaseClassMustBeDerivedFromService(this);
-    }
-    // disable synchronous version of this method
-    ::grpc::Status SetDefinitionData(::grpc::ServerContext* /*context*/, const ::mavcam::rpc::camera::SetDefinitionDataRequest* /*request*/, ::mavcam::rpc::camera::SetDefinitionDataResponse* /*response*/) override {
-      abort();
-      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-    }
-    virtual ::grpc::ServerUnaryReactor* SetDefinitionData(
-      ::grpc::CallbackServerContext* /*context*/, const ::mavcam::rpc::camera::SetDefinitionDataRequest* /*request*/, ::mavcam::rpc::camera::SetDefinitionDataResponse* /*response*/)  { return nullptr; }
-  };
-  typedef WithCallbackMethod_Prepare<WithCallbackMethod_TakePhoto<WithCallbackMethod_StartPhotoInterval<WithCallbackMethod_StopPhotoInterval<WithCallbackMethod_StartVideo<WithCallbackMethod_StopVideo<WithCallbackMethod_StartVideoStreaming<WithCallbackMethod_StopVideoStreaming<WithCallbackMethod_SetMode<WithCallbackMethod_ListPhotos<WithCallbackMethod_SubscribeMode<WithCallbackMethod_SubscribeInformation<WithCallbackMethod_SubscribeVideoStreamInfo<WithCallbackMethod_SubscribeCaptureInfo<WithCallbackMethod_SubscribeStatus<WithCallbackMethod_SubscribeCurrentSettings<WithCallbackMethod_SubscribePossibleSettingOptions<WithCallbackMethod_SetSetting<WithCallbackMethod_GetSetting<WithCallbackMethod_FormatStorage<WithCallbackMethod_SelectCamera<WithCallbackMethod_ResetSettings<WithCallbackMethod_SetDefinitionData<Service > > > > > > > > > > > > > > > > > > > > > > > CallbackService;
+  typedef WithCallbackMethod_Prepare<WithCallbackMethod_TakePhoto<WithCallbackMethod_StartPhotoInterval<WithCallbackMethod_StopPhotoInterval<WithCallbackMethod_StartVideo<WithCallbackMethod_StopVideo<WithCallbackMethod_StartVideoStreaming<WithCallbackMethod_StopVideoStreaming<WithCallbackMethod_SetMode<WithCallbackMethod_ListPhotos<WithCallbackMethod_SubscribeMode<WithCallbackMethod_SubscribeInformation<WithCallbackMethod_SubscribeVideoStreamInfo<WithCallbackMethod_SubscribeCaptureInfo<WithCallbackMethod_SubscribeStatus<WithCallbackMethod_SubscribeCurrentSettings<WithCallbackMethod_SubscribePossibleSettingOptions<WithCallbackMethod_SetSetting<WithCallbackMethod_GetSetting<WithCallbackMethod_FormatStorage<WithCallbackMethod_SelectCamera<WithCallbackMethod_ResetSettings<Service > > > > > > > > > > > > > > > > > > > > > > CallbackService;
   typedef CallbackService ExperimentalCallbackService;
   template <class BaseClass>
   class WithGenericMethod_Prepare : public BaseClass {
@@ -2249,23 +2169,6 @@ class CameraService final {
     }
     // disable synchronous version of this method
     ::grpc::Status ResetSettings(::grpc::ServerContext* /*context*/, const ::mavcam::rpc::camera::ResetSettingsRequest* /*request*/, ::mavcam::rpc::camera::ResetSettingsResponse* /*response*/) override {
-      abort();
-      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-    }
-  };
-  template <class BaseClass>
-  class WithGenericMethod_SetDefinitionData : public BaseClass {
-   private:
-    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-   public:
-    WithGenericMethod_SetDefinitionData() {
-      ::grpc::Service::MarkMethodGeneric(22);
-    }
-    ~WithGenericMethod_SetDefinitionData() override {
-      BaseClassMustBeDerivedFromService(this);
-    }
-    // disable synchronous version of this method
-    ::grpc::Status SetDefinitionData(::grpc::ServerContext* /*context*/, const ::mavcam::rpc::camera::SetDefinitionDataRequest* /*request*/, ::mavcam::rpc::camera::SetDefinitionDataResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
@@ -2708,26 +2611,6 @@ class CameraService final {
     }
     void RequestResetSettings(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
       ::grpc::Service::RequestAsyncUnary(21, context, request, response, new_call_cq, notification_cq, tag);
-    }
-  };
-  template <class BaseClass>
-  class WithRawMethod_SetDefinitionData : public BaseClass {
-   private:
-    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-   public:
-    WithRawMethod_SetDefinitionData() {
-      ::grpc::Service::MarkMethodRaw(22);
-    }
-    ~WithRawMethod_SetDefinitionData() override {
-      BaseClassMustBeDerivedFromService(this);
-    }
-    // disable synchronous version of this method
-    ::grpc::Status SetDefinitionData(::grpc::ServerContext* /*context*/, const ::mavcam::rpc::camera::SetDefinitionDataRequest* /*request*/, ::mavcam::rpc::camera::SetDefinitionDataResponse* /*response*/) override {
-      abort();
-      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-    }
-    void RequestSetDefinitionData(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(22, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -3215,28 +3098,6 @@ class CameraService final {
       ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
   };
   template <class BaseClass>
-  class WithRawCallbackMethod_SetDefinitionData : public BaseClass {
-   private:
-    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-   public:
-    WithRawCallbackMethod_SetDefinitionData() {
-      ::grpc::Service::MarkMethodRawCallback(22,
-          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
-            [this](
-                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->SetDefinitionData(context, request, response); }));
-    }
-    ~WithRawCallbackMethod_SetDefinitionData() override {
-      BaseClassMustBeDerivedFromService(this);
-    }
-    // disable synchronous version of this method
-    ::grpc::Status SetDefinitionData(::grpc::ServerContext* /*context*/, const ::mavcam::rpc::camera::SetDefinitionDataRequest* /*request*/, ::mavcam::rpc::camera::SetDefinitionDataResponse* /*response*/) override {
-      abort();
-      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-    }
-    virtual ::grpc::ServerUnaryReactor* SetDefinitionData(
-      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
-  };
-  template <class BaseClass>
   class WithStreamedUnaryMethod_Prepare : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
@@ -3641,34 +3502,7 @@ class CameraService final {
     // replace default version of method with streamed unary
     virtual ::grpc::Status StreamedResetSettings(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::mavcam::rpc::camera::ResetSettingsRequest,::mavcam::rpc::camera::ResetSettingsResponse>* server_unary_streamer) = 0;
   };
-  template <class BaseClass>
-  class WithStreamedUnaryMethod_SetDefinitionData : public BaseClass {
-   private:
-    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-   public:
-    WithStreamedUnaryMethod_SetDefinitionData() {
-      ::grpc::Service::MarkMethodStreamed(22,
-        new ::grpc::internal::StreamedUnaryHandler<
-          ::mavcam::rpc::camera::SetDefinitionDataRequest, ::mavcam::rpc::camera::SetDefinitionDataResponse>(
-            [this](::grpc::ServerContext* context,
-                   ::grpc::ServerUnaryStreamer<
-                     ::mavcam::rpc::camera::SetDefinitionDataRequest, ::mavcam::rpc::camera::SetDefinitionDataResponse>* streamer) {
-                       return this->StreamedSetDefinitionData(context,
-                         streamer);
-                  }));
-    }
-    ~WithStreamedUnaryMethod_SetDefinitionData() override {
-      BaseClassMustBeDerivedFromService(this);
-    }
-    // disable regular version of this method
-    ::grpc::Status SetDefinitionData(::grpc::ServerContext* /*context*/, const ::mavcam::rpc::camera::SetDefinitionDataRequest* /*request*/, ::mavcam::rpc::camera::SetDefinitionDataResponse* /*response*/) override {
-      abort();
-      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-    }
-    // replace default version of method with streamed unary
-    virtual ::grpc::Status StreamedSetDefinitionData(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::mavcam::rpc::camera::SetDefinitionDataRequest,::mavcam::rpc::camera::SetDefinitionDataResponse>* server_unary_streamer) = 0;
-  };
-  typedef WithStreamedUnaryMethod_Prepare<WithStreamedUnaryMethod_TakePhoto<WithStreamedUnaryMethod_StartPhotoInterval<WithStreamedUnaryMethod_StopPhotoInterval<WithStreamedUnaryMethod_StartVideo<WithStreamedUnaryMethod_StopVideo<WithStreamedUnaryMethod_StartVideoStreaming<WithStreamedUnaryMethod_StopVideoStreaming<WithStreamedUnaryMethod_SetMode<WithStreamedUnaryMethod_ListPhotos<WithStreamedUnaryMethod_SetSetting<WithStreamedUnaryMethod_GetSetting<WithStreamedUnaryMethod_FormatStorage<WithStreamedUnaryMethod_SelectCamera<WithStreamedUnaryMethod_ResetSettings<WithStreamedUnaryMethod_SetDefinitionData<Service > > > > > > > > > > > > > > > > StreamedUnaryService;
+  typedef WithStreamedUnaryMethod_Prepare<WithStreamedUnaryMethod_TakePhoto<WithStreamedUnaryMethod_StartPhotoInterval<WithStreamedUnaryMethod_StopPhotoInterval<WithStreamedUnaryMethod_StartVideo<WithStreamedUnaryMethod_StopVideo<WithStreamedUnaryMethod_StartVideoStreaming<WithStreamedUnaryMethod_StopVideoStreaming<WithStreamedUnaryMethod_SetMode<WithStreamedUnaryMethod_ListPhotos<WithStreamedUnaryMethod_SetSetting<WithStreamedUnaryMethod_GetSetting<WithStreamedUnaryMethod_FormatStorage<WithStreamedUnaryMethod_SelectCamera<WithStreamedUnaryMethod_ResetSettings<Service > > > > > > > > > > > > > > > StreamedUnaryService;
   template <class BaseClass>
   class WithSplitStreamingMethod_SubscribeMode : public BaseClass {
    private:
@@ -3859,7 +3693,7 @@ class CameraService final {
     virtual ::grpc::Status StreamedSubscribePossibleSettingOptions(::grpc::ServerContext* context, ::grpc::ServerSplitStreamer< ::mavcam::rpc::camera::SubscribePossibleSettingOptionsRequest,::mavcam::rpc::camera::PossibleSettingOptionsResponse>* server_split_streamer) = 0;
   };
   typedef WithSplitStreamingMethod_SubscribeMode<WithSplitStreamingMethod_SubscribeInformation<WithSplitStreamingMethod_SubscribeVideoStreamInfo<WithSplitStreamingMethod_SubscribeCaptureInfo<WithSplitStreamingMethod_SubscribeStatus<WithSplitStreamingMethod_SubscribeCurrentSettings<WithSplitStreamingMethod_SubscribePossibleSettingOptions<Service > > > > > > > SplitStreamedService;
-  typedef WithStreamedUnaryMethod_Prepare<WithStreamedUnaryMethod_TakePhoto<WithStreamedUnaryMethod_StartPhotoInterval<WithStreamedUnaryMethod_StopPhotoInterval<WithStreamedUnaryMethod_StartVideo<WithStreamedUnaryMethod_StopVideo<WithStreamedUnaryMethod_StartVideoStreaming<WithStreamedUnaryMethod_StopVideoStreaming<WithStreamedUnaryMethod_SetMode<WithStreamedUnaryMethod_ListPhotos<WithSplitStreamingMethod_SubscribeMode<WithSplitStreamingMethod_SubscribeInformation<WithSplitStreamingMethod_SubscribeVideoStreamInfo<WithSplitStreamingMethod_SubscribeCaptureInfo<WithSplitStreamingMethod_SubscribeStatus<WithSplitStreamingMethod_SubscribeCurrentSettings<WithSplitStreamingMethod_SubscribePossibleSettingOptions<WithStreamedUnaryMethod_SetSetting<WithStreamedUnaryMethod_GetSetting<WithStreamedUnaryMethod_FormatStorage<WithStreamedUnaryMethod_SelectCamera<WithStreamedUnaryMethod_ResetSettings<WithStreamedUnaryMethod_SetDefinitionData<Service > > > > > > > > > > > > > > > > > > > > > > > StreamedService;
+  typedef WithStreamedUnaryMethod_Prepare<WithStreamedUnaryMethod_TakePhoto<WithStreamedUnaryMethod_StartPhotoInterval<WithStreamedUnaryMethod_StopPhotoInterval<WithStreamedUnaryMethod_StartVideo<WithStreamedUnaryMethod_StopVideo<WithStreamedUnaryMethod_StartVideoStreaming<WithStreamedUnaryMethod_StopVideoStreaming<WithStreamedUnaryMethod_SetMode<WithStreamedUnaryMethod_ListPhotos<WithSplitStreamingMethod_SubscribeMode<WithSplitStreamingMethod_SubscribeInformation<WithSplitStreamingMethod_SubscribeVideoStreamInfo<WithSplitStreamingMethod_SubscribeCaptureInfo<WithSplitStreamingMethod_SubscribeStatus<WithSplitStreamingMethod_SubscribeCurrentSettings<WithSplitStreamingMethod_SubscribePossibleSettingOptions<WithStreamedUnaryMethod_SetSetting<WithStreamedUnaryMethod_GetSetting<WithStreamedUnaryMethod_FormatStorage<WithStreamedUnaryMethod_SelectCamera<WithStreamedUnaryMethod_ResetSettings<Service > > > > > > > > > > > > > > > > > > > > > > StreamedService;
 };
 
 }  // namespace camera
