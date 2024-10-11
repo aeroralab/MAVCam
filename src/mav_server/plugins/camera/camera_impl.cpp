@@ -277,7 +277,7 @@ std::vector<Camera::VideoStreamInfo> CameraImpl::video_stream_info() const {
     // TODO(thomas) : not set video bitrate for now
     normal_video_stream.settings.bit_rate_b_s = 0;
     normal_video_stream.settings.rotation_deg = 0;
-    normal_video_stream.settings.uri = "rtsp://169.254.254.1:8900/live";
+    normal_video_stream.settings.uri = "rtsp://192.168.251.1/live";
     normal_video_stream.settings.horizontal_fov_deg = 0;
     normal_video_stream.status = mavcam::Camera::VideoStreamInfo::VideoStreamStatus::InProgress;
     normal_video_stream.spectrum =

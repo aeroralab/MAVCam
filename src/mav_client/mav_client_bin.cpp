@@ -8,7 +8,7 @@
 #include "mav_client.h"
 #include "version.h"
 
-static auto constexpr default_connection = "udp://169.254.254.2:14550";
+static auto constexpr default_connection = "udp://192.168.251.2:14550";
 static auto constexpr default_rpc_port = 50051;
 static std::string default_ftp_path = "/usr/share/mav-cam/";
 static std::string default_log_path = "/data/camera/";
