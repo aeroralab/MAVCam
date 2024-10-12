@@ -21,7 +21,7 @@ public:  // operation
     virtual mavsdk::CameraServer::Result set_mode(mavsdk::CameraServer::Mode mode) = 0;
     virtual mavsdk::CameraServer::Result format_storage(int storage_id) = 0;
     virtual mavsdk::CameraServer::Result reset_settings() = 0;
-    virtual mavsdk::CameraServer::Result set_timestamp(int64_t timestamp) = 0;
+    virtual mavsdk::CameraServer::Result set_timestamp(int64_t time_unix_msec) = 0;
 public:  // subscribe
     virtual mavsdk::CameraServer::Result fill_information(
         mavsdk::CameraServer::Information &information) = 0;

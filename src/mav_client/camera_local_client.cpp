@@ -106,8 +106,8 @@ mavsdk::CameraServer::Result CameraLocalClient::reset_settings() {
     return mavsdk::CameraServer::Result::Success;
 }
 
-mavsdk::CameraServer::Result CameraLocalClient::set_timestamp(int64_t timestamp) {
-    base::LogDebug() << "local call set timestamp " << timestamp;
+mavsdk::CameraServer::Result CameraLocalClient::set_timestamp(int64_t time_unix_msec) {
+    base::LogDebug() << "local call set timestamp " << time_unix_msec;
     return mavsdk::CameraServer::Result::Denied;
 }
 

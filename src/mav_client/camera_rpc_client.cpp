@@ -220,12 +220,12 @@ mavsdk::CameraServer::Result CameraRpcClient::reset_settings() {
     return translateFromRpcResult(response.camera_result().result());
 }
 
-mavsdk::CameraServer::Result CameraRpcClient::set_timestamp(int64_t timestamp) {
+mavsdk::CameraServer::Result CameraRpcClient::set_timestamp(int64_t time_unix_msec) {
     std::lock_guard<std::mutex> lock(_mutex);
-    base::LogDebug() << "rpc call set timestamp";
+    base::LogDebug() << "rpc call set timestamp " << time_unix_msec;
 
     mavcam::rpc::camera::SetTimestampRequest request;
-    request.set_timestamp(timestamp);
+    request.set_timestamp(time_unix_msec);
     grpc::ClientContext context;
     mavcam::rpc::camera::SetTimestampResponse response;
     grpc::Status status = _stub->SetTimestamp(&context, request, &response);
