@@ -26,7 +26,7 @@
                 <option name="Video" value="1">
                     <!-- Converselly, when Camera Mode is set to Video mode, the following parameters should be ignored (hidden from UI or disabled)-->
                     <exclusions>
-                        <exclude>CAM_PHOTORATIO</exclude>
+                        <exclude>CAM_PHOTO_RES</exclude>
                     </exclusions>
                 </option>
             </options>
