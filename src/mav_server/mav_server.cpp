@@ -33,15 +33,11 @@ bool MavServer::start_runloop() {
 
     // Run server
     base::LogInfo() << "Server listening on " << server_address;
-    _running = true;
-    while (_running.load(std::memory_order_relaxed)) {
-        std::this_thread::sleep_for(std::chrono::microseconds(50));
-    }
-    return 0;
+    _server->Wait();
+    return true;
 }
 
 void MavServer::stop_runloop() {
-    _running = false;
     _server->Shutdown();
 }
 

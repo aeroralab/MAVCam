@@ -14,7 +14,6 @@ public:
     void stop_runloop();
 private:
     int _rpc_port;
-    std::atomic<bool> _running{false};
     std::unique_ptr<grpc::Server> _server;
 };
 

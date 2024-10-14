@@ -132,4 +132,6 @@ bool is_integer(const std::string &tested_integer) {
 void signal_handler(int signum) {
     base::LogDebug() << "Interrupt signal (" << signum << ") received.";
     server.stop_runloop();
+
+    exit(signum);  // Exit the process
 }
