@@ -5,6 +5,7 @@ option(BUILD_GRPC "Build with grpc support" ON)
 option(BUILD_SHARED_LIBS "Build core as shared libraries instead of static ones" OFF)
 option(BUILD_EXAMPLE "Build example" OFF)
 option(BUILD_QCOM "Build qualcomm platform" OFF)
+option(BUILD_MAVSDK "Build mavsdk dependency" ON)
 
 project(MAVCam)
 
