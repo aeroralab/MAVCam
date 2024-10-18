@@ -148,18 +148,25 @@ Camera::Result CameraImpl::stop_photo_interval() {
 
 Camera::Result CameraImpl::start_video() {
     base::LogDebug() << "call start video";
-    _status.video_on = true;
-    _start_video_time = std::chrono::steady_clock::now();
     auto result = _mav_camera->start_video();
-    return convert_camera_result_to_mav_result(result);
+    auto mav_result = convert_camera_result_to_mav_result(result);
+    if (mav_result == Camera::Result::Success) {
+        _status.video_on = true;
+        _start_video_time = std::chrono::steady_clock::now();
+    }
+    return mav_result;
 }
 
 Camera::Result CameraImpl::stop_video() {
     base::LogDebug() << "call stop video";
-    _status.video_on = false;
-    std::thread stop_thread(&CameraImpl::stop_video_async, this);
-    stop_thread.detach();
-    return Camera::Result::Success;
+    auto result = _mav_camera->stop_video();
+    auto mav_result = convert_camera_result_to_mav_result(result);
+    if (mav_result == Camera::Result::Success) {
+        _status.video_on = false;
+    }
+    // std::thread stop_thread(&CameraImpl::stop_video_async, this);
+    // stop_thread.detach();
+    return mav_result;
 }
 
 Camera::Result CameraImpl::start_video_streaming(int32_t stream_id) {
