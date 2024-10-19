@@ -76,13 +76,13 @@ if(NOT MAVSDK_LIBRARY_PATH)
     get_target_property(ALTERNATIVE_LIBRARY_PATH MAVSDK::mavsdk LOCATION)
     set(MAVSDK_LIBRARY_PATH ${ALTERNATIVE_LIBRARY_PATH})
 endif()
+
 message(STATUS "MAVSDK path: ${MAVSDK_LIBRARY_PATH}")
 
-# TODO (anxs) temp solution to manually create symlink
-install(CODE "execute_process(COMMAND ${CMAKE_COMMAND} -E create_symlink libmavsdk.so.${MAVSDK_VERSION} libmavsdk.so.${MAVSDK_VERSION_MAJOR} WORKING_DIRECTORY ${CMAKE_INSTALL_PREFIX}/lib)")
-
-install(FILES ${MAVSDK_LIBRARY_PATH}
-    DESTINATION lib
-)
+if (BUILD_MAVSDK)
+    # TODO (anxs) temp solution to manually create symlink
+    install(CODE "execute_process(COMMAND ${CMAKE_COMMAND} -E create_symlink libmavsdk.so.${MAVSDK_VERSION} libmavsdk.so.${MAVSDK_VERSION_MAJOR} WORKING_DIRECTORY ${CMAKE_INSTALL_PREFIX}/lib)")
+    install(FILES ${MAVSDK_LIBRARY_PATH} DESTINATION lib)
+endif()
 
 install(TARGETS ${EXECUTE_NAME} RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR})

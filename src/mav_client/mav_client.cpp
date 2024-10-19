@@ -32,6 +32,7 @@ bool MavClient::init(std::string &connection_url, bool use_local, int32_t rpc_po
 }
 
 bool MavClient::start_runloop() {
+    //TODO(thomas) : QGC only can identify component type with autopilot
     mavsdk::Mavsdk mavsdk{mavsdk::Mavsdk::Configuration{mavsdk::Mavsdk::ComponentType::Autopilot}};
 
     auto result = mavsdk.add_any_connection(_connection_url);
