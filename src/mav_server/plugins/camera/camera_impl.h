@@ -6,6 +6,7 @@
 #include <thread>
 #include <vector>
 
+#include "boson-sdk-interface.h"
 #include "mav_camera.h"
 #include "plugins/camera/camera.h"
 
@@ -307,6 +308,18 @@ private:
      * @brief stop video async
      */
     void stop_video_async();
+    /**
+     * @brief init ir camera
+     */
+    bool init_ir_camera();
+    /**
+     * @breif free ir camera
+     */
+    void free_ir_camera();
+    /**
+     * @brief set ir camera palette
+     */
+    bool set_ir_palette(std::string color_mode);
 private:
     Camera::ModeCallback _camera_mode_callback;
     Camera::CaptureInfoCallback _capture_info_callback;
@@ -319,9 +332,12 @@ private:
     mutable std::mutex _storage_information_mutex;
     mutable mav_camera::StorageInformation _current_storage_information;
 private:
-    void *_plugin_handle;
-    mav_camera::MavCamera *_mav_camera;
+    void *_plugin_handle{NULL};
+    mav_camera::MavCamera *_mav_camera{nullptr};
     int32_t _framerate;
+private:
+    void *_ir_camera_handle{NULL};
+    struct boson_extension_api *_ir_camera{nullptr};
 };
 
 }  // namespace mavcam

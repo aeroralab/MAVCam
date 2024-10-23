@@ -18,6 +18,8 @@ const std::string kISOName = "CAM_ISO";
 const std::string kShutterSpeedName = "CAM_SHUTTERSPD";
 const std::string kVideoResolution = "CAM_VIDRES";
 
+const std::string kIrCamPalette = "IRCAM_PALETTE";
+
 const int32_t kPreviewWidth = 1920;
 const int32_t kPreviewPhotoHeight = 1440;
 const int32_t kPreviewVideoHeight = 1080;
@@ -26,11 +28,11 @@ const int32_t kSnapshotWidth = 9248;
 const int32_t kSnapshotHeight = 6944;
 const int32_t kSnapshotHalfWidth = 4624;
 const int32_t kSnapshotHalfHeight = 3472;
-
 const int32_t kVideoWidth = 3840;
 const int32_t kVideoHeight = 2160;
 
 #define QCOM_CAMERA_LIBERAY "libqcom_camera.so"
+#define BOSON_CAMERA_LIBRARY "libboson-sdk-clientfiles_64.so"
 
 typedef mav_camera::MavCamera *(*create_qcom_camera_fun)();
 
@@ -128,6 +130,13 @@ Camera::Result CameraImpl::prepare() {
     std::string video_resolution = get_video_resolution();
     _settings.emplace_back(build_setting(kVideoResolution, video_resolution));
 
+    auto ir_result = init_ir_camera();
+    if (ir_result) {
+        ColorMode color_mode;
+        _ir_camera->get_boson_color_mode(&color_mode);
+        base::LogDebug() << "Current ir palette is " << int(color_mode);
+        _settings.emplace_back(build_setting(kIrCamPalette, std::to_string(color_mode)));
+    }
     return Camera::Result::Success;
 }
 
@@ -231,17 +240,18 @@ Camera::Information CameraImpl::information() const {
     mav_camera::Information in_info;
     auto result = _mav_camera->get_information(in_info);
     if (result == mav_camera::Result::Success) {
-        out_info.vendor_name = in_info.vendor_name;
-        out_info.model_name = in_info.model_name;
-        out_info.firmware_version = in_info.firmware_version;
+        out_info.vendor_name = "Aeroratech";
+        out_info.model_name = "D64TR";
+        out_info.firmware_version = "0.6.0";
         out_info.focal_length_mm = in_info.focal_length_mm;
         out_info.horizontal_sensor_size_mm = in_info.horizontal_sensor_size_mm;
         out_info.vertical_sensor_size_mm = in_info.vertical_sensor_size_mm;
         out_info.horizontal_resolution_px = in_info.horizontal_resolution_px;
         out_info.vertical_resolution_px = in_info.vertical_resolution_px;
         out_info.lens_id = in_info.lens_id;
-        out_info.definition_file_version = in_info.definition_file_version;
-        out_info.definition_file_uri = "mftp://definition/" + in_info.definition_file_name;
+        //TODO (Thomas) : hard code
+        out_info.definition_file_version = 5;
+        out_info.definition_file_uri = "mftp://definition/D64TR.xml";
 
     } else {
         out_info.vendor_name = "Unknown";
@@ -412,6 +422,8 @@ Camera::Result CameraImpl::set_setting(Camera::Setting setting) {
         set_success = result == mav_camera::Result::Success;
     } else if (setting.setting_id == kVideoResolution) {
         set_success = set_video_resolution(setting.option.option_id);
+    } else if (setting.setting_id == kIrCamPalette) {
+        set_success = set_ir_palette(setting.option.option_id);
     } else {
         base::LogError() << "Not implement setting";
         set_success = true;
@@ -723,6 +735,86 @@ Camera::Result CameraImpl::convert_camera_result_to_mav_result(mav_camera::Resul
 
 void CameraImpl::stop_video_async() {
     _mav_camera->stop_video();
+}
+
+bool CameraImpl::init_ir_camera() {
+    if (_ir_camera != nullptr) {
+        return true;
+    }
+    typedef struct boson_extension_api *(*create_boson_extension_api_fun)();
+    _ir_camera_handle = dlopen(BOSON_CAMERA_LIBRARY, RTLD_NOW);
+    if (_ir_camera_handle == NULL) {
+        char const *err_str = dlerror();
+        base::LogError() << "Load module " << BOSON_CAMERA_LIBRARY << " failed "
+                         << (err_str != NULL ? err_str : "unknown");
+        return false;
+    }
+
+    create_boson_extension_api_fun create_boson_extension_api =
+        (create_boson_extension_api_fun)dlsym(_ir_camera_handle, "create_boson_extension_api");
+    if (create_boson_extension_api == NULL) {
+        base::LogError() << "Cannot find symbol create_boson_extension_api";
+        dlclose(_ir_camera_handle);
+        _ir_camera_handle = NULL;
+        return false;
+    }
+
+    _ir_camera = create_boson_extension_api();
+    if (_ir_camera == nullptr) {
+        base::LogError() << "Cannot create ir camera instance";
+    }
+
+    if (_ir_camera->uart_boson_initialize(16, 921600) == 0) {
+        base::LogInfo() << "API uart_boson_initialize success.";
+    } else {
+        base::LogError() << "Failed to initialize ir camera";
+        free(_ir_camera);
+        _ir_camera = nullptr;
+        return false;
+    }
+
+    uint32_t camera_sn;
+    if (_ir_camera->get_boson_camera_sn(&camera_sn) == 0) {
+        base::LogInfo() << "API get_boson_camera_sn camera_sn: " << camera_sn;
+    } else {
+        base::LogError() << "Failed to get_boson_camera_sn";
+        free(_ir_camera);
+        _ir_camera = nullptr;
+        return false;
+    }
+
+    BOSON_SENSOR_PARTNUMBER part_num;
+    if (_ir_camera->get_boson_camera_pn(&part_num) == 0) {
+        base::LogInfo() << "API get_boson_camera_pn \"" << part_num.value << "\"";
+    } else {
+        base::LogError() << "Failed to get_boson_camera_pn";
+        free(_ir_camera);
+        _ir_camera = nullptr;
+        return false;
+    }
+    base::LogDebug() << "Load ir camera success";
+    return true;
+}
+
+void CameraImpl::free_ir_camera() {
+    _ir_camera->uart_boson_close();
+    if (_ir_camera != nullptr) {
+        free(_ir_camera);
+        _ir_camera = nullptr;
+    }
+    if (_ir_camera_handle != NULL) {
+        dlclose(_ir_camera_handle);
+        _ir_camera_handle = NULL;
+    }
+}
+
+bool CameraImpl::set_ir_palette(std::string color_mode) {
+    ColorMode convert_mode = (ColorMode)std::stoi(color_mode);
+    if (_ir_camera != nullptr) {
+        auto result = _ir_camera->set_boson_color_mode(convert_mode);
+        return result == 0;
+    }
+    return false;
 }
 
 }  // namespace mavcam
