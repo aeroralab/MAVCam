@@ -320,6 +320,10 @@ private:
      * @brief set ir camera palette
      */
     bool set_ir_palette(std::string color_mode);
+    /**
+     * @brief execute ir camera FFC
+     */
+    bool set_ir_FFC(std::string ignore);
 private:
     Camera::ModeCallback _camera_mode_callback;
     Camera::CaptureInfoCallback _capture_info_callback;

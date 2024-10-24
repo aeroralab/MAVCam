@@ -19,6 +19,7 @@ const std::string kShutterSpeedName = "CAM_SHUTTERSPD";
 const std::string kVideoResolution = "CAM_VIDRES";
 
 const std::string kIrCamPalette = "IRCAM_PALETTE";
+const std::string kIrCamFFC = "IRCAM_FFC";
 
 const int32_t kPreviewWidth = 1920;
 const int32_t kPreviewPhotoHeight = 1440;
@@ -136,6 +137,7 @@ Camera::Result CameraImpl::prepare() {
         _ir_camera->get_boson_color_mode(&color_mode);
         base::LogDebug() << "Current ir palette is " << int(color_mode);
         _settings.emplace_back(build_setting(kIrCamPalette, std::to_string(color_mode)));
+        _settings.emplace_back(build_setting(kIrCamFFC, "0"));
     }
     return Camera::Result::Success;
 }
@@ -424,6 +426,8 @@ Camera::Result CameraImpl::set_setting(Camera::Setting setting) {
         set_success = set_video_resolution(setting.option.option_id);
     } else if (setting.setting_id == kIrCamPalette) {
         set_success = set_ir_palette(setting.option.option_id);
+    } else if (setting.setting_id == kIrCamFFC) {
+        set_success = set_ir_FFC(setting.option.option_id);
     } else {
         base::LogError() << "Not implement setting";
         set_success = true;
@@ -812,6 +816,14 @@ bool CameraImpl::set_ir_palette(std::string color_mode) {
     ColorMode convert_mode = (ColorMode)std::stoi(color_mode);
     if (_ir_camera != nullptr) {
         auto result = _ir_camera->set_boson_color_mode(convert_mode);
+        return result == 0;
+    }
+    return false;
+}
+
+bool CameraImpl::set_ir_FFC(std::string /*ignore*/) {
+    if (_ir_camera != nullptr) {
+        auto result = _ir_camera->process_boson_run_ffc();
         return result == 0;
     }
     return false;

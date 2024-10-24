@@ -170,5 +170,12 @@
                 <option name="COLOR_HOTTEST" value="9" />
             </options>
         </parameter>
+        <parameter name="IRCAM_FFC" type="int32" default="0">
+            <description>Infrared Camera FFC</description>
+            <options>
+                <option name="NOTHING" value="0" />
+                <option name="EXECUTE" value="1" />
+            </options>
+        </parameter>
     </parameters>
 </mavlinkcamera>
