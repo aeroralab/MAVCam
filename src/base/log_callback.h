@@ -14,7 +14,7 @@ enum class Level : int {
 };
 
 /** @brief User-defined callback for logging. Returning true from this callback
- * prevents default mavsdk`s logging to stdout. Returning false keeps it.
+ * prevents default logging to stdout. Returning false keeps it.
  */
 using Callback =
     std::function<bool(Level level, const std::string &message, const std::string &file, int line)>;

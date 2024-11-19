@@ -59,16 +59,16 @@ public:
 #if ANDROID
         switch (_log_level) {
             case log::Level::Debug:
-                __android_log_print(ANDROID_LOG_DEBUG, "Mavsdk", "%s", _s.str().c_str());
+                __android_log_print(ANDROID_LOG_DEBUG, "MAVCam", "%s", _s.str().c_str());
                 break;
             case log::Level::Info:
-                __android_log_print(ANDROID_LOG_INFO, "Mavsdk", "%s", _s.str().c_str());
+                __android_log_print(ANDROID_LOG_INFO, "MAVCam", "%s", _s.str().c_str());
                 break;
             case log::Level::Warn:
-                __android_log_print(ANDROID_LOG_WARN, "Mavsdk", "%s", _s.str().c_str());
+                __android_log_print(ANDROID_LOG_WARN, "MAVCam", "%s", _s.str().c_str());
                 break;
             case log::Level::Err:
-                __android_log_print(ANDROID_LOG_ERROR, "Mavsdk", "%s", _s.str().c_str());
+                __android_log_print(ANDROID_LOG_ERROR, "MAVCam", "%s", _s.str().c_str());
                 break;
         }
         // Unused:
