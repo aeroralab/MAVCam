@@ -24,6 +24,7 @@ int main(int argc, const char *argv[]) {
     std::ios::sync_with_stdio(true);
 
     int rpc_port = default_rpc_port;
+    int num_thread = 0;
     for (int i = 1; i < argc; i++) {
         const std::string current_arg = argv[i];
 
@@ -45,6 +46,18 @@ int main(int argc, const char *argv[]) {
                 return 1;
             }
             rpc_port = std::stoi(rpc_port_string);
+            i++;
+        } else if (current_arg == "-t" || current_arg == "--num_thread") {
+            if (argc <= i + 1) {
+                usage(argv[0]);
+                return 1;
+            }
+            const std::string num_thread_string(argv[i + 1]);
+            if (!is_integer(num_thread_string)) {
+                usage(argv[0]);
+                return 1;
+            }
+            num_thread = std::stoi(num_thread_string);
             i++;
         } else if (current_arg == "--log_path") {
             if (argc <= i + 1) {
@@ -105,7 +118,7 @@ int main(int argc, const char *argv[]) {
         base::LogInfo() << "Init camera snapshot resolution is " << init_snapshot_resolution;
     }
 
-    if (!server.init(rpc_port)) {
+    if (!server.init(rpc_port, num_thread)) {
         std::cout << "Init rpc server failed";
         return 1;
     }
@@ -124,15 +137,17 @@ void usage(const char *bin_name) {
     std::cout << "Usage: " << bin_name << " [Options]" << '\n'
               << '\n'
               << "Options:" << '\n'
-              << "\t-h | --help     : show this help" << '\n'
-              << "\t-v | --version  : show version information " << '\n'
-              << "\t-r              : set the rpc port,"
+              << "\t-h | --help         : show this help" << '\n'
+              << "\t-v | --version      : show version information " << '\n'
+              << "\t-r                  : set the rpc port,"
               << "(default is " << default_rpc_port << ")\n"
-              << "\t--log_path      : store output log to file path, default is "
+              << "\t-t | --num_thread   : set the rpc thread count" << '\n'
+              << "\t--log_path          : store output log to file path, default is "
               << default_log_path << '\n'
-              << "\t--store_prefix  : store folder and file prefix, default is "
+              << "\t--store_prefix      : store folder and file prefix, default is "
               << default_store_prefix << '\n'
-              << "\t--camera_mode   : init camera mode, 0 for photo mode 1 for video mode" << '\n'
+              << "\t--camera_mode       : init camera mode, 0 for photo mode 1 for video mode"
+              << '\n'
               << "\t--snapshot_resolution : init snapshot resoltuion" << '\n';
 }
 

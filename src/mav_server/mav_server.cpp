@@ -10,8 +10,9 @@
 
 namespace mavcam {
 
-bool MavServer::init(int rpc_port) {
+bool MavServer::init(int rpc_port, int num_thread) {
     _rpc_port = rpc_port;
+    _num_thread = num_thread;
     return true;
 }
 
@@ -24,6 +25,16 @@ bool MavServer::start_runloop() {
     grpc::ServerBuilder builder;
     builder.AddListeningPort(server_address, grpc::InsecureServerCredentials());
     builder.RegisterService(&service);
+
+    // Configure the thread pool to use exactly threads.
+    if (_num_thread != 0) {
+        base::LogInfo() << "Config grpc thread pool thread num to " << _num_thread;
+        builder.SetSyncServerOption(grpc::ServerBuilder::SyncServerOption::NUM_CQS, _num_thread);
+        builder.SetSyncServerOption(grpc::ServerBuilder::SyncServerOption::MIN_POLLERS,
+                                    _num_thread);
+        builder.SetSyncServerOption(grpc::ServerBuilder::SyncServerOption::MAX_POLLERS,
+                                    _num_thread);
+    }
 
     _server = builder.BuildAndStart();
     if (!_server) {
