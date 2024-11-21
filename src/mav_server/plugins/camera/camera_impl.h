@@ -6,7 +6,7 @@
 #include <thread>
 #include <vector>
 
-#include "boson-sdk-interface.h"
+#include "libirextension.h"
 #include "mav_camera.h"
 #include "plugins/camera/camera.h"
 
@@ -322,6 +322,10 @@ private:
      */
     void free_ir_camera();
     /**
+     * @brief get ir camera palette
+     */
+    int get_ir_palette();
+    /**
      * @brief set ir camera palette
      */
     bool set_ir_palette(std::string color_mode);
@@ -355,7 +359,7 @@ private:
     int32_t _framerate;
 private:
     void *_ir_camera_handle{NULL};
-    struct boson_extension_api *_ir_camera{nullptr};
+    struct ir_extension_api *_ir_camera{nullptr};
 };
 
 }  // namespace mavcam

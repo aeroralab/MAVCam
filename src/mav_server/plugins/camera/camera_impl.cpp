@@ -39,7 +39,7 @@ static const int32_t kVideoWidth = 3840;
 static const int32_t kVideoHeight = 2160;
 
 #define QCOM_CAMERA_LIBERAY "libqcom_camera.so"
-#define BOSON_CAMERA_LIBRARY "libboson-sdk-clientfiles_64.so"
+#define IR_CAMERA_LIBRARY "libirextension.so"
 
 typedef mav_camera::MavCamera *(*create_qcom_camera_fun)();
 
@@ -198,9 +198,7 @@ Camera::Result CameraImpl::prepare() {
 
     auto ir_result = init_ir_camera();
     if (ir_result) {
-        ColorMode color_mode;
-        _ir_camera->get_boson_color_mode(&color_mode);
-        base::LogDebug() << "Current ir palette is " << int(color_mode);
+        int color_mode = get_ir_palette();
         _settings.emplace_back(build_setting(kIrCamPalette, std::to_string(color_mode)));
         _settings.emplace_back(build_setting(kIrCamFFC, "0"));
     }
@@ -829,66 +827,81 @@ bool CameraImpl::init_ir_camera() {
     if (_ir_camera != nullptr) {
         return true;
     }
-    typedef struct boson_extension_api *(*create_boson_extension_api_fun)();
-    _ir_camera_handle = dlopen(BOSON_CAMERA_LIBRARY, RTLD_NOW);
+    typedef struct ir_extension_api *(*create_ir_extension_api_fun)();
+    _ir_camera_handle = dlopen(IR_CAMERA_LIBRARY, RTLD_NOW);
     if (_ir_camera_handle == NULL) {
         char const *err_str = dlerror();
-        base::LogError() << "Load module " << BOSON_CAMERA_LIBRARY << " failed "
+        base::LogError() << "Load module " << IR_CAMERA_LIBRARY << " failed "
                          << (err_str != NULL ? err_str : "unknown");
         return false;
     }
 
-    create_boson_extension_api_fun create_boson_extension_api =
-        (create_boson_extension_api_fun)dlsym(_ir_camera_handle, "create_boson_extension_api");
-    if (create_boson_extension_api == NULL) {
-        base::LogError() << "Cannot find symbol create_boson_extension_api";
+    create_ir_extension_api_fun create_ir_extension_api =
+        (create_ir_extension_api_fun)dlsym(_ir_camera_handle, "create_ir_extension_api");
+    if (create_ir_extension_api == NULL) {
+        base::LogError() << "Cannot find symbol create_ir_extension_api";
         dlclose(_ir_camera_handle);
         _ir_camera_handle = NULL;
         return false;
     }
 
-    _ir_camera = create_boson_extension_api();
+    _ir_camera = create_ir_extension_api();
     if (_ir_camera == nullptr) {
         base::LogError() << "Cannot create ir camera instance";
+        return false;
     }
 
-    if (_ir_camera->uart_boson_initialize(16, 921600) == 0) {
-        base::LogInfo() << "API uart_boson_initialize success.";
+    if (_ir_camera->exec(TYPE_CAMERA_INIT) == 0) {
+        base::LogInfo() << "Init ir camera success.";
     } else {
-        base::LogError() << "Failed to initialize ir camera";
-        free(_ir_camera);
-        _ir_camera = nullptr;
+        base::LogError() << "Failed to init ir camera.";
         return false;
     }
 
     uint32_t camera_sn;
-    if (_ir_camera->get_boson_camera_sn(&camera_sn) == 0) {
-        base::LogInfo() << "API get_boson_camera_sn camera_sn: " << camera_sn;
+    if (_ir_camera->get(TYPE_CAMERA_SN, &camera_sn) == 0) {
+        base::LogInfo() << "TYPE_CAMERA_SN: " << camera_sn;
     } else {
-        base::LogError() << "Failed to get_boson_camera_sn";
-        free(_ir_camera);
-        _ir_camera = nullptr;
-        return false;
+        base::LogError() << "Failed to TYPE_CAMERA_SN.";
     }
 
-    BOSON_SENSOR_PARTNUMBER part_num;
-    if (_ir_camera->get_boson_camera_pn(&part_num) == 0) {
-        base::LogInfo() << "API get_boson_camera_pn \"" << part_num.value << "\"";
+    uint32_t version;
+    if (_ir_camera->get(TYPE_CAMERA_VERSION, &version) == 0) {
+        printf("version: %u\n", version);
+        uint32_t major = (version >> 24) & 0xFF;
+        uint32_t minor = (version >> 16) & 0xFF;
+        uint32_t patch = version & 0xFFFF;
+        base::LogInfo() << "TYPE_CAMERA_VERSION: " << major << "." << minor << "." << patch;
     } else {
-        base::LogError() << "Failed to get_boson_camera_pn";
-        free(_ir_camera);
-        _ir_camera = nullptr;
-        return false;
+        base::LogError() << "Failed to TYPE_CAMERA_VERSION.";
     }
-    base::LogDebug() << "Load ir camera success";
+
+    uint32_t camera_type;
+    if (_ir_camera->get(TYPE_CAMERA_TYPE, &camera_type) == 0) {
+        base::LogInfo() << "TYPE_CAMERA_TYPE: 0x00000000 -- 0x" << std::setw(8) << std::setfill('0')
+                        << std::hex << std::uppercase << camera_type;
+    } else {
+        base::LogError() << "Failed to TYPE_CAMERA_TYPE.";
+    }
+
+    char camera_pn[64];
+    if (_ir_camera->get(TYPE_CAMERA_PN, &camera_pn) == 0) {
+        base::LogInfo() << "TYPE_CAMERA_PN: " << camera_pn;
+    } else {
+        base::LogError() << "Failed to TYPE_CAMERA_PN.";
+    }
+
+    base::LogInfo() << "Load ir camera success";
     return true;
 }
 
 void CameraImpl::free_ir_camera() {
-    _ir_camera->uart_boson_close();
     if (_ir_camera != nullptr) {
-        free(_ir_camera);
-        _ir_camera = nullptr;
+        if (_ir_camera->exec(TYPE_CAMERA_CLOSE) == 0) {
+            base::LogDebug() << "close ir camera success.";
+        } else {
+            base::LogDebug() << "Failed to close ir camera.";
+        }
     }
     if (_ir_camera_handle != NULL) {
         dlclose(_ir_camera_handle);
@@ -896,10 +909,19 @@ void CameraImpl::free_ir_camera() {
     }
 }
 
+int CameraImpl::get_ir_palette() {
+    uint32_t color_mode = 0;
+    if (_ir_camera != NULL) {
+        _ir_camera->get(TYPE_CAMERA_COLOR_MODE, &color_mode);
+        base::LogDebug() << "Current ir palette is " << color_mode;
+    }
+    return color_mode;
+}
+
 bool CameraImpl::set_ir_palette(std::string color_mode) {
-    ColorMode convert_mode = (ColorMode)std::stoi(color_mode);
+    uint32_t convert_mode = std::stoul(color_mode);
     if (_ir_camera != nullptr) {
-        auto result = _ir_camera->set_boson_color_mode(convert_mode);
+        auto result = _ir_camera->set(TYPE_CAMERA_COLOR_MODE, &convert_mode);
         return result == 0;
     }
     return false;
@@ -907,7 +929,7 @@ bool CameraImpl::set_ir_palette(std::string color_mode) {
 
 bool CameraImpl::set_ir_FFC(std::string /*ignore*/) {
     if (_ir_camera != nullptr) {
-        auto result = _ir_camera->process_boson_run_ffc();
+        auto result = _ir_camera->exec(TYPE_CAMERA_FFC);
         return result == 0;
     }
     return false;
