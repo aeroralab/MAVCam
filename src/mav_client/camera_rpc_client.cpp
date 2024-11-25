@@ -317,10 +317,8 @@ mavsdk::CameraServer::Result CameraRpcClient::fill_capture_status(
 
 mavsdk::CameraServer::Result CameraRpcClient::fill_settings(
     mavsdk::CameraServer::Settings &settings) {
-    base::LogDebug() << "rpc call fill settings " << _current_mode;
+    base::LogDebug() << "rpc call fill settings";
     settings.mode = _current_mode;
-    settings.zoom_level = 0;
-    settings.focus_level = 0;
     return mavsdk::CameraServer::Result::Success;
 }
 
