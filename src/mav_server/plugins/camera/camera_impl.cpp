@@ -56,6 +56,15 @@ Camera::Result CameraImpl::prepare() {
     if (_mav_camera != nullptr) {
         return Camera::Result::Success;
     }
+
+    //init ir camera first for ir stream function
+    auto ir_result = init_ir_camera();
+    if (ir_result) {
+        int color_mode = get_ir_palette();
+        _settings.emplace_back(build_setting(kIrCamPalette, std::to_string(color_mode)));
+        _settings.emplace_back(build_setting(kIrCamFFC, "0"));
+    }
+
     _plugin_handle = dlopen(QCOM_CAMERA_LIBERAY, RTLD_NOW);
     if (_plugin_handle == NULL) {
         char const *err_str = dlerror();
@@ -197,13 +206,6 @@ Camera::Result CameraImpl::prepare() {
     std::string video_resolution = get_video_resolution();
     _settings.emplace_back(build_setting(kVideoResolution, video_resolution));
     _settings.emplace_back(build_setting(kMeteringModeName, "0"));
-
-    auto ir_result = init_ir_camera();
-    if (ir_result) {
-        int color_mode = get_ir_palette();
-        _settings.emplace_back(build_setting(kIrCamPalette, std::to_string(color_mode)));
-        _settings.emplace_back(build_setting(kIrCamFFC, "0"));
-    }
 
     base::LogDebug() << "Init settings :";
     for (const auto &setting : _settings) {
