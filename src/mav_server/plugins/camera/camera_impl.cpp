@@ -215,6 +215,7 @@ Camera::Result CameraImpl::prepare() {
 }
 
 Camera::Result CameraImpl::take_photo() {
+    base::LogDebug() << "call take photo";
     auto result = _mav_camera->take_photo();
     return convert_camera_result_to_mav_result(result);
 }
@@ -254,12 +255,12 @@ Camera::Result CameraImpl::stop_video() {
 
 Camera::Result CameraImpl::start_video_streaming(int32_t stream_id) {
     base::LogDebug() << "call start video streaming " << stream_id;
-    return Camera::Result::ProtocolUnsupported;
+    return Camera::Result::Success;
 }
 
 Camera::Result CameraImpl::stop_video_streaming(int32_t stream_id) {
     base::LogDebug() << "call stop video streaming " << stream_id;
-    return Camera::Result::ProtocolUnsupported;
+    return Camera::Result::Success;
 }
 
 Camera::Result CameraImpl::set_mode(Camera::Mode mode) {
@@ -314,7 +315,7 @@ Camera::Information CameraImpl::information() const {
     if (result == mav_camera::Result::Success) {
         out_info.vendor_name = "Aeroratech";
         out_info.model_name = "D64TR";
-        out_info.firmware_version = "0.6.0";
+        out_info.firmware_version = "0.7.0";
         out_info.focal_length_mm = in_info.focal_length_mm;
         out_info.horizontal_sensor_size_mm = in_info.horizontal_sensor_size_mm;
         out_info.vertical_sensor_size_mm = in_info.vertical_sensor_size_mm;
@@ -858,8 +859,6 @@ bool CameraImpl::init_ir_camera() {
         (create_ir_extension_api_fun)dlsym(_ir_camera_handle, "create_ir_extension_api");
     if (create_ir_extension_api == NULL) {
         base::LogError() << "Cannot find symbol create_ir_extension_api";
-        dlclose(_ir_camera_handle);
-        _ir_camera_handle = NULL;
         return false;
     }
 
@@ -920,6 +919,7 @@ void CameraImpl::free_ir_camera() {
         } else {
             base::LogDebug() << "Failed to close ir camera.";
         }
+        _ir_camera = nullptr;
     }
     if (_ir_camera_handle != NULL) {
         dlclose(_ir_camera_handle);
@@ -929,7 +929,7 @@ void CameraImpl::free_ir_camera() {
 
 int CameraImpl::get_ir_palette() {
     uint32_t color_mode = 0;
-    if (_ir_camera != NULL) {
+    if (_ir_camera != nullptr) {
         _ir_camera->get(TYPE_CAMERA_COLOR_MODE, &color_mode);
         base::LogDebug() << "Current ir palette is " << color_mode;
     }
