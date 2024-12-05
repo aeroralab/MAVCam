@@ -7,7 +7,7 @@ if (CMAKE_VERSION VERSION_GREATER_EQUAL "3.24.0")
 endif()
 include(ExternalProject)
 
-set(MAVSDK_VERSION 1.5.2)
+set(MAVSDK_VERSION 1.5.3)
 
 list(APPEND CMAKE_ARGS
     "-DCMAKE_PREFIX_PATH:PATH=${CMAKE_PREFIX_PATH}"
@@ -36,7 +36,7 @@ if(BUILD_QCOM)
     ExternalProject_add(
         MAVSDK
         URL https://github.com/aeroralab/MAVSDK/archive/refs/tags/v${MAVSDK_VERSION}.tar.gz
-        URL_HASH MD5=2acbe8fea8350478747c1350b43f2d7d
+        URL_HASH MD5=6363f8dcfab7a062615971d1a58cd7e5
         PREFIX MAVSDK
         DOWNLOAD_DIR "${DOWNLOAD_DIR}"
         PATCH_COMMAND patch -p1 < ${PROJECT_SOURCE_DIR}/0001-fixed-qcom-compile-error.patch && 
@@ -49,7 +49,7 @@ else()
     ExternalProject_add(
         MAVSDK
         URL https://github.com/aeroralab/MAVSDK/archive/refs/tags/v${MAVSDK_VERSION}.tar.gz
-        URL_HASH MD5=2acbe8fea8350478747c1350b43f2d7d
+        URL_HASH MD5=6363f8dcfab7a062615971d1a58cd7e5
         PREFIX MAVSDK
         DOWNLOAD_DIR "${DOWNLOAD_DIR}"
         PATCH_COMMAND patch -p1 < ${PROJECT_SOURCE_DIR}/0002-manually-set-MAVSDK-version.patch
