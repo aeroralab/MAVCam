@@ -16,6 +16,7 @@ namespace mavcam {
 const std::string kCameraModeName = "CAM_MODE";
 const std::string kCameraDisplayModeName = "CAM_DIS_MODE";
 const std::string kPhotoResolution = "CAM_PHOTO_RES";
+const std::string kPhotoQuality = "CAM_PHOTO_QC";
 const std::string kVideoResolution = "CAM_VIDRES";
 const std::string kVideoFormat = "CAM_VIDFMT";
 const std::string kWhitebalanceModeName = "CAM_WBMODE";
@@ -163,6 +164,7 @@ mavsdk::CameraServer::Result CameraLocalClient::reset_settings() {
         // reset settings value
         _settings[kCameraModeName] = "0";
         _settings[kCameraDisplayModeName] = "3";
+        _settings[kPhotoQuality] = "0";
         _settings[kWhitebalanceModeName] = "0";
         _settings[kExposureMode] = "0";
         _settings[kEVName] = "0";
@@ -211,7 +213,7 @@ mavsdk::CameraServer::Result CameraLocalClient::fill_information(
         information.vertical_resolution_px = in_info.vertical_resolution_px;
         information.lens_id = in_info.lens_id;
         //TODO (Thomas) : hard code
-        information.definition_file_version = 8;
+        information.definition_file_version = 10;
         information.definition_file_uri = "mftp://definition/D64TR.xml";
 
     } else {
@@ -401,6 +403,17 @@ mavsdk::CameraServer::Result CameraLocalClient::set_setting(mavsdk::Camera::Sett
                 _mav_camera->set_snapshot_resolution(kSnapshotHalfWidth, kSnapshotHalfHeight);
             set_success = result == mav_camera::Result::Success;
         }
+    } else if (setting.setting_id == kPhotoQuality) {
+        mav_camera::JpegQuality jpeg_quality;
+        if (setting.option.option_id == "0") {
+            jpeg_quality = mav_camera::JpegQuality::SuperFine;
+        } else if (setting.option.option_id == "1") {
+            jpeg_quality = mav_camera::JpegQuality::Fine;
+        } else if (setting.option.option_id == "2") {
+            jpeg_quality = mav_camera::JpegQuality::Normal;
+        }
+        auto result = _mav_camera->set_jpeg_quality(jpeg_quality);
+        set_success = result == mav_camera::Result::Success;
     } else if (setting.setting_id == kWhitebalanceModeName) {  // whitebalance mode
         set_success = set_whitebalance_mode(setting.option.option_id);
     } else if (setting.setting_id == kExposureMode) {
@@ -428,6 +441,7 @@ mavsdk::CameraServer::Result CameraLocalClient::set_setting(mavsdk::Camera::Sett
         set_success = false;
     }
 
+    // when set success update the settings value
     if (set_success) {
         _settings[setting.setting_id] = setting.option.option_id;
     }
@@ -542,6 +556,9 @@ bool CameraLocalClient::init() {
             _settings[kPhotoResolution] = "0";
         }
     }
+
+    options.jpeg_quality = mav_camera::JpegQuality::SuperFine;
+    _settings[kPhotoQuality] = "0";  // 0 for jpeg super fine
 
     if (options.init_mode == mav_camera::Mode::Photo) {
         options.preview_width = kPreviewWidth;
@@ -742,7 +759,7 @@ std::string CameraLocalClient::get_iso_value() {
 std::string CameraLocalClient::get_shutter_speed_value() {
     auto [result, value] = _mav_camera->get_shutter_speed();
     if (result != mav_camera::Result::Success) {
-        base::LogDebug() << "Cannot get shutterspeed"
+        base::LogDebug() << "Cannot get shutterspeed "
                          << convert_camera_result_to_mav_server_result(result);
         return "0.01";  // default value
     }
@@ -769,7 +786,7 @@ std::string CameraLocalClient::get_shutter_speed_value() {
 std::string CameraLocalClient::get_video_resolution() {
     auto [result, width, height] = _mav_camera->get_video_resolution();
     if (result != mav_camera::Result::Success) {
-        base::LogError() << "Cannot get video resolution"
+        base::LogError() << "Cannot get video resolution "
                          << convert_camera_result_to_mav_server_result(result);
         return "0";
     }
