@@ -163,15 +163,25 @@ mavsdk::CameraServer::Result CameraLocalClient::reset_settings() {
     if (result == mav_camera::Result::Success) {
         // reset settings value
         _settings[kCameraModeName] = "0";
+        _camera_param.set_value(kCameraModeName, "0");
         _settings[kCameraDisplayModeName] = "3";
+        _camera_param.set_value(kCameraDisplayModeName, "3");
         _settings[kPhotoQuality] = "0";
+        _camera_param.set_value(kPhotoQuality, "0");
         _settings[kWhitebalanceModeName] = "0";
+        _camera_param.set_value(kWhitebalanceModeName, "0");
         _settings[kExposureMode] = "0";
+        _camera_param.set_value(kExposureMode, "0");
         _settings[kEVName] = "0";
+        _camera_param.set_value(kEVName, "0");
         _settings[kISOName] = "125";
+        _camera_param.set_value(kISOName, "125");
         _settings[kShutterSpeedName] = "0.01";
+        _camera_param.set_value(kShutterSpeedName, "0.01");
         _settings[kVideoFormat] = "1";
+        _camera_param.set_value(kVideoFormat, "1");
         _settings[kMeteringModeName] = "0";
+        _camera_param.set_value(kMeteringModeName, "0");
     }
     return mavsdk::CameraServer::Result::Success;
 }
@@ -251,10 +261,10 @@ mavsdk::CameraServer::Result CameraLocalClient::fill_video_stream_info(
     mavsdk::CameraServer::VideoStreamInfo normal_video_stream;
     normal_video_stream.stream_id = 1;
 
-    normal_video_stream.settings.frame_rate_hz = 60.0;
-    normal_video_stream.settings.horizontal_resolution_pix = 1920;
-    normal_video_stream.settings.vertical_resolution_pix = 1080;
-    normal_video_stream.settings.bit_rate_b_s = 4 * 1024 * 1024;
+    normal_video_stream.settings.frame_rate_hz = 30.0;
+    normal_video_stream.settings.horizontal_resolution_pix = 1280;
+    normal_video_stream.settings.vertical_resolution_pix = 720;
+    normal_video_stream.settings.bit_rate_b_s = 2 * 1024 * 1024;
     normal_video_stream.settings.rotation_deg = 0;
     normal_video_stream.settings.uri = "rtsp://192.168.251.1/live";
     normal_video_stream.settings.horizontal_fov_deg = 0;
@@ -417,17 +427,13 @@ mavsdk::CameraServer::Result CameraLocalClient::set_setting(mavsdk::Camera::Sett
     } else if (setting.setting_id == kWhitebalanceModeName) {  // whitebalance mode
         set_success = set_whitebalance_mode(setting.option.option_id);
     } else if (setting.setting_id == kExposureMode) {
-        // exposure mode not set to camera implement
-        set_success = true;
+        set_success = set_exposure_mode(setting.option.option_id);
     } else if (setting.setting_id == kEVName) {  // exposure value
-        auto result = _mav_camera->set_exposure_value(std::stof(setting.option.option_id));
-        set_success = result == mav_camera::Result::Success;
+        set_success = set_exposure_value(setting.option.option_id);
     } else if (setting.setting_id == kISOName) {
-        auto result = _mav_camera->set_iso(std::stoi(setting.option.option_id));
-        set_success = result == mav_camera::Result::Success;
+        set_success = set_iso(setting.option.option_id);
     } else if (setting.setting_id == kShutterSpeedName) {
-        auto result = _mav_camera->set_shutter_speed(setting.option.option_id);
-        set_success = result == mav_camera::Result::Success;
+        set_success = set_shutter_speed(setting.option.option_id);
     } else if (setting.setting_id == kVideoResolution) {
         set_success = set_video_resolution(setting.option.option_id);
     } else if (setting.setting_id == kMeteringModeName) {
@@ -441,9 +447,10 @@ mavsdk::CameraServer::Result CameraLocalClient::set_setting(mavsdk::Camera::Sett
         set_success = false;
     }
 
-    // when set success update the settings value
+    // when set success update the settings value and store value
     if (set_success) {
         _settings[setting.setting_id] = setting.option.option_id;
+        _camera_param.set_value(setting.setting_id, setting.option.option_id);
     }
     return mavsdk::CameraServer::Result::Success;
 }
@@ -466,11 +473,8 @@ bool CameraLocalClient::init() {
 
     //init ir camera first for ir stream function
     auto ir_result = init_ir_camera();
-    if (ir_result) {
-        int color_mode = get_ir_palette();
-        _settings[kIrCamPalette] = std::to_string(color_mode);
-        _settings[kIrCamFFC] = "0";
-    }
+    _settings[kIrCamPalette] = init_ir_palette();
+    _settings[kIrCamFFC] = "0";
 
     _plugin_handle = dlopen(QCOM_CAMERA_LIBERAY, RTLD_NOW);
     if (_plugin_handle == NULL) {
@@ -509,6 +513,9 @@ bool CameraLocalClient::init() {
     options.preview_v4l2_output = false;
     options.preview_weston_output = true;
 
+    ///< init priority is env > store > default
+
+    /************** Camera Mode *************/
     auto camera_mode = mav_camera::Mode::Photo;
     const char *init_camera_mode = getenv("MAVCAM_INIT_CAMERA_MODE");
     if (init_camera_mode != NULL) {
@@ -520,8 +527,30 @@ bool CameraLocalClient::init() {
             base::LogInfo() << "Manually init camera to video mode";
         }
     }
-    options.init_mode = camera_mode;
 
+    auto store_mode = _camera_param.get_value(kCameraModeName);
+    if (store_mode.empty()) {  // init default param to local storage
+        if (camera_mode == mav_camera::Mode::Photo) {
+            _camera_param.set_value(kCameraModeName, "0");
+        } else {
+            _camera_param.set_value(kCameraModeName, "1");
+        }
+    } else {
+        if (store_mode == "0") {
+            camera_mode = mav_camera::Mode::Photo;
+        } else {
+            camera_mode = mav_camera::Mode::Video;
+        }
+    }
+
+    options.init_mode = camera_mode;
+    if (options.init_mode == mav_camera::Mode::Photo) {
+        _settings[kCameraModeName] = "0";
+    } else {
+        _settings[kCameraModeName] = "1";
+    }
+
+    /************** Photo Resolution *************/
     const char *init_snapshot_resoltuion = getenv("MAVCAM_INIT_SNAPSHOT_RES");
     if (init_snapshot_resoltuion != NULL) {
         std::regex resolutionRegex(R"(^(\d+)x(\d+)$)");
@@ -546,19 +575,43 @@ bool CameraLocalClient::init() {
         std::tie(result, kSnapshotWidth, kSnapshotHeight) = _mav_camera->get_snapshot_resolution();
         kSnapshotHalfWidth = kSnapshotWidth / 2;
         kSnapshotHalfHeight = kSnapshotHeight / 2;
-        if (kSnapshotWidth > 8000) {  // for 64M mode, use half width and height
-            options.snapshot_width = kSnapshotHalfWidth;
-            options.snapshot_height = kSnapshotHalfHeight;
-            _settings[kPhotoResolution] = "1";  // 1 for 1/4 resolution
-        } else {
+
+        auto store_resolution = _camera_param.get_value(kPhotoResolution);
+        if (store_resolution.empty()) {  // init default param to local storage
+            // default is full resolution
             options.snapshot_width = kSnapshotWidth;
             options.snapshot_height = kSnapshotHeight;
             _settings[kPhotoResolution] = "0";
+            _camera_param.set_value(kPhotoResolution, "0");
+        } else {
+            if (store_resolution == "0") {
+                options.snapshot_width = kSnapshotWidth;
+                options.snapshot_height = kSnapshotHeight;
+                _settings[kPhotoResolution] = "0";  // 0 for full resolution
+            } else {
+                options.snapshot_width = kSnapshotHalfWidth;
+                options.snapshot_height = kSnapshotHeight;
+                _settings[kPhotoResolution] = "1";  // 1 for 1/4 resolution
+            }
         }
     }
 
-    options.jpeg_quality = mav_camera::JpegQuality::SuperFine;
-    _settings[kPhotoQuality] = "0";  // 0 for jpeg super fine
+    /************** Jpeg Quality *************/
+    auto store_jpeg_quality = _camera_param.get_value(kPhotoQuality);
+    if (store_jpeg_quality.empty()) {
+        options.jpeg_quality = mav_camera::JpegQuality::SuperFine;
+        _settings[kPhotoQuality] = "0";  // 0 for jpeg super fine
+        _camera_param.set_value(kPhotoQuality, "0");
+    } else {
+        _settings[kPhotoQuality] = store_jpeg_quality;
+        if (store_jpeg_quality == "0") {
+            options.jpeg_quality = mav_camera::JpegQuality::SuperFine;
+        } else if (store_jpeg_quality == "1") {
+            options.jpeg_quality = mav_camera::JpegQuality::Fine;
+        } else {
+            options.jpeg_quality = mav_camera::JpegQuality::Normal;
+        }
+    }
 
     if (options.init_mode == mav_camera::Mode::Photo) {
         options.preview_width = kPreviewWidth;
@@ -587,12 +640,6 @@ bool CameraLocalClient::init() {
         base::LogDebug() << "open qcom camera success";
     }
 
-    if (options.init_mode == mav_camera::Mode::Photo) {
-        _settings[kCameraModeName] = "0";
-    } else {
-        _settings[kCameraModeName] = "1";
-    }
-
     _mav_camera->subscribe_storage_information(
         [&](mav_camera::Result result, mav_camera::StorageInformation storage_information) {
             std::lock_guard<std::mutex> lock(_storage_information_mutex);
@@ -600,22 +647,15 @@ bool CameraLocalClient::init() {
         });
 
     // init all settings
-    auto display_mode = get_camera_display_mode();
-    _settings[kCameraDisplayModeName] = display_mode;
-    std::string wb_mode = get_whitebalance_mode();
-    _settings[kWhitebalanceModeName] = wb_mode;
-    // 0 for auto exposure mode
-    _settings[kExposureMode] = "0";
-    std::string ev_value = get_ev_value();
-    _settings[kEVName] = ev_value;
-    std::string iso_value = get_iso_value();
-    _settings[kISOName] = iso_value;
-    std::string shutter_speed_value = get_shutter_speed_value();
-    _settings[kShutterSpeedName] = shutter_speed_value;
-    _settings[kVideoFormat] = "1";
-    std::string video_resolution = get_video_resolution();
-    _settings[kVideoResolution] = video_resolution;
-    _settings[kMeteringModeName] = "0";
+    _settings[kCameraDisplayModeName] = init_camera_display_mode();
+    _settings[kWhitebalanceModeName] = init_whitebalance_mode();
+    _settings[kExposureMode] = init_exposure_mode();
+    _settings[kEVName] = init_exposure_value();
+    _settings[kISOName] = init_iso();
+    _settings[kShutterSpeedName] = init_shutter_speed();
+    _settings[kVideoFormat] = init_video_format();
+    _settings[kVideoResolution] = init_video_resolution();
+    _settings[kMeteringModeName] = init_metering_mode();
 
     base::LogDebug() << "Init settings :";
     for (const auto &setting : _settings) {
@@ -638,6 +678,38 @@ void CameraLocalClient::deinit() {
     free_ir_camera();
 }
 
+std::string CameraLocalClient::init_camera_display_mode() {
+    auto store_display_mode = _camera_param.get_value(kCameraDisplayModeName);
+    if (store_display_mode.empty()) {
+        //init default display mode
+        mav_camera::Result result;
+        mav_camera::PreivewStreamOutputType preview_type;
+        std::tie(result, preview_type) = _mav_camera->get_preview_stream_output_type();
+        std::string default_mode = "0";
+        if (result == mav_camera::Result::Success) {
+            switch (preview_type) {
+                case mav_camera::PreivewStreamOutputType::RGBStreamOnly:
+                    default_mode = "0";
+                    break;
+                case mav_camera::PreivewStreamOutputType::InfraredStreamOnly:
+                    default_mode = "1";
+                    break;
+                case mav_camera::PreivewStreamOutputType::MixSideBySide:
+                    default_mode = "2";
+                    break;
+                case mav_camera::PreivewStreamOutputType::MixPIP:
+                    default_mode = "3";
+                    break;
+            }
+        }
+        _camera_param.set_value(kCameraDisplayModeName, default_mode);
+        return default_mode;
+    } else {
+        set_camera_display_mode(store_display_mode);
+        return store_display_mode;
+    }
+}
+
 bool CameraLocalClient::set_camera_display_mode(std::string mode) {
     mav_camera::Result result = mav_camera::Result::Unknown;
     if (mode == "0") {
@@ -657,29 +729,6 @@ bool CameraLocalClient::set_camera_display_mode(std::string mode) {
     return result == mav_camera::Result::Success;
 }
 
-std::string CameraLocalClient::get_camera_display_mode() {
-    mav_camera::Result result;
-    mav_camera::PreivewStreamOutputType preview_type;
-    std::tie(result, preview_type) = _mav_camera->get_preview_stream_output_type();
-    if (result == mav_camera::Result::Success) {
-        switch (preview_type) {
-            case mav_camera::PreivewStreamOutputType::RGBStreamOnly:
-                return "0";
-                break;
-            case mav_camera::PreivewStreamOutputType::InfraredStreamOnly:
-                return "1";
-                break;
-            case mav_camera::PreivewStreamOutputType::MixSideBySide:
-                return "2";
-                break;
-            case mav_camera::PreivewStreamOutputType::MixPIP:
-                return "3";
-                break;
-        }
-    }
-    return 0;
-}
-
 /**
     <option name="Auto" value="0" />
     <option name="Incandescent" value="1" />
@@ -689,6 +738,41 @@ std::string CameraLocalClient::get_camera_display_mode() {
     <option name="Cloudy" value="5" />
     <option name="Fluorescent" value="7" />
 */
+std::string CameraLocalClient::init_whitebalance_mode() {
+    auto store_whitebalance = _camera_param.get_value(kWhitebalanceModeName);
+    if (store_whitebalance.empty()) {
+        auto [result, value] = _mav_camera->get_white_balance();
+        std::string whitebalance = "0";
+        if (result != mav_camera::Result::Success) {
+            base::LogError() << "Cannot get whitebalance mode"
+                             << convert_camera_result_to_mav_server_result(result);
+            whitebalance = "0";
+        } else {
+            if (value == mav_camera::kAutoWhitebalanceValue) {
+                whitebalance = "0";
+            } else if (value == 5500) {
+                whitebalance = "1";
+            } else if (value == 6500) {
+                whitebalance = "2";
+            } else if (value == 7500) {
+                whitebalance = "3";
+            } else if (value == 2700) {
+                whitebalance = "4";
+            } else if (value == 4000) {
+                whitebalance = "5";
+            } else {
+                base::LogWarn() << "invalid white balance value " << value;
+                whitebalance = "0";
+            }
+        }
+        _camera_param.set_value(kWhitebalanceModeName, whitebalance);
+        return whitebalance;
+    } else {
+        set_whitebalance_mode(store_whitebalance);
+        return store_whitebalance;
+    }
+}
+
 bool CameraLocalClient::set_whitebalance_mode(std::string mode) {
     mav_camera::Result result;
     if (mode == "0") {  // Auto
@@ -709,107 +793,176 @@ bool CameraLocalClient::set_whitebalance_mode(std::string mode) {
     return result == mav_camera::Result::Success;
 }
 
-std::string CameraLocalClient::get_whitebalance_mode() {
-    auto [result, value] = _mav_camera->get_white_balance();
-    if (result != mav_camera::Result::Success) {
-        base::LogError() << "Cannot get whitebalance mode"
-                         << convert_camera_result_to_mav_server_result(result);
-        return "0";
-    }
-    if (value == mav_camera::kAutoWhitebalanceValue) {
-        return "0";
-    } else if (value == 5500) {
-        return "1";
-    } else if (value == 6500) {
-        return "2";
-    } else if (value == 7500) {
-        return "3";
-    } else if (value == 2700) {
-        return "4";
-    } else if (value == 4000) {
-        return "5";
-    }
-    base::LogWarn() << "invalid white balance value " << value;
-    return "0";
-}
-
-std::string CameraLocalClient::get_ev_value() {
-    auto [result, value] = _mav_camera->get_exposure_value();
-    if (result != mav_camera::Result::Success) {
-        base::LogError() << "Cannot get exposure value"
-                         << convert_camera_result_to_mav_server_result(result);
-        return "0.0";
-    }
-    std::ostringstream oss;
-    oss << std::fixed << std::setprecision(1) << value;
-    std::string ev_value = oss.str();
-    return ev_value;
-}
-
-std::string CameraLocalClient::get_iso_value() {
-    auto [result, value] = _mav_camera->get_iso();
-    if (result != mav_camera::Result::Success) {
-        base::LogError() << "Cannot get iso value"
-                         << convert_camera_result_to_mav_server_result(result);
-        return "100";
-    }
-    return std::to_string(value);
-}
-
-std::string CameraLocalClient::get_shutter_speed_value() {
-    auto [result, value] = _mav_camera->get_shutter_speed();
-    if (result != mav_camera::Result::Success) {
-        base::LogDebug() << "Cannot get shutterspeed "
-                         << convert_camera_result_to_mav_server_result(result);
-        return "0.01";  // default value
-    }
-    std::size_t pos = value.find('/');
-    if (pos != std::string::npos) {
-        // Split the string at '/'
-        std::string num_str = value.substr(0, pos);
-        std::string den_str = value.substr(pos + 1);
-
-        // Convert to float
-        float numerator = std::stof(num_str);
-        float denominator = std::stof(den_str);
-
-        // Perform the division
-        auto convert_result = std::to_string(numerator / denominator);
-        base::LogDebug() << "current shutter speed is : " << convert_result;
-        return convert_result;
+std::string CameraLocalClient::init_exposure_mode() {
+    auto store_exposure_mode = _camera_param.get_value(kExposureMode);
+    if (store_exposure_mode.empty()) {
+        std::string exposure_mode = "0";  // default exposure mode is Auto
+        _camera_param.set_value(kExposureMode, exposure_mode);
+        return exposure_mode;
     } else {
-        // If there is no '/', assume it's a whole number
-        return value;
+        set_exposure_mode(store_exposure_mode);
+        return store_exposure_mode;
     }
 }
 
-std::string CameraLocalClient::get_video_resolution() {
-    auto [result, width, height] = _mav_camera->get_video_resolution();
-    if (result != mav_camera::Result::Success) {
-        base::LogError() << "Cannot get video resolution "
-                         << convert_camera_result_to_mav_server_result(result);
-        return "0";
-    }
-    auto [result2, framerate] = _mav_camera->get_framerate();
-    if (result2 != mav_camera::Result::Success) {
-        base::LogError() << "Cannot get framerate"
-                         << convert_camera_result_to_mav_server_result(result);
-        return "0";
-    }
-    base::LogDebug() << "Current video resolution is " << width << "x" << height << "@"
-                     << framerate;
-    if (width == 3840 && height == 2160 && framerate == 60) {
-        return "0";
-    } else if (width == 3840 && height == 2160 && framerate == 30) {
-        return "1";
-    } else if (width == 1920 && height == 1080 && framerate == 60) {
-        return "2";
-    } else if (width == 1920 && height == 1080 && framerate == 30) {
-        return "3";
+bool CameraLocalClient::set_exposure_mode(std::string mode) {
+    mav_camera::Result result;
+    if (mode == "0") {
+        result = _mav_camera->set_ae_mode(mav_camera::AEMode::Auto);
     } else {
-        base::LogError() << "Not found match resolution : " << width << "x" << height << "@"
+        result = _mav_camera->set_ae_mode(mav_camera::AEMode::Manual);
+    }
+    return result == mav_camera::Result::Success;
+}
+
+std::string CameraLocalClient::init_exposure_value() {
+    auto store_ev = _camera_param.get_value(kEVName);
+    if (store_ev.empty()) {
+        std::string ev = "0.0";
+        auto [result, value] = _mav_camera->get_exposure_value();
+        if (result != mav_camera::Result::Success) {
+            base::LogError() << "Cannot get exposure value"
+                             << convert_camera_result_to_mav_server_result(result);
+            ev = "0.0";
+        } else {
+            std::ostringstream oss;
+            oss << std::fixed << std::setprecision(1) << value;
+            ev = oss.str();
+        }
+        _camera_param.set_value(kEVName, ev);
+        return ev;
+    } else {
+        // in auto exposure mode need set value again
+        if (_settings[kExposureMode] == "0") {
+            set_exposure_value(store_ev);
+        }
+        return store_ev;
+    }
+}
+
+bool CameraLocalClient::set_exposure_value(std::string exposure_value) {
+    auto result = _mav_camera->set_exposure_value(std::stof(exposure_value));
+    return result == mav_camera::Result::Success;
+}
+
+std::string CameraLocalClient::init_iso() {
+    auto store_iso = _camera_param.get_value(kISOName);
+    if (store_iso.empty()) {
+        auto [result, value] = _mav_camera->get_iso();
+        std::string iso;
+        if (result != mav_camera::Result::Success) {
+            base::LogError() << "Cannot get iso value"
+                             << convert_camera_result_to_mav_server_result(result);
+            iso = "100";
+        }
+        iso = std::to_string(value);
+        _camera_param.set_value(kISOName, iso);
+        return iso;
+    } else {
+        // in manual exposure mode need set value again
+        if (_settings[kExposureMode] == "1") {
+            set_iso(store_iso);
+        }
+        return store_iso;
+    }
+}
+
+bool CameraLocalClient::set_iso(std::string iso) {
+    auto result = _mav_camera->set_iso(std::stoi(iso));
+    return result == mav_camera::Result::Success;
+}
+
+std::string CameraLocalClient::init_shutter_speed() {
+    auto store_shutter_speed = _camera_param.get_value(kShutterSpeedName);
+    if (store_shutter_speed.empty()) {
+        std::string shutter_speed = "";
+        auto [result, value] = _mav_camera->get_shutter_speed();
+        if (result != mav_camera::Result::Success) {
+            base::LogDebug() << "Cannot get shutterspeed"
+                             << convert_camera_result_to_mav_server_result(result);
+            shutter_speed = "0.01";  // default value
+        }
+        std::size_t pos = value.find('/');
+        if (pos != std::string::npos) {
+            // Split the string at '/'
+            std::string num_str = value.substr(0, pos);
+            std::string den_str = value.substr(pos + 1);
+
+            // Convert to float
+            float numerator = std::stof(num_str);
+            float denominator = std::stof(den_str);
+
+            // Perform the division
+            auto convert_result = std::to_string(numerator / denominator);
+            base::LogDebug() << "current shutter speed is : " << convert_result;
+            shutter_speed = convert_result;
+        } else {
+            // If there is no '/', assume it's a whole number
+            shutter_speed = value;
+        }
+        _camera_param.set_value(kShutterSpeedName, shutter_speed);
+        return shutter_speed;
+    } else {
+        // in manual exposure mode need set value again
+        if (_settings[kExposureMode] == "1") {
+            set_shutter_speed(store_shutter_speed);
+        }
+        return store_shutter_speed;
+    }
+}
+
+bool CameraLocalClient::set_shutter_speed(std::string shutter_speed) {
+    auto result = _mav_camera->set_shutter_speed(shutter_speed);
+    return result == mav_camera::Result::Success;
+}
+
+std::string CameraLocalClient::init_video_format() {
+    auto store_video_format = _camera_param.get_value(kVideoFormat);
+    if (store_video_format.empty()) {
+        std::string video_format = "1";
+        _camera_param.set_value(kVideoFormat, video_format);
+        return video_format;
+    } else {
+        return store_video_format;
+    }
+}
+
+std::string CameraLocalClient::init_video_resolution() {
+    auto store_video_resolution = _camera_param.get_value(kVideoResolution);
+    if (store_video_resolution.empty()) {
+        std::string video_resolution = "";
+        auto [result, width, height] = _mav_camera->get_video_resolution();
+        if (result != mav_camera::Result::Success) {
+            base::LogError() << "Cannot get video resolution"
+                             << convert_camera_result_to_mav_server_result(result);
+            video_resolution = "0";
+        }
+        auto [result2, framerate] = _mav_camera->get_framerate();
+        if (result2 != mav_camera::Result::Success) {
+            base::LogError() << "Cannot get framerate"
+                             << convert_camera_result_to_mav_server_result(result);
+            video_resolution = "0";
+        }
+        base::LogDebug() << "Current video resolution is " << width << "x" << height << "@"
                          << framerate;
-        return "0";
+        if (width == 3840 && height == 2160 && framerate == 60) {
+            video_resolution = "0";
+        } else if (width == 3840 && height == 2160 && framerate == 30) {
+            video_resolution = "1";
+        } else if (width == 1920 && height == 1080 && framerate == 60) {
+            video_resolution = "2";
+        } else if (width == 1920 && height == 1080 && framerate == 30) {
+            video_resolution = "3";
+        } else {
+            base::LogError() << "Not found match resolution : " << width << "x" << height << "@"
+                             << framerate;
+            video_resolution = "0";
+        }
+        _camera_param.set_value(kVideoResolution, video_resolution);
+        return video_resolution;
+    } else {
+        set_video_resolution(store_video_resolution);
+        return store_video_resolution;
     }
 }
 
@@ -845,6 +998,18 @@ bool CameraLocalClient::set_video_resolution(std::string value) {
         base::LogError() << "Failed to set video framerate : " << set_framerate;
     }
     return result == mav_camera::Result::Success;
+}
+
+std::string CameraLocalClient::init_metering_mode() {
+    auto store_metering = _camera_param.get_value(kMeteringModeName);
+    if (store_metering.empty()) {
+        std::string metering = "0";
+        _camera_param.set_value(kMeteringModeName, metering);
+        return metering;
+    } else {
+        set_metering_mode(store_metering);
+        return store_metering;
+    }
 }
 
 bool CameraLocalClient::set_metering_mode(std::string value) {
@@ -945,13 +1110,24 @@ void CameraLocalClient::free_ir_camera() {
     }
 }
 
-int CameraLocalClient::get_ir_palette() {
-    uint32_t color_mode = 0;
-    if (_ir_camera != nullptr) {
-        _ir_camera->get(TYPE_CAMERA_COLOR_MODE, &color_mode);
-        base::LogDebug() << "Current ir palette is " << color_mode;
+std::string CameraLocalClient::init_ir_palette() {
+    auto store_ir_palette = _camera_param.get_value(kIrCamPalette);
+    if (store_ir_palette.empty()) {
+        std::string palette;
+        if (_ir_camera != nullptr) {
+            uint32_t color_mode = 0;
+            _ir_camera->get(TYPE_CAMERA_COLOR_MODE, &color_mode);
+            base::LogDebug() << "Current ir palette is " << int(color_mode);
+            palette = std::to_string(color_mode);
+        } else {  // When ir camera init failed, just add empty value for settings
+            palette = "0";
+        }
+        _camera_param.set_value(kIrCamPalette, palette);
+        return palette;
+    } else {
+        set_ir_palette(store_ir_palette);
+        return store_ir_palette;
     }
-    return color_mode;
 }
 
 bool CameraLocalClient::set_ir_palette(std::string color_mode) {

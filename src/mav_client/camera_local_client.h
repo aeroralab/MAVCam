@@ -7,6 +7,7 @@
 #include <vector>
 
 #include "camera_client.h"
+#include "camera_param/camera_param.h"
 #include "libirextension.h"
 #include "mav_camera.h"
 #include "plugins/camera/camera.h"
@@ -56,41 +57,83 @@ private:
      */
     void deinit();
     /**
+     * @brief get current camera display mode
+     */
+    std::string init_camera_display_mode();
+    /**
      * @brief set camera display mode
      */
     bool set_camera_display_mode(std::string mode);
     /**
-     * @brief get current camera display mode
-     */
-    std::string get_camera_display_mode();
+     * @brief get camera whitebalance mode
+    */
+    std::string init_whitebalance_mode();
     /**
      * @brief set whitebalance mode
     */
     bool set_whitebalance_mode(std::string mode);
     /**
-     * @brief get camera whitebalance mode
+     * @brief init exposure mode
+     * @details prefer to use store exposure mode
+     * @return current exposure mode, 0 for Auto, 1 for Manual
+     */
+    std::string init_exposure_mode();
+    /**
+     * @brief set exposure mode
+     */
+    bool set_exposure_mode(std::string mode);
+    /**
+     * @brief init camera exposure value
+     * @details prefer to use store exposure value
+     * @return current exposure value
+     */
+    std::string init_exposure_value();
+    /**
+     * @brief set exposure value
+     */
+    bool set_exposure_value(std::string exposure_value);
+    /**
+     * @brief init camera iso value
+     * @details prefer to use store iso value
+     * @return current iso value
+     */
+    std::string init_iso();
+    /**
+     * @brief set iso value
     */
-    std::string get_whitebalance_mode();
+    bool set_iso(std::string iso);
     /**
-     * @brief get camera exposure value
+     * @brief init shutter speed
+     * @details prefer to use store shutter speed
+     * @return current shutter speed
      */
-    std::string get_ev_value();
+    std::string init_shutter_speed();
     /**
-     * @brief get camera iso value
-     */
-    std::string get_iso_value();
+     * @brief set shutter speed
+    */
+    bool set_shutter_speed(std::string shutter_speed);
     /**
-     * @brief get shutter speed value
+     * @brief init video format
+     * @details prefer to use store video format
+     * @return current video format
      */
-    std::string get_shutter_speed_value();
+    std::string init_video_format();
     /**
-     * @brief get video resoltuion
+     * @brief init video resoltuion
+     * @details prefer to use store video resolution
+     * @return current video resolution
      */
-    std::string get_video_resolution();
+    std::string init_video_resolution();
     /**
      * @brief set video resoltuion
      */
     bool set_video_resolution(std::string value);
+    /**
+     * @brief init camera metering mode
+     * @details prefer to use store metering mode
+     * @return current metering mode
+     */
+    std::string init_metering_mode();
     /**
      * @brief set metering mode
      */
@@ -104,9 +147,11 @@ private:
      */
     void free_ir_camera();
     /**
-     * @brief get ir camera palette
+     * @brief init ir camera palette
+     * @details prefer to use store ir palette
+     * @return current ir palette
      */
-    int get_ir_palette();
+    std::string init_ir_palette();
     /**
      * @brief set ir camera palette
      */
@@ -136,6 +181,8 @@ private:
 private:
     void *_ir_camera_handle{NULL};
     struct ir_extension_api *_ir_camera{nullptr};
+private:
+    CameraParam _camera_param;
 };
 
 }  // namespace mavcam
