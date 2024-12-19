@@ -155,10 +155,13 @@ mavsdk::CameraServer::Result CameraLocalClient::format_storage(int storage_id) {
 mavsdk::CameraServer::Result CameraLocalClient::reset_settings() {
     base::LogDebug() << "locally call reset settings";
     if (_mav_camera == nullptr) {
+        base::LogError() << "call reset settings without camera";
         return mavsdk::CameraServer::Result::NoSystem;
     }
     std::lock_guard<std::mutex> lock(_mutex);
 
+    // reset RGB camera settings
+    base::LogDebug() << "reset rgb camera";
     auto result = _mav_camera->reset_settings();
     if (result == mav_camera::Result::Success) {
         // reset settings value
@@ -183,6 +186,17 @@ mavsdk::CameraServer::Result CameraLocalClient::reset_settings() {
         _settings[kMeteringModeName] = "0";
         _camera_param.set_value(kMeteringModeName, "0");
     }
+
+    //reset ir camera settings
+    base::LogDebug() << "reset ir camera";
+    const std::string default_palette = "2";
+    bool ret = set_ir_palette(default_palette);  // default is rainbow
+    if (ret) {
+        _settings[kIrCamPalette] = default_palette;
+        _camera_param.set_value(kIrCamPalette, default_palette);
+        _settings[kIrCamFFC] = "0";
+    }
+
     return mavsdk::CameraServer::Result::Success;
 }
 
@@ -1134,6 +1148,9 @@ bool CameraLocalClient::set_ir_palette(std::string color_mode) {
     uint32_t convert_mode = std::stoul(color_mode);
     if (_ir_camera != nullptr) {
         auto result = _ir_camera->set(TYPE_CAMERA_COLOR_MODE, &convert_mode);
+        if (result != 0) {
+            base::LogError() << "Set ir palette failed";
+        }
         return result == 0;
     }
     return false;
