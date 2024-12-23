@@ -11,6 +11,7 @@
 
 #include "base/log.h"
 #include "camera_client.h"
+#include "led_control/led_control.h"
 
 namespace mavcam {
 
@@ -61,6 +62,7 @@ bool MavClient::start_runloop() {
     ftp_server.set_root_dir(_ftp_root_path);
     base::LogInfo() << "Launch ftp server with root path " << _ftp_root_path;
 
+    switch_led_mode(LedMode::Normal);
     _running = true;
     while (_running) {
         std::this_thread::sleep_for(std::chrono::milliseconds(500));

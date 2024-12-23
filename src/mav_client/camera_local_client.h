@@ -160,6 +160,10 @@ private:
      * @brief execute ir camera FFC
      */
     bool set_ir_FFC(std::string ignore);
+    /**
+     * @brief check sdcard status for led control
+     */
+    void check_sdcard_status();
 private:
     mavsdk::Camera::Setting build_setting(std::string name, std::string value);
     mavsdk::CameraServer::Result convert_camera_result_to_mav_server_result(
@@ -183,6 +187,7 @@ private:
     struct ir_extension_api *_ir_camera{nullptr};
 private:
     CameraParam _camera_param;
+    bool _sdcard_valid{true};
 };
 
 }  // namespace mavcam
